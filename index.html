@@ -148,7 +148,7 @@
   .act-btn.report { background: #94a3b8; color: #FFF; grid-column: span 4; margin-top: 4px; }
 
   .legal-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 12px; margin: 12px 0; font-size: 11.5px; color: #78350f; line-height: 1.5; }
-  .tc-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; margin: 14px 0; font-size: 11.5px; color: #334155; }
+  .tc-box { background: #fee2e2; border: 1px solid #ef4444; border-radius: 12px; padding: 12px; margin: 14px 0; font-size: 11.5px; color: #7f1d1d; }
   
   .btn-submit { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #FFFFFF; font-weight: 800; font-size: 14px; border: none; padding: 13px; border-radius: 12px; width: 100%; cursor: pointer; box-shadow: 0 6px 20px var(--accent-glow); }
   .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; box-shadow: none; }
@@ -164,7 +164,6 @@
   <header>
     <div class="brand-row">
       <div class="brand-left">
-        <!-- ලෝගෝ එක අයින් කර ඇත -->
         <h1>
           <span class="w-blue">W</span><span class="w-blue">O</span><span class="w-blue">R</span><span class="w-blue">K</span>
           <span class="w-orange">L</span><span class="w-orange">I</span><span class="w-orange">N</span><span class="w-orange">E</span>
@@ -314,9 +313,9 @@
         </div>
 
         <div class="tc-box">
-          <label style="display:flex; align-items:start; gap:8px; font-size:11px; color:#334155; margin:0; cursor:pointer; font-weight:normal;">
+          <label style="display:flex; align-items:start; gap:8px; font-size:11px; margin:0; cursor:pointer; font-weight:normal;">
             <input type="checkbox" id="w_tc" required style="width:auto; margin-top:2px;">
-            <span><b>නියමයන් සහ කොන්දේසි:</b> මෙම වේදිකාව හුදෙක් දැන්වීම් පුවරුවක් පමණක් බවත් ගනුදෙනු සඳහා ආයතනය වගකීම් නොදරන බවත් එකඟ වෙමි.</span>
+            <span><b>දැඩි නියමයන් සහ කොන්දේසි (Legal Agreement):</b> මෙම වේදිකාව හුදෙක් දැන්වීම් ප්‍රදර්ශනය කරන මාධ්‍යයක් පමණක් බවත්, සේවාදායකයන් සමඟ සිදුවන කිසිදු මූල්‍ය ගනුදෙනුවක්, වංචාවක්, හෝ සේවාවේ ගුණාත්මකභාවය පිළිබඳ ගැටළුවක් සම්බන්ධයෙන් WORKLINE පද්ධතිය හෝ එහි නිර්මාතෘවරුන් නීතිමය වශයෙන් කිසිදු වගකීමක් නොදරන බවට මම සම්පූර්ණයෙන්ම එකඟ වෙමි. මා විසින් සපයන ලද සියලුම තොරතුරු සත්‍ය බවත් මම මෙයින් තහවුරු කරමි.</span>
           </label>
         </div>
 
@@ -430,9 +429,9 @@
         </div>
 
         <div class="tc-box">
-          <label style="display:flex; align-items:start; gap:8px; font-size:11px; color:#334155; margin:0; cursor:pointer; font-weight:normal;">
+          <label style="display:flex; align-items:start; gap:8px; font-size:11px; margin:0; cursor:pointer; font-weight:normal;">
             <input type="checkbox" id="p_tc" required style="width:auto; margin-top:2px;">
-            <span><b>නියමයන් සහ කොන්දේසි:</b> මෙම වේදිකාව දැන්වීම් පුවරුවක් පමණක් බව තේරුම් ගතිමි.</span>
+            <span><b>දැඩි නියමයන් සහ කොන්දේසි (Legal Agreement):</b> මෙම වේදිකාව දැන්වීම් පුවරුවක් පමණක් බවත්, සේවකයන්ගේ හැසිරීම්, වංචා කිරීම්, හෝ සේවාවේ ප්‍රමිතිය සම්බන්ධයෙන් WORKLINE පද්ධතිය කිසිදු නීතිමය වගකීමක් නොදරන බවට එකඟ වෙමි. ගනුදෙනු කිරීමේදී මගේ පෞද්ගලික ආරක්ෂාව සහ වගකීම මා සතු බව තේරුම් ගතිමි.</span>
           </label>
         </div>
 
@@ -1091,17 +1090,10 @@ function setupReferralTracking() {
   }
   currentRefCode = myCode;
   
-  // Robust cross-browser and mobile URL resolution for any browser/hosting context
-  let baseUrl = window.location.origin;
-  if (!baseUrl || baseUrl === 'null' || baseUrl.startsWith('file:') || baseUrl.includes('localhost')) {
-    baseUrl = window.location.protocol + '//' + window.location.host + window.location.pathname.replace(/\/[^/]*$/, '');
-  }
-  // Ensure trailing clean URL path for optimal cross-browser sharing
-  if (baseUrl.endsWith('/')) {
-    baseUrl = baseUrl.slice(0, -1);
-  }
+  // නව Live Link එක එක් කිරීම - ඕනෑම බ්‍රවුසරයකින් මෙය ක්‍රියාත්මක වේ.
+  const baseUrl = "https://workline-sl.github.io/workline/";
+  const fullLink = `${baseUrl}?ref=${myCode}`;
   
-  const fullLink = `${baseUrl}/?ref=${myCode}`;
   const refInput = document.getElementById('myRefLink');
   if (refInput) {
     refInput.value = fullLink;
