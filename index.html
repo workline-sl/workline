@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WORKLINE - Your Skill , Your Job.</title>
+<!-- PWA & Mobile App Meta Tags -->
+<meta name="theme-color" content="#1e1b4b">
+<link rel="apple-touch-icon" href="https://xecwobnntjjkoalqtalh.supabase.co/storage/v1/object/public/media/app-icon.png">
+<link rel="icon" type="image/png" href="https://xecwobnntjjkoalqtalh.supabase.co/storage/v1/object/public/media/app-icon.png">
+<link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIldPUktMSU5FIiwKICAic2hvcnRfbmFtZSI6CiAgIldPUktMSU5FIiwKICAic3RhcnRfdXJsIjogICIvIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMTcxYzNkIiwKICAidGhlbWVfY29sb3IiOiAiIzFlMWI0YiIsCiAgImljb25zIjogW3sKICAgICJzcmMiOiAiaHR0cHM6Ly94ZWN3b2JubnRqamtvYWxxdGFsaC5zdXBhYmFzZS5jby9zdG9yYWdlL3YxL29iamVjdC9wdWJsaWMvbWVkaWEvYXBwLWljb24ucG5nIiwKICAgICJzaXplcyI6ICI1MTJ4NTEyIiwKICAgICJ0eXBlIjogImltYWdlL3BuZyIKICB9XQp9">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+  :root {
+    --bg-gradient: linear-gradient(135deg, #090d16 0%, #171c3d 50%, #292562 100%);
+    --primary: #1e1b4b;
+    --accent: #2563eb;
+    --accent-glow: rgba(37, 99, 235, 0.6);
+    --accent-orange: #f97316;
+    --border: rgba(226, 232, 240, 0.8);
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --green: #10b981;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+  }
+  * { box-sizing: border-box; font-family: 'Noto Sans Sinhala', 'Plus Jakarta Sans', sans-serif; }
+  body { margin: 0; background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); padding: 20px 0 80px; min-height: 100vh; animation: fadeInBody 0.8s ease-out; }
+  @keyframes fadeInBody { from { opacity: 0; } to { opacity: 1; } }
+
+  .wrap { max-width: 680px; margin: 0 auto; background: rgba(255, 255, 255, 0.97); backdrop-filter: blur(20px); min-height: 100vh; box-shadow: 0 30px 70px rgba(0,0,0,0.5); position: relative; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.4); }
+  
+  header { 
+    background: linear-gradient(135deg, #090d16 0%, #1e1b4b 50%, #312e81 100%); 
+    background-size: 250% 250%;
+    animation: headerGradientMove 5s ease infinite;
+    color: #FFFFFF; 
+    padding: 28px 22px 22px; 
+    border-bottom: 4px solid var(--accent-orange); 
+    position: relative; 
+    overflow: hidden;
+  }
+  @keyframes headerGradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .brand-row { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
+  .brand-left { display: flex; align-items: center; gap: 12px; }
+  
+  header h1 { margin: 0; font-size: 28px; font-weight: 800; letter-spacing: 1.2px; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; gap: 4px; }
+  header h1 span.w-blue { color: #3b82f6; text-shadow: 0 0 25px rgba(59,130,246,0.9); }
+  header h1 span.w-orange { color: #f97316; text-shadow: 0 0 25px rgba(249,115,22,0.9); }
+  header p { margin: 6px 0 0; font-size: 13px; color: #cbd5e1; font-weight: 600; }
+
+  .status-tag { font-size: 11px; color: #4ade80; font-weight: 700; background: rgba(74,222,128,0.25); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(74,222,128,0.5); display: flex; align-items: center; gap: 5px; }
+
+  .tabs { display: flex; flex-wrap: wrap; background: #f8fafc; padding: 8px; gap: 6px; border-bottom: 1.5px solid var(--border); position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); }
+  .tab { flex: 1 1 calc(20% - 6px); min-width: 90px; text-align: center; padding: 10px 4px; background: transparent; color: #475569; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 10px; transition: all 0.3s; white-space: nowrap; }
+  .tab:hover { background: rgba(37, 99, 235, 0.12); color: var(--accent); }
+  .tab.active { background: var(--primary); color: #FFFFFF; box-shadow: 0 6px 18px rgba(15,23,42,0.35); }
+
+  main { padding: 18px; }
+
+  .sub-toggle { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+  .sub-btn { padding: 10px 6px; border: 1px solid #cbd5e1; border-radius: 10px; background: #ffffff; color: var(--text-main); font-weight: 700; font-size: 11px; cursor: pointer; transition: all 0.25s; text-align: center; }
+  .sub-btn.active-tab { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 6px 18px var(--accent-glow); }
+
+  .filter-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .section-heading { font-size: 16px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 6px; }
+  .btn-refresh { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 16px; padding: 6px 14px; font-size: 11.5px; cursor: pointer; font-weight: 700; color: var(--text-muted); }
+
+  .search-panel { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 12px; margin-bottom: 16px; }
+  .select-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+  select, input, textarea { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; background: #ffffff; font-size: 12.5px; margin-bottom: 8px; color: var(--text-main); }
+  select:focus, input:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+  label { font-size: 12px; font-weight: 700; color: #334155; display: block; margin-bottom: 5px; }
+
+  .section-subbox { background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+  .payment-box { background: #fffbeb; border: 1px solid #fde68a; padding: 14px; border-radius: 12px; margin-top: 10px; margin-bottom: 14px; display: none; }
+
+  .card { background: #ffffff; border: 1px solid var(--border); border-radius: 18px; padding: 16px; margin-bottom: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); position: relative; transition: transform 0.3s; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 18px 45px rgba(37,99,235,0.15); }
+
+  .card.card-basic { border: 1px solid var(--border); }
+  .card.card-normal { border: 2px solid #3b82f6; background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); box-shadow: 0 0 12px rgba(59, 130, 246, 0.3); }
+  .card.card-vip { border: 2px solid transparent; background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #ffffff 100%); border-image: linear-gradient(45deg, #2563eb, #10b981) 1; box-shadow: 0 0 16px rgba(16, 185, 129, 0.4); }
+  .card.card-vvip { border: 2.5px solid #f59e0b; background: linear-gradient(135deg, #fffbeb, #eff6ff, #ffffff); position: relative; overflow: hidden; animation: vvipBorderPulse 2s infinite alternate; }
+  @keyframes vvipBorderPulse {
+    0% { box-shadow: 0 0 10px rgba(37,99,235,0.5), inset 0 0 5px rgba(245,158,11,0.3); border-color: #2563eb; }
+    100% { box-shadow: 0 0 22px rgba(245,158,11,0.8), inset 0 0 10px rgba(37,99,235,0.5); border-color: #f59e0b; }
+  }
+
+  .card.card-premium { border: 3px solid #ef4444; background: linear-gradient(135deg, #fff5f5, #fffbeb, #ffffff); position: relative; overflow: hidden; animation: premiumCardGlow 1.8s infinite alternate; }
+  @keyframes premiumCardGlow {
+    0% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.6), inset 0 0 8px rgba(245, 158, 11, 0.4); }
+    100% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.9), inset 0 0 15px rgba(239, 68, 68, 0.7); }
+  }
+  .card.card-premium::before, .card.card-premium::after {
+    content: ''; position: absolute; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, #ef4444, #f59e0b, #ef4444, #f59e0b);
+    background-size: 200% 100%; animation: lineShimmer 2s linear infinite; z-index: 5;
+  }
+  .card.card-premium::before { top: 0; }
+  .card.card-premium::after { bottom: 0; animation-direction: reverse; }
+  @keyframes lineShimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+  .card.card-premium .act-btn { animation: premiumBtnBounce 1.2s ease-in-out infinite alternate; }
+  @keyframes premiumBtnBounce {
+    0% { transform: scale(1); filter: brightness(1); }
+    100% { transform: scale(1.04); filter: brightness(1.2); box-shadow: 0 6px 20px rgba(239,68,68,0.5); }
+  }
+
+  .card-top { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+  .avatar-box { width: 56px; height: 56px; flex-shrink: 0; position: relative; }
+  .profile-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2.5px solid var(--accent); background: #e2e8f0; }
+  .ai-verified-badge { position: absolute; bottom: -2px; right: -2px; background: #10b981; color: white; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; display: flex; align-items: center; justify-content: center; border: 2px solid white; }
+
+  .profile-meta { flex: 1; min-width: 0; }
+  .profile-name { font-size: 16px; font-weight: 800; color: var(--primary); margin: 0; display: flex; align-items: center; gap: 6px; }
+  .profile-sub { font-size: 12px; color: var(--accent-orange); font-weight: 700; margin-top: 3px; }
+
+  .status-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; font-weight: 800; padding: 4px 10px; border-radius: 20px; }
+  .status-available { background: #dcfce7; color: #15803d; border: 1.5px solid #4ade80; }
+  .status-busy { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+  .status-booked { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
+
+  .details-box { background: #f8fafc; border: 1px solid #edf2f7; border-radius: 12px; padding: 10px 12px; font-size: 12.5px; display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+  .details-row { display: flex; align-items: flex-start; gap: 6px; color: #334155; line-height: 1.4; }
+  .details-row b { color: #0f172a; white-space: nowrap; }
+
+  .bottom-media-box { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .media-thumb { width: 70px; height: 70px; border-radius: 8px; object-fit: cover; border: 1px solid #cbd5e1; cursor: pointer; }
+  .media-video-thumb { width: 100%; max-height: 160px; border-radius: 8px; background: #000; border: 1px solid #cbd5e1; margin-top: 6px; }
+
+  .action-btns { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin-top: 10px; }
+  .act-btn { padding: 10px 4px; border-radius: 9px; font-weight: 700; font-size: 11px; cursor: pointer; text-align: center; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; border: none; }
+  .act-btn.call { background: var(--green); color: #FFF; }
+  .act-btn.wa { background: #25d366; color: #FFF; }
+  .act-btn.book { background: var(--accent); color: #FFF; }
+  .act-btn.rate { background: var(--yellow); color: #000; }
+  .act-btn.edit { background: var(--accent); color: #FFF; }
+  .act-btn.delete { background: var(--red); color: #FFF; }
+  .act-btn.report { background: #94a3b8; color: #FFF; grid-column: span 4; margin-top: 4px; }
+
+  .legal-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 12px; margin: 12px 0; font-size: 11.5px; color: #78350f; line-height: 1.5; }
+  .tc-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; margin: 14px 0; font-size: 11.5px; color: #334155; }
+  
+  .btn-submit { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #FFFFFF; font-weight: 800; font-size: 14px; border: none; padding: 13px; border-radius: 12px; width: 100%; cursor: pointer; box-shadow: 0 6px 20px var(--accent-glow); }
+  .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; box-shadow: none; }
+
+  .modal-overlay { position: fixed; inset: 0; background: rgba(9,13,22,0.85); display: none; align-items: center; justify-content: center; z-index: 100; padding: 16px; backdrop-filter: blur(10px); }
+  .modal-overlay.show { display: flex; }
+  .modal { background: #ffffff; border-radius: 22px; padding: 24px; max-width: 460px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="brand-row">
+      <div class="brand-left">
+        <!-- ලෝගෝ එක අයින් කර ඇත -->
+        <h1>
+          <span class="w-blue">W</span><span class="w-blue">O</span><span class="w-blue">R</span><span class="w-blue">K</span>
+          <span class="w-orange">L</span><span class="w-orange">I</span><span class="w-orange">N</span><span class="w-orange">E</span>
+        </h1>
+      </div>
+      <div class="status-tag">🟢 Live</div>
+    </div>
+    <p>Your Skill , Your Job.</p>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" id="tabFind" onclick="switchTab('find')">🔍 රැකියාව & සේවකයන්</div>
+    <div class="tab" id="tabWorker" onclick="switchTab('worker')">👷 මම සේවකයෙක්</div>
+    <div class="tab" id="tabPost" onclick="switchTab('post')">📢 රැකියාවක් පළ කරන්න</div>
+    <div class="tab" id="tabMyads" onclick="switchTab('myads')">📋 මගේ දැන්වීම්</div>
+    <div class="tab" id="tabRef" onclick="switchTab('ref')">🎁 Referral</div>
+  </div>
+
+  <main>
+    <div id="viewFind">
+      <div class="sub-toggle">
+        <button class="sub-btn active-tab" id="btnWorkers" onclick="switchBrowseMode('workers')">👷 නිදහස් සේවකයන්</button>
+        <button class="sub-btn" id="btnPartTime" onclick="switchBrowseMode('parttime')">🛠️ පාර්ට් ටයිම් රැකියා</button>
+        <button class="sub-btn" id="btnCorp" onclick="switchBrowseMode('corp')">🏢 ආයතනික රැකියා</button>
+      </div>
+
+      <div class="search-panel">
+        <div class="select-group">
+          <select id="filterCat" onchange="syncSearchSubCats(); loadBrowseData();">
+            <option value="">සියලුම ප්‍රධාන ක්ෂේත්‍ර</option>
+          </select>
+          <select id="filterSubCat" onchange="loadBrowseData();">
+            <option value="">සියලුම අනු ක්ෂේත්‍ර</option>
+          </select>
+        </div>
+
+        <div class="select-group">
+          <select id="filterDistrict" onchange="loadBrowseData()">
+            <option value="">සියලුම දිස්ත්‍රික්ක</option>
+          </select>
+          <select id="filterAdPriority" onchange="loadBrowseData()">
+            <option value="">පිළිවෙළ: සියලුම දැන්වීම්</option>
+            <option value="premium">💎 Premium + (රු. 1000) දැන්වීම් පමණි</option>
+            <option value="vvip">👑 VVIP (රු. 500) දැන්වීම් පමණි</option>
+            <option value="vip">⭐ VIP (රු. 250) දැන්වීම් පමණි</option>
+            <option value="normal">🔵 Normal (රු. 100) දැන්වීම් පමණි</option>
+            <option value="basic">⚪ Basic (නොමිලේ) දැන්වීම් පමණි</option>
+          </select>
+        </div>
+
+        <input type="text" id="searchQuery" oninput="debounceSearch()" placeholder="නම, ස්ථානය හෝ රක්ෂාවෙන් සොයන්න..." style="margin-bottom:0;">
+      </div>
+
+      <div class="filter-row">
+        <span class="section-heading" id="findTitle">නිදහස් සේවකයන්</span>
+        <button class="btn-refresh" onclick="loadBrowseData()">⟳ Refresh</button>
+      </div>
+
+      <div id="browseList"><div style="text-align:center; padding:30px; color:#64748B;">දත්ත පූරණය වෙමින් පවතී...</div></div>
+    </div>
+
+    <div id="viewWorker" style="display:none;">
+      <h2 style="font-size:17px; margin-top:0;" id="workerFormTitle">මගේ රැකියා Profile එක සකස් කිරීම</h2>
+      <form id="workerForm" onsubmit="handleWorkerSubmit(event)">
+        <input type="hidden" id="editing_worker_id">
+        
+        <label>ඔබේ සම්පූර්ණ නම</label>
+        <input type="text" id="w_name" placeholder="උදා: මංජුල ප්‍රසන්න" required>
+
+        <label>📸 ඔබේ Profile පින්තූරය</label>
+        <input type="file" id="w_avatar_input" accept="image/*">
+
+        <label>ප්‍රධාන ක්ෂේත්‍රය</label>
+        <select id="w_main_cat" onchange="populateSubCats('w')" required></select>
+
+        <label>අනු ක්ෂේත්‍රය</label>
+        <select id="w_sub_cat" onchange="checkOtherCategory('w')" required></select>
+
+        <div id="w_custom_cat_box" style="display:none;">
+          <label>වෙනත් නම් මෙහි සඳහන් කරන්න</label>
+          <input type="text" id="w_custom_cat" placeholder="ඔබේ රැකියාව/හැකියාව">
+        </div>
+
+        <label>දිස්ත්‍රික්කය</label>
+        <select id="w_district" required></select>
+
+        <label>සේවය සපයන ප්‍රදේශය (Location)</label>
+        <input type="text" id="w_location" placeholder="උදා: හෝමාගම, කොළඹ අවට" required>
+
+        <label>අය කරන ගාස්තුව</label>
+        <input type="text" id="w_rate" placeholder="උදා: දිනකට රු. 4,500 / සාකච්ඡා කරගත හැක" required>
+
+        <label>සේවා පළපුරුද්ද</label>
+        <input type="text" id="w_experience" placeholder="උදා: වසර 15 ක පළපුරුද්ද" required>
+
+        <label>⏰ දෛනික වැඩ කරන වේලාව (Working Hours)</label>
+        <input type="text" id="w_work_hours" placeholder="උදා: පෙ.ව. 08:00 - ප.ව. 05:00 දක්වා" required>
+
+        <label>විස්තරය (Description)</label>
+        <textarea id="w_desc" rows="3" placeholder="විශ්වාසනීය හා නිසි ප්‍රමිතියෙන් යුත් රැකියා සේවය..." required></textarea>
+
+        <label>📸 පෙර කළ වැඩවල ඡායාරූප (Max 3)</label>
+        <input type="file" id="w_photos" accept="image/*" multiple>
+
+        <label>🔗 හෝ ඡායාරූප/වීඩියෝ Direct Web Link (විකල්ප)</label>
+        <input type="url" id="w_media_url" placeholder="https://drive.google.com/...">
+
+        <label>🎥 වැඩබිමේ කෙටි වීඩියෝ</label>
+        <input type="file" id="w_videos" accept="video/*">
+
+        <label>දුරකථන අංකය</label>
+        <div style="display:flex; gap:8px;">
+          <input type="tel" id="w_phone" placeholder="07XXXXXXXX" pattern="07[0-9]{8}" required>
+          <button type="button" class="btn-refresh" style="background:#25d366; color:#fff;" onclick="sendOtp('w')">💬 WhatsApp OTP</button>
+        </div>
+        <div id="w_otp_wrapper" style="display:none; margin-bottom:12px;">
+          <input type="text" id="w_otp_code" maxlength="6" placeholder="6-Digit OTP" style="margin-bottom:6px;">
+          <button type="button" class="btn-submit" onclick="verifyOtp('w')">Verify OTP</button>
+          <span id="w_otp_status" style="font-size:11.5px; font-weight:bold; color:#2563EB; display:block; margin-top:5px;"></span>
+        </div>
+
+        <div class="legal-box" style="background: #fee2e2; border-color: #fca5a5; color: #991b1b;">
+          <b>🔒 දැන්වීම ආරක්ෂා කරගන්න (Security PIN):</b><br>
+          ඉලක්කම් 4ක රහස් අංකයක් ලබාදෙන්න (Edit/Delete කිරීමට අවශ්‍ය වේ).
+          <input type="password" id="w_pin" maxlength="4" placeholder="උදා: 1234" required style="margin-top:6px;">
+        </div>
+
+        <label style="margin-top:15px; font-weight:800; color:var(--primary);">දැන්වීම් ප්‍රදර්ශනය කිරීමේ ක්‍රමය (අනිවාර්යයි)</label>
+        <select id="w_ad_type" onchange="togglePaymentBox('w')" required style="font-weight:bold; border: 1.5px solid var(--accent);">
+          <option value="basic">1. Basic - නොමිලේ (Rs. 0)</option>
+          <option value="normal">2. Normal - දැන්වීම වටේ නිල්පාට ලයින් එකක් (Rs. 100)</option>
+          <option value="vip">3. VIP - දැන්වීම වටේ නිල්පාට හා කොලපාට ලයින් එකක් (Rs. 250)</option>
+          <option value="vvip">4. VVIP - දැන්වීම වටේ නිල්පාට හා Gold ලයින් ඇනිමේට් වෙනවා (Rs. 500)</option>
+          <option value="premium">5. Premium + - Gold හා රතුපාට ලයින් ඇනිමේෂන් + බටන් ඇනිමේසන් (Rs. 1000)</option>
+        </select>
+
+        <div id="w_payment_box" class="payment-box">
+          <h4 style="margin:0 0 6px; color:#92400e;">මුදල් බැර කිරීමේ විස්තර (ගෙවීම් ක්‍රම):</h4>
+          <p style="margin:0 0 8px; font-size:11.5px; color:#78350f;">කරුණාකර අදාළ මුදල පහත ගිණුමට බැර කර රිසිට් පත මෙහි Upload කරන්න.</p>
+          <ul style="font-size:11px; margin:0 0 10px; padding-left:15px; color:#92400e;">
+            <li><b>බැංකුව:</b> Commercial Bank</li>
+            <li><b>ශාඛාව:</b> Hanwella</li>
+            <li><b>ගිණුම් අංකය (A/C No):</b> 8029786417</li>
+          </ul>
+          <label>රිසිට් පතේ ඡායාරූපය (Payment Receipt)</label>
+          <input type="file" id="w_payment_receipt" accept="image/*">
+        </div>
+
+        <div class="tc-box">
+          <label style="display:flex; align-items:start; gap:8px; font-size:11px; color:#334155; margin:0; cursor:pointer; font-weight:normal;">
+            <input type="checkbox" id="w_tc" required style="width:auto; margin-top:2px;">
+            <span><b>නියමයන් සහ කොන්දේසි:</b> මෙම වේදිකාව හුදෙක් දැන්වීම් පුවරුවක් පමණක් බවත් ගනුදෙනු සඳහා ආයතනය වගකීම් නොදරන බවත් එකඟ වෙමි.</span>
+          </label>
+        </div>
+
+        <button type="submit" id="w_submit_btn" class="btn-submit" style="background:var(--green);">Profile එක පළ කරන්න</button>
+      </form>
+    </div>
+
+    <div id="viewPost" style="display:none;">
+      <h2 style="font-size:17px; margin-top:0;" id="jobFormTitle">රැකියාවක් හෝ ආයතනික ඇබෑර්තුවක් පළ කරන්න</h2>
+      <form id="jobForm" onsubmit="handleJobSubmit(event)">
+        <input type="hidden" id="editing_job_id">
+        
+        <label>දැන්වීම් වර්ගය</label>
+        <select id="p_type" onchange="togglePostType(this.value)" required>
+          <option value="parttime">🛠️ පාර්ට් ටයිම් / නිදහස් රැකියාව</option>
+          <option value="corporate">🏢 ආයතනික බඳවා ගැනීම (Company)</option>
+        </select>
+
+        <div id="parttimeFields" class="section-subbox">
+          <label>🗓️ වැඩ කරන දිනය</label>
+          <input type="date" id="p_work_date">
+          <label>⏰ වැඩ කරන වේලාව සහ කාලසීමාව</label>
+          <input type="text" id="p_work_time" placeholder="උදා: උදෑසන 8.00 සිට සවස 4.00 දක්වා">
+          <label>👥 අවශ්‍ය සේවක පිරිස</label>
+          <input type="text" id="p_workers_needed" placeholder="උදා: සේවකයන් 2ක්">
+          <label>📌 වෙනත් විශේෂ කරුණු</label>
+          <input type="text" id="p_parttime_notes" placeholder="උදා: කෑම සහ තේ අප විසින් සපයනු ලැබේ">
+        </div>
+
+        <div id="corpFields" style="display:none;" class="section-subbox">
+          <label>🏢 ආයතනයේ නම</label>
+          <input type="text" id="p_company_name" placeholder="උදා: ABC Logistics Pvt Ltd">
+          <label>🖼️ ආයතනික Logo එක</label>
+          <input type="file" id="p_company_logo" accept="image/*">
+          <label>📅 බඳවා ගන්නා දිනය / අවසන් දිනය</label>
+          <input type="date" id="p_recruit_date">
+          <label>🎁 ලැබෙන පහසුකම් (Benefits)</label>
+          <input type="text" id="p_benefits" placeholder="උදා: නොමිලේ නවාතැන්, ප්‍රවාහන">
+          <label>📋 වෙනත් කිවයුතු කරුණු</label>
+          <input type="text" id="p_corp_notes" placeholder="උදා: වයස අවු. 20-35 පිරිමි">
+        </div>
+
+        <label>රැකියාවේ නම / තනතුර</label>
+        <input type="text" id="p_title" placeholder="උදා: ගෘහස්ථ වයරිං වැඩක්" required>
+
+        <label>ප්‍රධාන ක්ෂේත්‍රය</label>
+        <select id="p_main_cat" onchange="populateSubCats('p')" required></select>
+
+        <label>අනු ක්ෂේත්‍රය</label>
+        <select id="p_sub_cat" onchange="checkOtherCategory('p')" required></select>
+
+        <div id="p_custom_cat_box" style="display:none;">
+          <label>වෙනත් නම් මෙහි සඳහන් කරන්න</label>
+          <input type="text" id="p_custom_cat" placeholder="රැකියා වර්ගය">
+        </div>
+
+        <label>දිස්ත්‍රික්කය</label>
+        <select id="p_district" required></select>
+
+        <label>ස්ථානය / නගරය</label>
+        <input type="text" id="p_location" placeholder="උදා: මහරගම" required>
+
+        <label>ගෙවන මුදල (රු.)</label>
+        <input type="text" id="p_pay" placeholder="උදා: රු. 6,000" required>
+
+        <label>රැකියාව පිළිබඳ වැඩිදුර විස්තර</label>
+        <textarea id="p_desc" rows="3" placeholder="රැකියාව ගැන වැඩිදුර විස්තර..." required></textarea>
+
+        <label>📸 වැඩබිමේ ඡායාරූප</label>
+        <input type="file" id="p_photos" accept="image/*" multiple>
+
+        <label>🎥 වැඩබිමේ වීඩියෝ</label>
+        <input type="file" id="p_videos" accept="video/*">
+
+        <label style="margin-top:10px;">දුරකථන අංකය</label>
+        <div style="display:flex; gap:8px;">
+          <input type="tel" id="p_phone" placeholder="07XXXXXXXX" pattern="07[0-9]{8}" required>
+          <button type="button" class="btn-refresh" style="background:#25d366; color:#fff;" onclick="sendOtp('p')">💬 WhatsApp OTP</button>
+        </div>
+        <div id="p_otp_wrapper" style="display:none; margin-bottom:12px;">
+          <input type="text" id="p_otp_code" maxlength="6" placeholder="6-Digit OTP" style="margin-bottom:6px;">
+          <button type="button" class="btn-submit" onclick="verifyOtp('p')">Verify OTP</button>
+          <span id="p_otp_status" style="font-size:11.5px; font-weight:bold; color:#2563EB; display:block; margin-top:5px;"></span>
+        </div>
+
+        <div class="legal-box" style="background: #fee2e2; border-color: #fca5a5; color: #991b1b;">
+          <b>🔒 දැන්වීම ආරක්ෂා කරගන්න (Security PIN):</b><br>
+          ඉලක්කම් 4ක රහස් අංකයක් ලබාදෙන්න.
+          <input type="password" id="p_pin" maxlength="4" placeholder="උදා: 1234" required style="margin-top:6px;">
+        </div>
+
+        <label style="margin-top:15px; font-weight:800; color:var(--primary);">දැන්වීම් ප්‍රදර්ශනය කිරීමේ ක්‍රමය (අනිවාර්යයි)</label>
+        <select id="p_ad_type" onchange="togglePaymentBox('p')" required style="font-weight:bold; border: 1.5px solid var(--accent);">
+          <option value="basic">1. Basic - නොමිලේ (Rs. 0)</option>
+          <option value="normal">2. Normal - දැන්වීම වටේ නිල්පාට ලයින් එකක් (Rs. 100)</option>
+          <option value="vip">3. VIP - දැන්වීම වටේ නිල්පාට හා කොලපාට ලයින් එකක් (Rs. 250)</option>
+          <option value="vvip">4. VVIP - දැන්වීම වටේ නිල්පාට හා Gold ලයින් ඇනිමේට් වෙනවා (Rs. 500)</option>
+          <option value="premium">5. Premium + - Gold හා රතුපාට ලයින් ඇනිමේෂන් + බටන් ඇනිමේසන් (Rs. 1000)</option>
+        </select>
+
+        <div id="p_payment_box" class="payment-box">
+          <h4 style="margin:0 0 6px; color:#92400e;">මුදල් බැර කිරීමේ විස්තර (ගෙවීම් ක්‍රම):</h4>
+          <p style="margin:0 0 8px; font-size:11.5px; color:#78350f;">කරුණාකර අදාළ මුදල පහත ගිණුමට බැර කර රිසිට් පත මෙහි Upload කරන්න.</p>
+          <ul style="font-size:11px; margin:0 0 10px; padding-left:15px; color:#92400e;">
+            <li><b>බැංකුව:</b> Commercial Bank</li>
+            <li><b>ශාඛාව:</b> Hanwella</li>
+            <li><b>ගිණුම් අංකය (A/C No):</b> 8029786417</li>
+          </ul>
+          <label>රිසිට් පතේ ඡායාරූපය (Payment Receipt)</label>
+          <input type="file" id="p_payment_receipt" accept="image/*">
+        </div>
+
+        <div class="tc-box">
+          <label style="display:flex; align-items:start; gap:8px; font-size:11px; color:#334155; margin:0; cursor:pointer; font-weight:normal;">
+            <input type="checkbox" id="p_tc" required style="width:auto; margin-top:2px;">
+            <span><b>නියමයන් සහ කොන්දේසි:</b> මෙම වේදිකාව දැන්වීම් පුවරුවක් පමණක් බව තේරුම් ගතිමි.</span>
+          </label>
+        </div>
+
+        <button type="submit" id="p_submit_btn" class="btn-submit">දැන්වීම පළ කරන්න</button>
+      </form>
+    </div>
+
+    <div id="viewMyads" style="display:none;">
+      <h2 style="font-size:17px; margin-top:0;">📋 මගේ දැන්වීම් කළමනාකරණය</h2>
+      <p style="font-size:12.5px; color:var(--text-muted);">දුරකථන අංකය ඇතුළත් කර සොයන්න.</p>
+      
+      <div style="display:flex; gap:8px;">
+        <input type="tel" id="my_phone" placeholder="07XXXXXXXX" style="margin-bottom:0;">
+        <button type="button" class="btn-refresh" style="background:var(--accent); color:#fff;" onclick="loadMyAds()">සොයන්න</button>
+      </div>
+
+      <div id="myAdsContainer" style="margin-top:14px;"></div>
+    </div>
+
+    <div id="viewRef" style="display:none;">
+      <h2 style="font-size:17px; margin-top:0;">🎁 Referral සහ ඉපැයීම් වැඩසටහන</h2>
+      
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+        <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:12px; border-radius:12px; text-align:center;">
+          <div style="font-size:22px; font-weight:800; color:var(--accent);" id="refBalanceDisplay">රු. 0</div>
+          <div style="font-size:11.5px; color:#64748b;">⭐ ඔබේ ශේෂය (Balance)</div>
+        </div>
+        <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:12px; border-radius:12px; text-align:center;">
+          <div style="font-size:22px; font-weight:800; color:var(--green);" id="refSuccessfulPostsDisplay">0</div>
+          <div style="font-size:11.5px; color:#64748b;">📢 සාර්ථක දැන්වීම් ගණන</div>
+        </div>
+      </div>
+      
+      <button type="button" class="btn-submit" id="btnWithdraw" style="background:#10b981; margin-bottom:15px;" onclick="openWithdrawModal()" disabled>මුදල් ලබාගන්න (රු. 1000 වූ විට)</button>
+
+      <div style="background:#eff6ff; border:1.5px dashed #93c5fd; border-radius:12px; padding:16px; text-align:center;">
+        <h3 style="margin:0 0 6px; font-size:15px; color:#1e40af;">ඔබේ විශේෂ Referral Link එක (අයිකන් සමඟ)</h3>
+        <p style="font-size:12px; color:#3b82f6; margin:0 0 10px;">ඔබේ Link එක හරහා පැමිණ දැන්වීමක් පළකළ විට දැන්වීම් වර්ගය අනුව පිළිවෙළින් <b>රු. 30, 50, 100 හෝ 250</b> බැරවේ!</p>
+        
+        <div style="display:flex; gap:6px; margin-bottom:10px;">
+          <input type="text" id="myRefLink" readonly style="text-align:center; font-weight:bold; color:var(--accent); background:#fff; border-radius:8px; padding:10px; width:100%; margin-bottom:0;">
+          <button type="button" class="btn-submit" style="width:auto; background:var(--accent); padding:0 14px; font-size:12px;" onclick="copyRefLink()">📋 Copy Link</button>
+        </div>
+        
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+          <button type="button" class="btn-submit" style="background:#25d366; font-size:12px;" onclick="shareToWhatsApp()">💬 WhatsApp</button>
+          <button type="button" class="btn-submit" style="background:#0088cc; font-size:12px;" onclick="shareToTelegram()">✈️ Telegram</button>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+          <button type="button" class="btn-submit" style="background:#1877f2; font-size:12px;" onclick="shareToFacebook()">🌐 Facebook</button>
+          <button type="button" class="btn-submit" style="background:var(--primary); font-size:12px;" onclick="nativeShare()">🔗 Share</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Modals -->
+<div class="modal-overlay" id="pinCheckModal">
+  <div class="modal">
+    <h3 style="margin-top:0; color:var(--primary); font-size:16px;" id="pinModalTitle">🔒 ආරක්ෂිත තහවුරු කිරීම (PIN අංකය)</h3>
+    <input type="hidden" id="pinActionType"><input type="hidden" id="pinActionId"><input type="hidden" id="pinActionTable">
+    <label>දැන්වීම සෑදූ විට දුන් PIN අංකය (ඉලක්කම් 4)</label>
+    <input type="password" id="securityPinCheck" maxlength="4" placeholder="••••">
+    <div style="display:flex; gap:8px; margin-top:10px;">
+      <button type="button" class="btn-submit" style="background:var(--accent);" onclick="verifyPinAndExecute()">තහවුරු කරන්න</button>
+      <button type="button" class="btn-submit" style="background:#94a3b8;" onclick="closeModal('pinCheckModal')">අවලංගු කරන්න</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="availabilityModal">
+  <div class="modal">
+    <h3 style="margin-top:0; color:var(--primary); font-size:16px;">⚡ සේවා තත්වය වෙනස් කරන්න</h3>
+    <input type="hidden" id="editAvailWorkerId">
+    <select id="modal_w_availability" required style="margin-bottom:12px;">
+      <option value="available">🟢 වැඩ භාරගත හැක / Available</option>
+      <option value="busy">🔴 දැන් කාර්යබහුලයි / Busy</option>
+      <option value="booked">🟡 බුකින් එකක් ළඟයි / Booking Soon</option>
+    </select>
+    <div style="display:flex; gap:8px; margin-top:10px;">
+      <button type="button" class="btn-submit" style="background:var(--green);" onclick="saveUpdatedAvailability()">යාවත්කාලීන කරන්න</button>
+      <button type="button" class="btn-submit" style="background:#94a3b8;" onclick="closeModal('availabilityModal')">අවලංගු කරන්න</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="withdrawModal">
+  <div class="modal">
+    <h3 style="margin-top:0; color:var(--primary); font-size:16px;">💸 මුදල් ආපසු ගැනීම සඳහා ඉල්ලීම</h3>
+    <label>ඔබේ නම</label><input type="text" id="wd_name" placeholder="සම්පූර්ණ නම" required>
+    <label>දුරකථන අංකය</label><input type="tel" id="wd_phone" placeholder="07XXXXXXXX" required>
+    <label>බැංකු විස්තර</label><textarea id="wd_bank_details" rows="3" placeholder="Bank, Branch, A/C No" required></textarea>
+    <div style="display:flex; gap:8px; margin-top:10px;">
+      <button type="button" class="btn-submit" style="background:var(--green);" onclick="submitWithdrawalRequest()">ඉල්ලීම යොමු කරන්න</button>
+      <button type="button" class="btn-submit" style="background:#94a3b8;" onclick="closeModal('withdrawModal')">අවලංගු කරන්න</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal">
+    <h3 style="margin-top:0; color:var(--primary); font-size:16px;">📅 දිනය සහ වේලාව වෙන් කරගන්න</h3>
+    <input type="hidden" id="bookWorkerName"><input type="hidden" id="bookWorkerPhone">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+      <div><label>වර්ෂය</label><select id="bookYear" onchange="updateBookingDaysDropdown()"></select></div>
+      <div><label>මාසය</label><select id="bookMonthSelect" onchange="updateBookingDaysDropdown()"></select></div>
+    </div>
+    <label>දිනය</label><select id="bookDayDropdown" required></select>
+    <label>වේලාව</label>
+    <select id="bookStartTime" required>
+      <option value="පෙ.ව. 08:00">පෙ.ව. 08:00</option>
+      <option value="පෙ.ව. 09:00">පෙ.ව. 09:00</option>
+      <option value="ප.ව. 01:00">ප.ව. 01:00</option>
+      <option value="සාකච්ඡා කරගත හැක">සාකච්ඡා කරගත හැක</option>
+    </select>
+    <label>ඔබේ නම</label><input type="text" id="bookClientName" required>
+    <label>දුරකථන අංකය</label><input type="tel" id="bookClientPhone" required>
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <button type="button" class="btn-submit" style="background:#6366f1;" onclick="confirmBookingWithEndEstimate()">📩 Booking පණිවිඩය යවන්න</button>
+      <button type="button" class="btn-submit" style="background:#94a3b8;" onclick="closeModal('bookingModal')">අවලංගු කරන්න</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="rateModal">
+  <div class="modal">
+    <h3 style="margin-top:0; font-size:16px;">⭐ රැකියාව ඇගයීම</h3>
+    <input type="hidden" id="rateTargetId">
+    <label>Rating</label>
+    <select id="rateStars" style="margin-bottom:10px;">
+      <option value="5">⭐⭐⭐⭐⭐ (විශිෂ්ටයි)</option>
+      <option value="4">⭐⭐⭐⭐ (ඉතා හොඳයි)</option>
+      <option value="3">⭐⭐⭐ (සාමාන්‍යයි)</option>
+    </select>
+    <div style="display:flex; gap:8px; margin-top:10px;">
+      <button type="button" class="btn-submit" style="background:var(--yellow); color:#000;" onclick="submitVerifiedRating()">Submit Rating</button>
+      <button type="button" class="btn-submit" style="background:#94a3b8;" onclick="closeModal('rateModal')">වසන්න</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="reportModal">
+  <div class="modal">
+    <h3 style="margin-top:0; color:var(--red); font-size:16px;">🚨 දැන්වීම වාර්තා කරන්න</h3>
+    <input type="hidden" id="reportType"><input type="hidden" id="reportTargetId">
+    <label>හේතුව</label>
+    <select id="reportReason"><option value="fake">බොරු දැන්වීමක්</option><option value="scam">වංචාවක්</option></select>
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <button type="button" class="btn-submit" style="background:var(--red);" onclick="submitReportAction()">Report කරන්න</button>
+      <button type="button" class="btn-submit" style="background:#94a3b8;" onclick="closeModal('reportModal')">වසන්න</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = "https://xecwobnntjjkoalqtalh.supabase.co"; 
+const SUPABASE_KEY = "sb_publishable_0mE7RKFZzV6F3MTylSAwhg_4PeloATZ"; 
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } });
+
+const CATEGORIES_DATA = {
+  "ඉදිකිරීම් සහ මේසන්": ["ගෙවල් සෑදීම", "ගඩොල් බැඳීම", "ප්ලාස්ටර් දැමීම", "කොන්ක්‍රීට් දැමීම", "ටයිල් ඇල්ලීම"],
+  "වඩු කාර්මික": ["දොර ජනෙල් සෑදීම", "වහල ගැසීම", "පැන්ට්‍රි කබඩ්", "සිවිලිං ගැසීම", "ගෘහ භාණ්ඩ සෑදීම"],
+  "විදුලි සහ වයරිං": ["ගෘහස්ථ වයරිං", "කර්මාන්තශාලා වයරිං", "සෝලා පද්ධති", "විදුලි උපකරණ අලුත්වැඩියාව"],
+  "ප්‍රවාහන සහ රියදුරු": ["කාර් රියදුරු", "වෑන් රියදුරු", "භාණ්ඩ ප්‍රවාහනය (ලොරි)", "ත්‍රීරෝද රථ"],
+  "වෙල්ඩින් සහ යකඩ වැඩ": ["යකඩ ගේට්ටු සහ ග්‍රිල්", "ස්ටීල් වහල ගැසීම", "ඇලුමිනියම් වැඩ"],
+  "තොරතුරු තාක්ෂණ (IT)": ["ග්‍රැෆික් නිර්මාණ", "වෙබ් අඩවි නිර්මාණය", "දත්ත ඇතුළත් කිරීම (Data Entry)", "ඩිජිටල් අලෙවිකරණය"],
+  "පිරිසිදු කිරීම් (Cleaning)": ["නිවාස පිරිසිදු කිරීම", "කාර්යාල පිරිසිදු කිරීම", "පිට්ටනි සහ වත්ත සුද්ද කිරීම"],
+  "රූපලාවන්‍ය සහ ඇඳුම්": ["මනාලියන් හැඩගැන්වීම", "කොණ්ඩා කැපීම", "ඇඳුම් මැසීම (ටේලර්)"],
+  "අලුත්වැඩියා කිරීම්": ["වාහන අලුත්වැඩියා (Mechanic)", "ජංගම දුරකථන සහ පරිගණක", "නළ ජල (Plumbing)"],
+  "වෙනත් නිදහස් වෘත්තීන්": ["උපකාරක පන්ති (Tuition)", "ලේඛන පරිවර්තන", "කෑම ඉවුම් පිහුම් / Catering"]
+};
+
+const DISTRICTS = [
+  "කොළඹ (Colombo)", "ගම්පහ (Gampaha)", "කළුතර (Kalutara)", "මහනුවර (Kandy)", "මාතලේ (Matale)", "නුවරඑළිය (Nuwara Eliya)", 
+  "ගාල්ල (Galle)", "මාතර (Matara)", "හම්බන්තොට (Hambantota)", "යාපනය (Jaffna)", "කිලිනොච්චිය (Kilinochchi)", 
+  "මන්නාරම (Mannar)", "වවුනියාව (Vavuniya)", "මුලතිව් (Mullaitivu)", "මඩකලපුව (Batticaloa)", "අම්පාර (Ampara)", 
+  "ත්‍රිකුණාමලය (Trincomalee)", "කුරුණෑගල (Kurunegala)", "පුත්තලම (Puttalam)", "අනුරාධපුරය (Anuradhapura)", 
+  "පොළොන්නරුව (Polonnaruwa)", "බදුල්ල (Badulla)", "මොණරාගල (Monaragala)", "රත්නපුර (Ratnapura)", "කෑගල්ල (Kegalle)"
+];
+
+const MONTH_NAMES_SI = ["ජනවාරි", "පෙබරවාරි", "මාර්තු", "අප්‍රේල්", "මැයි", "ජූනි", "ජූලි", "අගෝස්තු", "සැප්තැම්බර්", "ඔක්තෝබර්", "නොවැම්බර්", "දෙසැම්බර්"];
+
+let activeBrowseMode = 'workers';
+let searchTimeout = null;
+let currentRefCode = null;
+let activeOtps = {};
+let verifiedPhones = {};
+
+function sanitize(str) { return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+function initData() {
+  ['#filterDistrict', '#w_district', '#p_district'].forEach(id => {
+    const el = document.querySelector(id);
+    if (!el) return;
+    el.innerHTML = '<option value="">දිස්ත්‍රික්කය තෝරන්න</option>';
+    DISTRICTS.forEach(d => {
+      const opt = document.createElement('option'); opt.value = d; opt.textContent = d; el.appendChild(opt);
+    });
+  });
+
+  ['#filterCat', '#w_main_cat', '#p_main_cat'].forEach(id => {
+    const el = document.querySelector(id);
+    if (!el) return;
+    el.innerHTML = '<option value="">ප්‍රධාන ක්ෂේත්‍රය තෝරන්න</option>';
+    Object.keys(CATEGORIES_DATA).forEach(c => {
+      const opt = document.createElement('option'); opt.value = c; opt.textContent = c; el.appendChild(opt);
+    });
+  });
+
+  populateSubCats('w');
+  populateSubCats('p');
+  setupReferralTracking();
+}
+
+function syncSearchSubCats() {
+  const main = document.getElementById('filterCat').value;
+  const subEl = document.getElementById('filterSubCat');
+  subEl.innerHTML = '<option value="">සියලුම අනු ක්ෂේත්‍ර</option>';
+  if (main && CATEGORIES_DATA[main]) {
+    CATEGORIES_DATA[main].forEach(sub => {
+      const opt = document.createElement('option'); opt.value = sub; opt.textContent = sub; subEl.appendChild(opt);
+    });
+  }
+}
+
+function populateSubCats(prefix) {
+  const main = document.getElementById(`${prefix}_main_cat`).value;
+  const subEl = document.getElementById(`${prefix}_sub_cat`);
+  subEl.innerHTML = '<option value="">අනු ක්ෂේත්‍රය තෝරන්න</option>';
+  if (main && CATEGORIES_DATA[main]) {
+    CATEGORIES_DATA[main].forEach(sub => {
+      const opt = document.createElement('option'); opt.value = sub; opt.textContent = sub; subEl.appendChild(opt);
+    });
+    const optOther = document.createElement('option'); optOther.value = "වෙනත්"; optOther.textContent = "➕ වෙනත් (ලිවීමට)"; subEl.appendChild(optOther);
+  }
+}
+
+function checkOtherCategory(prefix) {
+  const val = document.getElementById(`${prefix}_sub_cat`).value;
+  document.getElementById(`${prefix}_custom_cat_box`).style.display = (val === "වෙනත්") ? "block" : "none";
+}
+
+function switchTab(t) {
+  ['find', 'worker', 'post', 'myads', 'ref'].forEach(x => {
+    document.getElementById(`tab${x.charAt(0).toUpperCase() + x.slice(1)}`).classList.toggle('active', t === x);
+    document.getElementById(`view${x.charAt(0).toUpperCase() + x.slice(1)}`).style.display = (t === x) ? 'block' : 'none';
+  });
+  if (t === 'find') loadBrowseData();
+  if (t === 'ref') fetchReferralStats();
+}
+
+function switchBrowseMode(m) {
+  activeBrowseMode = m;
+  document.getElementById('btnWorkers').className = `sub-btn ${m === 'workers' ? 'active-tab' : ''}`;
+  document.getElementById('btnPartTime').className = `sub-btn ${m === 'parttime' ? 'active-tab' : ''}`;
+  document.getElementById('btnCorp').className = `sub-btn ${m === 'corp' ? 'active-tab' : ''}`;
+  document.getElementById('findTitle').textContent = m === 'workers' ? '👷 නිදහස් සේවකයන්' : (m === 'parttime' ? '🛠️ පාර්ට් ටයිම් රැකියා' : '🏢 ආයතනික රැකියා ඇබෑර්තු');
+  loadBrowseData();
+}
+
+function togglePostType(val) {
+  const isCorp = (val === 'corporate');
+  document.getElementById('corpFields').style.display = isCorp ? 'block' : 'none';
+  document.getElementById('parttimeFields').style.display = isCorp ? 'none' : 'block';
+}
+
+function togglePaymentBox(prefix) {
+  const adType = document.getElementById(`${prefix}_ad_type`).value;
+  document.getElementById(`${prefix}_payment_box`).style.display = (adType !== 'basic') ? 'block' : 'none';
+}
+
+function debounceSearch() {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => { loadBrowseData(); }, 300);
+}
+
+async function compressAndUploadToSupabase(file) {
+  if (!file) return null;
+  return new Promise((resolve) => {
+    const isImage = file.type.startsWith('image/');
+    if (!isImage) { uploadBlob(file, file.name).then(resolve); return; }
+    
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target.result;
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const MAX = 800; let width = img.width; let height = img.height;
+        if (width > height) { if (width > MAX) { height *= MAX / width; width = MAX; } } 
+        else { if (height > MAX) { width *= MAX / height; height = MAX; } }
+        canvas.width = width; canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        canvas.toBlob((blob) => { uploadBlob(blob, file.name).then(resolve); }, 'image/jpeg', 0.6);
+      };
+      img.onerror = () => resolve(null);
+    };
+  });
+}
+
+async function uploadBlob(blob, originalName) {
+  const fileExt = originalName.split('.').pop();
+  const fileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
+  const { data, error } = await supabaseClient.storage.from('media').upload(fileName, blob);
+  if (error) return null;
+  const { data: publicUrlData } = supabaseClient.storage.from('media').getPublicUrl(fileName);
+  return publicUrlData.publicUrl;
+}
+
+async function uploadFilesFromInput(id) {
+  const files = Array.from(document.getElementById(id).files || []);
+  const urls = [];
+  for (let f of files) {
+    if (f.size > 5 * 1024 * 1024) continue;
+    const url = await compressAndUploadToSupabase(f);
+    if (url) urls.push(url);
+  }
+  return urls;
+}
+
+function renderBottomMediaThumbnails(item) {
+  let pList = [], vList = [];
+  try { pList = typeof item.photos === 'string' ? JSON.parse(item.photos) : (item.photos || []); } catch(e) { pList = [item.photos]; }
+  try { vList = typeof item.videos === 'string' ? JSON.parse(item.videos) : (item.videos || []); } catch(e) { vList = [item.videos]; }
+
+  let html = '';
+  if (pList && pList.length > 0) {
+    html += `<div class="bottom-media-box">` + pList.map(u => `<img src="${sanitize(u)}" class="media-thumb" onclick="window.open('${sanitize(u)}')">`).join('') + `</div>`;
+  }
+  if (vList && vList.length > 0) {
+    html += vList.map(v => `<video src="${sanitize(v)}" controls class="media-video-thumb"></video>`).join('');
+  }
+  return html;
+}
+
+async function handleWorkerSubmit(e) {
+  e.preventDefault();
+  const phone = document.getElementById('w_phone').value.trim();
+  if(!verifiedPhones[phone]) { alert("කරුණාකර පළමුව WhatsApp OTP හරහා දුරකථන අංකය තහවුරු කරන්න."); return; }
+  if(!document.getElementById('w_tc').checked) { alert("කරුණාකර නියමයන් සහ කොන්දේසි වලට එකඟ වන්න."); return; }
+
+  const submitBtn = document.getElementById('w_submit_btn');
+  submitBtn.disabled = true; submitBtn.textContent = "උඩුගත කරමින් පවතී... කරුණාකර රැඳී සිටින්න";
+
+  const editingId = document.getElementById('editing_worker_id').value;
+  const adType = document.getElementById('w_ad_type').value;
+  let paymentReceiptUrl = null;
+  if(adType !== 'basic' && document.getElementById('w_payment_receipt').files.length > 0) {
+    paymentReceiptUrl = await compressAndUploadToSupabase(document.getElementById('w_payment_receipt').files[0]);
+  }
+
+  let avatarUrl = null;
+  if(document.getElementById('w_avatar_input').files.length > 0) {
+    avatarUrl = await compressAndUploadToSupabase(document.getElementById('w_avatar_input').files[0]);
+  }
+  const photosList = await uploadFilesFromInput('w_photos');
+  const videosList = await uploadFilesFromInput('w_videos');
+  const mediaUrl = document.getElementById('w_media_url').value.trim();
+  if (mediaUrl) photosList.push(mediaUrl);
+
+  let cat = document.getElementById('w_sub_cat').value;
+  if (cat === "වෙනත්") cat = document.getElementById('w_custom_cat').value.trim();
+
+  const payload = {
+    name: document.getElementById('w_name').value.trim(),
+    category: cat,
+    main_category: document.getElementById('w_main_cat').value,
+    district: document.getElementById('w_district').value,
+    location: document.getElementById('w_location').value.trim(),
+    rate: document.getElementById('w_rate').value.trim(),
+    experience: document.getElementById('w_experience').value.trim(),
+    work_hours: document.getElementById('w_work_hours').value.trim(),
+    availability: 'available',
+    description: document.getElementById('w_desc').value.trim(),
+    phone: phone,
+    pin_code: document.getElementById('w_pin').value.trim(),
+    ad_type: adType,
+    tc_accepted: document.getElementById('w_tc').checked
+  };
+
+  if (avatarUrl) payload.avatar_url = avatarUrl;
+  if (photosList.length > 0) payload.photos = photosList;
+  if (videosList.length > 0) payload.videos = videosList;
+  if (paymentReceiptUrl) payload.payment_receipt = paymentReceiptUrl;
+
+  let error;
+  if (editingId) {
+    // When editing an ad, require admin approval if ad_type is paid (not basic)
+    payload.payment_status = (adType === 'basic') ? 'approved' : 'pending';
+    const { err } = await supabaseClient.from('workers').update(payload).eq('id', editingId);
+    error = err;
+  } else {
+    payload.payment_status = adType === 'basic' ? 'approved' : 'pending';
+    const { err } = await supabaseClient.from('workers').insert([payload]);
+    error = err;
+    if (!error) awardReferralEarnings(adType);
+  }
+
+  submitBtn.disabled = false; submitBtn.textContent = "Profile එක පළ කරන්න";
+
+  if (error) { alert("දෝෂයක් ඇතිවිය: " + error.message); } 
+  else { 
+    alert(editingId ? "✅ Profile එක සාර්ථකව යාවත්කාලීන විය! (ගෙවීම් සහිත දැන්වීමක් නම් ඇඩ්මින් අනුමැතිය ලැබෙන තෙක් පරීක්ෂා කෙරේ)" : "✅ දැන්වීම සාර්ථකව පළ කරන ලදී!"); 
+    document.getElementById('workerForm').reset();
+    document.getElementById('editing_worker_id').value = '';
+    switchTab('find'); 
+  }
+}
+
+async function handleJobSubmit(e) {
+  e.preventDefault();
+  const phone = document.getElementById('p_phone').value.trim();
+  if(!verifiedPhones[phone]) { alert("කරුණාකර පළමුව WhatsApp OTP හරහා දුරකථන අංකය තහවුරු කරන්න."); return; }
+  if(!document.getElementById('p_tc').checked) { alert("කරුණාකර නියමයන් සහ කොන්දේසි වලට එකඟ වන්න."); return; }
+
+  const submitBtn = document.getElementById('p_submit_btn');
+  submitBtn.disabled = true; submitBtn.textContent = "උඩුගත කරමින් පවතී... කරුණාකර රැඳී සිටින්න";
+
+  const editingId = document.getElementById('editing_job_id').value;
+  const adType = document.getElementById('p_ad_type').value;
+  let paymentReceiptUrl = null;
+  if(adType !== 'basic' && document.getElementById('p_payment_receipt').files.length > 0) {
+    paymentReceiptUrl = await compressAndUploadToSupabase(document.getElementById('p_payment_receipt').files[0]);
+  }
+
+  const postType = document.getElementById('p_type').value;
+  const isCorp = (postType === 'corporate');
+  let logoUrl = null;
+  if (isCorp && document.getElementById('p_company_logo').files.length > 0) {
+    logoUrl = await compressAndUploadToSupabase(document.getElementById('p_company_logo').files[0]);
+  }
+  const photosList = await uploadFilesFromInput('p_photos');
+  const videosList = await uploadFilesFromInput('p_videos');
+  
+  let cat = document.getElementById('p_sub_cat').value;
+  if (cat === "වෙනත්") cat = document.getElementById('p_custom_cat').value.trim();
+
+  const payload = {
+    post_type: postType,
+    title: document.getElementById('p_title').value.trim(),
+    category: cat,
+    main_category: document.getElementById('p_main_cat').value,
+    district: document.getElementById('p_district').value,
+    location: document.getElementById('p_location').value.trim(),
+    pay: document.getElementById('p_pay').value.trim(),
+    description: document.getElementById('p_desc').value.trim(),
+    company_name: isCorp ? document.getElementById('p_company_name').value.trim() : null,
+    work_date: isCorp ? null : document.getElementById('p_work_date').value,
+    work_time: isCorp ? null : document.getElementById('p_work_time').value.trim(),
+    workers_needed: isCorp ? null : document.getElementById('p_workers_needed').value.trim(),
+    parttime_notes: isCorp ? null : document.getElementById('p_parttime_notes').value.trim(),
+    recruit_date: isCorp ? document.getElementById('p_recruit_date').value : null,
+    benefits: isCorp ? document.getElementById('p_benefits').value.trim() : null,
+    corp_notes: isCorp ? document.getElementById('p_corp_notes').value.trim() : null,
+    phone: phone,
+    pin_code: document.getElementById('p_pin').value.trim(),
+    ad_type: adType,
+    tc_accepted: document.getElementById('p_tc').checked
+  };
+
+  if (logoUrl) payload.company_logo = logoUrl;
+  if (photosList.length > 0) payload.photos = photosList;
+  if (videosList.length > 0) payload.videos = videosList;
+  if (paymentReceiptUrl) payload.payment_receipt = paymentReceiptUrl;
+
+  let error;
+  if (editingId) {
+    // When editing a job ad, require admin approval if ad_type is paid (not basic)
+    payload.payment_status = (adType === 'basic') ? 'approved' : 'pending';
+    const { err } = await supabaseClient.from('job').update(payload).eq('id', editingId);
+    error = err;
+  } else {
+    payload.payment_status = adType === 'basic' ? 'approved' : 'pending';
+    const { err } = await supabaseClient.from('job').insert([payload]);
+    error = err;
+    if (!error) awardReferralEarnings(adType);
+  }
+
+  submitBtn.disabled = false; submitBtn.textContent = "දැන්වීම පළ කරන්න";
+
+  if (error) { alert("දෝෂයක් ඇතිවිය: " + error.message); } 
+  else { 
+    alert(editingId ? "✅ දැන්වීම සාර්ථකව යාවත්කාලීන විය! (ගෙවීම් සහිත දැන්වීමක් නම් ඇඩ්මින් අනුමැතිය ලැබෙන තෙක් පරීක්ෂා කෙරේ)" : "✅ දැන්වීම සාර්ථකව පළ කරන ලදී!"); 
+    document.getElementById('jobForm').reset();
+    document.getElementById('editing_job_id').value = '';
+    switchTab('find'); 
+  }
+}
+
+async function loadBrowseData() {
+  const container = document.getElementById('browseList');
+  container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748B;">දත්ත පූරණය වෙමින් පවතී...</div>';
+
+  const cat = document.getElementById('filterCat').value;
+  const subCat = document.getElementById('filterSubCat').value;
+  const dist = document.getElementById('filterDistrict').value;
+  const adPriority = document.getElementById('filterAdPriority').value;
+  const q = document.getElementById('searchQuery').value.trim();
+
+  if (activeBrowseMode === 'workers') {
+    let query = supabaseClient.from('workers').select('*').eq('payment_status', 'approved');
+    if (adPriority) query = query.eq('ad_type', adPriority);
+    
+    if (cat) query = query.eq('main_category', cat);
+    if (subCat) query = query.eq('category', subCat);
+    if (dist) query = query.eq('district', dist);
+    if (q) query = query.or(`name.ilike.%${q}%,location.ilike.%${q}%,category.ilike.%${q}%`);
+
+    const { data } = await query;
+    if (!data || data.length === 0) { container.innerHTML = '<div style="text-align:center; padding:30px;">සේවකයන් හමු නොවීය.</div>'; return; }
+
+    container.innerHTML = data.map(item => {
+      const avatarSrc = item.avatar_url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80';
+      
+      let statusBadge = `<span class="status-pill status-available">🟢 වැඩ භාරගත හැක</span>`;
+      if (item.availability === 'busy') statusBadge = `<span class="status-pill status-busy">🔴 කාර්යබහුලයි</span>`;
+      else if (item.availability === 'booked') statusBadge = `<span class="status-pill status-booked">🟡 බුකින් එකක් ළඟයි</span>`;
+
+      let adClass = 'card-basic';
+      if (item.ad_type === 'normal') adClass = 'card-normal';
+      else if (item.ad_type === 'vip') adClass = 'card-vip';
+      else if (item.ad_type === 'vvip') adClass = 'card-vvip';
+      else if (item.ad_type === 'premium') adClass = 'card-premium';
+
+      const bottomMedia = renderBottomMediaThumbnails(item);
+      const ratingStars = item.rating ? '⭐'.repeat(Math.round(item.rating)) + ` (${item.rating})` : '⭐ තවම ඇගයීම් නැත';
+
+      return `
+        <div class="card ${adClass}">
+          <div class="card-top">
+            <div class="avatar-box">
+              <img src="${avatarSrc}" class="profile-avatar">
+              <div class="ai-verified-badge">✓</div>
+            </div>
+            <div class="profile-meta">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <h3 class="profile-name">${sanitize(item.name)}</h3>
+                ${statusBadge}
+              </div>
+              <div class="profile-sub">👷 ${sanitize(item.main_category || '')} ${item.category ? '› ' + sanitize(item.category) : ''}</div>
+            </div>
+          </div>
+          
+          <div class="details-box">
+            <div class="details-row"><b>💰 ගාස්තුව:</b> <span>${sanitize(item.rate)}</span></div>
+            <div class="details-row"><b>⏰ රැකියා වේලාව:</b> <span>${sanitize(item.work_hours || 'අදාළ නැත')}</span></div>
+            <div class="details-row"><b>⭐ රේටින්:</b> <span>${ratingStars}</span></div>
+            <div class="details-row"><b>📍 ප්‍රදේශය:</b> <span>${sanitize(item.location)}, ${sanitize(item.district)}</span></div>
+          </div>
+
+          <div style="font-size:12.5px; color:#334155; margin:8px 0; line-height:1.4;"><b>📝 විස්තරය:</b> ${sanitize(item.description)}</div>
+          
+          ${bottomMedia}
+
+          <div class="action-btns">
+            <a href="tel:${sanitize(item.phone)}" class="act-btn call">📞 Call</a>
+            <a href="https://wa.me/94${sanitize(item.phone).substring(1)}" target="_blank" class="act-btn wa">💬 WA</a>
+            <button class="act-btn book" onclick="openBookingModal('${sanitize(item.name)}', '${sanitize(item.phone)}')">📅 Book</button>
+            <button class="act-btn rate" onclick="openRateModal('${item.id}')">⭐ Rate</button>
+            <button class="act-btn report" onclick="openReportModal('${item.id}', 'workers')">🚨 Report</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  } else {
+    let query = supabaseClient.from('job').select('*')
+      .eq('post_type', activeBrowseMode === 'corp' ? 'corporate' : 'parttime')
+      .eq('payment_status', 'approved');
+      
+    if (adPriority) query = query.eq('ad_type', adPriority);
+    if (dist) query = query.eq('district', dist);
+    if (q) query = query.or(`title.ilike.%${q}%,location.ilike.%${q}%,company_name.ilike.%${q}%`);
+
+    const { data } = await query;
+    if (!data || data.length === 0) { container.innerHTML = '<div style="text-align:center; padding:30px;">දැන්වීම් හමු නොවීය.</div>'; return; }
+    
+    container.innerHTML = data.map(item => {
+      let adClass = 'card-basic';
+      if (item.ad_type === 'normal') adClass = 'card-normal';
+      else if (item.ad_type === 'vip') adClass = 'card-vip';
+      else if (item.ad_type === 'vvip') adClass = 'card-vvip';
+      else if (item.ad_type === 'premium') adClass = 'card-premium';
+
+      const bottomMedia = renderBottomMediaThumbnails(item);
+      const logoHtml = item.company_logo ? `<div class="avatar-box"><img src="${sanitize(item.company_logo)}" class="profile-avatar"><div class="ai-verified-badge">✓</div></div>` : '';
+      
+      return `
+        <div class="card ${adClass}">
+          <div class="card-top">
+            ${logoHtml}
+            <div class="profile-meta">
+              <h3 class="profile-name">${sanitize(item.title)}</h3>
+              <div class="profile-sub">${item.company_name ? '🏢 ' + sanitize(item.company_name) : '🛠️ ' + sanitize(item.main_category || '')}</div>
+            </div>
+          </div>
+          
+          <div class="details-box">
+            <div class="details-row"><b>💵 ගෙවීම:</b> <span>${sanitize(item.pay)}</span></div>
+            <div class="details-row"><b>📍 ස්ථානය:</b> <span>${sanitize(item.location)}, ${sanitize(item.district)}</span></div>
+          </div>
+
+          <div style="font-size:12.5px; color:#334155; margin:8px 0; line-height:1.4;"><b>📝 විස්තරය:</b> ${sanitize(item.description)}</div>
+          
+          ${bottomMedia}
+
+          <div class="action-btns" style="grid-template-columns: 1fr 1fr;">
+            <a href="tel:${sanitize(item.phone)}" class="act-btn call">📞 අමතන්න</a>
+            <a href="https://wa.me/94${sanitize(item.phone).substring(1)}" target="_blank" class="act-btn wa">💬 WhatsApp</a>
+          </div>
+          <button class="act-btn report" onclick="openReportModal('${item.id}', 'job')" style="margin-top:6px; width:100%;">🚨 Report</button>
+        </div>
+      `;
+    }).join('');
+  }
+}
+
+async function sendOtp(prefix) {
+  let rawPhone = document.getElementById(`${prefix}_phone`).value.trim();
+  if (!rawPhone) { alert("කරුණාකර දුරකථන අංකයක් ඇතුළත් කරන්න"); return; }
+  rawPhone = rawPhone.replace(/\D/g, '');
+  if (rawPhone.startsWith('94')) rawPhone = '0' + rawPhone.substring(2);
+
+  const formattedPhone = "94" + rawPhone.substring(1);
+  const randomOtp = Math.floor(100000 + Math.random() * 900000);
+  activeOtps[rawPhone] = String(randomOtp);
+
+  const whatsappMessage = `🔐 ඔබගේ WORKLINE තහවුරු කිරීමේ (OTP) අංකය: *${randomOtp}*`;
+  document.getElementById(`${prefix}_otp_wrapper`).style.display = 'block';
+  document.getElementById(`${prefix}_otp_status`).innerHTML = `💬 WhatsApp හරහා OTP යවමින් පවතී...`;
+  window.open(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+}
+
+function verifyOtp(prefix) {
+  let p = document.getElementById(`${prefix}_phone`).value.trim().replace(/\D/g, '');
+  if (p.startsWith('94')) p = '0' + p.substring(2);
+  const c = document.getElementById(`${prefix}_otp_code`).value.trim();
+  if (activeOtps[p] && activeOtps[p] === c) {
+    verifiedPhones[p] = true;
+    document.getElementById(`${prefix}_otp_status`).innerHTML = "✅ දුරකථන අංකය සාර්ථකව තහවුරු කරන ලදී!";
+    document.getElementById(`${prefix}_otp_status`).style.color = "green";
+  } else { alert("❌ වැරදි OTP කේතයකි!"); }
+}
+
+function setupReferralTracking() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const ref = urlParams.get('ref');
+  if (ref) localStorage.setItem('sl_invited_by', ref);
+
+  let myCode = localStorage.getItem('sl_my_ref_code');
+  if (!myCode) {
+    myCode = 'USR' + Math.floor(100000 + Math.random() * 900000);
+    localStorage.setItem('sl_my_ref_code', myCode);
+  }
+  currentRefCode = myCode;
+  
+  // Robust cross-browser and mobile URL resolution for any browser/hosting context
+  let baseUrl = window.location.origin;
+  if (!baseUrl || baseUrl === 'null' || baseUrl.startsWith('file:') || baseUrl.includes('localhost')) {
+    baseUrl = window.location.protocol + '//' + window.location.host + window.location.pathname.replace(/\/[^/]*$/, '');
+  }
+  // Ensure trailing clean URL path for optimal cross-browser sharing
+  if (baseUrl.endsWith('/')) {
+    baseUrl = baseUrl.slice(0, -1);
+  }
+  
+  const fullLink = `${baseUrl}/?ref=${myCode}`;
+  const refInput = document.getElementById('myRefLink');
+  if (refInput) {
+    refInput.value = fullLink;
+  }
+}
+
+async function awardReferralEarnings(adType) {
+  const invitedBy = localStorage.getItem('sl_invited_by');
+  if (!invitedBy) return;
+  
+  let bonusRs = 0;
+  if(adType === 'basic') bonusRs = 0;
+  else if(adType === 'normal') bonusRs = 30;
+  else if(adType === 'vip') bonusRs = 50;
+  else if(adType === 'vvip') bonusRs = 100;
+  else if(adType === 'premium') bonusRs = 250;
+
+  if(bonusRs > 0) {
+    const { data } = await supabaseClient.from('referrals').select('*').eq('ref_code', invitedBy).single();
+    if (data) {
+      await supabaseClient.from('referrals').update({ balance: (data.balance || 0) + bonusRs, successful_posts: (data.successful_posts || 0) + 1 }).eq('ref_code', invitedBy);
+    } else {
+      await supabaseClient.from('referrals').insert([{ ref_code: invitedBy, balance: bonusRs, successful_posts: 1 }]);
+    }
+  }
+  localStorage.removeItem('sl_invited_by');
+}
+
+async function fetchReferralStats() {
+  if (!currentRefCode) return;
+  const { data } = await supabaseClient.from('referrals').select('balance, successful_posts').eq('ref_code', currentRefCode).single();
+  if (data) {
+    const bal = data.balance || 0;
+    document.getElementById('refBalanceDisplay').textContent = `රු. ${bal}`;
+    document.getElementById('refSuccessfulPostsDisplay').textContent = data.successful_posts || 0;
+    const btn = document.getElementById('btnWithdraw');
+    if(bal >= 1000) { btn.disabled = false; btn.textContent = "මුදල් ලබාගන්න (රු. 1000 ඉක්මවා ඇත)"; }
+  }
+}
+
+function openWithdrawModal() { document.getElementById('withdrawModal').classList.add('show'); }
+
+async function submitWithdrawalRequest() {
+  const name = document.getElementById('wd_name').value.trim();
+  const phone = document.getElementById('wd_phone').value.trim();
+  const details = document.getElementById('wd_bank_details').value.trim();
+  if(!name || !phone || !details) { alert("කරුණාකර සියලු විස්තර පුරවන්න"); return; }
+
+  await supabaseClient.from('withdrawal_requests').insert([{ ref_code: currentRefCode, name, phone, bank_details: details, status: 'pending' }]);
+  alert("✅ මුදල් ලබාගැනීමේ ඉල්ලීම සාර්ථකව යොමු කරන ලදී!");
+  closeModal('withdrawModal');
+}
+
+function getAttractiveShareText() {
+  const linkInput = document.getElementById('myRefLink');
+  const linkVal = linkInput ? linkInput.value : window.location.href;
+  return `${linkVal}\n\n🚀 *WORKLINE - දක්ෂ සේවකයන් සහ රැකියා එකම තැනක!* දැන්ම සම්බන්ධ වන්න.`;
+}
+
+function shareToWhatsApp() { window.open(`https://wa.me/?text=${encodeURIComponent(getAttractiveShareText())}`, '_blank'); }
+function shareToTelegram() { 
+  const linkInput = document.getElementById('myRefLink');
+  const linkVal = linkInput ? linkInput.value : window.location.href;
+  window.open(`https://t.me/share/url?url=${encodeURIComponent(linkVal)}&text=${encodeURIComponent('WORKLINE - දක්ෂ සේවකයන් සහ රැකියා එකම තැනක!')}`, '_blank'); 
+}
+function shareToFacebook() { 
+  const linkInput = document.getElementById('myRefLink');
+  const linkVal = linkInput ? linkInput.value : window.location.href;
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(linkVal)}`, '_blank'); 
+}
+function nativeShare() {
+  const text = getAttractiveShareText();
+  const linkInput = document.getElementById('myRefLink');
+  const linkVal = linkInput ? linkInput.value : window.location.href;
+  if (navigator.share) {
+    navigator.share({ title: 'WORKLINE', text: 'WORKLINE - දක්ෂ සේවකයන් සහ රැකියා එකම තැනක!', url: linkVal }).catch(() => {});
+  } else {
+    copyRefLink();
+  }
+}
+function copyRefLink() {
+  const linkInput = document.getElementById('myRefLink');
+  if (!linkInput) return;
+  linkInput.select();
+  linkInput.setSelectionRange(0, 99999); // For mobile devices
+  try {
+    const successful = document.execCommand('copy');
+    if (successful) {
+      alert("✅ අයිකනය සමඟ Referral Link එක Copy විය!");
+    } else {
+      navigator.clipboard.writeText(linkInput.value).then(() => {
+        alert("✅ අයිකනය සමඟ Referral Link එක Copy විය!");
+      }).catch(() => {
+        alert("කරුණාකර ලින්ක් එක manual copy කරගන්න.");
+      });
+    }
+  } catch (err) {
+    navigator.clipboard.writeText(linkInput.value).then(() => {
+      alert("✅ අයිකනය සමඟ Referral Link එක Copy විය!");
+    }).catch(() => {
+      alert("කරුණාකර ලින්ක් එක manual copy කරගන්න.");
+    });
+  }
+}
+
+function openBookingModal(name, phone) {
+  document.getElementById('bookWorkerName').value = name;
+  document.getElementById('bookWorkerPhone').value = phone;
+  const yearSelect = document.getElementById('bookYear'), monthSelect = document.getElementById('bookMonthSelect');
+  const now = new Date();
+  yearSelect.innerHTML = `<option value="${now.getFullYear()}">${now.getFullYear()}</option>`;
+  monthSelect.innerHTML = '';
+  MONTH_NAMES_SI.forEach((m, idx) => {
+    const opt = document.createElement('option'); opt.value = idx; opt.textContent = m;
+    if (idx === now.getMonth()) opt.selected = true;
+    monthSelect.appendChild(opt);
+  });
+  updateBookingDaysDropdown();
+  document.getElementById('bookingModal').classList.add('show');
+}
+
+function updateBookingDaysDropdown() {
+  const y = parseInt(document.getElementById('bookYear').value), m = parseInt(document.getElementById('bookMonthSelect').value);
+  const daySelect = document.getElementById('bookDayDropdown'); daySelect.innerHTML = '';
+  const totalDays = new Date(y, m + 1, 0).getDate();
+  for (let d = 1; d <= totalDays; d++) {
+    const opt = document.createElement('option');
+    opt.value = `${y}-${m+1}-${d}`; opt.textContent = `${MONTH_NAMES_SI[m]} ${d}`;
+    daySelect.appendChild(opt);
+  }
+}
+
+function confirmBookingWithEndEstimate() {
+  const wPhone = document.getElementById('bookWorkerPhone').value;
+  const msg = `🔔 *WORKLINE Booking පණිවිඩය*\n👤 සේවාලාභියා: ${document.getElementById('bookClientName').value}`;
+  window.open(`https://wa.me/94${wPhone.substring(1)}?text=${encodeURIComponent(msg)}`, '_blank');
+  closeModal('bookingModal');
+}
+
+function openRateModal(id) { document.getElementById('rateTargetId').value = id; document.getElementById('rateModal').classList.add('show'); }
+async function submitVerifiedRating() { alert("ඇගයීමට ස්තුතියි!"); closeModal('rateModal'); }
+function openReportModal(id, type) { document.getElementById('reportTargetId').value = id; document.getElementById('reportModal').classList.add('show'); }
+function submitReportAction() { alert("වාර්තා කරන ලදී."); closeModal('reportModal'); }
+
+async function loadMyAds() {
+  let p = document.getElementById('my_phone').value.trim().replace(/\D/g, '');
+  if (p.startsWith('94')) p = '0' + p.substring(2);
+  const c = document.getElementById('myAdsContainer');
+  const { data: wList } = await supabaseClient.from('workers').select('*').eq('phone', p);
+  const { data: jList } = await supabaseClient.from('job').select('*').eq('phone', p);
+  const all = [...(wList || []).map(x => ({...x, _tbl: 'workers'})), ...(jList || []).map(x => ({...x, _tbl: 'job'}))];
+  if (all.length === 0) { c.innerHTML = '<div style="text-align:center; padding:20px;">මෙම අංකයට දැන්වීම් හමු නොවීය.</div>'; return; }
+  c.innerHTML = all.map(item => `
+    <div class="card">
+      <h3 style="margin:0 0 8px; font-size:15px; color:var(--primary);">${sanitize(item.name || item.title)}</h3>
+      <div style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">වර්ගය: ${item._tbl === 'workers' ? 'සේවක Profile' : 'රැකියා දැන්වීම'} | තත්වය: ${sanitize(item.ad_type)} (${item.payment_status === 'approved' ? '🟢 අනුමතයි' : '🟡 අනුමැතිය අපේක්ෂිතයි'})</div>
+      <div style="display:flex; gap:8px;">
+        <button class="act-btn edit" onclick="promptPinForAction('edit', '${item._tbl}', '${item.id}')">✏️ Edit කරන්න</button>
+        <button class="act-btn delete" onclick="promptPinForAction('delete', '${item._tbl}', '${item.id}')">🗑️ මකන්න</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function promptPinForAction(action, table, id) {
+  document.getElementById('pinActionType').value = action;
+  document.getElementById('pinActionTable').value = table;
+  document.getElementById('pinActionId').value = id;
+  document.getElementById('securityPinCheck').value = '';
+  document.getElementById('pinCheckModal').classList.add('show');
+}
+
+async function verifyPinAndExecute() {
+  const enteredPin = document.getElementById('securityPinCheck').value.trim();
+  const action = document.getElementById('pinActionType').value;
+  const table = document.getElementById('pinActionTable').value;
+  const id = document.getElementById('pinActionId').value;
+
+  const { data, error } = await supabaseClient.from(table).select('*').eq('id', id).single();
+  if (error || !data) { alert("දත්ත ලබාගැනීමේ දෝෂයක්!"); return; }
+  
+  if (String(data.pin_code) !== String(enteredPin)) { 
+    alert("❌ වැරදි PIN අංකයකි! කරුණාකර නිවැරදි ඉලක්කම් 4ක PIN අංකය ඇතුළත් කරන්න."); 
+    return; 
+  }
+
+  closeModal('pinCheckModal');
+
+  if (action === 'delete') {
+    if (confirm("මෙම දැන්වීම මකා දැමීමට ඔබට විශ්වාසද?")) {
+      await supabaseClient.from(table).delete().eq('id', id);
+      alert("✅ දැන්වීම සාර්ථකව මකා දමන ලදී.");
+      loadMyAds();
+    }
+  } else if (action === 'edit') {
+    // Edit කිරීම සඳහා අදාළ පෝරමයට දත්ත පූරණය කර අදාළ Tab එකට යොමු කිරීම
+    switchTab(table === 'workers' ? 'worker' : 'post');
+    if (table === 'workers') {
+      document.getElementById('editing_worker_id').value = data.id;
+      document.getElementById('w_name').value = data.name || '';
+      document.getElementById('w_district').value = data.district || '';
+      document.getElementById('w_location').value = data.location || '';
+      document.getElementById('w_rate').value = data.rate || '';
+      document.getElementById('w_experience').value = data.experience || '';
+      document.getElementById('w_work_hours').value = data.work_hours || '';
+      document.getElementById('w_desc').value = data.description || '';
+      document.getElementById('w_phone').value = data.phone || '';
+      document.getElementById('w_pin').value = data.pin_code || '';
+      document.getElementById('w_ad_type').value = data.ad_type || 'basic';
+      togglePaymentBox('w');
+      document.getElementById('workerFormTitle').textContent = "👷 සේවක Profile එක සංස්කරණය කිරීම (Edit)";
+      document.getElementById('w_submit_btn').textContent = "Profile එක Update කරන්න";
+    } else {
+      document.getElementById('editing_job_id').value = data.id;
+      document.getElementById('p_type').value = data.post_type || 'parttime';
+      togglePostType(data.post_type);
+      document.getElementById('p_title').value = data.title || '';
+      document.getElementById('p_district').value = data.district || '';
+      document.getElementById('p_location').value = data.location || '';
+      document.getElementById('p_pay').value = data.pay || '';
+      document.getElementById('p_desc').value = data.description || '';
+      document.getElementById('p_phone').value = data.phone || '';
+      document.getElementById('p_pin').value = data.pin_code || '';
+      document.getElementById('p_ad_type').value = data.ad_type || 'basic';
+      togglePaymentBox('p');
+      document.getElementById('jobFormTitle').textContent = "📢 රැකියා දැන්වීම සංස්කරණය කිරීම (Edit)";
+      document.getElementById('p_submit_btn').textContent = "දැන්වීම Update කරන්න";
+    }
+  }
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+
+initData();
+loadBrowseData();
+</script>
+</body>
+</html>
