@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="gxTshvrvPukpntraqu2IQ6Sf7WYw26XY0X_kMS39hkM" />
 <title>WORKLINE - Your Skill , Your Job.</title>
 <!-- PWA & Mobile App Meta Tags -->
 <meta name="theme-color" content="#1e1b4b">
@@ -148,7 +149,7 @@
   .act-btn.report { background: #94a3b8; color: #FFF; grid-column: span 4; margin-top: 4px; }
 
   .legal-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 12px; margin: 12px 0; font-size: 11.5px; color: #78350f; line-height: 1.5; }
-  .tc-box { background: #fee2e2; border: 1px solid #ef4444; border-radius: 12px; padding: 12px; margin: 14px 0; font-size: 11.5px; color: #7f1d1d; }
+  .tc-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; margin: 14px 0; font-size: 11.5px; color: #334155; }
   
   .btn-submit { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #FFFFFF; font-weight: 800; font-size: 14px; border: none; padding: 13px; border-radius: 12px; width: 100%; cursor: pointer; box-shadow: 0 6px 20px var(--accent-glow); }
   .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; box-shadow: none; }
@@ -180,6 +181,8 @@
     <div class="tab" id="tabPost" onclick="switchTab('post')">📢 රැකියාවක් පළ කරන්න</div>
     <div class="tab" id="tabMyads" onclick="switchTab('myads')">📋 මගේ දැන්වීම්</div>
     <div class="tab" id="tabRef" onclick="switchTab('ref')">🎁 Referral</div>
+    <!-- නව සහාය (Support) Tab එක -->
+    <div class="tab" id="tabSupport" onclick="switchTab('support')">🎧 සහාය</div>
   </div>
 
   <main>
@@ -308,14 +311,22 @@
             <li><b>ශාඛාව:</b> Hanwella</li>
             <li><b>ගිණුම් අංකය (A/C No):</b> 8029786417</li>
           </ul>
-          <label>රිසිට් පතේ ඡායාරූපය (Payment Receipt)</label>
+          
+          <!-- අලුතින් එක් කළ කොටස් -->
+          <label>බැංකු ගනුදෙනු අංකය (Bank Transaction ID)</label>
+          <input type="text" id="w_txn_id" placeholder="උදා: 1234567890">
+
+          <label>ගෙවීම් කළ දුරකථන අංකය (Phone Number)</label>
+          <input type="tel" id="w_pay_phone" placeholder="උදා: 07XXXXXXXX">
+
+          <label>රිසිට් පතේ ඡායාරූපය (Payment Receipt Upload)</label>
           <input type="file" id="w_payment_receipt" accept="image/*">
         </div>
 
         <div class="tc-box">
-          <label style="display:flex; align-items:start; gap:8px; font-size:11px; margin:0; cursor:pointer; font-weight:normal;">
+          <label style="display:flex; align-items:start; gap:8px; font-size:11px; color:#334155; margin:0; cursor:pointer; font-weight:normal;">
             <input type="checkbox" id="w_tc" required style="width:auto; margin-top:2px;">
-            <span><b>දැඩි නියමයන් සහ කොන්දේසි (Legal Agreement):</b> මෙම වේදිකාව හුදෙක් දැන්වීම් ප්‍රදර්ශනය කරන මාධ්‍යයක් පමණක් බවත්, සේවාදායකයන් සමඟ සිදුවන කිසිදු මූල්‍ය ගනුදෙනුවක්, වංචාවක්, හෝ සේවාවේ ගුණාත්මකභාවය පිළිබඳ ගැටළුවක් සම්බන්ධයෙන් WORKLINE පද්ධතිය හෝ එහි නිර්මාතෘවරුන් නීතිමය වශයෙන් කිසිදු වගකීමක් නොදරන බවට මම සම්පූර්ණයෙන්ම එකඟ වෙමි. මා විසින් සපයන ලද සියලුම තොරතුරු සත්‍ය බවත් මම මෙයින් තහවුරු කරමි.</span>
+            <span><b>නියමයන් සහ කොන්දේසි:</b> මෙම වේදිකාව හුදෙක් දැන්වීම් පුවරුවක් පමණක් බවත් ගනුදෙනු සඳහා ආයතනය වගකීම් නොදරන බවත් එකඟ වෙමි.</span>
           </label>
         </div>
 
@@ -424,14 +435,22 @@
             <li><b>ශාඛාව:</b> Hanwella</li>
             <li><b>ගිණුම් අංකය (A/C No):</b> 8029786417</li>
           </ul>
-          <label>රිසිට් පතේ ඡායාරූපය (Payment Receipt)</label>
+
+          <!-- අලුතින් එක් කළ කොටස් -->
+          <label>බැංකු ගනුදෙනු අංකය (Bank Transaction ID)</label>
+          <input type="text" id="p_txn_id" placeholder="උදා: 1234567890">
+
+          <label>ගෙවීම් කළ දුරකථන අංකය (Phone Number)</label>
+          <input type="tel" id="p_pay_phone" placeholder="උදා: 07XXXXXXXX">
+
+          <label>රිසිට් පතේ ඡායාරූපය (Payment Receipt Upload)</label>
           <input type="file" id="p_payment_receipt" accept="image/*">
         </div>
 
         <div class="tc-box">
-          <label style="display:flex; align-items:start; gap:8px; font-size:11px; margin:0; cursor:pointer; font-weight:normal;">
+          <label style="display:flex; align-items:start; gap:8px; font-size:11px; color:#334155; margin:0; cursor:pointer; font-weight:normal;">
             <input type="checkbox" id="p_tc" required style="width:auto; margin-top:2px;">
-            <span><b>දැඩි නියමයන් සහ කොන්දේසි (Legal Agreement):</b> මෙම වේදිකාව දැන්වීම් පුවරුවක් පමණක් බවත්, සේවකයන්ගේ හැසිරීම්, වංචා කිරීම්, හෝ සේවාවේ ප්‍රමිතිය සම්බන්ධයෙන් WORKLINE පද්ධතිය කිසිදු නීතිමය වගකීමක් නොදරන බවට එකඟ වෙමි. ගනුදෙනු කිරීමේදී මගේ පෞද්ගලික ආරක්ෂාව සහ වගකීම මා සතු බව තේරුම් ගතිමි.</span>
+            <span><b>නියමයන් සහ කොන්දේසි:</b> මෙම වේදිකාව දැන්වීම් පුවරුවක් පමණක් බව තේරුම් ගතිමි.</span>
           </label>
         </div>
 
@@ -485,7 +504,45 @@
           <button type="button" class="btn-submit" style="background:var(--primary); font-size:12px;" onclick="nativeShare()">🔗 Share</button>
         </div>
       </div>
+      
+      <!-- Referral Terms & Conditions (අලුතින් එක් කරන ලදි) -->
+      <div class="tc-box" style="margin-top:15px;">
+        <h3 style="margin:0 0 8px; font-size:14px; color:#334155;">📜 නියමයන් සහ කොන්දේසි (Terms & Conditions)</h3>
+        <ul style="margin:0; padding-left:16px; font-size:11.5px; color:#475569; line-height:1.6;">
+          <li>පද්ධතියේ ආරක්ෂාවට පටහැනි අයුරින් ව්‍යාජ ගිණුම් සෑදීම හෝ ව්‍යාජ ලෙස දැන්වීම් පළ කිරීම සපුරා තහනම් වේ.</li>
+          <li>එක් අයෙකුට පවත්වාගෙන යා හැක්කේ එක් ගිණුමක් පමණි. වංචනික ක්‍රියා අනාවරණය වුවහොත් ගිණුම සම්පූර්ණයෙන්ම අවලංගු කෙරේ.</li>
+          <li>උපයාගත් මුදල අවම වශයෙන් රු. 1000 ඉක්මවූ පසු බැංකු ගිණුමට ලබාගත හැක. ඒ සඳහා අනන්‍යතාව තහවුරු කළ යුතුය.</li>
+          <li>ඔබගේ Referral ලින්ක් එකෙන් සම්බන්ධ වන පුද්ගලයා මුදල් ගෙවා දැන්වීමක් පල කල විට පමණක් අදාළ කොමිස් මුදල ඔබේ ගිණුමට එකතු වේ.</li>
+        </ul>
+      </div>
+
     </div>
+
+    <!-- නව පාරිභෝගික සහාය කොටස (Customer Support) -->
+    <div id="viewSupport" style="display:none;">
+      <h2 style="font-size:17px; margin-top:0;">🎧 පාරිභෝගික ගැටලු සහ සහාය</h2>
+      <p style="font-size:12.5px; color:var(--text-muted);">ඔබට පද්ධතිය සම්බන්ධයෙන් ඇති ගැටලු හෝ යෝජනා අප වෙත යොමු කරන්න.</p>
+      
+      <form id="supportForm" onsubmit="handleSupportSubmit(event)">
+        <label>ඔබේ නම</label>
+        <input type="text" id="sup_name" placeholder="ඔබේ සම්පූර්ණ නම" required>
+        
+        <label>දුරකථන අංකය</label>
+        <input type="tel" id="sup_phone" placeholder="07XXXXXXXX" required>
+        
+        <label>ගැටලුව / පණිවිඩය</label>
+        <textarea id="sup_msg" rows="4" placeholder="ඔබට ඇති ගැටලුව හෝ දැනගැනීමට අවශ්‍ය කරුණු මෙහි ලියන්න..." required></textarea>
+        
+        <button type="submit" class="btn-submit" id="sup_submit_btn">ගැටලුව යොමු කරන්න</button>
+      </form>
+      
+      <div class="details-box" style="margin-top:15px; text-align:center;">
+        <p style="margin:0; font-weight:bold; color:var(--primary);">වෙනත් සම්බන්ධ කරගත හැකි ක්‍රම:</p>
+        <p style="margin:5px 0; color:#334155; font-size:13px;">📞 WhatsApp: 07X XXX XXXX</p>
+        <p style="margin:0; color:#334155; font-size:13px;">📧 Email: support@workline.lk</p>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -523,6 +580,11 @@
   <div class="modal">
     <h3 style="margin-top:0; color:var(--primary); font-size:16px;">💸 මුදල් ආපසු ගැනීම සඳහා ඉල්ලීම</h3>
     <label>ඔබේ නම</label><input type="text" id="wd_name" placeholder="සම්පූර්ණ නම" required>
+    
+    <!-- පුද්ගලික හඳුනාගැනීමේ විස්තර සඳහා එක් කළ කොටස -->
+    <label>ජාතික හැඳුනුම්පත් අංකය (NIC)</label>
+    <input type="text" id="wd_nic" placeholder="උදා: 199XXXXXXXXX" required>
+
     <label>දුරකථන අංකය</label><input type="tel" id="wd_phone" placeholder="07XXXXXXXX" required>
     <label>බැංකු විස්තර</label><textarea id="wd_bank_details" rows="3" placeholder="Bank, Branch, A/C No" required></textarea>
     <div style="display:flex; gap:8px; margin-top:10px;">
@@ -676,9 +738,17 @@ function checkOtherCategory(prefix) {
 }
 
 function switchTab(t) {
-  ['find', 'worker', 'post', 'myads', 'ref'].forEach(x => {
-    document.getElementById(`tab${x.charAt(0).toUpperCase() + x.slice(1)}`).classList.toggle('active', t === x);
-    document.getElementById(`view${x.charAt(0).toUpperCase() + x.slice(1)}`).style.display = (t === x) ? 'block' : 'none';
+  // Add support tab directly inside the array
+  ['find', 'worker', 'post', 'myads', 'ref', 'support'].forEach(x => {
+    const tabElement = document.getElementById(`tab${x.charAt(0).toUpperCase() + x.slice(1)}`);
+    const viewElement = document.getElementById(`view${x.charAt(0).toUpperCase() + x.slice(1)}`);
+    
+    if (tabElement) {
+        tabElement.classList.toggle('active', t === x);
+    }
+    if (viewElement) {
+        viewElement.style.display = (t === x) ? 'block' : 'none';
+    }
   });
   if (t === 'find') loadBrowseData();
   if (t === 'ref') fetchReferralStats();
@@ -815,6 +885,12 @@ async function handleWorkerSubmit(e) {
     tc_accepted: document.getElementById('w_tc').checked
   };
 
+  // Payment details (Transaction ID, Phone)
+  if (adType !== 'basic') {
+      payload.txn_id = document.getElementById('w_txn_id').value.trim();
+      payload.pay_phone = document.getElementById('w_pay_phone').value.trim();
+  }
+
   if (avatarUrl) payload.avatar_url = avatarUrl;
   if (photosList.length > 0) payload.photos = photosList;
   if (videosList.length > 0) payload.videos = videosList;
@@ -822,7 +898,6 @@ async function handleWorkerSubmit(e) {
 
   let error;
   if (editingId) {
-    // When editing an ad, require admin approval if ad_type is paid (not basic)
     payload.payment_status = (adType === 'basic') ? 'approved' : 'pending';
     const { err } = await supabaseClient.from('workers').update(payload).eq('id', editingId);
     error = err;
@@ -895,6 +970,12 @@ async function handleJobSubmit(e) {
     tc_accepted: document.getElementById('p_tc').checked
   };
 
+  // Payment details (Transaction ID, Phone)
+  if (adType !== 'basic') {
+      payload.txn_id = document.getElementById('p_txn_id').value.trim();
+      payload.pay_phone = document.getElementById('p_pay_phone').value.trim();
+  }
+
   if (logoUrl) payload.company_logo = logoUrl;
   if (photosList.length > 0) payload.photos = photosList;
   if (videosList.length > 0) payload.videos = videosList;
@@ -902,7 +983,6 @@ async function handleJobSubmit(e) {
 
   let error;
   if (editingId) {
-    // When editing a job ad, require admin approval if ad_type is paid (not basic)
     payload.payment_status = (adType === 'basic') ? 'approved' : 'pending';
     const { err } = await supabaseClient.from('job').update(payload).eq('id', editingId);
     error = err;
@@ -921,6 +1001,31 @@ async function handleJobSubmit(e) {
     document.getElementById('jobForm').reset();
     document.getElementById('editing_job_id').value = '';
     switchTab('find'); 
+  }
+}
+
+// පාරිභෝගික සහාය පෝරමය හසුරුවන ක්‍රියාවලිය
+async function handleSupportSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('sup_submit_btn');
+  btn.disabled = true; btn.textContent = "යවමින් පවතී... රැඳී සිටින්න";
+  
+  const payload = {
+    name: document.getElementById('sup_name').value.trim(),
+    phone: document.getElementById('sup_phone').value.trim(),
+    message: document.getElementById('sup_msg').value.trim(),
+    status: 'pending' // Admin panel එකේ අලුත් ගැටලු හඳුනා ගැනීමට
+  };
+
+  const { error } = await supabaseClient.from('customer_issues').insert([payload]);
+  
+  btn.disabled = false; btn.textContent = "ගැටලුව යොමු කරන්න";
+  
+  if(error) {
+    alert("දෝෂයක් ඇතිවිය: " + error.message);
+  } else {
+    alert("✅ ඔබගේ ගැටලුව සාර්ථකව අප වෙත යොමු කරන ලදී! අපගේ ඇඩ්මින් මණ්ඩලය ඉක්මනින් ඔබව සම්බන්ධ කරගනු ඇත.");
+    document.getElementById('supportForm').reset();
   }
 }
 
@@ -1090,10 +1195,15 @@ function setupReferralTracking() {
   }
   currentRefCode = myCode;
   
-  // නව Live Link එක එක් කිරීම - ඕනෑම බ්‍රවුසරයකින් මෙය ක්‍රියාත්මක වේ.
-  const baseUrl = "https://workline-sl.github.io/workline/";
-  const fullLink = `${baseUrl}?ref=${myCode}`;
+  let baseUrl = window.location.origin;
+  if (!baseUrl || baseUrl === 'null' || baseUrl.startsWith('file:') || baseUrl.includes('localhost')) {
+    baseUrl = window.location.protocol + '//' + window.location.host + window.location.pathname.replace(/\/[^/]*$/, '');
+  }
+  if (baseUrl.endsWith('/')) {
+    baseUrl = baseUrl.slice(0, -1);
+  }
   
+  const fullLink = `${baseUrl}/?ref=${myCode}`;
   const refInput = document.getElementById('myRefLink');
   if (refInput) {
     refInput.value = fullLink;
@@ -1138,11 +1248,14 @@ function openWithdrawModal() { document.getElementById('withdrawModal').classLis
 
 async function submitWithdrawalRequest() {
   const name = document.getElementById('wd_name').value.trim();
+  const nic = document.getElementById('wd_nic').value.trim();
   const phone = document.getElementById('wd_phone').value.trim();
   const details = document.getElementById('wd_bank_details').value.trim();
-  if(!name || !phone || !details) { alert("කරුණාකර සියලු විස්තර පුරවන්න"); return; }
+  
+  if(!name || !nic || !phone || !details) { alert("කරුණාකර සියලු විස්තර පුරවන්න"); return; }
 
-  await supabaseClient.from('withdrawal_requests').insert([{ ref_code: currentRefCode, name, phone, bank_details: details, status: 'pending' }]);
+  // Supabase වෙත දත්ත යැවීම. 'nic' column එක ඔබගේ withdrawal_requests table එකෙහි තිබිය යුතුය.
+  await supabaseClient.from('withdrawal_requests').insert([{ ref_code: currentRefCode, name, nic, phone, bank_details: details, status: 'pending' }]);
   alert("✅ මුදල් ලබාගැනීමේ ඉල්ලීම සාර්ථකව යොමු කරන ලදී!");
   closeModal('withdrawModal');
 }
@@ -1178,7 +1291,7 @@ function copyRefLink() {
   const linkInput = document.getElementById('myRefLink');
   if (!linkInput) return;
   linkInput.select();
-  linkInput.setSelectionRange(0, 99999); // For mobile devices
+  linkInput.setSelectionRange(0, 99999); 
   try {
     const successful = document.execCommand('copy');
     if (successful) {
@@ -1289,7 +1402,6 @@ async function verifyPinAndExecute() {
       loadMyAds();
     }
   } else if (action === 'edit') {
-    // Edit කිරීම සඳහා අදාළ පෝරමයට දත්ත පූරණය කර අදාළ Tab එකට යොමු කිරීම
     switchTab(table === 'workers' ? 'worker' : 'post');
     if (table === 'workers') {
       document.getElementById('editing_worker_id').value = data.id;
