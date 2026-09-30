@@ -14,6 +14,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
+
 <style>
   :root {
     --bg-gradient: linear-gradient(135deg, #090d16 0%, #171c3d 50%, #292562 100%);
@@ -181,7 +186,6 @@
     <div class="tab" id="tabPost" onclick="switchTab('post')">📢 රැකියාවක් පළ කරන්න</div>
     <div class="tab" id="tabMyads" onclick="switchTab('myads')">📋 මගේ දැන්වීම්</div>
     <div class="tab" id="tabRef" onclick="switchTab('ref')">🎁 Referral</div>
-    <!-- නව සහාය (Support) Tab එක -->
     <div class="tab" id="tabSupport" onclick="switchTab('support')">🎧 සහාය</div>
   </div>
 
@@ -280,7 +284,7 @@
         <label>දුරකථන අංකය</label>
         <div style="display:flex; gap:8px;">
           <input type="tel" id="w_phone" placeholder="07XXXXXXXX" pattern="07[0-9]{8}" required>
-          <button type="button" class="btn-refresh" style="background:#25d366; color:#fff;" onclick="sendOtp('w')">💬 WhatsApp OTP</button>
+          <button type="button" class="btn-refresh" style="background:#25d366; color:#fff;" onclick="sendOtp('w')">📱 SMS OTP</button>
         </div>
         <div id="w_otp_wrapper" style="display:none; margin-bottom:12px;">
           <input type="text" id="w_otp_code" maxlength="6" placeholder="6-Digit OTP" style="margin-bottom:6px;">
@@ -312,7 +316,6 @@
             <li><b>ගිණුම් අංකය (A/C No):</b> 8029786417</li>
           </ul>
           
-          <!-- අලුතින් එක් කළ කොටස් -->
           <label>බැංකු ගනුදෙනු අංකය (Bank Transaction ID)</label>
           <input type="text" id="w_txn_id" placeholder="උදා: 1234567890">
 
@@ -346,7 +349,7 @@
         </select>
 
         <div id="parttimeFields" class="section-subbox">
-          <label>🗓️ වැඩ කරන දිනය</label>
+          <label>🗓️️ වැඩ කරන දිනය</label>
           <input type="date" id="p_work_date">
           <label>⏰ වැඩ කරන වේලාව සහ කාලසීමාව</label>
           <input type="text" id="p_work_time" placeholder="උදා: උදෑසන 8.00 සිට සවස 4.00 දක්වා">
@@ -404,7 +407,7 @@
         <label style="margin-top:10px;">දුරකථන අංකය</label>
         <div style="display:flex; gap:8px;">
           <input type="tel" id="p_phone" placeholder="07XXXXXXXX" pattern="07[0-9]{8}" required>
-          <button type="button" class="btn-refresh" style="background:#25d366; color:#fff;" onclick="sendOtp('p')">💬 WhatsApp OTP</button>
+          <button type="button" class="btn-refresh" style="background:#25d366; color:#fff;" onclick="sendOtp('p')">📱 SMS OTP</button>
         </div>
         <div id="p_otp_wrapper" style="display:none; margin-bottom:12px;">
           <input type="text" id="p_otp_code" maxlength="6" placeholder="6-Digit OTP" style="margin-bottom:6px;">
@@ -436,7 +439,6 @@
             <li><b>ගිණුම් අංකය (A/C No):</b> 8029786417</li>
           </ul>
 
-          <!-- අලුතින් එක් කළ කොටස් -->
           <label>බැංකු ගනුදෙනු අංකය (Bank Transaction ID)</label>
           <input type="text" id="p_txn_id" placeholder="උදා: 1234567890">
 
@@ -505,7 +507,6 @@
         </div>
       </div>
       
-      <!-- Referral Terms & Conditions (අලුතින් එක් කරන ලදි) -->
       <div class="tc-box" style="margin-top:15px;">
         <h3 style="margin:0 0 8px; font-size:14px; color:#334155;">📜 නියමයන් සහ කොන්දේසි (Terms & Conditions)</h3>
         <ul style="margin:0; padding-left:16px; font-size:11.5px; color:#475569; line-height:1.6;">
@@ -515,10 +516,8 @@
           <li>ඔබගේ Referral ලින්ක් එකෙන් සම්බන්ධ වන පුද්ගලයා මුදල් ගෙවා දැන්වීමක් පල කල විට පමණක් අදාළ කොමිස් මුදල ඔබේ ගිණුමට එකතු වේ.</li>
         </ul>
       </div>
-
     </div>
 
-    <!-- නව පාරිභෝගික සහාය කොටස (Customer Support) -->
     <div id="viewSupport" style="display:none;">
       <h2 style="font-size:17px; margin-top:0;">🎧 පාරිභෝගික ගැටලු සහ සහාය</h2>
       <p style="font-size:12.5px; color:var(--text-muted);">ඔබට පද්ධතිය සම්බන්ධයෙන් ඇති ගැටලු හෝ යෝජනා අප වෙත යොමු කරන්න.</p>
@@ -545,6 +544,9 @@
 
   </main>
 </div>
+
+<!-- Firebase reCAPTCHA Container -->
+<div id="recaptcha-container"></div>
 
 <!-- Modals -->
 <div class="modal-overlay" id="pinCheckModal">
@@ -581,7 +583,6 @@
     <h3 style="margin-top:0; color:var(--primary); font-size:16px;">💸 මුදල් ආපසු ගැනීම සඳහා ඉල්ලීම</h3>
     <label>ඔබේ නම</label><input type="text" id="wd_name" placeholder="සම්පූර්ණ නම" required>
     
-    <!-- පුද්ගලික හඳුනාගැනීමේ විස්තර සඳහා එක් කළ කොටස -->
     <label>ජාතික හැඳුනුම්පත් අංකය (NIC)</label>
     <input type="text" id="wd_nic" placeholder="උදා: 199XXXXXXXXX" required>
 
@@ -650,9 +651,29 @@
 </div>
 
 <script>
+// Supabase Configuration
 const SUPABASE_URL = "https://xecwobnntjjkoalqtalh.supabase.co"; 
 const SUPABASE_KEY = "sb_publishable_0mE7RKFZzV6F3MTylSAwhg_4PeloATZ"; 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } });
+
+// Firebase Configuration & Initialization
+const firebaseConfig = {
+  apiKey: "AIzaSyAyo2WNvebRRW2PB31dsQf-2djpJpDGDAo",
+  authDomain: "workline-otp.firebaseapp.com",
+  projectId: "workline-otp",
+  storageBucket: "workline-otp.firebasestorage.app",
+  messagingSenderId: "1083032335888",
+  appId: "1:1083032335888:web:9b450b2093046648dcbc95",
+  measurementId: "G-PCNNL7P23B"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// Variables
+let searchTimeout = null;
+let currentRefCode = null;
+let verifiedPhones = {};
+let confirmationResults = {}; // To store Firebase Confirmation Results
 
 const CATEGORIES_DATA = {
   "ඉදිකිරීම් සහ මේසන්": ["ගෙවල් සෑදීම", "ගඩොල් බැඳීම", "ප්ලාස්ටර් දැමීම", "කොන්ක්‍රීට් දැමීම", "ටයිල් ඇල්ලීම"],
@@ -678,10 +699,6 @@ const DISTRICTS = [
 const MONTH_NAMES_SI = ["ජනවාරි", "පෙබරවාරි", "මාර්තු", "අප්‍රේල්", "මැයි", "ජූනි", "ජූලි", "අගෝස්තු", "සැප්තැම්බර්", "ඔක්තෝබර්", "නොවැම්බර්", "දෙසැම්බර්"];
 
 let activeBrowseMode = 'workers';
-let searchTimeout = null;
-let currentRefCode = null;
-let activeOtps = {};
-let verifiedPhones = {};
 
 function sanitize(str) { return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
@@ -738,7 +755,6 @@ function checkOtherCategory(prefix) {
 }
 
 function switchTab(t) {
-  // Add support tab directly inside the array
   ['find', 'worker', 'post', 'myads', 'ref', 'support'].forEach(x => {
     const tabElement = document.getElementById(`tab${x.charAt(0).toUpperCase() + x.slice(1)}`);
     const viewElement = document.getElementById(`view${x.charAt(0).toUpperCase() + x.slice(1)}`);
@@ -843,7 +859,7 @@ function renderBottomMediaThumbnails(item) {
 async function handleWorkerSubmit(e) {
   e.preventDefault();
   const phone = document.getElementById('w_phone').value.trim();
-  if(!verifiedPhones[phone]) { alert("කරුණාකර පළමුව WhatsApp OTP හරහා දුරකථන අංකය තහවුරු කරන්න."); return; }
+  if(!verifiedPhones[phone.replace(/\D/g, '').replace(/^94/, '0')]) { alert("කරුණාකර පළමුව SMS OTP හරහා දුරකථන අංකය තහවුරු කරන්න."); return; }
   if(!document.getElementById('w_tc').checked) { alert("කරුණාකර නියමයන් සහ කොන්දේසි වලට එකඟ වන්න."); return; }
 
   const submitBtn = document.getElementById('w_submit_btn');
@@ -885,7 +901,6 @@ async function handleWorkerSubmit(e) {
     tc_accepted: document.getElementById('w_tc').checked
   };
 
-  // Payment details (Transaction ID, Phone)
   if (adType !== 'basic') {
       payload.txn_id = document.getElementById('w_txn_id').value.trim();
       payload.pay_phone = document.getElementById('w_pay_phone').value.trim();
@@ -922,7 +937,7 @@ async function handleWorkerSubmit(e) {
 async function handleJobSubmit(e) {
   e.preventDefault();
   const phone = document.getElementById('p_phone').value.trim();
-  if(!verifiedPhones[phone]) { alert("කරුණාකර පළමුව WhatsApp OTP හරහා දුරකථන අංකය තහවුරු කරන්න."); return; }
+  if(!verifiedPhones[phone.replace(/\D/g, '').replace(/^94/, '0')]) { alert("කරුණාකර පළමුව SMS OTP හරහා දුරකථන අංකය තහවුරු කරන්න."); return; }
   if(!document.getElementById('p_tc').checked) { alert("කරුණාකර නියමයන් සහ කොන්දේසි වලට එකඟ වන්න."); return; }
 
   const submitBtn = document.getElementById('p_submit_btn');
@@ -970,7 +985,6 @@ async function handleJobSubmit(e) {
     tc_accepted: document.getElementById('p_tc').checked
   };
 
-  // Payment details (Transaction ID, Phone)
   if (adType !== 'basic') {
       payload.txn_id = document.getElementById('p_txn_id').value.trim();
       payload.pay_phone = document.getElementById('p_pay_phone').value.trim();
@@ -1004,7 +1018,6 @@ async function handleJobSubmit(e) {
   }
 }
 
-// පාරිභෝගික සහාය පෝරමය හසුරුවන ක්‍රියාවලිය
 async function handleSupportSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('sup_submit_btn');
@@ -1014,7 +1027,7 @@ async function handleSupportSubmit(e) {
     name: document.getElementById('sup_name').value.trim(),
     phone: document.getElementById('sup_phone').value.trim(),
     message: document.getElementById('sup_msg').value.trim(),
-    status: 'pending' // Admin panel එකේ අලුත් ගැටලු හඳුනා ගැනීමට
+    status: 'pending'
   };
 
   const { error } = await supabaseClient.from('customer_issues').insert([payload]);
@@ -1156,32 +1169,79 @@ async function loadBrowseData() {
   }
 }
 
+// -------------------------------------------------------------------------
+// NEW: Firebase SMS OTP Logic
+// -------------------------------------------------------------------------
+
+// Setup Invisible reCAPTCHA when Window Loads
+window.onload = function () {
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+    'size': 'invisible'
+  });
+};
+
 async function sendOtp(prefix) {
   let rawPhone = document.getElementById(`${prefix}_phone`).value.trim();
   if (!rawPhone) { alert("කරුණාකර දුරකථන අංකයක් ඇතුළත් කරන්න"); return; }
+  
+  // Convert Local Phone Number to International format (+94...)
   rawPhone = rawPhone.replace(/\D/g, '');
   if (rawPhone.startsWith('94')) rawPhone = '0' + rawPhone.substring(2);
+  const formattedPhone = "+94" + rawPhone.substring(1); 
 
-  const formattedPhone = "94" + rawPhone.substring(1);
-  const randomOtp = Math.floor(100000 + Math.random() * 900000);
-  activeOtps[rawPhone] = String(randomOtp);
-
-  const whatsappMessage = `🔐 ඔබගේ WORKLINE තහවුරු කිරීමේ (OTP) අංකය: *${randomOtp}*`;
   document.getElementById(`${prefix}_otp_wrapper`).style.display = 'block';
-  document.getElementById(`${prefix}_otp_status`).innerHTML = `💬 WhatsApp හරහා OTP යවමින් පවතී...`;
-  window.open(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+  document.getElementById(`${prefix}_otp_status`).innerHTML = `⏳ SMS හරහා OTP යවමින් පවතී...`;
+  document.getElementById(`${prefix}_otp_status`).style.color = "#2563EB";
+
+  try {
+    const appVerifier = window.recaptchaVerifier;
+    const confirmationResult = await auth.signInWithPhoneNumber(formattedPhone, appVerifier);
+    confirmationResults[prefix] = confirmationResult;
+    
+    document.getElementById(`${prefix}_otp_status`).innerHTML = `✅ SMS හරහා OTP යවන ලදී. කරුණාකර එය පහතින් ඇතුළත් කරන්න.`;
+    document.getElementById(`${prefix}_otp_status`).style.color = "green";
+  } catch (error) {
+    console.error("SMS යැවීමේ දෝෂයක්:", error);
+    document.getElementById(`${prefix}_otp_status`).innerHTML = `❌ OTP යැවීමට නොහැකි විය. අංකය පරීක්ෂා කර නැවත උත්සාහ කරන්න.`;
+    document.getElementById(`${prefix}_otp_status`).style.color = "red";
+    
+    // Reset reCAPTCHA if error happens
+    if (window.recaptchaVerifier) {
+      window.recaptchaVerifier.render().then(function(widgetId) {
+        grecaptcha.reset(widgetId);
+      });
+    }
+  }
 }
 
-function verifyOtp(prefix) {
+async function verifyOtp(prefix) {
   let p = document.getElementById(`${prefix}_phone`).value.trim().replace(/\D/g, '');
   if (p.startsWith('94')) p = '0' + p.substring(2);
-  const c = document.getElementById(`${prefix}_otp_code`).value.trim();
-  if (activeOtps[p] && activeOtps[p] === c) {
+  
+  const code = document.getElementById(`${prefix}_otp_code`).value.trim();
+  const confirmationResult = confirmationResults[prefix];
+
+  if (!confirmationResult) {
+    alert("කරුණාකර පළමුව OTP අංකය ලබාගන්න.");
+    return;
+  }
+
+  document.getElementById(`${prefix}_otp_status`).innerHTML = `⏳ තහවුරු කරමින් පවතී...`;
+
+  try {
+    await confirmationResult.confirm(code);
+    
     verifiedPhones[p] = true;
     document.getElementById(`${prefix}_otp_status`).innerHTML = "✅ දුරකථන අංකය සාර්ථකව තහවුරු කරන ලදී!";
     document.getElementById(`${prefix}_otp_status`).style.color = "green";
-  } else { alert("❌ වැරදි OTP කේතයකි!"); }
+  } catch (error) {
+    console.error("OTP දෝෂයක්:", error);
+    document.getElementById(`${prefix}_otp_status`).innerHTML = "❌ වැරදි OTP කේතයකි!";
+    document.getElementById(`${prefix}_otp_status`).style.color = "red";
+  }
 }
+
+// -------------------------------------------------------------------------
 
 function setupReferralTracking() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -1254,7 +1314,6 @@ async function submitWithdrawalRequest() {
   
   if(!name || !nic || !phone || !details) { alert("කරුණාකර සියලු විස්තර පුරවන්න"); return; }
 
-  // Supabase වෙත දත්ත යැවීම. 'nic' column එක ඔබගේ withdrawal_requests table එකෙහි තිබිය යුතුය.
   await supabaseClient.from('withdrawal_requests').insert([{ ref_code: currentRefCode, name, nic, phone, bank_details: details, status: 'pending' }]);
   alert("✅ මුදල් ලබාගැනීමේ ඉල්ලීම සාර්ථකව යොමු කරන ලදී!");
   closeModal('withdrawModal');
