@@ -15,10 +15,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
-
 <style>
   :root {
     --bg-gradient: linear-gradient(135deg, #090d16 0%, #171c3d 50%, #292562 100%);
@@ -65,10 +61,11 @@
 
   .status-tag { font-size: 11px; color: #4ade80; font-weight: 700; background: rgba(74,222,128,0.25); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(74,222,128,0.5); display: flex; align-items: center; gap: 5px; }
 
-  .tabs { display: flex; flex-wrap: wrap; background: #f8fafc; padding: 8px; gap: 6px; border-bottom: 1.5px solid var(--border); position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); }
-  .tab { flex: 1 1 calc(20% - 6px); min-width: 90px; text-align: center; padding: 10px 4px; background: transparent; color: #475569; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 10px; transition: all 0.3s; white-space: nowrap; }
-  .tab:hover { background: rgba(37, 99, 235, 0.12); color: var(--accent); }
-  .tab.active { background: var(--primary); color: #FFFFFF; box-shadow: 0 6px 18px rgba(15,23,42,0.35); }
+  /* නවීන Tabs වර්ණ සහ Styles */
+  .tabs { display: flex; flex-wrap: wrap; background: #ffffff; padding: 12px; gap: 8px; border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+  .tab { flex: 1 1 calc(50% - 8px); text-align: center; padding: 12px 6px; background: #f8fafc; color: #475569; font-size: 11.5px; font-weight: 700; cursor: pointer; border-radius: 12px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid #e2e8f0; }
+  .tab:hover { background: #eff6ff; color: #2563eb; border-color: #bfdbfe; transform: translateY(-2px); }
+  .tab.active { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: #ffffff; box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4); border-color: transparent; }
 
   main { padding: 18px; }
 
@@ -281,16 +278,9 @@
         <label>🎥 වැඩබිමේ කෙටි වීඩියෝ</label>
         <input type="file" id="w_videos" accept="video/*">
 
+        <!-- OTP කොටස ඉවත් කර ඇත -->
         <label>දුරකථන අංකය</label>
-        <div style="display:flex; gap:8px;">
-          <input type="tel" id="w_phone" placeholder="07XXXXXXXX" pattern="07[0-9]{8}" required>
-          <button type="button" class="btn-refresh" style="background:#25d366; color:#fff;" onclick="sendOtp('w')">📱 SMS OTP</button>
-        </div>
-        <div id="w_otp_wrapper" style="display:none; margin-bottom:12px;">
-          <input type="text" id="w_otp_code" maxlength="6" placeholder="6-Digit OTP" style="margin-bottom:6px;">
-          <button type="button" class="btn-submit" onclick="verifyOtp('w')">Verify OTP</button>
-          <span id="w_otp_status" style="font-size:11.5px; font-weight:bold; color:#2563EB; display:block; margin-top:5px;"></span>
-        </div>
+        <input type="tel" id="w_phone" placeholder="07XXXXXXXX" pattern="07[0-9]{8}" required>
 
         <div class="legal-box" style="background: #fee2e2; border-color: #fca5a5; color: #991b1b;">
           <b>🔒 දැන්වීම ආරක්ෂා කරගන්න (Security PIN):</b><br>
@@ -349,7 +339,7 @@
         </select>
 
         <div id="parttimeFields" class="section-subbox">
-          <label>🗓️️ වැඩ කරන දිනය</label>
+          <label>🗓 වැඩ කරන දිනය</label>
           <input type="date" id="p_work_date">
           <label>⏰ වැඩ කරන වේලාව සහ කාලසීමාව</label>
           <input type="text" id="p_work_time" placeholder="උදා: උදෑසන 8.00 සිට සවස 4.00 දක්වා">
@@ -404,16 +394,9 @@
         <label>🎥 වැඩබිමේ වීඩියෝ</label>
         <input type="file" id="p_videos" accept="video/*">
 
+        <!-- OTP කොටස ඉවත් කර ඇත -->
         <label style="margin-top:10px;">දුරකථන අංකය</label>
-        <div style="display:flex; gap:8px;">
-          <input type="tel" id="p_phone" placeholder="07XXXXXXXX" pattern="07[0-9]{8}" required>
-          <button type="button" class="btn-refresh" style="background:#25d366; color:#fff;" onclick="sendOtp('p')">📱 SMS OTP</button>
-        </div>
-        <div id="p_otp_wrapper" style="display:none; margin-bottom:12px;">
-          <input type="text" id="p_otp_code" maxlength="6" placeholder="6-Digit OTP" style="margin-bottom:6px;">
-          <button type="button" class="btn-submit" onclick="verifyOtp('p')">Verify OTP</button>
-          <span id="p_otp_status" style="font-size:11.5px; font-weight:bold; color:#2563EB; display:block; margin-top:5px;"></span>
-        </div>
+        <input type="tel" id="p_phone" placeholder="07XXXXXXXX" pattern="07[0-9]{8}" required>
 
         <div class="legal-box" style="background: #fee2e2; border-color: #fca5a5; color: #991b1b;">
           <b>🔒 දැන්වීම ආරක්ෂා කරගන්න (Security PIN):</b><br>
@@ -545,9 +528,6 @@
   </main>
 </div>
 
-<!-- Firebase reCAPTCHA Container -->
-<div id="recaptcha-container"></div>
-
 <!-- Modals -->
 <div class="modal-overlay" id="pinCheckModal">
   <div class="modal">
@@ -628,7 +608,7 @@
     <select id="rateStars" style="margin-bottom:10px;">
       <option value="5">⭐⭐⭐⭐⭐ (විශිෂ්ටයි)</option>
       <option value="4">⭐⭐⭐⭐ (ඉතා හොඳයි)</option>
-      <option value="3">⭐⭐⭐ (සාමාන්‍යයි)</option>
+      <option value="3">⭐⭐⭐ (සාමාන්‍‍යයි)</option>
     </select>
     <div style="display:flex; gap:8px; margin-top:10px;">
       <button type="button" class="btn-submit" style="background:var(--yellow); color:#000;" onclick="submitVerifiedRating()">Submit Rating</button>
@@ -656,24 +636,9 @@ const SUPABASE_URL = "https://xecwobnntjjkoalqtalh.supabase.co";
 const SUPABASE_KEY = "sb_publishable_0mE7RKFZzV6F3MTylSAwhg_4PeloATZ"; 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } });
 
-// Firebase Configuration & Initialization
-const firebaseConfig = {
-  apiKey: "AIzaSyAyo2WNvebRRW2PB31dsQf-2djpJpDGDAo",
-  authDomain: "workline-otp.firebaseapp.com",
-  projectId: "workline-otp",
-  storageBucket: "workline-otp.firebasestorage.app",
-  messagingSenderId: "1083032335888",
-  appId: "1:1083032335888:web:9b450b2093046648dcbc95",
-  measurementId: "G-PCNNL7P23B"
-};
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-
 // Variables
 let searchTimeout = null;
 let currentRefCode = null;
-let verifiedPhones = {};
-let confirmationResults = {}; // To store Firebase Confirmation Results
 
 const CATEGORIES_DATA = {
   "ඉදිකිරීම් සහ මේසන්": ["ගෙවල් සෑදීම", "ගඩොල් බැඳීම", "ප්ලාස්ටර් දැමීම", "කොන්ක්‍රීට් දැමීම", "ටයිල් ඇල්ලීම"],
@@ -859,7 +824,6 @@ function renderBottomMediaThumbnails(item) {
 async function handleWorkerSubmit(e) {
   e.preventDefault();
   const phone = document.getElementById('w_phone').value.trim();
-  if(!verifiedPhones[phone.replace(/\D/g, '').replace(/^94/, '0')]) { alert("කරුණාකර පළමුව SMS OTP හරහා දුරකථන අංකය තහවුරු කරන්න."); return; }
   if(!document.getElementById('w_tc').checked) { alert("කරුණාකර නියමයන් සහ කොන්දේසි වලට එකඟ වන්න."); return; }
 
   const submitBtn = document.getElementById('w_submit_btn');
@@ -913,11 +877,11 @@ async function handleWorkerSubmit(e) {
 
   let error;
   if (editingId) {
-    payload.payment_status = (adType === 'basic') ? 'approved' : 'pending';
+    payload.payment_status = 'pending';
     const { err } = await supabaseClient.from('workers').update(payload).eq('id', editingId);
     error = err;
   } else {
-    payload.payment_status = adType === 'basic' ? 'approved' : 'pending';
+    payload.payment_status = 'pending';
     const { err } = await supabaseClient.from('workers').insert([payload]);
     error = err;
     if (!error) awardReferralEarnings(adType);
@@ -927,7 +891,7 @@ async function handleWorkerSubmit(e) {
 
   if (error) { alert("දෝෂයක් ඇතිවිය: " + error.message); } 
   else { 
-    alert(editingId ? "✅ Profile එක සාර්ථකව යාවත්කාලීන විය! (ගෙවීම් සහිත දැන්වීමක් නම් ඇඩ්මින් අනුමැතිය ලැබෙන තෙක් පරීක්ෂා කෙරේ)" : "✅ දැන්වීම සාර්ථකව පළ කරන ලදී!"); 
+    alert("✅ දැන්වීම සාර්ථකව යොමු කරන ලදී! ඇඩ්මින්ගේ අනුමැතිය ලැබුණු පසු එය පළවනු ඇත."); 
     document.getElementById('workerForm').reset();
     document.getElementById('editing_worker_id').value = '';
     switchTab('find'); 
@@ -937,7 +901,6 @@ async function handleWorkerSubmit(e) {
 async function handleJobSubmit(e) {
   e.preventDefault();
   const phone = document.getElementById('p_phone').value.trim();
-  if(!verifiedPhones[phone.replace(/\D/g, '').replace(/^94/, '0')]) { alert("කරුණාකර පළමුව SMS OTP හරහා දුරකථන අංකය තහවුරු කරන්න."); return; }
   if(!document.getElementById('p_tc').checked) { alert("කරුණාකර නියමයන් සහ කොන්දේසි වලට එකඟ වන්න."); return; }
 
   const submitBtn = document.getElementById('p_submit_btn');
@@ -997,11 +960,11 @@ async function handleJobSubmit(e) {
 
   let error;
   if (editingId) {
-    payload.payment_status = (adType === 'basic') ? 'approved' : 'pending';
+    payload.payment_status = 'pending';
     const { err } = await supabaseClient.from('job').update(payload).eq('id', editingId);
     error = err;
   } else {
-    payload.payment_status = adType === 'basic' ? 'approved' : 'pending';
+    payload.payment_status = 'pending';
     const { err } = await supabaseClient.from('job').insert([payload]);
     error = err;
     if (!error) awardReferralEarnings(adType);
@@ -1011,7 +974,7 @@ async function handleJobSubmit(e) {
 
   if (error) { alert("දෝෂයක් ඇතිවිය: " + error.message); } 
   else { 
-    alert(editingId ? "✅ දැන්වීම සාර්ථකව යාවත්කාලීන විය! (ගෙවීම් සහිත දැන්වීමක් නම් ඇඩ්මින් අනුමැතිය ලැබෙන තෙක් පරීක්ෂා කෙරේ)" : "✅ දැන්වීම සාර්ථකව පළ කරන ලදී!"); 
+    alert("✅ දැන්වීම සාර්ථකව යොමු කරන ලදී! ඇඩ්මින්ගේ අනුමැතිය ලැබුණු පසු එය පළවනු ඇත."); 
     document.getElementById('jobForm').reset();
     document.getElementById('editing_job_id').value = '';
     switchTab('find'); 
@@ -1169,85 +1132,14 @@ async function loadBrowseData() {
   }
 }
 
-// -------------------------------------------------------------------------
-// NEW: Firebase SMS OTP Logic
-// -------------------------------------------------------------------------
-
-// Setup Invisible reCAPTCHA when Window Loads
-window.onload = function () {
-  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-    'size': 'invisible'
-  });
-};
-
-async function sendOtp(prefix) {
-  let rawPhone = document.getElementById(`${prefix}_phone`).value.trim();
-  if (!rawPhone) { alert("කරුණාකර දුරකථන අංකයක් ඇතුළත් කරන්න"); return; }
-  
-  // Convert Local Phone Number to International format (+94...)
-  rawPhone = rawPhone.replace(/\D/g, '');
-  if (rawPhone.startsWith('94')) rawPhone = '0' + rawPhone.substring(2);
-  const formattedPhone = "+94" + rawPhone.substring(1); 
-
-  document.getElementById(`${prefix}_otp_wrapper`).style.display = 'block';
-  document.getElementById(`${prefix}_otp_status`).innerHTML = `⏳ SMS හරහා OTP යවමින් පවතී...`;
-  document.getElementById(`${prefix}_otp_status`).style.color = "#2563EB";
-
-  try {
-    const appVerifier = window.recaptchaVerifier;
-    const confirmationResult = await auth.signInWithPhoneNumber(formattedPhone, appVerifier);
-    confirmationResults[prefix] = confirmationResult;
-    
-    document.getElementById(`${prefix}_otp_status`).innerHTML = `✅ SMS හරහා OTP යවන ලදී. කරුණාකර එය පහතින් ඇතුළත් කරන්න.`;
-    document.getElementById(`${prefix}_otp_status`).style.color = "green";
-  } catch (error) {
-    console.error("SMS යැවීමේ දෝෂයක්:", error);
-    document.getElementById(`${prefix}_otp_status`).innerHTML = `❌ OTP යැවීමට නොහැකි විය. අංකය පරීක්ෂා කර නැවත උත්සාහ කරන්න.`;
-    document.getElementById(`${prefix}_otp_status`).style.color = "red";
-    
-    // Reset reCAPTCHA if error happens
-    if (window.recaptchaVerifier) {
-      window.recaptchaVerifier.render().then(function(widgetId) {
-        grecaptcha.reset(widgetId);
-      });
-    }
-  }
-}
-
-async function verifyOtp(prefix) {
-  let p = document.getElementById(`${prefix}_phone`).value.trim().replace(/\D/g, '');
-  if (p.startsWith('94')) p = '0' + p.substring(2);
-  
-  const code = document.getElementById(`${prefix}_otp_code`).value.trim();
-  const confirmationResult = confirmationResults[prefix];
-
-  if (!confirmationResult) {
-    alert("කරුණාකර පළමුව OTP අංකය ලබාගන්න.");
-    return;
-  }
-
-  document.getElementById(`${prefix}_otp_status`).innerHTML = `⏳ තහවුරු කරමින් පවතී...`;
-
-  try {
-    await confirmationResult.confirm(code);
-    
-    verifiedPhones[p] = true;
-    document.getElementById(`${prefix}_otp_status`).innerHTML = "✅ දුරකථන අංකය සාර්ථකව තහවුරු කරන ලදී!";
-    document.getElementById(`${prefix}_otp_status`).style.color = "green";
-  } catch (error) {
-    console.error("OTP දෝෂයක්:", error);
-    document.getElementById(`${prefix}_otp_status`).innerHTML = "❌ වැරදි OTP කේතයකි!";
-    document.getElementById(`${prefix}_otp_status`).style.color = "red";
-  }
-}
-
-// -------------------------------------------------------------------------
-
 function setupReferralTracking() {
   const urlParams = new URLSearchParams(window.location.search);
   const ref = urlParams.get('ref');
+  
+  // වෙනත් කෙනෙකුගේ ලින්ක් එකකින් ආවොත්, ඒ එවපු කෙනාගේ කෝඩ් එක (ref) බ්‍රවුසරයේ සේව් කරගැනීම
   if (ref) localStorage.setItem('sl_invited_by', ref);
 
+  // තමන්ට Referral කෝඩ් එකක් නැත්නම් අලුතින් එකක් සෑදීම (උදා: USR123456)
   let myCode = localStorage.getItem('sl_my_ref_code');
   if (!myCode) {
     myCode = 'USR' + Math.floor(100000 + Math.random() * 900000);
@@ -1255,15 +1147,10 @@ function setupReferralTracking() {
   }
   currentRefCode = myCode;
   
-  let baseUrl = window.location.origin;
-  if (!baseUrl || baseUrl === 'null' || baseUrl.startsWith('file:') || baseUrl.includes('localhost')) {
-    baseUrl = window.location.protocol + '//' + window.location.host + window.location.pathname.replace(/\/[^/]*$/, '');
-  }
-  if (baseUrl.endsWith('/')) {
-    baseUrl = baseUrl.slice(0, -1);
-  }
+  // ඔබගේ ස්ථිර GitHub ලින්ක් එකට referral කෝඩ් එක එකතු කිරීම
+  const fullLink = `https://workline-sl.github.io/workline/?ref=${myCode}`;
   
-  const fullLink = `${baseUrl}/?ref=${myCode}`;
+  // සෑදූ ලින්ක් එක පෙට්ටියේ (input) පෙන්වීම
   const refInput = document.getElementById('myRefLink');
   if (refInput) {
     refInput.value = fullLink;
@@ -1346,28 +1233,29 @@ function nativeShare() {
     copyRefLink();
   }
 }
+
 function copyRefLink() {
   const linkInput = document.getElementById('myRefLink');
   if (!linkInput) return;
   linkInput.select();
   linkInput.setSelectionRange(0, 99999); 
+  
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(linkInput.value).then(() => {
+      alert("✅ Referral Link එක සාර්ථකව Copy කරගන්නා ලදී!");
+    }).catch(() => fallbackCopy(linkInput));
+  } else {
+    fallbackCopy(linkInput);
+  }
+}
+
+function fallbackCopy(inputElement) {
   try {
     const successful = document.execCommand('copy');
-    if (successful) {
-      alert("✅ අයිකනය සමඟ Referral Link එක Copy විය!");
-    } else {
-      navigator.clipboard.writeText(linkInput.value).then(() => {
-        alert("✅ අයිකනය සමඟ Referral Link එක Copy විය!");
-      }).catch(() => {
-        alert("කරුණාකර ලින්ක් එක manual copy කරගන්න.");
-      });
-    }
+    if (successful) alert("✅ Referral Link එක සාර්ථකව Copy කරගන්නා ලදී!");
+    else alert("කරුණාකර ලින්ක් එක manual copy කරගන්න.");
   } catch (err) {
-    navigator.clipboard.writeText(linkInput.value).then(() => {
-      alert("✅ අයිකනය සමඟ Referral Link එක Copy විය!");
-    }).catch(() => {
-      alert("කරුණාකර ලින්ක් එක manual copy කරගන්න.");
-    });
+    alert("කරුණාකර ලින්ක් එක manual copy කරගන්න.");
   }
 }
 
@@ -1417,17 +1305,29 @@ async function loadMyAds() {
   const { data: wList } = await supabaseClient.from('workers').select('*').eq('phone', p);
   const { data: jList } = await supabaseClient.from('job').select('*').eq('phone', p);
   const all = [...(wList || []).map(x => ({...x, _tbl: 'workers'})), ...(jList || []).map(x => ({...x, _tbl: 'job'}))];
+  
   if (all.length === 0) { c.innerHTML = '<div style="text-align:center; padding:20px;">මෙම අංකයට දැන්වීම් හමු නොවීය.</div>'; return; }
-  c.innerHTML = all.map(item => `
+  
+  c.innerHTML = all.map(item => {
+    const isWorker = item._tbl === 'workers';
+    
+    // Status Change Button for Workers Only
+    const statusBtn = isWorker 
+        ? `<button class="act-btn" style="background:#10b981; color:#fff;" onclick="promptPinForAction('status', '${item._tbl}', '${item.id}')">⚡ තත්වය වෙනස් කරන්න</button>` 
+        : '';
+
+    return `
     <div class="card">
       <h3 style="margin:0 0 8px; font-size:15px; color:var(--primary);">${sanitize(item.name || item.title)}</h3>
-      <div style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">වර්ගය: ${item._tbl === 'workers' ? 'සේවක Profile' : 'රැකියා දැන්වීම'} | තත්වය: ${sanitize(item.ad_type)} (${item.payment_status === 'approved' ? '🟢 අනුමතයි' : '🟡 අනුමැතිය අපේක්ෂිතයි'})</div>
-      <div style="display:flex; gap:8px;">
+      <div style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">වර්ගය: ${isWorker ? 'සේවක Profile' : 'රැකියා දැන්වීම'} | තත්වය: ${sanitize(item.ad_type)} (${item.payment_status === 'approved' ? '🟢 අනුමතයි' : '🟡 අනුමැතිය අපේක්ෂිතයි'})</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
         <button class="act-btn edit" onclick="promptPinForAction('edit', '${item._tbl}', '${item.id}')">✏️ Edit කරන්න</button>
+        ${statusBtn}
         <button class="act-btn delete" onclick="promptPinForAction('delete', '${item._tbl}', '${item.id}')">🗑️ මකන්න</button>
       </div>
     </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 function promptPinForAction(action, table, id) {
@@ -1454,13 +1354,19 @@ async function verifyPinAndExecute() {
 
   closeModal('pinCheckModal');
 
-  if (action === 'delete') {
+  if (action === 'status') {
+    document.getElementById('editAvailWorkerId').value = id;
+    document.getElementById('modal_w_availability').value = data.availability || 'available';
+    document.getElementById('availabilityModal').classList.add('show');
+  } 
+  else if (action === 'delete') {
     if (confirm("මෙම දැන්වීම මකා දැමීමට ඔබට විශ්වාසද?")) {
       await supabaseClient.from(table).delete().eq('id', id);
       alert("✅ දැන්වීම සාර්ථකව මකා දමන ලදී.");
       loadMyAds();
     }
-  } else if (action === 'edit') {
+  } 
+  else if (action === 'edit') {
     switchTab(table === 'workers' ? 'worker' : 'post');
     if (table === 'workers') {
       document.getElementById('editing_worker_id').value = data.id;
@@ -1493,6 +1399,21 @@ async function verifyPinAndExecute() {
       document.getElementById('jobFormTitle').textContent = "📢 රැකියා දැන්වීම සංස්කරණය කිරීම (Edit)";
       document.getElementById('p_submit_btn').textContent = "දැන්වීම Update කරන්න";
     }
+  }
+}
+
+async function saveUpdatedAvailability() {
+  const id = document.getElementById('editAvailWorkerId').value;
+  const avail = document.getElementById('modal_w_availability').value;
+  
+  const { error } = await supabaseClient.from('workers').update({ availability: avail }).eq('id', id);
+  if (error) {
+    alert("දෝෂයක් ඇතිවිය: " + error.message);
+  } else {
+    alert("✅ සේවා තත්වය සාර්ථකව යාවත්කාලීන කරන ලදී!");
+    closeModal('availabilityModal');
+    loadMyAds(); 
+    loadBrowseData(); 
   }
 }
 
