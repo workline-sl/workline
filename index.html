@@ -61,7 +61,6 @@
 
   .status-tag { font-size: 11px; color: #4ade80; font-weight: 700; background: rgba(74,222,128,0.25); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(74,222,128,0.5); display: flex; align-items: center; gap: 5px; }
 
-  /* නවීන Tabs වර්ණ සහ Styles */
   .tabs { display: flex; flex-wrap: wrap; background: #ffffff; padding: 12px; gap: 8px; border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
   .tab { flex: 1 1 calc(50% - 8px); text-align: center; padding: 12px 6px; background: #f8fafc; color: #475569; font-size: 11.5px; font-weight: 700; cursor: pointer; border-radius: 12px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid #e2e8f0; }
   .tab:hover { background: #eff6ff; color: #2563eb; border-color: #bfdbfe; transform: translateY(-2px); }
@@ -86,37 +85,14 @@
   .section-subbox { background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 12px; padding: 12px; margin-bottom: 12px; }
   .payment-box { background: #fffbeb; border: 1px solid #fde68a; padding: 14px; border-radius: 12px; margin-top: 10px; margin-bottom: 14px; display: none; }
 
-  .card { background: #ffffff; border: 1px solid var(--border); border-radius: 18px; padding: 16px; margin-bottom: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); position: relative; transition: transform 0.3s; }
+  .card { background: #ffffff; border: 1px solid var(--border); border-radius: 18px; padding: 16px; margin-bottom: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); position: relative; transition: transform 0.3s; cursor: pointer; }
   .card:hover { transform: translateY(-4px); box-shadow: 0 18px 45px rgba(37,99,235,0.15); }
 
   .card.card-basic { border: 1px solid var(--border); }
-  .card.card-normal { border: 2px solid #3b82f6; background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); box-shadow: 0 0 12px rgba(59, 130, 246, 0.3); }
-  .card.card-vip { border: 2px solid transparent; background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #ffffff 100%); border-image: linear-gradient(45deg, #2563eb, #10b981) 1; box-shadow: 0 0 16px rgba(16, 185, 129, 0.4); }
-  .card.card-vvip { border: 2.5px solid #f59e0b; background: linear-gradient(135deg, #fffbeb, #eff6ff, #ffffff); position: relative; overflow: hidden; animation: vvipBorderPulse 2s infinite alternate; }
-  @keyframes vvipBorderPulse {
-    0% { box-shadow: 0 0 10px rgba(37,99,235,0.5), inset 0 0 5px rgba(245,158,11,0.3); border-color: #2563eb; }
-    100% { box-shadow: 0 0 22px rgba(245,158,11,0.8), inset 0 0 10px rgba(37,99,235,0.5); border-color: #f59e0b; }
-  }
-
-  .card.card-premium { border: 3px solid #ef4444; background: linear-gradient(135deg, #fff5f5, #fffbeb, #ffffff); position: relative; overflow: hidden; animation: premiumCardGlow 1.8s infinite alternate; }
-  @keyframes premiumCardGlow {
-    0% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.6), inset 0 0 8px rgba(245, 158, 11, 0.4); }
-    100% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.9), inset 0 0 15px rgba(239, 68, 68, 0.7); }
-  }
-  .card.card-premium::before, .card.card-premium::after {
-    content: ''; position: absolute; left: 0; right: 0; height: 4px;
-    background: linear-gradient(90deg, #ef4444, #f59e0b, #ef4444, #f59e0b);
-    background-size: 200% 100%; animation: lineShimmer 2s linear infinite; z-index: 5;
-  }
-  .card.card-premium::before { top: 0; }
-  .card.card-premium::after { bottom: 0; animation-direction: reverse; }
-  @keyframes lineShimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
-
-  .card.card-premium .act-btn { animation: premiumBtnBounce 1.2s ease-in-out infinite alternate; }
-  @keyframes premiumBtnBounce {
-    0% { transform: scale(1); filter: brightness(1); }
-    100% { transform: scale(1.04); filter: brightness(1.2); box-shadow: 0 6px 20px rgba(239,68,68,0.5); }
-  }
+  .card.card-normal { border: 2px solid #3b82f6; background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); }
+  .card.card-vip { border: 2px solid transparent; background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #ffffff 100%); border-image: linear-gradient(45deg, #2563eb, #10b981) 1; }
+  .card.card-vvip { border: 2.5px solid #f59e0b; background: linear-gradient(135deg, #fffbeb, #eff6ff, #ffffff); }
+  .card.card-premium { border: 3px solid #ef4444; background: linear-gradient(135deg, #fff5f5, #fffbeb, #ffffff); }
 
   .card-top { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
   .avatar-box { width: 56px; height: 56px; flex-shrink: 0; position: relative; }
@@ -159,6 +135,12 @@
   .modal-overlay { position: fixed; inset: 0; background: rgba(9,13,22,0.85); display: none; align-items: center; justify-content: center; z-index: 100; padding: 16px; backdrop-filter: blur(10px); }
   .modal-overlay.show { display: flex; }
   .modal { background: #ffffff; border-radius: 22px; padding: 24px; max-width: 460px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
+  
+  /* Analytics Dashboard Styles */
+  .analytics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+  .analytics-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; text-align: center; }
+  .analytics-value { font-size: 18px; font-weight: 800; color: var(--accent); }
+  .analytics-label { font-size: 10.5px; color: var(--text-muted); margin-top: 2px; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -278,7 +260,6 @@
         <label>🎥 වැඩබිමේ කෙටි වීඩියෝ</label>
         <input type="file" id="w_videos" accept="video/*">
 
-        <!-- OTP කොටස ඉවත් කර ඇත -->
         <label>දුරකථන අංකය</label>
         <input type="tel" id="w_phone" placeholder="07XXXXXXXX" pattern="07[0-9]{8}" required>
 
@@ -394,7 +375,6 @@
         <label>🎥 වැඩබිමේ වීඩියෝ</label>
         <input type="file" id="p_videos" accept="video/*">
 
-        <!-- OTP කොටස ඉවත් කර ඇත -->
         <label style="margin-top:10px;">දුරකථන අංකය</label>
         <input type="tel" id="p_phone" placeholder="07XXXXXXXX" pattern="07[0-9]{8}" required>
 
@@ -444,12 +424,13 @@
     </div>
 
     <div id="viewMyads" style="display:none;">
-      <h2 style="font-size:17px; margin-top:0;">📋 මගේ දැන්වීම් කළමනාකරණය</h2>
-      <p style="font-size:12.5px; color:var(--text-muted);">දුරකථන අංකය ඇතුළත් කර සොයන්න.</p>
+      <h2 style="font-size:17px; margin-top:0;">📋 මගේ දැන්වීම් සහ මිල ගණන් (Bids) බැලීම</h2>
+      <p style="font-size:12.5px; color:var(--text-muted);">දුරකථන අංකය සහ ඔබේ දැන්වීමේ PIN අංකය ඇතුළත් කර දැන්වීම්, විස්තර සහ මිල ගණන් බලාගන්න.</p>
       
-      <div style="display:flex; gap:8px;">
-        <input type="tel" id="my_phone" placeholder="07XXXXXXXX" style="margin-bottom:0;">
-        <button type="button" class="btn-refresh" style="background:var(--accent); color:#fff;" onclick="loadMyAds()">සොයන්න</button>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <input type="tel" id="my_phone" placeholder="දුරකථන අංකය: 07XXXXXXXX" style="margin-bottom:0;">
+        <input type="password" id="my_global_pin" maxlength="4" placeholder="රහස් PIN අංකය (ඉලක්කම් 4)" style="margin-bottom:0;">
+        <button type="button" class="btn-submit" style="background:var(--accent); margin-top:4px;" onclick="verifyAndLoadMyAds()">ආරක්ෂිතව දැන්වීම් සොයන්න</button>
       </div>
 
       <div id="myAdsContainer" style="margin-top:14px;"></div>
@@ -472,7 +453,7 @@
       <button type="button" class="btn-submit" id="btnWithdraw" style="background:#10b981; margin-bottom:15px;" onclick="openWithdrawModal()" disabled>මුදල් ලබාගන්න (රු. 1000 වූ විට)</button>
 
       <div style="background:#eff6ff; border:1.5px dashed #93c5fd; border-radius:12px; padding:16px; text-align:center;">
-        <h3 style="margin:0 0 6px; font-size:15px; color:#1e40af;">ඔබේ විශේෂ Referral Link එක (අයිකන් සමඟ)</h3>
+        <h3 style="margin:0 0 6px; font-size:15px; color:#1e40af;">ඔබේ විශේෂ Referral Link එක</h3>
         <p style="font-size:12px; color:#3b82f6; margin:0 0 10px;">ඔබේ Link එක හරහා පැමිණ දැන්වීමක් පළකළ විට දැන්වීම් වර්ගය අනුව පිළිවෙළින් <b>රු. 30, 50, 100 හෝ 250</b> බැරවේ!</p>
         
         <div style="display:flex; gap:6px; margin-bottom:10px;">
@@ -482,7 +463,7 @@
         
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
           <button type="button" class="btn-submit" style="background:#25d366; font-size:12px;" onclick="shareToWhatsApp()">💬 WhatsApp</button>
-          <button type="button" class="btn-submit" style="background:#0088cc; font-size:12px;" onclick="shareToTelegram()">✈️ Telegram</button>
+          <button type="button" class="btn-submit" style="background:#0088cc; font-size:12px;" onclick="shareToTelegram()">✈ Telegram</button>
         </div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
           <button type="button" class="btn-submit" style="background:#1877f2; font-size:12px;" onclick="shareToFacebook()">🌐 Facebook</button>
@@ -495,8 +476,7 @@
         <ul style="margin:0; padding-left:16px; font-size:11.5px; color:#475569; line-height:1.6;">
           <li>පද්ධතියේ ආරක්ෂාවට පටහැනි අයුරින් ව්‍යාජ ගිණුම් සෑදීම හෝ ව්‍යාජ ලෙස දැන්වීම් පළ කිරීම සපුරා තහනම් වේ.</li>
           <li>එක් අයෙකුට පවත්වාගෙන යා හැක්කේ එක් ගිණුමක් පමණි. වංචනික ක්‍රියා අනාවරණය වුවහොත් ගිණුම සම්පූර්ණයෙන්ම අවලංගු කෙරේ.</li>
-          <li>උපයාගත් මුදල අවම වශයෙන් රු. 1000 ඉක්මවූ පසු බැංකු ගිණුමට ලබාගත හැක. ඒ සඳහා අනන්‍යතාව තහවුරු කළ යුතුය.</li>
-          <li>ඔබගේ Referral ලින්ක් එකෙන් සම්බන්ධ වන පුද්ගලයා මුදල් ගෙවා දැන්වීමක් පල කල විට පමණක් අදාළ කොමිස් මුදල ඔබේ ගිණුමට එකතු වේ.</li>
+          <li>උපයාගත් මුදල අවම වශයෙන් රු. 1000 ඉක්මවූ පසු බැංකු ගිණුමට ලබාගත හැක.</li>
         </ul>
       </div>
     </div>
@@ -600,15 +580,40 @@
   </div>
 </div>
 
+<!-- මිල ගණන් ඉදිරිපත් කිරීමේ මොඩල් එක (Bid Modal) -->
+<div class="modal-overlay" id="bidModal">
+  <div class="modal">
+    <h3 style="margin-top:0; color:var(--primary); font-size:16px;">💬 මිල ගණන් ඉදිරිපත් කරන්න (Submit Quotation)</h3>
+    <input type="hidden" id="bidJobId">
+    
+    <label>ඔබේ නම / වෘත්තීය නාමය</label>
+    <input type="text" id="bidName" placeholder="උදා: එස්. ද සිල්වා (මේසන්)" required>
+    
+    <label>දුරකථන අංකය</label>
+    <input type="tel" id="bidPhone" placeholder="07XXXXXXXX" required>
+    
+    <label>ඉදිරිපත් කරන මිල (රු.)</label>
+    <input type="text" id="bidAmount" placeholder="උදා: රු. 5,500 හෝ මුළු මුදල රු. 25,000" required>
+    
+    <label>වැඩේ කිරීමට ගතවන කාලය සහ සටහන්</label>
+    <textarea id="bidNotes" rows="3" placeholder="උදා: දින 2ක් තුළ වැඩේ සම්පූර්ණ කර දිය හැක..." required></textarea>
+
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <button type="button" class="btn-submit" style="background:var(--green);" onclick="submitJobBid()">මිල ගණන් යවන්න</button>
+      <button type="button" class="btn-submit" style="background:#94a3b8;" onclick="closeModal('bidModal')">අවලංගු කරන්න</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="rateModal">
   <div class="modal">
     <h3 style="margin-top:0; font-size:16px;">⭐ රැකියාව ඇගයීම</h3>
     <input type="hidden" id="rateTargetId">
-    <label>Rating</label>
+    <label>Rating (තරු 3 සිට 5 දක්වා)</label>
     <select id="rateStars" style="margin-bottom:10px;">
       <option value="5">⭐⭐⭐⭐⭐ (විශිෂ්ටයි)</option>
       <option value="4">⭐⭐⭐⭐ (ඉතා හොඳයි)</option>
-      <option value="3">⭐⭐⭐ (සාමාන්‍‍යයි)</option>
+      <option value="3">⭐⭐⭐ (සාමාන්‍යයි)</option>
     </select>
     <div style="display:flex; gap:8px; margin-top:10px;">
       <button type="button" class="btn-submit" style="background:var(--yellow); color:#000;" onclick="submitVerifiedRating()">Submit Rating</button>
@@ -631,12 +636,10 @@
 </div>
 
 <script>
-// Supabase Configuration
 const SUPABASE_URL = "https://xecwobnntjjkoalqtalh.supabase.co"; 
 const SUPABASE_KEY = "sb_publishable_0mE7RKFZzV6F3MTylSAwhg_4PeloATZ"; 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } });
 
-// Variables
 let searchTimeout = null;
 let currentRefCode = null;
 
@@ -648,7 +651,7 @@ const CATEGORIES_DATA = {
   "වෙල්ඩින් සහ යකඩ වැඩ": ["යකඩ ගේට්ටු සහ ග්‍රිල්", "ස්ටීල් වහල ගැසීම", "ඇලුමිනියම් වැඩ"],
   "තොරතුරු තාක්ෂණ (IT)": ["ග්‍රැෆික් නිර්මාණ", "වෙබ් අඩවි නිර්මාණය", "දත්ත ඇතුළත් කිරීම (Data Entry)", "ඩිජිටල් අලෙවිකරණය"],
   "පිරිසිදු කිරීම් (Cleaning)": ["නිවාස පිරිසිදු කිරීම", "කාර්යාල පිරිසිදු කිරීම", "පිට්ටනි සහ වත්ත සුද්ද කිරීම"],
-  "රූපලාවන්‍ය සහ ඇඳුම්": ["මනාලියන් හැඩගැන්වීම", "කොණ්ඩා කැපීම", "ඇඳුම් මැසීම (ටේලර්)"],
+  "රූපලාවන්‍‍ය සහ ඇඳුම්": ["මනාලියන් හැඩගැන්වීම", "කොණ්ඩා කැපීම", "ඇඳුම් මැසීම (ටේලර්)"],
   "අලුත්වැඩියා කිරීම්": ["වාහන අලුත්වැඩියා (Mechanic)", "ජංගම දුරකථන සහ පරිගණක", "නළ ජල (Plumbing)"],
   "වෙනත් නිදහස් වෘත්තීන්": ["උපකාරක පන්ති (Tuition)", "ලේඛන පරිවර්තන", "කෑම ඉවුම් පිහුම් / Catering"]
 };
@@ -724,12 +727,8 @@ function switchTab(t) {
     const tabElement = document.getElementById(`tab${x.charAt(0).toUpperCase() + x.slice(1)}`);
     const viewElement = document.getElementById(`view${x.charAt(0).toUpperCase() + x.slice(1)}`);
     
-    if (tabElement) {
-        tabElement.classList.toggle('active', t === x);
-    }
-    if (viewElement) {
-        viewElement.style.display = (t === x) ? 'block' : 'none';
-    }
+    if (tabElement) tabElement.classList.toggle('active', t === x);
+    if (viewElement) viewElement.style.display = (t === x) ? 'block' : 'none';
   });
   if (t === 'find') loadBrowseData();
   if (t === 'ref') fetchReferralStats();
@@ -813,7 +812,7 @@ function renderBottomMediaThumbnails(item) {
 
   let html = '';
   if (pList && pList.length > 0) {
-    html += `<div class="bottom-media-box">` + pList.map(u => `<img src="${sanitize(u)}" class="media-thumb" onclick="window.open('${sanitize(u)}')">`).join('') + `</div>`;
+    html += `<div class="bottom-media-box">` + pList.map(u => `<img src="${sanitize(u)}" class="media-thumb" onclick="event.stopPropagation(); window.open('${sanitize(u)}')">`).join('') + `</div>`;
   }
   if (vList && vList.length > 0) {
     html += vList.map(v => `<video src="${sanitize(v)}" controls class="media-video-thumb"></video>`).join('');
@@ -882,6 +881,9 @@ async function handleWorkerSubmit(e) {
     error = err;
   } else {
     payload.payment_status = 'pending';
+    payload.views_count = 0;
+    payload.bookings_count = 0;
+    payload.rating = 0.0;
     const { err } = await supabaseClient.from('workers').insert([payload]);
     error = err;
     if (!error) awardReferralEarnings(adType);
@@ -1000,7 +1002,7 @@ async function handleSupportSubmit(e) {
   if(error) {
     alert("දෝෂයක් ඇතිවිය: " + error.message);
   } else {
-    alert("✅ ඔබගේ ගැටලුව සාර්ථකව අප වෙත යොමු කරන ලදී! අපගේ ඇඩ්මින් මණ්ඩලය ඉක්මනින් ඔබව සම්බන්ධ කරගනු ඇත.");
+    alert("✅ ඔබගේ ගැටලුව සාර්ථකව අප වෙත යොමු කරන ලදී!");
     document.getElementById('supportForm').reset();
   }
 }
@@ -1018,7 +1020,6 @@ async function loadBrowseData() {
   if (activeBrowseMode === 'workers') {
     let query = supabaseClient.from('workers').select('*').eq('payment_status', 'approved');
     if (adPriority) query = query.eq('ad_type', adPriority);
-    
     if (cat) query = query.eq('main_category', cat);
     if (subCat) query = query.eq('category', subCat);
     if (dist) query = query.eq('district', dist);
@@ -1041,10 +1042,11 @@ async function loadBrowseData() {
       else if (item.ad_type === 'premium') adClass = 'card-premium';
 
       const bottomMedia = renderBottomMediaThumbnails(item);
-      const ratingStars = item.rating ? '⭐'.repeat(Math.round(item.rating)) + ` (${item.rating})` : '⭐ තවම ඇගයීම් නැත';
+      const ratingVal = item.rating ? Number(item.rating).toFixed(1) : '0.0';
+      const ratingStars = item.rating > 0 ? '⭐'.repeat(Math.round(item.rating)) + ` (${ratingVal})` : '⭐ තවම ඇගයීම් නැත';
 
       return `
-        <div class="card ${adClass}">
+        <div class="card ${adClass}" onclick="handleCardClick('${item.id}')">
           <div class="card-top">
             <div class="avatar-box">
               <img src="${avatarSrc}" class="profile-avatar">
@@ -1070,10 +1072,10 @@ async function loadBrowseData() {
           
           ${bottomMedia}
 
-          <div class="action-btns">
+          <div class="action-btns" onclick="event.stopPropagation()">
             <a href="tel:${sanitize(item.phone)}" class="act-btn call">📞 Call</a>
             <a href="https://wa.me/94${sanitize(item.phone).substring(1)}" target="_blank" class="act-btn wa">💬 WA</a>
-            <button class="act-btn book" onclick="openBookingModal('${sanitize(item.name)}', '${sanitize(item.phone)}')">📅 Book</button>
+            <button class="act-btn book" onclick="openBookingModal('${sanitize(item.name)}', '${sanitize(item.phone)}', '${item.id}')">📅 Book</button>
             <button class="act-btn rate" onclick="openRateModal('${item.id}')">⭐ Rate</button>
             <button class="act-btn report" onclick="openReportModal('${item.id}', 'workers')">🚨 Report</button>
           </div>
@@ -1121,9 +1123,10 @@ async function loadBrowseData() {
           
           ${bottomMedia}
 
-          <div class="action-btns" style="grid-template-columns: 1fr 1fr;">
+          <div class="action-btns" style="grid-template-columns: 1fr 1fr 1fr;">
             <a href="tel:${sanitize(item.phone)}" class="act-btn call">📞 අමතන්න</a>
             <a href="https://wa.me/94${sanitize(item.phone).substring(1)}" target="_blank" class="act-btn wa">💬 WhatsApp</a>
+            <button class="act-btn book" style="background:var(--accent-orange);" onclick="openBidModal('${item.id}')">💬 මිල දෙන්න</button>
           </div>
           <button class="act-btn report" onclick="openReportModal('${item.id}', 'job')" style="margin-top:6px; width:100%;">🚨 Report</button>
         </div>
@@ -1132,14 +1135,58 @@ async function loadBrowseData() {
   }
 }
 
+function openBidModal(jobId) {
+  document.getElementById('bidJobId').value = jobId;
+  document.getElementById('bidName').value = '';
+  document.getElementById('bidPhone').value = '';
+  document.getElementById('bidAmount').value = '';
+  document.getElementById('bidNotes').value = '';
+  document.getElementById('bidModal').classList.add('show');
+}
+
+async function submitJobBid() {
+  const jobId = document.getElementById('bidJobId').value;
+  const name = document.getElementById('bidName').value.trim();
+  const phone = document.getElementById('bidPhone').value.trim();
+  const amount = document.getElementById('bidAmount').value.trim();
+  const notes = document.getElementById('bidNotes').value.trim();
+
+  if (!name || !phone || !amount) {
+    alert("කරුණාකර නම, දුරකථන අංකය සහ මිල ගණන නිවැරදිව ඇතුළත් කරන්න.");
+    return;
+  }
+
+  const payload = {
+    job_id: jobId,
+    bidder_name: name,
+    bidder_phone: phone,
+    bid_amount: amount,
+    bid_notes: notes,
+    created_at: new Date().toISOString()
+  };
+
+  const { error } = await supabaseClient.from('job_bids').insert([payload]);
+  if (error) {
+    alert("දෝෂයක් ඇතිවිය: " + error.message);
+  } else {
+    alert("✅ ඔබගේ මිල ගණන් (Quotation) සාර්ථකව යොමු කරන ලදී! දැන්වීම පළ කළ පුද්ගලයාට පමණක් එය පෙනෙනු ඇත.");
+    closeModal('bidModal');
+  }
+}
+
+async function handleCardClick(workerId) {
+  const { data } = await supabaseClient.from('workers').select('views_count').eq('id', workerId).single();
+  if (data) {
+    const newViews = (data.views_count || 0) + 1;
+    await supabaseClient.from('workers').update({ views_count: newViews }).eq('id', workerId);
+  }
+}
+
 function setupReferralTracking() {
   const urlParams = new URLSearchParams(window.location.search);
   const ref = urlParams.get('ref');
-  
-  // වෙනත් කෙනෙකුගේ ලින්ක් එකකින් ආවොත්, ඒ එවපු කෙනාගේ කෝඩ් එක (ref) බ්‍රවුසරයේ සේව් කරගැනීම
   if (ref) localStorage.setItem('sl_invited_by', ref);
 
-  // තමන්ට Referral කෝඩ් එකක් නැත්නම් අලුතින් එකක් සෑදීම (උදා: USR123456)
   let myCode = localStorage.getItem('sl_my_ref_code');
   if (!myCode) {
     myCode = 'USR' + Math.floor(100000 + Math.random() * 900000);
@@ -1147,14 +1194,9 @@ function setupReferralTracking() {
   }
   currentRefCode = myCode;
   
-  // ඔබගේ ස්ථිර GitHub ලින්ක් එකට referral කෝඩ් එක එකතු කිරීම
   const fullLink = `https://workline-sl.github.io/workline/?ref=${myCode}`;
-  
-  // සෑදූ ලින්ක් එක පෙට්ටියේ (input) පෙන්වීම
   const refInput = document.getElementById('myRefLink');
-  if (refInput) {
-    refInput.value = fullLink;
-  }
+  if (refInput) refInput.value = fullLink;
 }
 
 async function awardReferralEarnings(adType) {
@@ -1162,8 +1204,7 @@ async function awardReferralEarnings(adType) {
   if (!invitedBy) return;
   
   let bonusRs = 0;
-  if(adType === 'basic') bonusRs = 0;
-  else if(adType === 'normal') bonusRs = 30;
+  if(adType === 'normal') bonusRs = 30;
   else if(adType === 'vip') bonusRs = 50;
   else if(adType === 'vvip') bonusRs = 100;
   else if(adType === 'premium') bonusRs = 250;
@@ -1239,29 +1280,18 @@ function copyRefLink() {
   if (!linkInput) return;
   linkInput.select();
   linkInput.setSelectionRange(0, 99999); 
-  
   if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(linkInput.value).then(() => {
-      alert("✅ Referral Link එක සාර්ථකව Copy කරගන්නා ලදී!");
-    }).catch(() => fallbackCopy(linkInput));
+    navigator.clipboard.writeText(linkInput.value).then(() => alert("✅ Referral Link එක සාර්ථකව Copy කරගන්නා ලදී!"));
   } else {
-    fallbackCopy(linkInput);
+    try { document.execCommand('copy'); alert("✅ Referral Link එක සාර්ථකව Copy කරගන්නා ලදී!"); } catch(e) {}
   }
 }
 
-function fallbackCopy(inputElement) {
-  try {
-    const successful = document.execCommand('copy');
-    if (successful) alert("✅ Referral Link එක සාර්ථකව Copy කරගන්නා ලදී!");
-    else alert("කරුණාකර ලින්ක් එක manual copy කරගන්න.");
-  } catch (err) {
-    alert("කරුණාකර ලින්ක් එක manual copy කරගන්න.");
-  }
-}
-
-function openBookingModal(name, phone) {
+function openBookingModal(name, phone, workerId) {
   document.getElementById('bookWorkerName').value = name;
   document.getElementById('bookWorkerPhone').value = phone;
+  document.getElementById('bookingModal').dataset.workerId = workerId || '';
+
   const yearSelect = document.getElementById('bookYear'), monthSelect = document.getElementById('bookMonthSelect');
   const now = new Date();
   yearSelect.innerHTML = `<option value="${now.getFullYear()}">${now.getFullYear()}</option>`;
@@ -1286,133 +1316,263 @@ function updateBookingDaysDropdown() {
   }
 }
 
-function confirmBookingWithEndEstimate() {
+async function confirmBookingWithEndEstimate() {
   const wPhone = document.getElementById('bookWorkerPhone').value;
-  const msg = `🔔 *WORKLINE Booking පණිවිඩය*\n👤 සේවාලාභියා: ${document.getElementById('bookClientName').value}`;
+  const workerId = document.getElementById('bookingModal').dataset.workerId;
+  const clientName = document.getElementById('bookClientName').value.trim();
+  const clientPhone = document.getElementById('bookClientPhone').value.trim();
+  const year = document.getElementById('bookYear').value;
+  const monthIdx = document.getElementById('bookMonthSelect').value;
+  const monthName = MONTH_NAMES_SI[parseInt(monthIdx)];
+  const dayVal = document.getElementById('bookDayDropdown').value;
+  const dayNum = dayVal ? dayVal.split('-')[2] : '1';
+  const startTime = document.getElementById('bookStartTime').value;
+
+  if (!clientName || !clientPhone) {
+    alert("කරුණාකර ඔබේ නම සහ දුරකථන අංකය ඇතුළත් කරන්න.");
+    return;
+  }
+
+  if (workerId) {
+    const { data } = await supabaseClient.from('workers').select('bookings_count').eq('id', workerId).single();
+    if (data) {
+      const newBookings = (data.bookings_count || 0) + 1;
+      await supabaseClient.from('workers').update({ bookings_count: newBookings }).eq('id', workerId);
+    }
+  }
+
+  const msg = `🔔 *WORKLINE නව සේවා වෙන් කිරීමක් (Booking)*\n\n` +
+              `👤 *සේවාලාභියාගේ නම:* ${clientName}\n` +
+              `📞 *දුරකථන අංකය:* ${clientPhone}\n` +
+              `📅 *වෙන් කළ දිනය:* ${monthName} ${dayNum}, ${year}\n` +
+              `⏰ *වේලාව:* ${startTime}\n\n` +
+              `කරුණාකර මෙම බුකින් එක තහවුරු කරන්න. ස්තූතියි!`;
+
   window.open(`https://wa.me/94${wPhone.substring(1)}?text=${encodeURIComponent(msg)}`, '_blank');
   closeModal('bookingModal');
 }
 
-function openRateModal(id) { document.getElementById('rateTargetId').value = id; document.getElementById('rateModal').classList.add('show'); }
-async function submitVerifiedRating() { alert("ඇගයීමට ස්තුතියි!"); closeModal('rateModal'); }
+function openRateModal(id) { 
+  document.getElementById('rateTargetId').value = id; 
+  document.getElementById('rateModal').classList.add('show'); 
+}
+
+async function submitVerifiedRating() {
+  const id = document.getElementById('rateTargetId').value;
+  const newRating = parseFloat(document.getElementById('rateStars').value);
+
+  const { data, error } = await supabaseClient.from('workers').select('rating').eq('id', id).single();
+  if (error || !data) {
+    alert("දෝෂයක් ඇතිවිය.");
+    return;
+  }
+
+  let currentRating = data.rating ? parseFloat(data.rating) : 0;
+  let updatedRating = currentRating === 0 ? newRating : Number(((currentRating + newRating) / 2).toFixed(1));
+
+  const { err: updateErr } = await supabaseClient.from('workers').update({ rating: updatedRating }).eq('id', id);
+  
+  if (updateErr) {
+    alert("රේටින් යාවත්කාලීන කිරීමේ දෝෂයක්: " + updateErr.message);
+  } else {
+    alert("⭐ ඔබගේ ඇගයීම සාර්ථකව එකතු කරන ලදී!");
+    closeModal('rateModal');
+    loadBrowseData();
+  }
+}
+
 function openReportModal(id, type) { document.getElementById('reportTargetId').value = id; document.getElementById('reportModal').classList.add('show'); }
 function submitReportAction() { alert("වාර්තා කරන ලදී."); closeModal('reportModal'); }
 
-async function loadMyAds() {
+// දුරකථන අංකය සහ ගෝලීය PIN අංකය සත්‍යාපනය කර දැන්වීම්, විස්තර සහ මිල ගණන් පෙන්වීම
+async function verifyAndLoadMyAds() {
   let p = document.getElementById('my_phone').value.trim().replace(/\D/g, '');
   if (p.startsWith('94')) p = '0' + p.substring(2);
+  const enteredPin = document.getElementById('my_global_pin').value.trim();
   const c = document.getElementById('myAdsContainer');
+
+  if (!p || !enteredPin) {
+    alert("කරුණාකර දුරකථන අංකය සහ රහස් PIN අංකය ඇතුළත් කරන්න.");
+    return;
+  }
+
+  c.innerHTML = '<div style="text-align:center; padding:20px; color:#64748B;">පරීක්ෂා කරමින් පවතී...</div>';
+
   const { data: wList } = await supabaseClient.from('workers').select('*').eq('phone', p);
   const { data: jList } = await supabaseClient.from('job').select('*').eq('phone', p);
   const all = [...(wList || []).map(x => ({...x, _tbl: 'workers'})), ...(jList || []).map(x => ({...x, _tbl: 'job'}))];
   
-  if (all.length === 0) { c.innerHTML = '<div style="text-align:center; padding:20px;">මෙම අංකයට දැන්වීම් හමු නොවීය.</div>'; return; }
-  
-  c.innerHTML = all.map(item => {
-    const isWorker = item._tbl === 'workers';
-    
-    // Status Change Button for Workers Only
-    const statusBtn = isWorker 
-        ? `<button class="act-btn" style="background:#10b981; color:#fff;" onclick="promptPinForAction('status', '${item._tbl}', '${item.id}')">⚡ තත්වය වෙනස් කරන්න</button>` 
-        : '';
-
-    return `
-    <div class="card">
-      <h3 style="margin:0 0 8px; font-size:15px; color:var(--primary);">${sanitize(item.name || item.title)}</h3>
-      <div style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">වර්ගය: ${isWorker ? 'සේවක Profile' : 'රැකියා දැන්වීම'} | තත්වය: ${sanitize(item.ad_type)} (${item.payment_status === 'approved' ? '🟢 අනුමතයි' : '🟡 අනුමැතිය අපේක්ෂිතයි'})</div>
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <button class="act-btn edit" onclick="promptPinForAction('edit', '${item._tbl}', '${item.id}')">✏️ Edit කරන්න</button>
-        ${statusBtn}
-        <button class="act-btn delete" onclick="promptPinForAction('delete', '${item._tbl}', '${item.id}')">🗑️ මකන්න</button>
-      </div>
-    </div>
-    `;
-  }).join('');
-}
-
-function promptPinForAction(action, table, id) {
-  document.getElementById('pinActionType').value = action;
-  document.getElementById('pinActionTable').value = table;
-  document.getElementById('pinActionId').value = id;
-  document.getElementById('securityPinCheck').value = '';
-  document.getElementById('pinCheckModal').classList.add('show');
-}
-
-async function verifyPinAndExecute() {
-  const enteredPin = document.getElementById('securityPinCheck').value.trim();
-  const action = document.getElementById('pinActionType').value;
-  const table = document.getElementById('pinActionTable').value;
-  const id = document.getElementById('pinActionId').value;
-
-  const { data, error } = await supabaseClient.from(table).select('*').eq('id', id).single();
-  if (error || !data) { alert("දත්ත ලබාගැනීමේ දෝෂයක්!"); return; }
-  
-  if (String(data.pin_code) !== String(enteredPin)) { 
-    alert("❌ වැරදි PIN අංකයකි! කරුණාකර නිවැරදි ඉලක්කම් 4ක PIN අංකය ඇතුළත් කරන්න."); 
+  if (all.length === 0) { 
+    c.innerHTML = '<div style="text-align:center; padding:20px; color:var(--red);">මෙම දුරකථන අංකයට දැන්වීම් හමු නොවීය.</div>'; 
     return; 
   }
 
-  closeModal('pinCheckModal');
+  // සියලුම ගැලපෙන දැන්වීම්වල PIN අංකය පරීක්ෂා කිරීම හෝ අවම වශයෙන් එකකටවත් PIN එක නිවැරදි විය යුතුය
+  const validItems = all.filter(item => String(item.pin_code) === String(enteredPin));
 
-  if (action === 'status') {
-    document.getElementById('editAvailWorkerId').value = id;
-    document.getElementById('modal_w_availability').value = data.availability || 'available';
-    document.getElementById('availabilityModal').classList.add('show');
-  } 
-  else if (action === 'delete') {
-    if (confirm("මෙම දැන්වීම මකා දැමීමට ඔබට විශ්වාසද?")) {
-      await supabaseClient.from(table).delete().eq('id', id);
-      alert("✅ දැන්වීම සාර්ථකව මකා දමන ලදී.");
-      loadMyAds();
-    }
-  } 
-  else if (action === 'edit') {
-    switchTab(table === 'workers' ? 'worker' : 'post');
-    if (table === 'workers') {
-      document.getElementById('editing_worker_id').value = data.id;
-      document.getElementById('w_name').value = data.name || '';
-      document.getElementById('w_district').value = data.district || '';
-      document.getElementById('w_location').value = data.location || '';
-      document.getElementById('w_rate').value = data.rate || '';
-      document.getElementById('w_experience').value = data.experience || '';
-      document.getElementById('w_work_hours').value = data.work_hours || '';
-      document.getElementById('w_desc').value = data.description || '';
-      document.getElementById('w_phone').value = data.phone || '';
-      document.getElementById('w_pin').value = data.pin_code || '';
-      document.getElementById('w_ad_type').value = data.ad_type || 'basic';
-      togglePaymentBox('w');
-      document.getElementById('workerFormTitle').textContent = "👷 සේවක Profile එක සංස්කරණය කිරීම (Edit)";
-      document.getElementById('w_submit_btn').textContent = "Profile එක Update කරන්න";
+  if (validItems.length === 0) {
+    c.innerHTML = '<div style="text-align:center; padding:20px; color:var(--red);">❌ වැරදි PIN අංකයකි! කරුණාකර නිවැරදි PIN අංකය ලබා දෙන්න.</div>';
+    return;
+  }
+  
+  let htmlResult = '';
+  for (let item of validItems) {
+    const isWorker = item._tbl === 'workers';
+    
+    let analyticsHtml = '';
+    let bidsHtml = '';
+
+    if (isWorker) {
+      const views = item.views_count || 0;
+      const bookings = item.bookings_count || 0;
+      const rating = item.rating ? Number(item.rating).toFixed(1) : '0.0';
+      
+      analyticsHtml = `
+        <div style="background:#f1f5f9; border-radius:12px; padding:10px; margin:10px 0;">
+          <div style="font-size:12px; font-weight:800; color:var(--primary); margin-bottom:8px;">📊 Worker Analytics Dashboard</div>
+          <div class="analytics-grid">
+            <div class="analytics-card">
+              <div class="analytics-value">${views}</div>
+              <div class="analytics-label">Views</div>
+            </div>
+            <div class="analytics-card">
+              <div class="analytics-value">${bookings}</div>
+              <div class="analytics-label">Bookings</div>
+            </div>
+            <div class="analytics-card">
+              <div class="analytics-value">${rating}⭐</div>
+              <div class="analytics-label">Rating</div>
+            </div>
+          </div>
+        </div>
+      `;
     } else {
-      document.getElementById('editing_job_id').value = data.id;
-      document.getElementById('p_type').value = data.post_type || 'parttime';
-      togglePostType(data.post_type);
-      document.getElementById('p_title').value = data.title || '';
-      document.getElementById('p_district').value = data.district || '';
-      document.getElementById('p_location').value = data.location || '';
-      document.getElementById('p_pay').value = data.pay || '';
-      document.getElementById('p_desc').value = data.description || '';
-      document.getElementById('p_phone').value = data.phone || '';
-      document.getElementById('p_pin').value = data.pin_code || '';
-      document.getElementById('p_ad_type').value = data.ad_type || 'basic';
-      togglePaymentBox('p');
-      document.getElementById('jobFormTitle').textContent = "📢 රැකියා දැන්වීම සංස්කරණය කිරීම (Edit)";
-      document.getElementById('p_submit_btn').textContent = "දැන්වීම Update කරන්න";
+      const { data: bidsList } = await supabaseClient.from('job_bids').select('*').eq('job_id', item.id);
+      
+      if (bidsList && bidsList.length > 0) {
+        bidsHtml = `<div style="background:#fef3c7; border:1px solid #fcd34d; border-radius:12px; padding:12px; margin:10px 0;">
+          <div style="font-size:13px; font-weight:800; color:#92400e; margin-bottom:8px;">💬 ලැබී ඇති මිල ගණන් (Quotations):</div>`;
+        
+        bidsList.forEach(b => {
+          bidsHtml += `
+            <div style="background:#fff; border:1px solid #fde68a; border-radius:8px; padding:8px; margin-bottom:8px; font-size:12px;">
+              <div><b>👤 නම:</b> ${sanitize(b.bidder_name)}</div>
+              <div><b>💰 මිල:</b> <span style="color:var(--green); font-weight:bold;">${sanitize(b.bid_amount)}</span></div>
+              <div><b>📝 විස්තරය:</b> ${sanitize(b.bid_notes)}</div>
+              <div style="margin-top:6px; display:flex; gap:6px;">
+                <button class="act-btn call" style="padding:4px 10px; font-size:10.5px;" onclick="callBidderDirect('${sanitize(b.bidder_phone)}')">📞 අමතන්න</button>
+                <button class="act-btn wa" style="padding:4px 10px; font-size:10.5px;" onclick="waBidderDirect('${sanitize(b.bidder_phone)}')">💬 WhatsApp</button>
+              </div>
+            </div>
+          `;
+        });
+        bidsHtml += `</div>`;
+      } else {
+        bidsHtml = `<div style="font-size:11.5px; color:#64748b; margin:8px 0; font-style:italic;">මෙම දැන්වීමට තවම මිල ගණන් ලැබී නැත.</div>`;
+      }
     }
+
+    const statusBtn = isWorker 
+        ? `<button class="act-btn" style="background:#10b981; color:#fff;" onclick="openStatusModalDirect('${item.id}', '${item.availability || 'available'}')">⚡ තත්වය වෙනස් කරන්න</button>` 
+        : '';
+
+    htmlResult += `
+    <div class="card" style="cursor:default;">
+      <h3 style="margin:0 0 4px; font-size:15px; color:var(--primary);">${sanitize(item.name || item.title)}</h3>
+      <div style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">වර්ගය: ${isWorker ? 'සේවක Profile' : 'රැකියා දැන්වීම'} | තත්වය: ${sanitize(item.ad_type)} (${item.payment_status === 'approved' ? '🟢 අනුමතයි' : '🟡 අනුමැතිය අපේක්ෂිතයි'})</div>
+      
+      <div class="details-box">
+        <div class="details-row"><b>📍 ස්ථානය:</b> <span>${sanitize(item.location)}, ${sanitize(item.district)}</span></div>
+        <div class="details-row"><b>💵 ගාස්තුව/මුදල:</b> <span>${sanitize(item.rate || item.pay)}</span></div>
+        <div class="details-row"><b>📝 විස්තරය:</b> <span>${sanitize(item.description)}</span></div>
+      </div>
+
+      ${analyticsHtml}
+      ${bidsHtml}
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
+        <button class="act-btn edit" onclick="editItemDirect('${item._tbl}', '${item.id}')">✏️ Edit කරන්න</button>
+        ${statusBtn}
+        <button class="act-btn delete" onclick="deleteItemDirect('${item._tbl}', '${item.id}')">🗑️ මකන්න</button>
+      </div>
+    </div>
+    `;
+  }
+  c.innerHTML = htmlResult;
+}
+
+function callBidderDirect(phone) {
+  window.location.href = `tel:${phone}`;
+}
+
+function waBidderDirect(phone) {
+  let cleanPhone = phone.replace(/\D/g, '');
+  if (cleanPhone.startsWith('0')) cleanPhone = '94' + cleanPhone.substring(1);
+  window.open(`https://wa.me/${cleanPhone}`, '_blank');
+}
+
+function openStatusModalDirect(id, currentAvail) {
+  document.getElementById('editAvailWorkerId').value = id;
+  document.getElementById('modal_w_availability').value = currentAvail;
+  document.getElementById('availabilityModal').classList.add('show');
+}
+
+async function deleteItemDirect(table, id) {
+  if (confirm("මෙම දැන්වීම මකා දැමීමට ඔබට විශ්වාසද?")) {
+    await supabaseClient.from(table).delete().eq('id', id);
+    alert("✅ දැන්වීම සාර්ථකව මකා දමන ලදී.");
+    verifyAndLoadMyAds();
+  }
+}
+
+async function editItemDirect(table, id) {
+  const { data, error } = await supabaseClient.from(table).select('*').eq('id', id).single();
+  if (error || !data) { alert("ဒත්ත ලබාගැනීමේ දෝෂයක්!"); return; }
+
+  switchTab(table === 'workers' ? 'worker' : 'post');
+  if (table === 'workers') {
+    document.getElementById('editing_worker_id').value = data.id;
+    document.getElementById('w_name').value = data.name || '';
+    document.getElementById('w_district').value = data.district || '';
+    document.getElementById('w_location').value = data.location || '';
+    document.getElementById('w_rate').value = data.rate || '';
+    document.getElementById('w_experience').value = data.experience || '';
+    document.getElementById('w_work_hours').value = data.work_hours || '';
+    document.getElementById('w_desc').value = data.description || '';
+    document.getElementById('w_phone').value = data.phone || '';
+    document.getElementById('w_pin').value = data.pin_code || '';
+    document.getElementById('w_ad_type').value = data.ad_type || 'basic';
+    togglePaymentBox('w');
+    document.getElementById('workerFormTitle').textContent = "👷 සේවක Profile එක සංස්කරණය කිරීම (Edit)";
+    document.getElementById('w_submit_btn').textContent = "Profile එක Update කරන්න";
+  } else {
+    document.getElementById('editing_job_id').value = data.id;
+    document.getElementById('p_type').value = data.post_type || 'parttime';
+    togglePostType(data.post_type);
+    document.getElementById('p_title').value = data.title || '';
+    document.getElementById('p_district').value = data.district || '';
+    document.getElementById('p_location').value = data.location || '';
+    document.getElementById('p_pay').value = data.pay || '';
+    document.getElementById('p_desc').value = data.description || '';
+    document.getElementById('p_phone').value = data.phone || '';
+    document.getElementById('p_pin').value = data.pin_code || '';
+    document.getElementById('p_ad_type').value = data.ad_type || 'basic';
+    togglePaymentBox('p');
+    document.getElementById('jobFormTitle').textContent = "📢 රැකියා දැන්වීම සංස්කරණය කිරීම (Edit)";
+    document.getElementById('p_submit_btn').textContent = "දැන්වීම Update කරන්න";
   }
 }
 
 async function saveUpdatedAvailability() {
   const id = document.getElementById('editAvailWorkerId').value;
   const avail = document.getElementById('modal_w_availability').value;
-  
   const { error } = await supabaseClient.from('workers').update({ availability: avail }).eq('id', id);
   if (error) {
     alert("දෝෂයක් ඇතිවිය: " + error.message);
   } else {
     alert("✅ සේවා තත්වය සාර්ථකව යාවත්කාලීන කරන ලදී!");
     closeModal('availabilityModal');
-    loadMyAds(); 
+    verifyAndLoadMyAds(); 
     loadBrowseData(); 
   }
 }
