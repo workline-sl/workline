@@ -88,11 +88,53 @@
   .card { background: #ffffff; border: 1px solid var(--border); border-radius: 18px; padding: 16px; margin-bottom: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); position: relative; transition: transform 0.3s; cursor: pointer; }
   .card:hover { transform: translateY(-4px); box-shadow: 0 18px 45px rgba(37,99,235,0.15); }
 
+  /* දැන්වීම් වර්ග සඳහා විශේෂ මෝස්තර සහ ඇනිමේෂන් */
   .card.card-basic { border: 1px solid var(--border); }
-  .card.card-normal { border: 2px solid #3b82f6; background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); }
-  .card.card-vip { border: 2px solid transparent; background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #ffffff 100%); border-image: linear-gradient(45deg, #2563eb, #10b981) 1; }
-  .card.card-vvip { border: 2.5px solid #f59e0b; background: linear-gradient(135deg, #fffbeb, #eff6ff, #ffffff); }
-  .card.card-premium { border: 3px solid #ef4444; background: linear-gradient(135deg, #fff5f5, #fffbeb, #ffffff); }
+  
+  .card.card-normal { 
+    border: 2px solid #3b82f6; 
+    background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); 
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+  }
+  
+  .card.card-vip { 
+    border: 2.5px solid #10b981; 
+    background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #ffffff 100%); 
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.25);
+  }
+
+  @keyframes vvipBorderAnim {
+    0% { border-color: #3b82f6; box-shadow: 0 0 10px rgba(59,130,246,0.4); }
+    50% { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.6); }
+    100% { border-color: #3b82f6; box-shadow: 0 0 10px rgba(59,130,246,0.4); }
+  }
+  .card.card-vvip { 
+    border: 3px solid #f59e0b; 
+    background: linear-gradient(135deg, #fffbeb, #eff6ff, #ffffff); 
+    animation: vvipBorderAnim 3s infinite;
+  }
+
+  @keyframes premiumBorderAnim {
+    0% { border-color: #ef4444; box-shadow: 0 0 15px rgba(239,68,68,0.5); }
+    33% { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.7); }
+    66% { border-color: #2563eb; box-shadow: 0 0 15px rgba(37,99,235,0.5); }
+    100% { border-color: #ef4444; box-shadow: 0 0 15px rgba(239,68,68,0.5); }
+  }
+  .card.card-premium { 
+    border: 3.5px solid #ef4444; 
+    background: linear-gradient(135deg, #fff5f5, #fffbeb, #ffffff); 
+    animation: premiumBorderAnim 2.5s infinite;
+  }
+
+  /* Premium බටන් ඇනිමේෂන් */
+  @keyframes buttonGlowPulse {
+    0% { transform: scale(1); box-shadow: 0 0 5px rgba(239, 68, 68, 0.4); }
+    50% { transform: scale(1.03); box-shadow: 0 0 18px rgba(239, 68, 68, 0.8); }
+    100% { transform: scale(1); box-shadow: 0 0 5px rgba(239, 68, 68, 0.4); }
+  }
+  .card-premium .act-btn {
+    animation: buttonGlowPulse 2s infinite ease-in-out;
+  }
 
   .card-top { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
   .avatar-box { width: 56px; height: 56px; flex-shrink: 0; position: relative; }
@@ -1007,6 +1049,41 @@ async function handleSupportSubmit(e) {
   }
 }
 
+// දැන්වීම් මුදල් ගෙවීමේ පිළිවෙළට අනුව වර්ග කර, ඒ ඒ කාණ්ඩය තුළ Random (අහඹු) ලෙස සකස් කිරීමේ කාර්යය
+function sortAndShuffleAds(data) {
+  const priorityOrder = { 'premium': 1, 'vvip': 2, 'vip': 3, 'normal': 4, 'basic': 5 };
+  
+  // 1. මුලින්ම ගෙවීම් කාණ්ඩ අනුව වෙන් කරගැනීම
+  const grouped = { premium: [], vvip: [], vip: [], normal: [], basic: [] };
+  
+  data.forEach(item => {
+    const type = item.ad_type && grouped[item.ad_type] ? item.ad_type : 'basic';
+    grouped[type].push(item);
+  });
+
+  // 2. ඒ ඒ කාණ්ඩය තුළ දැන්වීම් අහඹු ලෙස (Random Shuffle) මාරු කිරීම
+  function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  Object.keys(grouped).forEach(key => {
+    shuffleArray(grouped[key]);
+  });
+
+  // 3. පිළිවෙළට එකතු කර නැවත පෙන්වීම (Premium + -> VVIP -> VIP -> Normal -> Basic)
+  return [
+    ...grouped.premium,
+    ...grouped.vvip,
+    ...grouped.vip,
+    ...grouped.normal,
+    ...grouped.basic
+  ];
+}
+
 async function loadBrowseData() {
   const container = document.getElementById('browseList');
   container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748B;">දත්ත පූරණය වෙමින් පවතී...</div>';
@@ -1028,7 +1105,10 @@ async function loadBrowseData() {
     const { data } = await query;
     if (!data || data.length === 0) { container.innerHTML = '<div style="text-align:center; padding:30px;">සේවකයන් හමු නොවීය.</div>'; return; }
 
-    container.innerHTML = data.map(item => {
+    // ගෙවීමේ පිළිවෙළට අනුව වර්ග කර, ඒ ඒ කාණ්ඩය තුළ Random ක්‍රමයට සකස් කිරීම
+    const sortedData = sortAndShuffleAds(data);
+
+    container.innerHTML = sortedData.map(item => {
       const avatarSrc = item.avatar_url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80';
       
       let statusBadge = `<span class="status-pill status-available">🟢 වැඩ භාරගත හැක</span>`;
@@ -1094,7 +1174,10 @@ async function loadBrowseData() {
     const { data } = await query;
     if (!data || data.length === 0) { container.innerHTML = '<div style="text-align:center; padding:30px;">දැන්වීම් හමු නොවීය.</div>'; return; }
     
-    container.innerHTML = data.map(item => {
+    // ගෙවීමේ පිළිවෙළට අනුව වර්ග කර, ඒ ඒ කාණ්ඩය තුළ Random ක්‍රමයට සකස් කිරීම
+    const sortedData = sortAndShuffleAds(data);
+
+    container.innerHTML = sortedData.map(item => {
       let adClass = 'card-basic';
       if (item.ad_type === 'normal') adClass = 'card-normal';
       else if (item.ad_type === 'vip') adClass = 'card-vip';
@@ -1407,7 +1490,6 @@ async function verifyAndLoadMyAds() {
     return; 
   }
 
-  // සියලුම ගැලපෙන දැන්වීම්වල PIN අංකය පරීක්ෂා කිරීම හෝ අවම වශයෙන් එකකටවත් PIN එක නිවැරදි විය යුතුය
   const validItems = all.filter(item => String(item.pin_code) === String(enteredPin));
 
   if (validItems.length === 0) {
@@ -1472,6 +1554,8 @@ async function verifyAndLoadMyAds() {
       }
     }
 
+    const statusBadgeText = item.availability === 'busy' ? '🔴 කාර්යබහුලයි' : (item.availability === 'booked' ? '🟡 බුකින් එකක් ළඟයි' : '🟢 වැඩ භාරගත හැක');
+
     const statusBtn = isWorker 
         ? `<button class="act-btn" style="background:#10b981; color:#fff;" onclick="openStatusModalDirect('${item.id}', '${item.availability || 'available'}')">⚡ තත්වය වෙනස් කරන්න</button>` 
         : '';
@@ -1479,7 +1563,7 @@ async function verifyAndLoadMyAds() {
     htmlResult += `
     <div class="card" style="cursor:default;">
       <h3 style="margin:0 0 4px; font-size:15px; color:var(--primary);">${sanitize(item.name || item.title)}</h3>
-      <div style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">වර්ගය: ${isWorker ? 'සේවක Profile' : 'රැකියා දැන්වීම'} | තත්වය: ${sanitize(item.ad_type)} (${item.payment_status === 'approved' ? '🟢 අනුමතයි' : '🟡 අනුමැතිය අපේක්ෂිතයි'})</div>
+      <div style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">වර්ගය: ${isWorker ? 'සේවක Profile' : 'රැකියා දැන්වීම'} | තත්වය: ${sanitize(item.ad_type)} (${item.payment_status === 'approved' ? '🟢 අනුමතයි' : '🟡 අනුමැතිය අපේක්ෂිතයි'}) ${isWorker ? '| තත්වය: <b>' + statusBadgeText + '</b>' : ''}</div>
       
       <div class="details-box">
         <div class="details-row"><b>📍 ස්ථානය:</b> <span>${sanitize(item.location)}, ${sanitize(item.district)}</span></div>
@@ -1493,7 +1577,7 @@ async function verifyAndLoadMyAds() {
       <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
         <button class="act-btn edit" onclick="editItemDirect('${item._tbl}', '${item.id}')">✏️ Edit කරන්න</button>
         ${statusBtn}
-        <button class="act-btn delete" onclick="deleteItemDirect('${item._tbl}', '${item.id}')">🗑️ මකන්න</button>
+        <button class="act-btn delete" onclick="deleteItemDirect('${item._tbl}', '${item.id}')">🗑 මකන්න</button>
       </div>
     </div>
     `;
@@ -1527,7 +1611,7 @@ async function deleteItemDirect(table, id) {
 
 async function editItemDirect(table, id) {
   const { data, error } = await supabaseClient.from(table).select('*').eq('id', id).single();
-  if (error || !data) { alert("ဒත්ත ලබාගැනීමේ දෝෂයක්!"); return; }
+  if (error || !data) { alert("දත්ත ලබාගැනීමේ දෝෂයක්!"); return; }
 
   switchTab(table === 'workers' ? 'worker' : 'post');
   if (table === 'workers') {
