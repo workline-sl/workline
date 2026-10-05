@@ -88,31 +88,16 @@
   .card { background: #ffffff; border: 1px solid var(--border); border-radius: 18px; padding: 16px; margin-bottom: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); position: relative; transition: transform 0.3s; cursor: pointer; }
   .card:hover { transform: translateY(-4px); box-shadow: 0 18px 45px rgba(37,99,235,0.15); }
 
-  /* දැන්වීම් වර්ග සඳහා විශේෂ මෝස්තර සහ ඇනිමේෂන් */
   .card.card-basic { border: 1px solid var(--border); }
-  
-  .card.card-normal { 
-    border: 2px solid #3b82f6; 
-    background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); 
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
-  }
-  
-  .card.card-vip { 
-    border: 2.5px solid #10b981; 
-    background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #ffffff 100%); 
-    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.25);
-  }
+  .card.card-normal { border: 2px solid #3b82f6; background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2); }
+  .card.card-vip { border: 2.5px solid #10b981; background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #ffffff 100%); box-shadow: 0 4px 20px rgba(16, 185, 129, 0.25); }
 
   @keyframes vvipBorderAnim {
     0% { border-color: #3b82f6; box-shadow: 0 0 10px rgba(59,130,246,0.4); }
     50% { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.6); }
     100% { border-color: #3b82f6; box-shadow: 0 0 10px rgba(59,130,246,0.4); }
   }
-  .card.card-vvip { 
-    border: 3px solid #f59e0b; 
-    background: linear-gradient(135deg, #fffbeb, #eff6ff, #ffffff); 
-    animation: vvipBorderAnim 3s infinite;
-  }
+  .card.card-vvip { border: 3px solid #f59e0b; background: linear-gradient(135deg, #fffbeb, #eff6ff, #ffffff); animation: vvipBorderAnim 3s infinite; }
 
   @keyframes premiumBorderAnim {
     0% { border-color: #ef4444; box-shadow: 0 0 15px rgba(239,68,68,0.5); }
@@ -120,21 +105,14 @@
     66% { border-color: #2563eb; box-shadow: 0 0 15px rgba(37,99,235,0.5); }
     100% { border-color: #ef4444; box-shadow: 0 0 15px rgba(239,68,68,0.5); }
   }
-  .card.card-premium { 
-    border: 3.5px solid #ef4444; 
-    background: linear-gradient(135deg, #fff5f5, #fffbeb, #ffffff); 
-    animation: premiumBorderAnim 2.5s infinite;
-  }
+  .card.card-premium { border: 3.5px solid #ef4444; background: linear-gradient(135deg, #fff5f5, #fffbeb, #ffffff); animation: premiumBorderAnim 2.5s infinite; }
 
-  /* Premium බටන් ඇනිමේෂන් */
   @keyframes buttonGlowPulse {
     0% { transform: scale(1); box-shadow: 0 0 5px rgba(239, 68, 68, 0.4); }
     50% { transform: scale(1.03); box-shadow: 0 0 18px rgba(239, 68, 68, 0.8); }
     100% { transform: scale(1); box-shadow: 0 0 5px rgba(239, 68, 68, 0.4); }
   }
-  .card-premium .act-btn {
-    animation: buttonGlowPulse 2s infinite ease-in-out;
-  }
+  .card-premium .act-btn { animation: buttonGlowPulse 2s infinite ease-in-out; }
 
   .card-top { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
   .avatar-box { width: 56px; height: 56px; flex-shrink: 0; position: relative; }
@@ -178,7 +156,6 @@
   .modal-overlay.show { display: flex; }
   .modal { background: #ffffff; border-radius: 22px; padding: 24px; max-width: 460px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
   
-  /* Analytics Dashboard Styles */
   .analytics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
   .analytics-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; text-align: center; }
   .analytics-value { font-size: 18px; font-weight: 800; color: var(--accent); }
@@ -242,7 +219,11 @@
           </select>
         </div>
 
-        <input type="text" id="searchQuery" oninput="debounceSearch()" placeholder="නම, ස්ථානය හෝ රක්ෂාවෙන් සොයන්න..." style="margin-bottom:0;">
+        <!-- AI ස්මාර්ට් සෙවුම් කොටස (පරිශීලකයාගේ සරල අවශ්‍යතාවය ටයිප් කර සෙවීමට) -->
+        <div style="position:relative;">
+          <input type="text" id="searchQuery" oninput="debounceSearch()" placeholder="✨ AI මගින් සොයන්න: උදා: 'උයන්න කෙනෙක් ඕනේ' හෝ 'වයිරින් කරන්න කෙනෙක්'..." style="margin-bottom:0; padding-right: 90px; border: 1.5px solid var(--accent);">
+          <span style="position:absolute; right:10px; top:50%; transform:translateY(-50%); font-size:11px; background:#eff6ff; color:var(--accent); padding:3px 8px; border-radius:6px; font-weight:700; pointer-events:none;">🤖 AI Search</span>
+        </div>
       </div>
 
       <div class="filter-row">
@@ -293,14 +274,14 @@
         <label>විස්තරය (Description)</label>
         <textarea id="w_desc" rows="3" placeholder="විශ්වාසනීය හා නිසි ප්‍රමිතියෙන් යුත් රැකියා සේවය..." required></textarea>
 
-        <label>📸 පෙර කළ වැඩවල ඡායාරූප (Max 3)</label>
-        <input type="file" id="w_photos" accept="image/*" multiple>
+        <label>📸 පෙර කළ වැඩවල ඡායාරූප සහ මීඩියා (Multiple Files ඇතුළත් කළ හැක)</label>
+        <input type="file" id="w_photos" accept="image/*,video/*" multiple>
 
         <label>🔗 හෝ ඡායාරූප/වීඩියෝ Direct Web Link (විකල්ප)</label>
         <input type="url" id="w_media_url" placeholder="https://drive.google.com/...">
 
         <label>🎥 වැඩබිමේ කෙටි වීඩියෝ</label>
-        <input type="file" id="w_videos" accept="video/*">
+        <input type="file" id="w_videos" accept="video/*" multiple>
 
         <label>දුරකථන අංකය</label>
         <input type="tel" id="w_phone" placeholder="07XXXXXXXX" pattern="07[0-9]{8}" required>
@@ -411,11 +392,11 @@
         <label>රැකියාව පිළිබඳ වැඩිදුර විස්තර</label>
         <textarea id="p_desc" rows="3" placeholder="රැකියාව ගැන වැඩිදුර විස්තර..." required></textarea>
 
-        <label>📸 වැඩබිමේ ඡායාරූප</label>
-        <input type="file" id="p_photos" accept="image/*" multiple>
+        <label>📸 වැඩබිමේ සහ රැකියාවේ ඡායාරූප (Multiple Files ඇතුළත් කළ හැක)</label>
+        <input type="file" id="p_photos" accept="image/*,video/*" multiple>
 
         <label>🎥 වැඩබිමේ වීඩියෝ</label>
-        <input type="file" id="p_videos" accept="video/*">
+        <input type="file" id="p_videos" accept="video/*" multiple>
 
         <label style="margin-top:10px;">දුරකථන අංකය</label>
         <input type="tel" id="p_phone" placeholder="07XXXXXXXX" pattern="07[0-9]{8}" required>
@@ -622,7 +603,6 @@
   </div>
 </div>
 
-<!-- මිල ගණන් ඉදිරිපත් කිරීමේ මොඩල් එක (Bid Modal) -->
 <div class="modal-overlay" id="bidModal">
   <div class="modal">
     <h3 style="margin-top:0; color:var(--primary); font-size:16px;">💬 මිල ගණන් ඉදිරිපත් කරන්න (Submit Quotation)</h3>
@@ -780,7 +760,7 @@ function switchBrowseMode(m) {
   activeBrowseMode = m;
   document.getElementById('btnWorkers').className = `sub-btn ${m === 'workers' ? 'active-tab' : ''}`;
   document.getElementById('btnPartTime').className = `sub-btn ${m === 'parttime' ? 'active-tab' : ''}`;
-  document.getElementById('btnCorp').className = `sub-btn ${m === 'corp' ? 'active-tab' : ''}`;
+  document.getElementById('btnCorp').className, `sub-btn ${m === 'corp' ? 'active-tab' : ''}`;
   document.getElementById('findTitle').textContent = m === 'workers' ? '👷 නිදහස් සේවකයන්' : (m === 'parttime' ? '🛠️ පාර්ට් ටයිම් රැකියා' : '🏢 ආයතනික රැකියා ඇබෑර්තු');
   loadBrowseData();
 }
@@ -1049,11 +1029,7 @@ async function handleSupportSubmit(e) {
   }
 }
 
-// දැන්වීම් මුදල් ගෙවීමේ පිළිවෙළට අනුව වර්ග කර, ඒ ඒ කාණ්ඩය තුළ Random (අහඹු) ලෙස සකස් කිරීමේ කාර්යය
 function sortAndShuffleAds(data) {
-  const priorityOrder = { 'premium': 1, 'vvip': 2, 'vip': 3, 'normal': 4, 'basic': 5 };
-  
-  // 1. මුලින්ම ගෙවීම් කාණ්ඩ අනුව වෙන් කරගැනීම
   const grouped = { premium: [], vvip: [], vip: [], normal: [], basic: [] };
   
   data.forEach(item => {
@@ -1061,7 +1037,6 @@ function sortAndShuffleAds(data) {
     grouped[type].push(item);
   });
 
-  // 2. ඒ ඒ කාණ්ඩය තුළ දැන්වීම් අහඹු ලෙස (Random Shuffle) මාරු කිරීම
   function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -1074,7 +1049,6 @@ function sortAndShuffleAds(data) {
     shuffleArray(grouped[key]);
   });
 
-  // 3. පිළිවෙළට එකතු කර නැවත පෙන්වීම (Premium + -> VVIP -> VIP -> Normal -> Basic)
   return [
     ...grouped.premium,
     ...grouped.vvip,
@@ -1082,6 +1056,35 @@ function sortAndShuffleAds(data) {
     ...grouped.normal,
     ...grouped.basic
   ];
+}
+
+// AI Smart Search Text Mapping Logic
+function parseAiSearchQuery(rawQuery) {
+  const q = rawQuery.toLowerCase();
+  let keywords = [];
+  
+  if (q.includes('උය') || q.includes('කෑම') || q.includes('catering') || q.includes('Catering') || q.includes('சமையல்')) {
+    keywords.push('කෑම ඉවුම් පිහුම් / Catering', 'උපකාරක පන්ති');
+  }
+  if (q.includes('වයිරිං') || q.includes('current') || q.includes('currents') || q.includes('විදුලි') || q.includes('light')) {
+    keywords.push('ගෘහස්ථ වයරිං', 'විදුලි උපකරණ අලුත්වැඩියාව', 'සෝලා පද්ධති');
+  }
+  if (q.includes('මේසන්') || q.includes('ගේ හදන') || q.includes('ගෙවල්') || q.includes('cement') || q.includes('ടൈൽ')) {
+    keywords.push('ගෙවල් සෑදීම', 'ගඩොල් බැඳීම', 'ටයිල් ඇල්ලීම', 'කොන්ක්‍රීට් දැමීම');
+  }
+  if (q.includes('වඩු') || q.includes('දොර') || q.includes('ජනෙල්') || q.includes('කබඩ්')) {
+    keywords.push('දොර ජනෙල් සෑදීම', 'පැන්ට්‍රි කබඩ්', 'සිවිලිං ගැසීම');
+  }
+  if (q.includes('පිරිසිදු') || q.includes('clean') || q.includes('වත්ත සුද්ද')) {
+    keywords.push('නිවාස පිරිසිදු කිරීම', 'පිට්ටනි සහ වත්ත සුද්ද කිරීම');
+  }
+  if (q.includes('රියදුරු') || q.includes('car') || q.includes('van') || q.includes('driver') || q.includes('ගමන්')) {
+    keywords.push('කාර් රියදුරු', 'වෑන් රියදුරු', 'ත්‍රීරෝද රථ');
+  }
+  if (q.includes('ටේලර්') || q.includes('ඇඳුම්') || q.includes('මැහුම්')) {
+    keywords.push('ඇඳුම් මැසීම (ටේලර්)');
+  }
+  return keywords;
 }
 
 async function loadBrowseData() {
@@ -1094,18 +1097,32 @@ async function loadBrowseData() {
   const adPriority = document.getElementById('filterAdPriority').value;
   const q = document.getElementById('searchQuery').value.trim();
 
+  // AI ස්මාර්ට් සෙවුම් පද විශ්ලේෂණය
+  let aiMatchedCategories = [];
+  if (q) {
+    aiMatchedCategories = parseAiSearchQuery(q);
+  }
+
   if (activeBrowseMode === 'workers') {
     let query = supabaseClient.from('workers').select('*').eq('payment_status', 'approved');
     if (adPriority) query = query.eq('ad_type', adPriority);
     if (cat) query = query.eq('main_category', cat);
     if (subCat) query = query.eq('category', subCat);
     if (dist) query = query.eq('district', dist);
-    if (q) query = query.or(`name.ilike.%${q}%,location.ilike.%${q}%,category.ilike.%${q}%`);
+    
+    if (q) {
+      if (aiMatchedCategories.length > 0) {
+        // AI මගින් හඳුනාගත් කාණ්ඩ අනුව දත්ත පෙරීම
+        const catQueryString = aiMatchedCategories.map(c => `category.ilike.%${c}%`).join(',');
+        query = query.or(`name.ilike.%${q}%,location.ilike.%${q}%,category.ilike.%${q}%,description.ilike.%${q}%,${catQueryString}`);
+      } else {
+        query = query.or(`name.ilike.%${q}%,location.ilike.%${q}%,category.ilike.%${q}%,description.ilike.%${q}%`);
+      }
+    }
 
     const { data } = await query;
-    if (!data || data.length === 0) { container.innerHTML = '<div style="text-align:center; padding:30px;">සේවකයන් හමු නොවීය.</div>'; return; }
+    if (!data || data.length === 0) { container.innerHTML = '<div style="text-align:center; padding:30px;">ඔබගේ සෙවුමට අදාළ සේවකයන් හමු නොවීය. වෙනත් වචනයකින් සෙ워 බලන්න.</div>'; return; }
 
-    // ගෙවීමේ පිළිවෙළට අනුව වර්ග කර, ඒ ඒ කාණ්ඩය තුළ Random ක්‍රමයට සකස් කිරීම
     const sortedData = sortAndShuffleAds(data);
 
     container.innerHTML = sortedData.map(item => {
@@ -1169,12 +1186,18 @@ async function loadBrowseData() {
       
     if (adPriority) query = query.eq('ad_type', adPriority);
     if (dist) query = query.eq('district', dist);
-    if (q) query = query.or(`title.ilike.%${q}%,location.ilike.%${q}%,company_name.ilike.%${q}%`);
+    if (q) {
+      if (aiMatchedCategories.length > 0) {
+        const catQueryString = aiMatchedCategories.map(c => `category.ilike.%${c}%`).join(',');
+        query = query.or(`title.ilike.%${q}%,location.ilike.%${q}%,company_name.ilike.%${q}%,description.ilike.%${q}%,${catQueryString}`);
+      } else {
+        query = query.or(`title.ilike.%${q}%,location.ilike.%${q}%,company_name.ilike.%${q}%,description.ilike.%${q}%`);
+      }
+    }
 
     const { data } = await query;
     if (!data || data.length === 0) { container.innerHTML = '<div style="text-align:center; padding:30px;">දැන්වීම් හමු නොවීය.</div>'; return; }
     
-    // ගෙවීමේ පිළිවෙළට අනුව වර්ග කර, ඒ ඒ කාණ්ඩය තුළ Random ක්‍රමයට සකස් කිරීම
     const sortedData = sortAndShuffleAds(data);
 
     container.innerHTML = sortedData.map(item => {
@@ -1258,10 +1281,18 @@ async function submitJobBid() {
 }
 
 async function handleCardClick(workerId) {
+  const viewedKey = `viewed_worker_${workerId}`;
+  if (localStorage.getItem(viewedKey)) {
+    return;
+  }
+  
   const { data } = await supabaseClient.from('workers').select('views_count').eq('id', workerId).single();
   if (data) {
     const newViews = (data.views_count || 0) + 1;
-    await supabaseClient.from('workers').update({ views_count: newViews }).eq('id', workerId);
+    const { error } = await supabaseClient.from('workers').update({ views_count: newViews }).eq('id', workerId);
+    if (!error) {
+      localStorage.setItem(viewedKey, 'true');
+    }
   }
 }
 
@@ -1443,6 +1474,13 @@ function openRateModal(id) {
 async function submitVerifiedRating() {
   const id = document.getElementById('rateTargetId').value;
   const newRating = parseFloat(document.getElementById('rateStars').value);
+  const ratedKey = `rated_worker_${id}`;
+
+  if (localStorage.getItem(ratedKey)) {
+    alert("❌ ඔබ මෙම සේවකයාට මීට පෙර රේටින් එකක් ලබා දී ඇත! එක් සේවකයෙකුට ලබාදිය හැක්කේ එක රේටින් එකක් පමණි.");
+    closeModal('rateModal');
+    return;
+  }
 
   const { data, error } = await supabaseClient.from('workers').select('rating').eq('id', id).single();
   if (error || !data) {
@@ -1458,6 +1496,7 @@ async function submitVerifiedRating() {
   if (updateErr) {
     alert("රේටින් යාවත්කාලීන කිරීමේ දෝෂයක්: " + updateErr.message);
   } else {
+    localStorage.setItem(ratedKey, 'true');
     alert("⭐ ඔබගේ ඇගයීම සාර්ථකව එකතු කරන ලදී!");
     closeModal('rateModal');
     loadBrowseData();
@@ -1467,7 +1506,6 @@ async function submitVerifiedRating() {
 function openReportModal(id, type) { document.getElementById('reportTargetId').value = id; document.getElementById('reportModal').classList.add('show'); }
 function submitReportAction() { alert("වාර්තා කරන ලදී."); closeModal('reportModal'); }
 
-// දුරකථන අංකය සහ ගෝලීය PIN අංකය සත්‍යාපනය කර දැන්වීම්, විස්තර සහ මිල ගණන් පෙන්වීම
 async function verifyAndLoadMyAds() {
   let p = document.getElementById('my_phone').value.trim().replace(/\D/g, '');
   if (p.startsWith('94')) p = '0' + p.substring(2);
@@ -1635,7 +1673,7 @@ async function editItemDirect(table, id) {
     togglePostType(data.post_type);
     document.getElementById('p_title').value = data.title || '';
     document.getElementById('p_district').value = data.district || '';
-    document.getElementById('p_location').value = data.location || '';
+    document.getElementById('p_location').value = data.location || '',
     document.getElementById('p_pay').value = data.pay || '';
     document.getElementById('p_desc').value = data.description || '';
     document.getElementById('p_phone').value = data.phone || '';
