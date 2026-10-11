@@ -159,8 +159,12 @@ a.sec,a.pri{display:inline-flex;align-items:center;justify-content:center;text-d
 .stile input:checked+span{background:var(--ac);color:#fff;border-color:var(--ac)}
 .stile input:checked+span::after{content:'✓';position:absolute;top:5px;right:9px;font-size:12px;font-weight:800}
 .stile input:focus-visible+span{outline:3px solid var(--ac);outline-offset:2px}
-.bcv{aspect-ratio:1080/1350;width:100%;border-radius:22px;overflow:hidden;background:#12152F;box-shadow:0 14px 40px rgba(20,24,60,.35)}.bcv img{display:block;width:100%;height:100%}
+.bct{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}.bct button{display:block;padding:5px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--tx);min-height:44px;cursor:pointer}.bct button.on{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac)}.bct .bcth{display:block;aspect-ratio:1080/1350;border-radius:9px;overflow:hidden}.bct img{display:block;width:100%;height:100%}.bct b{display:block;font-size:12px;margin-top:4px;text-align:center}.bcv{aspect-ratio:1080/1350;width:100%;border-radius:22px;overflow:hidden;background:#12152F;box-shadow:0 14px 40px rgba(20,24,60,.35)}.bcv img{display:block;width:100%;height:100%}
 .rqrow{display:flex;gap:10px;align-items:stretch}
+.ann{display:flex;gap:10px;align-items:flex-start;margin:10px 0 0;padding:12px 14px;border-radius:18px;font-size:13.5px;line-height:1.45;border:1.5px solid;background:var(--card)}
+.ann.info{border-color:#5B5BFF}.ann.warn{border-color:#F59E0B;background:color-mix(in srgb,#F59E0B 12%,var(--card))}.ann.maint{border-color:#E0486B;background:color-mix(in srgb,#E0486B 10%,var(--card))}
+.ann .x{flex:none;width:30px;height:30px;border-radius:15px;background:var(--bg);margin-left:auto}
+#maintov{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}#maintov[hidden]{display:none}
 .top h1{display:flex;align-items:center;white-space:nowrap;flex:none}
 @media (max-width:389px){.top h1{font-size:16px;letter-spacing:.08em}h1 .lgm{height:22px!important;margin-right:5px!important}.hbtn{padding:0 10px}.live{font-size:10px}}h1 .lgm{height:28px;width:auto;margin-right:8px;letter-spacing:0}
 .inst{display:flex;gap:12px;align-items:center;padding:12px 14px;border:1.5px solid var(--ac)}.inst img{width:46px;height:46px;border-radius:12px;flex:none;box-shadow:0 4px 12px rgba(0,0,0,.15)}.inst .x{flex:none;width:36px;height:36px;border-radius:18px;background:var(--bg)}.rqrow .rqb{flex:1}
@@ -194,7 +198,9 @@ nav .plus{flex:none;margin:0 2px}
 <body>
 <div class="top"><h1 translate="no" class="notranslate"><img class="lgm" src="data:image/png;base64,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" alt="" width="36" height="26" onerror="this.remove()">WORK<b>LINE</b></h1><div style="display:flex;gap:8px;align-items:center"><span class="live" id="live"></span><button class="hbtn" id="lb" onclick="setLang()" aria-label="Language / භාෂාව">සිං | EN</button><span id="acct"></span></div></div>
 <div id="demo"></div>
+<div id="ann"></div>
 <main id="v"></main>
+<div id="maintov" hidden></div>
 <nav aria-label="Main"><div id="nav"></div></nav>
 <div id="ov"></div>
 <noscript><p style="padding:20px">Workline requires JavaScript. / Workline ක්‍රියා කිරීමට JavaScript අවශ්‍යයි.</p></noscript>
@@ -2395,111 +2401,277 @@ function bcStar(x, cx, cy, R, fill) {
   for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? R * .45 : R; x.lineTo(cx + r * Math.cos(a), cy + r * Math.sin(a)); }
   x.closePath(); x.fillStyle = fill; x.fill();
 }
-async function drawBizCard(w, withPhoto) {
-  const W = 1080, H = 1350, c = document.createElement('canvas'); c.width = W; c.height = H;
-  const x = c.getContext('2d');
-  const name = w.name || '', subs = (w.skills || []).slice(0, 3).map(subName), trade = subs.length ? subs.join(' · ') : catName(w.category);
-  const place = (w.town ? w.town + ', ' : '') + distName(w.district), trusted = trustPct(w.verif) >= 80;
+/* three card styles the professional can choose from: Story, Bento, Pro Pass.
+   Colours and the fallback picture follow the trade, so one design fits every field. */
+const BC_THEME = {
+  construction: ['🧱', '#F59E0B', '#EA580C'], electrical: ['💡', '#F59E0B', '#2563EB'], plumbing: ['🚰', '#0EA5E9', '#2563EB'],
+  vehicle: ['🔧', '#FF7A00', '#E1306C'], transport: ['🚚', '#6366F1', '#0EA5E9'], home: ['🏠', '#14B8A6', '#6366F1'],
+  care: ['🩺', '#10B981', '#0EA5E9'], education: ['📚', '#10B981', '#0EA5E9'], food: ['🍳', '#F97316', '#EF4444'],
+  sales: ['🛍️', '#EC4899', '#F97316'], office: ['💼', '#475569', '#2563EB'], it: ['💻', '#06B6D4', '#7C3AED'],
+  textile: ['🧵', '#FF7A00', '#E1306C'], agri: ['🌱', '#22C55E', '#0EA5E9'], beauty: ['💄', '#EC4899', '#8B5CF6'],
+  security: ['🛡️', '#334155', '#2563EB'], industry: ['🏭', '#64748B', '#F59E0B'], tourism: ['🌴', '#06B6D4', '#22C55E'],
+  professional: ['📊', '#2563EB', '#7C3AED'], other: ['⭐', '#FF7A00', '#7C3AED']
+};
+const BC_SUB_EMO = { sewing_mach: '🧵' };
+const BC_EMOJI_FONT = "'Noto Color Emoji','Apple Color Emoji','Segoe UI Emoji',sans-serif";
+const BC_IC = {
+  phone: 'M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z',
+  wa: 'M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.2z',
+  pin: 'M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'
+};
+function bcIcon(x, k, X, Y, S, col) { try { x.save(); x.translate(X, Y); x.scale(S / 24, S / 24); x.fillStyle = col; x.fill(new Path2D(BC_IC[k])); } catch (e) { } x.restore(); }
+function bcLG(x, X0, Y0, X1, Y1, a, b) { const g = x.createLinearGradient(X0, Y0, X1, Y1); g.addColorStop(0, a); g.addColorStop(1, b); return g; }
+function bcData(w) {
+  const subs = (w.skills || []).map(subName).filter(Boolean), main = subs[0] || catName(w.category);
+  const th = BC_THEME[w.category] || BC_THEME.other, rated = (w.rating_count || 0) > 0 && Number(w.rating) > 0;
+  const place = [w.town, distName(w.district)].filter(Boolean).join(', ').split(/\s*,\s*/).filter(Boolean).join(' · ');
+  return {
+    name: String(w.name || '').trim() || '—', trade: subs.length ? subs.slice(0, 2).join(' · ') : catName(w.category),
+    tag: '#' + String(main).trim().replace(/[\s\/·,&]+/g, '_').replace(/^_+|_+$/g, ''), place, phone: prettyPhone(w.phone),
+    avail: !!w.available, trusted: trustPct(w.verif) >= 80, rated, rating: rated ? Number(w.rating).toFixed(1) : '', rc: w.rating_count || 0,
+    emo: BC_SUB_EMO[(w.skills || [])[0]] || th[0], a1: th[1], a2: th[2],
+    availTx: w.available ? t('දැන් වැඩ භාරගනී', 'Available now') : t('දැනට කාර්යබහුලයි', 'Busy right now'),
+    regTx: trustPct(w.verif) >= 80 ? t('සත්‍යාපිත', 'Verified') : t('ලියාපදිංචි', 'Registered')
+  };
+}
+async function bcAssets(w) {
+  const d = bcData(w);
   try {
     await Promise.race([Promise.all([
-      document.fonts.load(`700 72px 'Noto Sans Sinhala'`, name + trade + place), document.fonts.load(`600 36px 'Noto Sans Sinhala'`, trade + 'දැන් වැඩ'),
-      document.fonts.load(`400 30px 'Noto Sans Sinhala'`, place), document.fonts.load(`800 60px 'Sora'`, 'WORKLINE 0123456789'), document.fonts.load(`600 26px 'Sora'`, 'workline')]), new Promise(r => setTimeout(r, 3500))]);
+      document.fonts.load(`700 72px 'Noto Sans Sinhala'`, d.name + d.trade + d.place + d.availTx), document.fonts.load(`600 36px 'Noto Sans Sinhala'`, 'අමතන්න ප්‍රදේශය සේවය ඔබේ ප්‍රශ්නය විසඳුම'),
+      document.fonts.load(`400 30px 'Noto Sans Sinhala'`, d.place), document.fonts.load(`800 60px 'Sora'`, 'WORKLINE 0123456789'), document.fonts.load(`600 26px 'Sora'`, 'Your Skill Job')]), new Promise(r => setTimeout(r, 3500))]);
   } catch (e) { }
-  /* background */
-  x.fillStyle = '#12152F'; x.fillRect(0, 0, W, H);
-  let g = x.createRadialGradient(W, 0, 0, W, 0, 900); g.addColorStop(0, 'rgba(91,91,255,.95)'); g.addColorStop(1, 'rgba(91,91,255,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
-  g = x.createRadialGradient(0, H, 0, 0, H, 850); g.addColorStop(0, 'rgba(194,57,158,.85)'); g.addColorStop(1, 'rgba(194,57,158,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
-  x.textBaseline = 'alphabetic';
-  /* logo */
-  x.textAlign = 'left'; x.font = `800 54px ${BC_FONT_EN}`; try { x.letterSpacing = '8px'; } catch (e) { }
-  x.fillStyle = '#fff'; x.fillText('WORK', 64, 112); const lw = x.measureText('WORK').width; x.fillStyle = '#FF7A3D'; x.fillText('LINE', 64 + lw, 112);
-  try { x.letterSpacing = '0px'; } catch (e) { }
-  /* verified pill */
-  if (trusted) {
-    x.font = `700 28px ${BC_FONT_SI}`; const tx = '✓ ' + t('සත්‍යාපිත', 'Verified'), tw = x.measureText(tx).width + 44;
-    bcRound(x, W - 64 - tw, 66, tw, 60, 30); x.fillStyle = '#16B364'; x.fill(); x.fillStyle = '#fff'; x.textAlign = 'center'; x.fillText(tx, W - 64 - tw / 2, 106);
+  const lg = document.querySelector('.lgm');
+  const [img, logo] = await Promise.all([bcLoadImg(w.img || photosOf(w)[0]), bcLoadImg(lg && lg.src)]);
+  let qr = null; try { qr = new WLQR.QRCode(-1, WLQR.ECL.M); qr.addData(appLink({ w: w.id })); qr.make(); } catch (e) { qr = null; console.warn(e); }
+  return { img, logo, qr };
+}
+function bcQR(x, A, X, Y, S, col) {
+  x.fillStyle = '#fff'; x.fillRect(X, Y, S, S); if (!A.qr) return;
+  const n = A.qr.getModuleCount(), cell = S / (n + 2); x.fillStyle = col || '#111';
+  for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (A.qr.isDark(r, k)) x.fillRect(Math.floor(X + cell * (k + 1)), Math.floor(Y + cell * (r + 1)), Math.ceil(cell), Math.ceil(cell));
+}
+function bcPhoto(x, A, d, X, Y, W, H, r, es) {
+  x.save(); bcRound(x, X, Y, W, H, r); x.clip();
+  if (A.img) { const s = Math.max(W / A.img.width, H / A.img.height), iw = A.img.width * s, ih = A.img.height * s; x.drawImage(A.img, X + (W - iw) / 2, Y + (H - ih) * .4, iw, ih); }
+  else {
+    x.fillStyle = bcLG(x, X, Y, X + W, Y + H, d.a1, d.a2); x.fillRect(X, Y, W, H);
+    const rg = x.createRadialGradient(X + W * .3, Y + H * .2, 0, X + W * .3, Y + H * .2, Math.max(W, H) * .65); rg.addColorStop(0, 'rgba(255,255,255,.35)'); rg.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = rg; x.fillRect(X, Y, W, H);
+    x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillStyle = '#fff'; x.font = `${es}px ${BC_EMOJI_FONT}`; x.fillText(d.emo, X + W / 2, Y + H / 2 + es * .04); x.textBaseline = 'alphabetic';
   }
-  /* photo */
-  const cx = W / 2, cy = 380, R = 172;
-  g = x.createLinearGradient(cx - R, cy - R, cx + R, cy + R); g.addColorStop(0, '#FF4FD8'); g.addColorStop(1, '#5B5BFF');
-  x.beginPath(); x.arc(cx, cy, R + 14, 0, Math.PI * 2); x.fillStyle = g; x.fill();
-  x.beginPath(); x.arc(cx, cy, R + 4, 0, Math.PI * 2); x.fillStyle = '#12152F'; x.fill();
-  const img = withPhoto ? await bcLoadImg(w.img || photosOf(w)[0]) : null;
-  x.save(); x.beginPath(); x.arc(cx, cy, R - 4, 0, Math.PI * 2); x.clip();
-  if (img) { const s = Math.max((R * 2) / img.width, (R * 2) / img.height), iw = img.width * s, ih = img.height * s; x.drawImage(img, cx - iw / 2, cy - ih / 2, iw, ih); }
-  else { g = x.createLinearGradient(cx - R, cy - R, cx + R, cy + R); g.addColorStop(0, '#7B6BFF'); g.addColorStop(1, '#E05AD0'); x.fillStyle = g; x.fillRect(cx - R, cy - R, R * 2, R * 2); x.fillStyle = '#fff'; x.textAlign = 'center'; x.font = `700 150px ${BC_FONT_SI}`; x.fillText([...name.trim() || '?'][0], cx, cy + 52); }
   x.restore();
-  /* availability dot */
-  const dx = cx + R * .72, dy = cy + R * .72;
-  x.beginPath(); x.arc(dx, dy, 34, 0, Math.PI * 2); x.fillStyle = '#12152F'; x.fill();
-  x.beginPath(); x.arc(dx, dy, 25, 0, Math.PI * 2); x.fillStyle = w.available ? '#22C55E' : '#EF4444'; x.fill();
-  /* name (max 2 lines) */
-  x.textAlign = 'center'; x.fillStyle = '#fff';
-  let ns = bcFit(x, name, 940, 78, 700, BC_FONT_SI, 52), lines = bcWrap(x, name, 940);
-  if (lines.length > 1) { ns = Math.min(ns, 64); x.font = `700 ${ns}px ${BC_FONT_SI}`; lines = bcWrap(x, name, 940); }
-  let y = 652; lines.forEach((l, i) => { bcFit(x, l, 940, ns, 700, BC_FONT_SI, 40); x.fillText(l, cx, y + i * (ns + 12)); }); y += (lines.length - 1) * (ns + 12);
-  /* trade + place */
-  bcFit(x, trade, 940, 40, 600, BC_FONT_SI, 26); g = x.createLinearGradient(cx - 300, 0, cx + 300, 0); g.addColorStop(0, '#FFB067'); g.addColorStop(1, '#FF7AD9'); x.fillStyle = g; x.fillText(trade, cx, y + 66);
-  bcFit(x, place, 900, 32, 400, BC_FONT_SI, 22); x.fillStyle = '#C9CEFF'; x.fillText(place, cx, y + 118);
-  /* rating + availability chips */
-  const cy2 = y + 160, chipH = 58;
-  const avTx = w.available ? t('දැන් වැඩ භාරගත හැක', 'Available now') : t('දැනට කාර්යබහුලයි', 'Busy right now');
-  x.font = `600 26px ${BC_FONT_SI}`; const avW = x.measureText(avTx).width + 70;
-  const rated = (w.rating_count || 0) > 0 && Number(w.rating) > 0;
-  const rtTx = rated ? `${Number(w.rating).toFixed(1)}  (${w.rating_count})` : t('නව වෘත්තිකයා', 'New on Workline');
-  x.font = `700 26px ${BC_FONT_EN}`; const rtW = (rated ? 5 * 30 + 16 : 0) + x.measureText(rtTx).width + 44;
-  let X0 = cx - (avW + rtW + 18) / 2;
-  bcRound(x, X0, cy2, rtW, chipH, 29); x.fillStyle = 'rgba(255,255,255,.12)'; x.fill();
-  let px = X0 + 22;
-  if (rated) { for (let i = 0; i < 5; i++) bcStar(x, px + 13 + i * 30, cy2 + 29, 13, i < Math.round(w.rating) ? '#FFC23D' : 'rgba(255,255,255,.3)'); px += 5 * 30 + 16; }
-  x.textAlign = 'left'; x.fillStyle = '#fff'; x.font = rated ? `700 26px ${BC_FONT_EN}` : `600 26px ${BC_FONT_SI}`; x.fillText(rtTx, px, cy2 + 38);
-  X0 += rtW + 18; bcRound(x, X0, cy2, avW, chipH, 29); x.fillStyle = w.available ? 'rgba(34,197,94,.18)' : 'rgba(239,68,68,.18)'; x.fill();
-  x.beginPath(); x.arc(X0 + 30, cy2 + 29, 9, 0, Math.PI * 2); x.fillStyle = w.available ? '#22C55E' : '#EF4444'; x.fill();
-  x.fillStyle = '#fff'; x.font = `600 26px ${BC_FONT_SI}`; x.fillText(avTx, X0 + 50, cy2 + 38);
-  /* contact panel */
-  const PY = 1000, PH = 270; bcRound(x, 56, PY, W - 112, PH, 40); x.fillStyle = '#fff'; x.fill();
-  const qs = 214, qx = W - 56 - 28 - qs, qy = PY + 18;
-  try {
-    const q = new WLQR.QRCode(-1, WLQR.ECL.M); q.addData(appLink({ w: w.id })); q.make();
-    const n = q.getModuleCount(), cell = qs / (n + 2); x.fillStyle = '#12152F';
-    for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (q.isDark(r, k)) x.fillRect(Math.floor(qx + cell * (k + 1)), Math.floor(qy + cell * (r + 1)), Math.ceil(cell), Math.ceil(cell));
-  } catch (e) { console.warn(e); }
-  x.textAlign = 'center'; x.fillStyle = '#5B5BFF'; const scl = t('Scan කර ප්‍රොෆයිලය බලන්න', 'Scan to see my profile'); bcFit(x, scl, qs + 10, 21, 600, BC_FONT_SI, 14); x.fillText(scl, qx + qs / 2, PY + PH - 16);
-  x.textAlign = 'left'; const lx = 100, lmax = qx - lx - 24;
-  x.fillStyle = '#5A6090'; x.font = `600 28px ${BC_FONT_SI}`; x.fillText(t('අමතන්න / WhatsApp', 'Call / WhatsApp'), lx, PY + 74);
-  x.fillStyle = '#12152F'; bcFit(x, prettyPhone(w.phone), lmax, 70, 800, BC_FONT_EN, 36); x.fillText(prettyPhone(w.phone), lx, PY + 156);
-  x.fillStyle = '#5B5BFF'; bcFit(x, 'workline-sl.github.io/workline', lmax, 27, 600, BC_FONT_EN, 18); x.fillText('workline-sl.github.io/workline', lx, PY + 214);
-  /* footer */
-  x.textAlign = 'center'; x.fillStyle = 'rgba(255,255,255,.75)'; x.font = `600 24px ${BC_FONT_SI}`;
-  x.fillText(t('ශ්‍රී ලංකාවේ දක්ෂ වෘත්තිකයන් සහ රැකියා — Workline', 'Skilled professionals & jobs in Sri Lanka — Workline'), cx, H - 34);
+}
+/* pill with optional dot; returns its width. X is the left edge, or the right edge with o.right */
+function bcPill(x, txt, X, Y, h, font, bg, fg, o) {
+  o = o || {}; const pad = o.pad || 22; x.font = font;
+  const wd = x.measureText(txt).width + pad * 2 + (o.dot ? 26 : 0), L = o.right ? X - wd : X;
+  bcRound(x, L, Y, wd, h, o.r != null ? o.r : h / 2); if (bg) { x.fillStyle = bg; x.fill(); }
+  if (o.stroke) { x.lineWidth = o.lw || 2; x.strokeStyle = o.stroke; x.stroke(); }
+  let tx = L + pad; if (o.dot) { x.beginPath(); x.arc(tx + 7, Y + h / 2, 7, 0, Math.PI * 2); x.fillStyle = o.dot; x.fill(); tx += 26; }
+  x.fillStyle = fg; x.textAlign = 'left'; x.textBaseline = 'middle'; x.fillText(txt, tx, Y + h / 2 + 1); x.textBaseline = 'alphabetic';
+  return wd;
+}
+/* WORKLINE wordmark; Y is the top */
+function bcWM(x, A, X, Y, col, lineCol, tagCol, circle) {
+  let lx = X;
+  if (circle) {
+    x.beginPath(); x.arc(X + 33, Y + 33, 33, 0, Math.PI * 2); x.fillStyle = '#fff'; x.fill(); x.lineWidth = 3; x.strokeStyle = circle; x.stroke();
+    if (A.logo) { const h = 40, wd = A.logo.width * h / A.logo.height; x.drawImage(A.logo, X + 33 - wd / 2, Y + 33 - h / 2, wd, h); }
+    lx = X + 80;
+  } else if (A.logo) { const h = 50, wd = A.logo.width * h / A.logo.height; x.drawImage(A.logo, X, Y + 6, wd, h); lx = X + wd + 12; }
+  x.textAlign = 'left'; x.font = `800 30px ${BC_FONT_EN}`; try { x.letterSpacing = '2px'; } catch (e) { }
+  x.fillStyle = col; x.fillText('WORK', lx, Y + 32); const ww = x.measureText('WORK').width; x.fillStyle = lineCol; x.fillText('LINE', lx + ww, Y + 32);
+  try { x.letterSpacing = '0px'; } catch (e) { }
+  x.font = `600 17px ${BC_FONT_EN}`; x.fillStyle = tagCol; x.fillText('Your Skill | Your Job', lx, Y + 56);
+}
+function bcCanvas() { const c = document.createElement('canvas'); c.width = 1080; c.height = 1350; return c; }
+
+/* ---------- 1. STORY: full photo like a status story + a bottom sheet ---------- */
+function bcStory(w, A) {
+  const d = bcData(w), c = bcCanvas(), x = c.getContext('2d'), W = 1080, PH = 860;
+  x.fillStyle = '#000'; x.fillRect(0, 0, W, 1350);
+  bcPhoto(x, A, d, 0, 0, W, PH + 40, 0, 300);
+  let g = x.createLinearGradient(0, 0, 0, PH); g.addColorStop(0, 'rgba(0,0,0,.55)'); g.addColorStop(.22, 'rgba(0,0,0,0)'); g.addColorStop(.45, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.85)');
+  x.fillStyle = g; x.fillRect(0, 0, W, PH + 40);
+  const bw = (W - 72 - 20) / 3; for (let i = 0; i < 3; i++) { bcRound(x, 36 + i * (bw + 10), 26, bw, 7, 3.5); x.fillStyle = i ? 'rgba(255,255,255,.4)' : '#fff'; x.fill(); }
+  bcWM(x, A, 36, 56, '#fff', '#FF8A00', 'rgba(255,255,255,.85)', d.a1);
+  bcPill(x, d.availTx, W - 36, 60, 50, `700 23px ${BC_FONT_SI}`, 'rgba(0,0,0,.45)', '#fff', { right: 1, dot: d.avail ? '#22C55E' : '#EF4444', stroke: 'rgba(255,255,255,.4)' });
+  /* trade, name and hashtag, bottom-up */
+  x.fillStyle = '#fff'; x.textAlign = 'left';
+  bcFit(x, d.trade, W - 88, 44, 700, BC_FONT_SI, 26); x.fillText(d.trade, 44, 812);
+  let ns = bcFit(x, d.name, W - 88, 118, 800, BC_FONT_SI, 60), lines = [d.name];
+  if (x.measureText(d.name).width > W - 88) { ns = 70; x.font = `800 ${ns}px ${BC_FONT_SI}`; lines = bcWrap(x, d.name, W - 88); }
+  x.shadowColor = 'rgba(0,0,0,.5)'; x.shadowBlur = 30;
+  lines.forEach((l, i) => { bcFit(x, l, W - 88, ns, 800, BC_FONT_SI, 40); x.fillText(l, 44, 742 - (lines.length - 1 - i) * (ns + 6)); });
+  x.shadowColor = 'transparent'; x.shadowBlur = 0;
+  const tagTop = 742 - ns * .95 - (lines.length - 1) * (ns + 6) - 70;
+  x.font = `800 30px ${BC_FONT_SI}`; const tagTx = d.tag.length > 34 ? d.tag.slice(0, 33) + '…' : d.tag, tw = x.measureText(tagTx).width + 44;
+  bcRound(x, 44, tagTop, tw, 52, 26); x.fillStyle = bcLG(x, 44, 0, 44 + tw, 0, d.a1, d.a2); x.fill();
+  x.fillStyle = '#fff'; x.textBaseline = 'middle'; x.fillText(tagTx, 66, tagTop + 27); x.textBaseline = 'alphabetic';
+  /* bottom sheet */
+  const SY = 850; bcRound(x, 0, SY, W, 560, 48); x.fillStyle = '#fff'; x.fill();
+  bcRound(x, W / 2 - 45, SY + 18, 90, 8, 4); x.fillStyle = '#D4D4DC'; x.fill();
+  const LW = W - 44 - 300 - 44;
+  bcIcon(x, 'pin', 44, SY + 54, 30, '#4B5563');
+  x.fillStyle = '#4B5563'; bcFit(x, d.place, LW - 40, 28, 600, BC_FONT_SI, 18); x.textAlign = 'left'; x.fillText(d.place, 84, SY + 80);
+  const chips = ['✓ ' + d.regTx, d.rated ? `★ ${d.rating} (${d.rc})` : '⚡ ' + t('ඉක්මන් ප්‍රතිචාර', 'Quick reply'), '🛡 ' + t('විශ්වාසවන්ත සේවාව', 'Trusted service')];
+  let cx0 = 44, cy0 = SY + 110;
+  for (const s of chips) {
+    x.font = `700 23px ${BC_FONT_SI}`; const wd = x.measureText(s).width + 36;
+    if (cx0 + wd > 44 + LW && cx0 > 44) { cx0 = 44; cy0 += 56; }
+    bcPill(x, s, cx0, cy0, 46, `700 23px ${BC_FONT_SI}`, '#F1F1F6', '#111', { pad: 18 }); cx0 += wd + 10;
+  }
+  /* call button */
+  const BY = SY + 250; x.shadowColor = d.a2 + '66'; x.shadowBlur = 30; x.shadowOffsetY = 14;
+  bcRound(x, 44, BY, 680, 120, 60); x.fillStyle = bcLG(x, 44, 0, 724, 0, d.a1, d.a2); x.fill();
+  x.shadowColor = 'transparent'; x.shadowBlur = 0; x.shadowOffsetY = 0;
+  bcIcon(x, 'phone', 80, BY + 34, 52, '#fff');
+  x.fillStyle = 'rgba(255,255,255,.92)'; x.font = `700 22px ${BC_FONT_SI}`; x.fillText(t('අමතන්න / Call', 'Call me'), 154, BY + 42);
+  x.fillStyle = '#fff'; bcFit(x, d.phone, 540, 58, 800, BC_FONT_EN, 30); x.fillText(d.phone, 154, BY + 98);
+  bcIcon(x, 'wa', 44, SY + 414, 30, '#16A34A');
+  x.fillStyle = '#16A34A'; x.font = `800 28px ${BC_FONT_SI}`; x.fillText(t('WhatsApp ද කරන්න පුළුවන්', 'WhatsApp me too'), 84, SY + 440);
+  /* QR */
+  const QX = W - 44 - 240, QY = SY + 46; bcRound(x, QX, QY, 240, 240, 24); x.fillStyle = '#fff'; x.fill(); x.lineWidth = 3; x.strokeStyle = '#ECECF2'; x.stroke();
+  bcQR(x, A, QX + 12, QY + 12, 216);
+  x.textAlign = 'center'; x.fillStyle = '#6B7280'; x.font = `600 20px ${BC_FONT_SI}`;
+  x.fillText(t('Scan කර මගේ', 'Scan to see'), QX + 120, QY + 274); x.fillText(t('ප්‍රොෆයිලය බලන්න', 'my profile'), QX + 120, QY + 300);
+  x.fillStyle = d.a2; x.font = `800 22px ${BC_FONT_EN}`; x.fillText('▲ Workline', QX + 120, SY + 432);
   return c;
 }
-let BC = { url: '', blob: null };
+
+/* ---------- 2. BENTO: tidy tiles ---------- */
+function bcBento(w, A) {
+  const d = bcData(w), c = bcCanvas(), x = c.getContext('2d'), W = 1080;
+  x.fillStyle = '#F3F1EC'; x.fillRect(0, 0, W, 1350);
+  bcWM(x, A, 52, 46, '#111', '#FF8A00', '#444');
+  bcPill(x, d.availTx, W - 52, 54, 50, `700 23px ${BC_FONT_SI}`, '#111', '#fff', { right: 1, dot: d.avail ? '#4ADE80' : '#F87171' });
+  bcPhoto(x, A, d, 48, 150, 620, 520, 40, 260);
+  x.font = `800 22px ${BC_FONT_SI}`; const tagTx = d.tag.length > 30 ? d.tag.slice(0, 29) + '…' : d.tag;
+  bcPill(x, tagTx, 72, 670 - 24 - 46, 46, `800 22px ${BC_FONT_SI}`, 'rgba(255,255,255,.92)', '#111', { pad: 18 });
+  /* tile a: registered */
+  bcRound(x, 688, 150, 344, 250, 40); x.fillStyle = '#111'; x.fill();
+  x.fillStyle = '#fff'; x.textAlign = 'left'; x.font = `800 64px ${BC_FONT_EN}`; x.fillText('✓', 718, 238);
+  x.font = `800 28px ${BC_FONT_SI}`; ['Workline', d.regTx, t('වෘත්තිකයෙක්', 'professional')].forEach((l, i) => { bcFit(x, l, 284, 28, 800, BC_FONT_SI, 18); x.fillText(l, 718, 300 + i * 36); });
+  /* tile b: rating or quick reply */
+  bcRound(x, 688, 420, 344, 250, 40); x.fillStyle = bcLG(x, 688, 420, 1032, 670, d.a1, d.a2); x.fill();
+  x.fillStyle = '#fff'; x.font = `72px ${BC_EMOJI_FONT}`; x.fillText(d.rated ? '⭐' : '⚡', 716, 520);
+  const bl = d.rated ? [`${d.rating} / 5`, `${d.rc} ${t('ඇගයීම්', 'reviews')}`] : [t('ඉක්මන්', 'Quick'), t('ප්‍රතිචාර', 'reply')];
+  bl.forEach((l, i) => { bcFit(x, l, 284, 32, 800, BC_FONT_SI, 18); x.fillText(l, 718, 590 + i * 40); });
+  /* name tile */
+  bcRound(x, 48, 690, 984, 270, 40); x.fillStyle = '#fff'; x.fill();
+  x.fillStyle = '#111'; bcFit(x, d.name, 904, 88, 800, BC_FONT_SI, 44); x.fillText(d.name, 88, 800);
+  const ts = bcFit(x, d.trade, 904, 42, 800, BC_FONT_SI, 24); x.fillStyle = bcLG(x, 88, 0, 88 + Math.min(904, x.measureText(d.trade).width), 0, d.a1, d.a2); x.fillText(d.trade, 88, 862);
+  bcIcon(x, 'pin', 86, 888, 28, '#6B7280'); x.fillStyle = '#6B7280'; bcFit(x, d.place, 860, 27, 600, BC_FONT_SI, 18); x.fillText(d.place, 124, 913);
+  /* phone tile */
+  bcRound(x, 48, 980, 640, 322, 40); x.fillStyle = '#111'; x.fill();
+  x.fillStyle = '#A3A3A3'; x.font = `700 26px ${BC_FONT_SI}`; x.fillText(t('අමතන්න / WhatsApp', 'Call / WhatsApp'), 88, 1040);
+  x.fillStyle = '#fff'; bcFit(x, d.phone, 560, 76, 800, BC_FONT_EN, 34); x.fillText(d.phone, 88, 1128);
+  const cw = bcPill(x, '      Call', 88, 1170, 62, `800 28px ${BC_FONT_EN}`, bcLG(x, 88, 0, 260, 0, d.a1, d.a2), '#fff', { pad: 24 }); bcIcon(x, 'phone', 108, 1186, 30, '#fff');
+  bcPill(x, '      WhatsApp', 88 + cw + 14, 1170, 62, `800 28px ${BC_FONT_EN}`, '#16A34A', '#fff', { pad: 24 }); bcIcon(x, 'wa', 88 + cw + 14 + 22, 1186, 30, '#fff');
+  /* QR tile */
+  bcRound(x, 708, 980, 324, 322, 40); x.fillStyle = '#fff'; x.fill();
+  bcQR(x, A, 756, 1004, 228);
+  x.textAlign = 'center'; x.fillStyle = '#6B7280'; x.font = `600 21px ${BC_FONT_SI}`;
+  x.fillText(t('Scan කර ප්‍රොෆයිලය', 'Scan to see'), 870, 1260); x.fillText(t('බලන්න', 'my profile'), 870, 1286);
+  return c;
+}
+
+/* ---------- 3. PRO PASS: a ticket from "your problem" to "the fix" ---------- */
+function bcPass(w, A) {
+  const d = bcData(w), c = bcCanvas(), x = c.getContext('2d'), W = 1080, H = 1350;
+  x.fillStyle = bcLG(x, 0, 0, W, H * .36, d.a1, d.a2); x.fillRect(0, 0, W, H);
+  x.fillStyle = 'rgba(255,255,255,.18)'; for (let yy = 15; yy < H; yy += 30) for (let xx = 15; xx < W; xx += 30) { x.beginPath(); x.arc(xx, yy, 2.5, 0, Math.PI * 2); x.fill(); }
+  bcWM(x, A, 60, 40, '#fff', '#FFE14D', 'rgba(255,255,255,.9)');
+  try { x.letterSpacing = '4px'; } catch (e) { }
+  x.font = `900 24px ${BC_FONT_EN}`; const pw = x.measureText('PRO PASS').width + 36;
+  bcRound(x, W - 60 - pw, 46, pw, 50, 14); x.lineWidth = 3; x.strokeStyle = '#fff'; x.stroke();
+  x.fillStyle = '#fff'; x.textAlign = 'left'; x.fillText('PRO PASS', W - 60 - pw + 18, 80);
+  try { x.letterSpacing = '0px'; } catch (e) { }
+  /* ticket */
+  x.shadowColor = 'rgba(0,0,0,.25)'; x.shadowBlur = 60; x.shadowOffsetY = 30;
+  bcRound(x, 60, 150, 960, 1150, 44); x.fillStyle = '#fff'; x.fill();
+  x.shadowColor = 'transparent'; x.shadowBlur = 0; x.shadowOffsetY = 0;
+  const lbl = (s, X, Y, al) => { x.textAlign = al || 'left'; x.fillStyle = '#9CA3AF'; x.font = `800 20px ${BC_FONT_SI}`; try { x.letterSpacing = '2px'; } catch (e) { } x.fillText(s, X, Y); try { x.letterSpacing = '0px'; } catch (e) { } };
+  const LX = 116, TW = 1020 - 50 - 300 - 30 - LX;
+  lbl(t('නම', 'Name') + ' · NAME', LX, 230);
+  x.fillStyle = '#111'; x.textAlign = 'left'; let ns = bcFit(x, d.name, TW, 92, 800, BC_FONT_SI, 60), nl = [d.name];
+  if (x.measureText(d.name).width > TW) { ns = 64; x.font = `800 ${ns}px ${BC_FONT_SI}`; nl = bcWrap(x, d.name, TW); }
+  let y = 230 + 12 + ns * .85; nl.forEach((l, i) => { bcFit(x, l, TW, ns, 800, BC_FONT_SI, 34); x.fillText(l, LX, y + i * (ns + 6)); }); y += (nl.length - 1) * (ns + 6);
+  lbl(t('සේවය', 'Service') + ' · SERVICE', LX, y + 50);
+  x.font = `800 40px ${BC_FONT_SI}`; let tl = bcWrap(x, d.trade, TW); const tsz = tl.length > 1 ? 34 : 40; x.font = `800 ${tsz}px ${BC_FONT_SI}`; tl = bcWrap(x, d.trade, TW);
+  x.fillStyle = bcLG(x, LX, 0, LX + TW, 0, d.a1, d.a2); tl.forEach((l, i) => { bcFit(x, l, TW, tsz, 800, BC_FONT_SI, 22); x.fillText(l, LX, y + 100 + i * (tsz + 12)); });
+  bcPhoto(x, A, d, 1020 - 50 - 300, 200, 300, 300, 36, 150);
+  /* from → to */
+  bcRound(x, LX, 550, 848, 132, 30); x.fillStyle = '#F6F6F9'; x.fill();
+  lbl('FROM', 150, 592); lbl('TO', 930, 592, 'right');
+  x.fillStyle = '#111'; x.font = `800 42px ${BC_FONT_SI}`; x.textAlign = 'left'; const fT = t('ඔබේ ප්‍රශ්නය', 'Your problem'), fW = x.measureText(fT).width; x.fillText(fT, 150, 648);
+  x.textAlign = 'right'; const tT = t('විසඳුම ✓', 'Solved ✓'), tWd = x.measureText(tT).width; x.fillText(tT, 930, 648);
+  const l0 = 150 + fW + 24, l1 = 930 - tWd - 24; x.setLineDash([3, 9]); x.lineWidth = 4; x.strokeStyle = '#C4C4CF'; x.beginPath(); x.moveTo(l0, 632); x.lineTo(l1, 632); x.stroke(); x.setLineDash([]);
+  x.textAlign = 'center'; x.fillStyle = d.a1; x.font = `800 44px ${BC_FONT_EN}`; x.fillText('✈', (l0 + l1) / 2, 646);
+  /* details grid */
+  const C1 = LX, C2 = 624, CW1 = C2 - C1 - 30, CW2 = 964 - C2;
+  const val = (s, X, Y, mw, col) => { x.textAlign = 'left'; x.fillStyle = col || '#111'; x.font = `800 30px ${BC_FONT_SI}`; const ls = bcWrap(x, s, mw); ls.forEach((l, i) => { bcFit(x, l, mw, 30, 800, BC_FONT_SI, 18); x.fillText(l, X, Y + i * 40); }); return ls.length; };
+  lbl(t('ප්‍රදේශය', 'Area') + ' · AREA', C1, 770); lbl(t('තත්ත්වය', 'Status') + ' · STATUS', C2, 770);
+  const r1 = Math.max(val(d.place, C1, 816, CW1), val('● ' + d.availTx, C2, 816, CW2, d.avail ? '#16A34A' : '#DC2626'));
+  const R2 = 816 + (r1 - 1) * 40 + 70;
+  lbl(t('සත්‍යාපනය', 'Check') + ' · CHECK', C1, R2); lbl(d.rated ? t('ඇගයීම', 'Rating') + ' · RATING' : t('සේවාව', 'Service') + ' · SERVICE', C2, R2);
+  val('✓ Workline ' + d.regTx, C1, R2 + 46, CW1); val(d.rated ? `★ ${d.rating}  (${d.rc})` : '🛡 ' + t('විශ්වාසවන්ත', 'Trusted'), C2, R2 + 46, CW2);
+  /* perforation + stub */
+  x.beginPath(); x.arc(60, 1065, 35, 0, Math.PI * 2); x.fillStyle = d.a1; x.fill();
+  x.beginPath(); x.arc(1020, 1065, 35, 0, Math.PI * 2); x.fillStyle = d.a2; x.fill();
+  x.setLineDash([16, 10]); x.lineWidth = 5; x.strokeStyle = '#D9D9E0'; x.beginPath(); x.moveTo(110, 1065); x.lineTo(970, 1065); x.stroke(); x.setLineDash([]);
+  lbl(t('අමතන්න', 'Call') + ' / WhatsApp', LX, 1128);
+  x.textAlign = 'left'; x.fillStyle = '#111'; bcFit(x, d.phone, 640, 72, 800, BC_FONT_EN, 34); x.fillText(d.phone, LX, 1212);
+  bcPill(x, '      WhatsApp', LX, 1236, 48, `800 24px ${BC_FONT_EN}`, '#16A34A', '#fff', { pad: 20 }); bcIcon(x, 'wa', LX + 18, 1247, 26, '#fff');
+  bcQR(x, A, 1020 - 56 - 176, 1100, 176);
+  x.textAlign = 'center'; x.fillStyle = '#fff'; x.font = `700 22px ${BC_FONT_SI}`;
+  const ft = t('Scan කර ප්‍රොෆයිලය බලන්න', 'Scan to see my profile') + ' · workline-sl.github.io/workline'; bcFit(x, ft, 960, 22, 700, BC_FONT_SI, 14); x.fillText(ft, W / 2, 1333);
+  return c;
+}
+const BC_STYLES = [['story', 'Story', bcStory], ['bento', 'Bento', bcBento], ['pass', 'Pro Pass', bcPass]];
+
+let BC = { url: '', blob: null, cards: {}, style: 'story', name: '' };
 async function bizCard() {
   const w = myWorker(); if (!w) return toast(t('පළමුව වෘත්තීය ප්‍රොෆයිලයක් සාදන්න', 'Create a professional profile first'));
-  sheet(`<h2 style="margin-top:0">🪪 ${t('මගේ ඩිජිටල් කාඩ්පත', 'My digital business card')}</h2><div id="bcv" class="bcv"><div class="skel" style="height:100%;margin:0"></div></div><div id="bca"></div>`);
-  let c = await drawBizCard(w, true), url;
-  try { url = c.toDataURL('image/png'); } catch (e) { c = await drawBizCard(w, false); url = c.toDataURL('image/png'); }   /* photo blocked by the browser: card without the photo */
-  const blob = await new Promise(r => { try { c.toBlob(r, 'image/png'); } catch (e) { r(null); } });
-  BC = { url, blob, name: 'workline-' + (String(w.name || 'card').replace(/[^\w඀-෿]+/g, '-').slice(0, 30) || 'card') + '.png' };
-  const v = $('#bcv'), a = $('#bca'); if (!v || !a) return;
-  v.innerHTML = `<img alt="${t('ඩිජිටල් කාඩ්පත', 'Digital business card')}" src="${url}">`;
-  const canFile = !!(blob && navigator.canShare && (() => { try { return navigator.canShare({ files: [new File([blob], BC.name, { type: 'image/png' })] }); } catch (e) { return false; } })());
+  let st = 'story'; try { st = localStorage.getItem('wl_bcstyle') || 'story'; } catch (e) { }
+  if (!BC_STYLES.some(s => s[0] === st)) st = 'story';
+  sheet(`<h2 style="margin-top:0">🪪 ${t('මගේ ඩිජිටල් කාඩ්පත', 'My digital business card')}</h2>
+  <p class="sub" style="margin:0 4px 8px">${t('ඔබ කැමති ස්ටයිල් එක තෝරන්න', 'Pick the style you like')}</p>
+  <div id="bct" class="bct">${BC_STYLES.map(([k, n]) => `<button type="button" data-k="${k}" class="${k === st ? 'on' : ''}" onclick="bcPick('${k}')"><span class="bcth"><span class="skel" style="height:100%;margin:0;display:block"></span></span><b>${n}</b></button>`).join('')}</div>
+  <div id="bcv" class="bcv"><div class="skel" style="height:100%;margin:0"></div></div><div id="bca"></div>`);
+  let A = await bcAssets(w);
+  const cards = {};
+  const render = () => { for (const [k, , fn] of BC_STYLES) { const c = fn(w, A); cards[k] = { c, url: c.toDataURL('image/png') }; } };
+  try { render(); } catch (e) { A = Object.assign({}, A, { img: null }); render(); }   /* photo blocked by the browser: cards without the photo */
+  BC = { url: '', blob: null, cards, style: st, name: 'workline-' + (String(w.name || 'card').replace(/[^\w඀-෿]+/g, '-').slice(0, 30) || 'card') };
+  const tb = $('#bct'); if (!tb) return;
+  BC_STYLES.forEach(([k]) => { const b = tb.querySelector(`[data-k="${k}"] .bcth`); if (b) b.innerHTML = `<img alt="" src="${cards[k].url}">`; });
+  await bcPick(st, true);
+  const a = $('#bca'); if (!a) return;
+  const canFile = !!(BC.blob && navigator.canShare && (() => { try { return navigator.canShare({ files: [new File([BC.blob], BC.name + '.png', { type: 'image/png' })] }); } catch (e) { return false; } })());
   a.innerHTML = `${w.status !== 'active' ? `<div class="box" style="padding:10px 14px;font-size:13px;border:1px solid #FFA24A;margin:10px 0 0">⏳ ${t('ඔබේ ප්‍රොෆයිලය අනුමත වූ පසු QR කේතයෙන් එය විවෘත වේ. දැන් බාගෙන තබාගත හැක.', 'The QR code opens your profile once it is approved. You can download the card now.')}</div>` : ''}
   <p class="sub" style="margin:10px 4px">${t('WhatsApp Status, Facebook, Viber වලට දාන්න — දකින අයට එක ස්පර්ශයකින් ඔබට කතා කරන්න, QR scan කර ඔබේ ඇගයීම් බලන්න පුළුවන්. මුද්‍රණය කර වාහනයේ / කඩේ අලවන්නත් පුළුවන්.', 'Post it on WhatsApp Status, Facebook or Viber — people can call you and scan the QR to see your reviews. You can also print it for your vehicle or shop.')}</p>
   ${canFile ? `<button class="pri" onclick="bcShare()">↗ ${t('Share කරන්න (WhatsApp / Facebook)', 'Share (WhatsApp / Facebook)')}</button>` : ''}
   <button class="${canFile ? 'sec' : 'pri'}" style="width:100%;margin-top:8px" onclick="bcSave()">⬇ ${t('පින්තූරය බාගන්න', 'Download picture')}</button>
   <button class="sec" style="width:100%;margin-top:8px" onclick="cl()">${t('වසන්න', 'Close')}</button>`;
 }
+async function bcPick(k, first) {
+  const card = BC.cards && BC.cards[k]; if (!card) return;
+  BC.style = k; BC.url = card.url; BC.blob = null;
+  try { localStorage.setItem('wl_bcstyle', k); } catch (e) { }
+  const tb = $('#bct'); if (tb) tb.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === k));
+  const v = $('#bcv'); if (v) v.innerHTML = `<img alt="${t('ඩිජිටල් කාඩ්පත', 'Digital business card')}" src="${card.url}">`;
+  BC.blob = await new Promise(r => { try { card.c.toBlob(r, 'image/png'); } catch (e) { r(null); } });
+}
 function bcSave() {
   if (!BC.url) return;
-  const a = document.createElement('a'); a.href = BC.blob ? URL.createObjectURL(BC.blob) : BC.url; a.download = BC.name || 'workline-card.png';
+  const a = document.createElement('a'); a.href = BC.blob ? URL.createObjectURL(BC.blob) : BC.url; a.download = (BC.name || 'workline-card') + '-' + (BC.style || 'card') + '.png';
   document.body.appendChild(a); a.click(); a.remove(); if (BC.blob) setTimeout(() => URL.revokeObjectURL(a.href), 4000);
   toast(t('කාඩ්පත බාගත විය — Gallery / Downloads බලන්න', 'Card saved — check your Gallery / Downloads'));
 }
 async function bcShare() {
   if (!BC.blob) return bcSave();
-  const w = myWorker(), f = new File([BC.blob], BC.name, { type: 'image/png' });
+  const w = myWorker(), f = new File([BC.blob], (BC.name || 'workline-card') + '-' + (BC.style || 'card') + '.png', { type: 'image/png' });
   try { await navigator.share({ files: [f], text: t('මාව Workline හි සොයාගන්න: ', 'Find me on Workline: ') + appLink({ w: w ? w.id : '' }) }); }
   catch (e) { if (e && e.name !== 'AbortError') bcSave(); }
 }
@@ -2535,6 +2707,25 @@ async function installApp() {
   else body = `${step(1, t('Chrome ඉහළ දකුණේ <b>⋮</b> (තිත් 3) ඔබන්න', 'Tap <b>⋮</b> (three dots) at the top right of Chrome'))}${step(2, t('<b>"Install app"</b> හෝ <b>"Add to Home screen"</b> තෝරන්න', 'Choose <b>"Install app"</b> or <b>"Add to Home screen"</b>'))}${step(3, t('<b>"Install"</b> ඔබන්න — Workline icon එක ෆෝන් එකේ පෙනේවි', 'Tap <b>"Install"</b> — the Workline icon appears on your phone'))}`;
   sheet(`<div style="text-align:center"><img src="${ICON192}" alt="" width="72" height="72" style="border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.18)"><h2 style="margin:10px 0 4px">${t('Workline ඇප් එක ලෙස දාගන්න', 'Add Workline as an app')}</h2><p class="sub" style="margin:0">${t('නොමිලේ · ඉඩ ඉතා අඩුයි · Play Store අවශ්‍ය නැහැ', 'Free · tiny · no Play Store needed')}</p></div><div class="box" style="margin-top:12px">${body}</div><button class="pri" onclick="cl()">${t('හරි', 'OK')}</button>`);
 }
+
+/* ---------- admin announcements: banner + maintenance notice ---------- */
+const annNow = () => { const a = (S.settings || {}).announce || {}; if (!a.active || !String(a.text || '').trim()) return null; if (a.until && new Date(a.until) < new Date()) return null; return a; };
+const annHidden = id => { try { return localStorage.getItem('wl_ann_x') === String(id); } catch (e) { return false; } };
+function renderAnn() {
+  const el = $('#ann'), ov = $('#maintov'); if (!el || !ov) return;
+  const a = annNow(), typ = a && ['info', 'warn', 'maint'].includes(a.type) ? a.type : 'info';
+  const until = a && a.until ? fmtDT(a.until) : '';
+  const block = !!(a && typ === 'maint' && a.block && !(S.me && S.me.isAdmin));
+  ov.hidden = !block;
+  if (block) ov.innerHTML = `<div style="max-width:380px"><div style="font-size:54px">🛠️</div><h2 style="margin:8px 0">${t('පද්ධතිය යාවත්කාලීන කරමින්', 'We are updating Workline')}</h2><p class="sub" style="font-size:15px;white-space:pre-line">${esc(a.text)}</p>${until ? `<p class="sub">${t('නැවත සක්‍රීය වන්නේ', 'Back at about')}: <b>${esc(until)}</b></p>` : ''}<button class="pri" style="margin-top:14px" onclick="location.reload()">${t('නැවත උත්සාහ කරන්න', 'Try again')}</button></div>`;
+  if (!a || block || (typ !== 'maint' && annHidden(a.id))) { el.innerHTML = ''; return; }
+  const ic = { info: '📢', warn: '⚠️', maint: '🛠️' }[typ];
+  el.innerHTML = `<div class="ann ${typ}" role="status"><div style="font-size:20px;flex:none">${ic}</div><div style="min-width:0;white-space:pre-line">${esc(a.text)}${until ? `<div class="sub" style="font-size:12px;margin-top:2px">${typ === 'maint' ? t('අවසන් වන්නේ', 'Until') : t('වලංගු', 'Until')}: ${esc(until)}</div>` : ''}</div>${typ !== 'maint' ? `<button class="x" aria-label="${t('වසන්න', 'Close')}" onclick="try{localStorage.setItem('wl_ann_x','${esc(String(a.id || ''))}')}catch(e){};renderAnn()">✕</button>` : ''}</div>`;
+}
+async function refreshSettings() { if (S.mode !== 'cloud' || !CloudDB.sb) return; try { await CloudDB._settings(); renderAnn(); } catch (e) { } }
+setInterval(() => { if (document.visibilityState === 'visible') refreshSettings(); }, 120000);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') refreshSettings(); });
+
 /* ---------- notification sound: a soft, bright two-note chime (made in the browser — no sound file) ---------- */
 const SND = { ctx: null, last: null, chatHeard: {} };
 const soundOn = () => { try { return localStorage.getItem('wl_sound') !== 'off'; } catch (e) { return true; } };
@@ -2780,6 +2971,7 @@ function notifText(n) {
     request_active: [t('ඔබේ ඉල්ලීම අනුමත විය ✓', 'Your request was approved ✓'), d.sent ? t(`ගැළපෙන වෘත්තිකයන් ${d.sent} දෙනෙකුට දැනුම් දුන්නා.`, `${d.sent} matching professionals were notified.`) : t('දැන් සියලු වෘත්තිකයන්ට පෙනේ. ප්‍රතිචාරයක් ආ විට දැනුම් දෙනවා.', 'It is now visible to all professionals. You will be notified when someone answers.')],
     request_rejected: [t('ඔබේ ඉල්ලීම ප්‍රතික්ෂේප විය', 'Your request was rejected'), (d.note || '') + t(' · නිවැරදි කර නැවත සුරකින්න.', ' · Fix it and save again.')],
     request_hidden: [t('ඔබේ ඉල්ලීම සඟවා ඇත', 'Your request was hidden'), d.note || ''],
+    broadcast: ['📢 ' + (d.title || t('නිවේදනයක්', 'Announcement')), d.body || ''],
     admin_pending: [t('🛡️ අනුමැතියට නව ', '🛡️ Waiting for approval: ') + ({ worker: t('ප්‍රොෆයිලයක්', 'profile'), job: t('රැකියා දැන්වීමක්', 'job ad'), request: t('වැඩ ඉල්ලීමක්', 'job request') }[d.type] || t('දැන්වීමක්', 'listing')) + (d.edited ? t(' (වෙනස් කළ)', ' (edited)') : ''), (d.name ? d.name + ' — ' : '') + t('Admin panel එකෙන් පරීක්ෂා කර අනුමත කරන්න.', 'Review it in the admin panel.')],
     push_test: [t('🔔 පරීක්ෂණ දැනුම්දීමක්', '🔔 Test notice'), t('දුරකථන දැනුම්දීම් හරියට වැඩ කරනවා ✓', 'Phone notifications work ✓')],
     referral: [t('Referral තෑග්ග', 'Referral reward'), t(`දැන්වීම දින ${d.days}ක් ඉහළින් පෙන්වයි.`, `Your listing is featured for ${d.days} days.`)]
@@ -2803,6 +2995,7 @@ function notifGo(id) {
   const n = S.notifications.find(x => x.id === id); if (!n) return;
   if (n.kind === 'msg') return openThread(n.ref);
   if (/^proposal/.test(n.kind)) return;
+  if (n.kind === 'broadcast') return;
   if (n.kind === 'admin_pending') return toast(t('Admin panel එක විවෘත කර අනුමත කරන්න', 'Open the admin panel to review it'), 3600);
   if (n.kind === 'request_new') { const open = () => { if ((S.requests || []).some(r => r.id === n.ref && rqLive(r))) rqView(n.ref); else openRqBoard(1); }; if (S.mode === 'cloud') DB.reload(['requests', 'request_responses']).catch(() => { }).then(open); else open(); return; }
   if (/^request_/.test(n.kind)) { const done = () => { UI.tab = 'my'; go(); const e = $('#rqo_' + n.ref); if (e) e.scrollIntoView({ block: 'start', behavior: 'smooth' }); else scrollTo(0, 0); }; if (S.mode === 'cloud') DB.reload(['requests', 'request_responses', 'workers']).catch(() => { }).then(done); else done(); return; }
@@ -4760,6 +4953,7 @@ function renderNav() {
   soundCheck();
 }
 function renderTop() {
+  renderAnn();
   const lb = $('#lb'); if (lb) lb.textContent = LANG === 'si' ? 'EN' : 'සිං';
   const lv = $('#live'); if (lv) { lv.textContent = S.mode === 'cloud' ? '' : offlineLive() ? '● OFFLINE' : '● DEMO'; lv.style.color = '#E8590C'; }
   const ac = $('#acct');
