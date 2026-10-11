@@ -548,6 +548,28 @@ const CATS = [
     ['qs', 'ප්‍රමාණ සමීක්ෂක (QS)', 'Quantity Surveyor', 'quantity surveyor|qs'],
     ['recruiter', 'බඳවා ගැනීම් නිලධාරී', 'Recruiter', 'recruiter|recruitment|බඳවා ගැනීම්'],
     ['hr_assist', 'HR සහායක', 'HR Assistant', 'hr|human resource']
+  ]},
+  { id: 'other', si: 'වෙනත් වෘත්තීන්', en: 'Other Services', subs: [
+    ['goldsmith', 'රන්කරු / ස්වර්ණාභරණ', 'Goldsmith / Jewellery', 'රන්කරු|ස්වර්ණාභරණ|jewellery|jewelry|goldsmith|රන් බඩු|ආභරණ සෑදීම'],
+    ['watch_repair', 'ඔරලෝසු අලුත්වැඩියා', 'Watch Repair', 'ඔරලෝසු|watch repair|clock repair|බිත්ති ඔරලෝසු'],
+    ['upholstery', 'සෝෆා සහ කුෂන් වැඩ', 'Upholstery', 'සෝෆා|කුෂන්|upholstery|sofa repair|seat cover|සීට් කවර්'],
+    ['furniture_polish', 'ලී බඩු ඔප දැමීම', 'Furniture Polishing', 'french polish|furniture polish|ලී ඔප|වානිෂ්|ලී බඩු ඔප'],
+    ['curtains', 'තිර රෙදි සහ බ්ලයින්ඩ්ස්', 'Curtains & Blinds', 'තිර රෙදි|curtain|blinds|කර්ටන්'],
+    ['signboards', 'නාම පුවරු', 'Signboards', 'නාම පුවරු|signboard|name board|sign board|ලයිට් බෝඩ්'],
+    ['screen_print', 'ස්ක්‍රීන් ප්‍රින්ට් සහ ටී ෂර්ට්', 'Screen & T-shirt Printing', 'screen printing|t-shirt printing|ටීෂර්ට් මුද්‍රණ|sublimation|mug printing'],
+    ['bag_umbrella', 'බෑග් සහ කුඩ අලුත්වැඩියා', 'Bag & Umbrella Repair', 'බෑග්|කුඩ|bag repair|umbrella repair|zip repair'],
+    ['gas_cooker', 'ගෑස් කුකර් අලුත්වැඩියා', 'Gas Cooker Repair', 'ගෑස් කුකර්|gas cooker|gas stove|ගෑස් ලිප|gas repair'],
+    ['vehicle_rental', 'වාහන කුලියට දීම', 'Vehicle Rental', 'vehicle rental|car rental|rent a car|වාහන කුලියට|wedding car|වෙඩින් කාර්'],
+    ['tent_rental', 'කූඩාරම් සහ පුටු කුලියට', 'Tents & Chairs for Hire', 'කූඩාරම්|tent|chairs for hire|පුටු කුලියට|shamiyana|ෂාමියානා'],
+    ['astrology', 'ජ්‍යොතිෂ සේවා', 'Astrology', 'ජ්‍යොතිෂ|පේන|හඳහන|astrology|horoscope|astrologer'],
+    ['funeral', 'අවමංගල්‍ය සේවා', 'Funeral Services', 'අවමංගල්‍ය|funeral|මල ශාලා|funeral parlour'],
+    ['scrap', 'පරණ බඩු සහ යකඩ එකතු කිරීම', 'Scrap Collection', 'පරණ බඩු|scrap|old iron|recycling|ප්‍රතිචක්‍රීකරණ'],
+    ['swimming', 'පිහිනුම් උපදේශක', 'Swimming Instructor', 'පිහිනුම්|swimming|swimming lessons'],
+    ['mehendi', 'මෙහෙන්දි කලාව', 'Mehendi Art', 'මෙහෙන්දි|mehendi|henna|හෙනා'],
+    ['writing', 'ලිපි සහ අන්තර්ගත ලිවීම', 'Content Writing', 'content writing|copywriting|article writing|ලිපි ලිවීම'],
+    ['voice_over', 'හඬ කැවීම', 'Voice Over', 'හඬ කැවීම|voice over|voice artist|dubbing'],
+    ['mattress', 'මෙට්ට සහ කොට්ට', 'Mattresses & Pillows', 'මෙට්ට|කොට්ට|mattress|pillow'],
+    ['other_misc', 'වෙනත් සේවා (විස්තරයේ ලියන්න)', 'Other Services (describe it)', 'වෙනත් සේවා|other service|other services|misc|miscellaneous']
   ]}
 ];
 /* sub-fields that were split into separate names (v3) — kept for reference; the database add-on
@@ -2513,6 +2535,44 @@ async function installApp() {
   else body = `${step(1, t('Chrome ඉහළ දකුණේ <b>⋮</b> (තිත් 3) ඔබන්න', 'Tap <b>⋮</b> (three dots) at the top right of Chrome'))}${step(2, t('<b>"Install app"</b> හෝ <b>"Add to Home screen"</b> තෝරන්න', 'Choose <b>"Install app"</b> or <b>"Add to Home screen"</b>'))}${step(3, t('<b>"Install"</b> ඔබන්න — Workline icon එක ෆෝන් එකේ පෙනේවි', 'Tap <b>"Install"</b> — the Workline icon appears on your phone'))}`;
   sheet(`<div style="text-align:center"><img src="${ICON192}" alt="" width="72" height="72" style="border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.18)"><h2 style="margin:10px 0 4px">${t('Workline ඇප් එක ලෙස දාගන්න', 'Add Workline as an app')}</h2><p class="sub" style="margin:0">${t('නොමිලේ · ඉඩ ඉතා අඩුයි · Play Store අවශ්‍ය නැහැ', 'Free · tiny · no Play Store needed')}</p></div><div class="box" style="margin-top:12px">${body}</div><button class="pri" onclick="cl()">${t('හරි', 'OK')}</button>`);
 }
+/* ---------- notification sound: a soft, bright two-note chime (made in the browser — no sound file) ---------- */
+const SND = { ctx: null, last: null, chatHeard: {} };
+const soundOn = () => { try { return localStorage.getItem('wl_sound') !== 'off'; } catch (e) { return true; } };
+function audioUnlock() {   /* phones only allow sound after the first tap on the page */
+  try { if (!SND.ctx) SND.ctx = new (window.AudioContext || window.webkitAudioContext)(); if (SND.ctx.state === 'suspended') SND.ctx.resume(); } catch (e) { }
+}
+['pointerdown', 'keydown', 'touchstart'].forEach(ev => document.addEventListener(ev, audioUnlock, { passive: true }));
+function chime(force) {
+  if (!force && !soundOn()) return;
+  try {
+    audioUnlock(); const c = SND.ctx; if (!c || c.state !== 'running') return;
+    const t0 = c.currentTime + .02, out = c.createGain(); out.gain.value = .32; out.connect(c.destination);
+    [[1046.5, 0], [1567.98, .13]].forEach(([f, d]) => {
+      [[1, 1], [2, .18], [3, .06]].forEach(([h, amp]) => {   /* a bell-like tone: the note plus soft overtones */
+        const o = c.createOscillator(), g = c.createGain();
+        o.type = 'sine'; o.frequency.value = f * h;
+        g.gain.setValueAtTime(0, t0 + d); g.gain.linearRampToValueAtTime(amp, t0 + d + .008); g.gain.exponentialRampToValueAtTime(.0008, t0 + d + (h === 1 ? .9 : .35));
+        o.connect(g); g.connect(out); o.start(t0 + d); o.stop(t0 + d + 1);
+      });
+    });
+    if (navigator.vibrate) try { navigator.vibrate([90, 60, 90]); } catch (e) { }
+  } catch (e) { }
+}
+/* called whenever the bottom bar is redrawn: a NEW unread notice / chat → chime */
+function soundCheck() {
+  if (!S.me || S.booting) { SND.last = null; return; }
+  if (SND.last == null) SND.last = Date.now() - 120000;   /* only things that arrive from now on (not old unread ones) */
+  let newest = 0;
+  S.notifications.forEach(x => { if (x.user_id === S.me.id && !x.read) newest = Math.max(newest, tsOf(x.created_at)); });
+  myThreads().forEach(th => { const m = CHAT.latest[th.id]; if (m && m.sender_id !== S.me.id && threadUnread(th)) newest = Math.max(newest, tsOf(m.created_at)); });
+  if (newest > SND.last) { SND.last = newest; chime(); }
+}
+function soundToggle() {
+  try { localStorage.setItem('wl_sound', soundOn() ? 'off' : 'on'); } catch (e) { }
+  if (soundOn()) chime(true);
+  toast(soundOn() ? t('🔔 නාදය සක්‍රීයයි', '🔔 Sound on') : t('🔕 නාදය නිහඬයි', '🔕 Sound off')); go();
+}
+
 /* ---------- phone notifications (Web Push — free, no APK) ---------- */
 const PUSH = { sub: null, checked: false };
 const pushKey = () => String(((S.settings || {}).push || {}).public_key || '');
@@ -2659,6 +2719,7 @@ function my() {
   <div class="st"><div><b>${m.views || 0}</b>${t('නැරඹීම්', 'Views')}</div><div><b>${m.calls || 0}</b>${t('ඇමතුම්', 'Calls')}</div><div><b>${Number(m.rating || 0).toFixed(1)}</b>${t('ඇගයීම', 'Rating')}</div></div>${boostLine(m)}</div>
   ${trustBox(m.verif, DOCS_W, 1, `docUp('worker','${m.id}',`, 'worker', m.id)}` : `<div class="box" style="text-align:center"><p class="sub" style="margin:0 0 12px">${t('ඔබට තවම දැන්වීමක් නැත. වෘත්තීය ප්‍රොෆයිලයක් හෝ රැකියා දැන්වීමක් නොමිලේ පළ කරන්න.', 'You have no listing yet. Post a professional profile or a job ad for free.')}</p><button class="pri" onclick="startReg()">+ ${t('නොමිලේ පළ කරන්න', 'Post for free')}</button></div>`}
   ${pushBox(false)}
+  <div class="box" style="padding:12px 16px;display:flex;gap:10px;align-items:center;justify-content:space-between"><span>${soundOn() ? '🔔' : '🔕'} <b>${t('නව පණිවිඩ / දැනුම්දීම් නාදය', 'Sound for new messages / notices')}</b></span><span style="display:flex;gap:6px;flex:none"><button class="sec" style="min-height:40px;padding:0 12px;font-size:13px" onclick="chime(true)" aria-label="${t('අහලා බලන්න', 'Play')}">▶</button><button class="sec" style="min-height:40px;font-size:13px" onclick="soundToggle()">${soundOn() ? t('නිහඬ කරන්න', 'Mute') : t('සක්‍රීය කරන්න', 'Turn on')}</button></span></div>
   ${rqMyHtml()}
   ${m ? `<h2>${t('මගේ ප්‍රොෆයිලය', 'My profile')}</h2>${card(m, 1)}` : ''}
   ${m ? `<button class="pri" style="margin-bottom:8px;background:linear-gradient(90deg,#5B5BFF,#C2399E)" onclick="bizCard()">🪪 ${t('මගේ ඩිජිටල් කාඩ්පත — Status එකට දාන්න', 'My digital card — post it on Status')}</button>` : ''}
@@ -2719,6 +2780,7 @@ function notifText(n) {
     request_active: [t('ඔබේ ඉල්ලීම අනුමත විය ✓', 'Your request was approved ✓'), d.sent ? t(`ගැළපෙන වෘත්තිකයන් ${d.sent} දෙනෙකුට දැනුම් දුන්නා.`, `${d.sent} matching professionals were notified.`) : t('දැන් සියලු වෘත්තිකයන්ට පෙනේ. ප්‍රතිචාරයක් ආ විට දැනුම් දෙනවා.', 'It is now visible to all professionals. You will be notified when someone answers.')],
     request_rejected: [t('ඔබේ ඉල්ලීම ප්‍රතික්ෂේප විය', 'Your request was rejected'), (d.note || '') + t(' · නිවැරදි කර නැවත සුරකින්න.', ' · Fix it and save again.')],
     request_hidden: [t('ඔබේ ඉල්ලීම සඟවා ඇත', 'Your request was hidden'), d.note || ''],
+    admin_pending: [t('🛡️ අනුමැතියට නව ', '🛡️ Waiting for approval: ') + ({ worker: t('ප්‍රොෆයිලයක්', 'profile'), job: t('රැකියා දැන්වීමක්', 'job ad'), request: t('වැඩ ඉල්ලීමක්', 'job request') }[d.type] || t('දැන්වීමක්', 'listing')) + (d.edited ? t(' (වෙනස් කළ)', ' (edited)') : ''), (d.name ? d.name + ' — ' : '') + t('Admin panel එකෙන් පරීක්ෂා කර අනුමත කරන්න.', 'Review it in the admin panel.')],
     push_test: [t('🔔 පරීක්ෂණ දැනුම්දීමක්', '🔔 Test notice'), t('දුරකථන දැනුම්දීම් හරියට වැඩ කරනවා ✓', 'Phone notifications work ✓')],
     referral: [t('Referral තෑග්ග', 'Referral reward'), t(`දැන්වීම දින ${d.days}ක් ඉහළින් පෙන්වයි.`, `Your listing is featured for ${d.days} days.`)]
   };
@@ -2741,6 +2803,7 @@ function notifGo(id) {
   const n = S.notifications.find(x => x.id === id); if (!n) return;
   if (n.kind === 'msg') return openThread(n.ref);
   if (/^proposal/.test(n.kind)) return;
+  if (n.kind === 'admin_pending') return toast(t('Admin panel එක විවෘත කර අනුමත කරන්න', 'Open the admin panel to review it'), 3600);
   if (n.kind === 'request_new') { const open = () => { if ((S.requests || []).some(r => r.id === n.ref && rqLive(r))) rqView(n.ref); else openRqBoard(1); }; if (S.mode === 'cloud') DB.reload(['requests', 'request_responses']).catch(() => { }).then(open); else open(); return; }
   if (/^request_/.test(n.kind)) { const done = () => { UI.tab = 'my'; go(); const e = $('#rqo_' + n.ref); if (e) e.scrollIntoView({ block: 'start', behavior: 'smooth' }); else scrollTo(0, 0); }; if (S.mode === 'cloud') DB.reload(['requests', 'request_responses', 'workers']).catch(() => { }).then(done); else done(); return; }
   if (/^listing_/.test(n.kind) && S.mode === 'cloud') { DB.reload(['workers', 'jobs']).catch(() => { }).then(() => { UI.tab = 'my'; go(); scrollTo(0, 0); }); return; }
@@ -3277,7 +3340,11 @@ async function chatLoad() {
     if (!CHAT.th || CHAT.th.id !== th.id) return;
     chatRender(l);
     const last = l[l.length - 1];
-    if (last) { CHAT.latest[th.id] = last; setRead(th.id, last.created_at); }
+    if (last) {
+      if (SND.chatHeard[th.id] && last.id !== SND.chatHeard[th.id] && S.me && last.sender_id !== S.me.id) chime();
+      SND.chatHeard[th.id] = last.id;
+      CHAT.latest[th.id] = last; setRead(th.id, last.created_at);
+    }
     renderNav();
   } catch (e) { console.warn(e); }
 }
@@ -4690,6 +4757,7 @@ function renderNav() {
   n.innerHTML = TABS().map(([k, l]) => k === 'reg'
     ? `<button class="plus" aria-label="${t('නොමිලේ පළ කරන්න', 'Post for free')}" onclick="startReg()">+</button>`
     : `<button class="${UI.tab === k ? 'on' : ''}${(k === 'nt' && unreadCount()) || (k === 'msgs' && unreadChats()) ? ' dn' : ''}" ${UI.tab === k ? 'aria-current="page"' : ''} onclick="navGo('${k}')">${ICONS[k] || ''}<span>${l}</span></button>`).join('');
+  soundCheck();
 }
 function renderTop() {
   const lb = $('#lb'); if (lb) lb.textContent = LANG === 'si' ? 'EN' : 'සිං';
