@@ -169,6 +169,9 @@ a.sec,a.pri{display:inline-flex;align-items:center;justify-content:center;text-d
 @media (max-width:389px){.top h1{font-size:16px;letter-spacing:.08em}h1 .lgm{height:22px!important;margin-right:5px!important}.hbtn{padding:0 10px}.live{font-size:10px}}h1 .lgm{height:28px;width:auto;margin-right:8px;letter-spacing:0}
 .inst{display:flex;gap:12px;align-items:center;padding:12px 14px;border:1.5px solid var(--ac)}.inst img{width:46px;height:46px;border-radius:12px;flex:none;box-shadow:0 4px 12px rgba(0,0,0,.15)}.inst .x{flex:none;width:36px;height:36px;border-radius:18px;background:var(--bg)}.rqrow .rqb{flex:1}
 .ch.rqb{min-height:0;padding:14px 18px;margin-bottom:12px;border:1.5px solid var(--ac);background:linear-gradient(135deg,rgba(91,91,255,.10),rgba(255,79,216,.08)),var(--card)}
+.ch.rqb.hot{border:0;color:#fff;background:linear-gradient(120deg,#FF3D6E,#FF8A00,#FF3D6E);background-size:220% 100%;animation:hotbg 4s ease-in-out infinite;box-shadow:0 10px 30px rgba(255,80,60,.35)}.ch.rqb.hot .sub{color:#fff;opacity:.95}@keyframes hotbg{50%{background-position:100% 0}}
+.nhot{border:2px solid #FF6A3D!important;background:linear-gradient(135deg,rgba(255,61,110,.10),rgba(255,138,0,.10)),var(--card)!important}.nhot .hotb{display:inline-block;margin-left:6px;padding:2px 10px;border-radius:12px;background:linear-gradient(90deg,#FF3D6E,#FF8A00);color:#fff;font-size:11.5px;font-weight:800}
+@media (prefers-reduced-motion:reduce){.ch.rqb.hot{animation:none}}
 .ch.rqb b{font-size:15.5px}.ch.rqb .sub{font-size:12.5px;margin-top:2px}
 .ch.rqb2{flex:none;width:92px;min-height:0;padding:12px 8px;margin-bottom:12px;text-align:center}.ch.rqb2 b{display:block;font:800 22px Sora;color:var(--ac)}.ch.rqb2 .sub{font-size:11.5px;line-height:1.3}
 .top{padding:2px 4px 6px}
@@ -426,7 +429,7 @@ const CATS = [
     ['sweets', 'රසකැවිලි', 'Sweets', 'රසකැවිලි|කැවිලි|confectionery|sweets'],
     ['catering', 'කේටරින්', 'Catering', 'catering|caterer|buffet|ආහාර සැපයීම|උත්සව ආහාර'],
     ['waiter', 'වේටර්', 'Waiter', 'waiter|steward|රූම් බෝයි|server'],
-    ['hotel_staff', 'හෝටල් සේවක', 'Hotel Staff', 'hotel|resort|හෝටල්|ආපනශාලා|restaurant staff|hotel housekeeping|රිසෝට්'],
+    ['hotel_staff', 'හෝටල් කාර්ය මණ්ඩලය', 'Hotel Staff', 'හෝටල් සේවක|hotel|resort|හෝටල්|ආපනශාලා|restaurant staff|hotel housekeeping|රිසෝට්'],
     ['home_food', 'ගෘහස්ථ ආහාර නිෂ්පාදන', 'Home-made Food Products', 'home food|ගෘහස්ථ|කෑම පැකට්|lunch packet|ලන්ච් පැකට්|කෑම සැපයීම|short eats'],
     ['barista', 'බාරිස්ටා', 'Barista', 'barista|coffee|කෝපි'],
     ['beverages', 'පාන වර්ග සකසන්නා', 'Beverage Maker', 'juice|ජූස්|tea shop|තේ සාප්පුව|පාන වර්ග']
@@ -555,6 +558,18 @@ const CATS = [
     ['recruiter', 'බඳවා ගැනීම් නිලධාරී', 'Recruiter', 'recruiter|recruitment|බඳවා ගැනීම්'],
     ['hr_assist', 'HR සහායක', 'HR Assistant', 'hr|human resource']
   ]},
+  { id: 'support', si: 'සහාය සේවා වෘත්තිකයන්', en: 'Support Service Professionals', subs: [
+    ['any_work', 'ඕනෑම වැඩක් කිරීමට සූදානම්', 'Ready for Any Work', 'ඕනෑම වැඩක්|ඕන වැඩක්|any work|any job|anything'],
+    ['general_helper', 'සාමාන්‍ය සහායක', 'General Helper', 'උදව්කරු|අත් උදව්|general helper|helping hand'],
+    ['event_helper', 'උත්සව සහායක', 'Event Helper', 'උත්සව සහායක|සාද උදව්|event helper|event staff|party helper'],
+    ['promoter', 'ප්‍රවර්ධන සහායක', 'Promoter', 'ප්‍රමෝෂන්|promoter|promotion girl|promotion boy|product sampling'],
+    ['errands', 'සුළු කටයුතු සහ පණිවිඩ', 'Errands & Runner', 'පණිවිඩ කටයුතු|බඩු ගෙනත් දීම|පෝලිම|errand|errands|runner'],
+    ['survey_field', 'සමීක්ෂණ සහ ක්ෂේත්‍ර වැඩ', 'Survey & Field Work', 'සමීක්ෂණ|ක්ෂේත්‍ර වැඩ|දත්ත එකතු|survey|field work|enumerator'],
+    ['online_pt', 'ඔන්ලයින් පාර්ට් ටයිම්', 'Online Part-time', 'ඔන්ලයින් පාර්ට් ටයිම්|ගෙදර ඉඳන්|work from home|online part time|remote work'],
+    ['weekend_pt', 'සති අන්ත වැඩ', 'Weekend Work', 'සති අන්ත වැඩ|weekend job|weekend work'],
+    ['student_pt', 'ශිෂ්‍ය පාර්ට් ටයිම්', 'Student Part-time', 'ශිෂ්‍ය|උසස් පෙළ|campus|student|student part time|undergraduate'],
+    ['temp_work', 'තාවකාලික සහ සෘතුමය වැඩ', 'Temporary & Seasonal Work', 'තාවකාලික|සෘතුමය|සීසන්|temporary|seasonal|short term']
+  ]},
   { id: 'other', si: 'වෙනත් වෘත්තීන්', en: 'Other Services', subs: [
     ['goldsmith', 'රන්කරු / ස්වර්ණාභරණ', 'Goldsmith / Jewellery', 'රන්කරු|ස්වර්ණාභරණ|jewellery|jewelry|goldsmith|රන් බඩු|ආභරණ සෑදීම'],
     ['watch_repair', 'ඔරලෝසු අලුත්වැඩියා', 'Watch Repair', 'ඔරලෝසු|watch repair|clock repair|බිත්ති ඔරලෝසු'],
@@ -676,7 +691,8 @@ function subMatches(id, qn) {
 const OPT = {
   lang: [['si', 'සිංහල', 'Sinhala'], ['ta', 'தமிழ்', 'Tamil'], ['en', 'English', 'English']],
   days: [['weekdays', 'සතියේ දින', 'Weekdays'], ['weekends', 'සති අන්ත', 'Weekends'], ['all', 'සෑම දිනම', 'Every day']],
-  radius: [['5', '5km', '5 km'], ['10', '10km', '10 km'], ['25', '25km', '25 km'], ['district', 'දිස්ත්‍රික්කය පුරා', 'Whole district']],
+  times: [['morning', 'උදේ', 'Morning'], ['daytime', 'දවල්', 'Daytime'], ['evening', 'සවස', 'Evening'], ['night', 'රාත්‍රී', 'Night'], ['weekend', 'සති අන්තයේ පමණි', 'Weekends only'], ['anytime', 'ඕනෑම වෙලාවක', 'Any time']],
+  radius: [['shop', 'මගේ සේවා ස්ථානයේ (කඩය / වැඩපොළ)', 'At my own place (shop / workplace)'], ['5', '5km', '5 km'], ['10', '10km', '10 km'], ['25', '25km', '25 km'], ['district', 'දිස්ත්‍රික්කය පුරා', 'Whole district'], ['island', 'ලංකාව පුරාම', 'Anywhere in Sri Lanka']],
   fee: [['day', 'දිනකට', 'Per day'], ['hour', 'පැයකට', 'Per hour'], ['job', 'වැඩයකට (කොන්ත්‍රාත්තු)', 'Per job (contract)'], ['month', 'මාසිකව', 'Monthly'], ['neg', 'සාකච්ඡා කර ගත හැක', 'Negotiable']],
   fac: [['tools', 'තමන්ගේ මෙවලම්', 'Own tools'], ['transport', 'ප්‍රවාහන පහසුකම්', 'Own transport'], ['receipt', 'රිසිට්පත් / ඉන්වොයිස් ලබාදේ', 'Provides receipts / invoices'], ['h24', 'හදිසි සේවා (24h)', 'Emergency service (24h)']],
   ben: [['epf', 'EPF / ETF', 'EPF / ETF'], ['food', 'ආහාර', 'Meals'], ['transport', 'ප්‍රවාහන', 'Transport'], ['lodging', 'නවාතැන්', 'Accommodation'], ['bonus', 'බෝනස් / දීමනා', 'Bonus / allowances'], ['training', 'පුහුණුව', 'Training']],
@@ -750,6 +766,9 @@ const dataUrlToBlob = d => { const [h, b] = d.split(','), m = /data:([^;]+)/.exe
 /* ---------- row factories (one place defines the shape of every row) ---------- */
 const newWorker = d => ({ id: uid(), owner_id: S.me ? S.me.id : '', name: '', phone: '', photos: [], category: 'construction', skills: [], district: 'colombo', town: '', coverage: 'district', areas: [], radius: '10', fee_type: 'neg', fee: '', bio: '', special: '', exp_years: 0, languages: ['si'], avail_days: 'all', facilities: [], img: '', gallery: [], available: true, status: 'active', rating: 0, rating_count: 0, views: 0, calls: 0, verif: [0, 0, 0, 0, 0], boost_until: null, referred_by: null, ref_rewarded: false, tc: '', created_at: nowIso(), updated_at: nowIso(), ...d });
 const jobSubs = j => expandSubs([j.sub, ...(Array.isArray(j.subs) ? j.subs : [])].filter(Boolean));
+/* every main field a post touches: its own + the fields of all chosen sub-fields */
+const postCats = (cat, subs) => [...new Set([cat, ...subs.map(id => TX.subs[id] && TX.subs[id].cat)].filter(Boolean))];
+const jobCats = j => postCats(j.category, jobSubs(j));
 const newJob = d => ({ id: uid(), owner_id: S.me ? S.me.id : '', title: '', kind: 'pt', category: 'construction', sub: '', subs: [], company: '', phone: '', district: 'colombo', town: '', salary: '', pay_type: 'day', hours: 'day', experience: '0', education: 'none', benefits: [], vacancies: 1, deadline: null, description: '', requirements: '', interview: '', logo: '', photos: [], active: true, status: 'active', verif: [0, 0, 0], boost_until: null, views: 0, tc: '', created_at: nowIso(), updated_at: nowIso(), ...d });
 
 /* ============================================================
@@ -819,6 +838,14 @@ const LocalDB = {
     if (table === 'requests' && row.status === 'active' && !row.notified) {   /* demo mirror of wl_adm_moderate_request */
       const to = [...new Set(S.workers.filter(w => rqMatches(row, w)).map(w => w.owner_id))].slice(0, 500);
       to.forEach(u => this._notify(u, 'request_new', row.id, { sub: rqSubs(row)[0] || '', category: row.category, district: row.district, town: row.town }));
+      row.notified = to.length;
+    }
+    if (table === 'jobs' && row.status === 'active' && !row.notified && jobOpen(row)) {   /* demo mirror of wl_x_job_alerts */
+      const subs = jobSubs(row), dayAgo = Date.now() - 864e5;
+      const to = [...new Set(S.workers.filter(w => workerLive(w) && w.available !== false && w.job_alerts !== false && w.owner_id !== row.owner_id
+        && (w.skills || []).some(x => subs.includes(x)) && (row.district === ISLAND || workerServes(w, row.district))).map(w => w.owner_id))]
+        .filter(u => S.notifications.filter(n => n.user_id === u && n.kind === 'job_new' && new Date(n.created_at) > dayAgo).length < 3).slice(0, 300);
+      to.forEach(u => this._notify(u, 'job_new', row.id, { title: row.title, kind: row.kind, sub: subs[0] || '', district: row.district, town: row.town }));
       row.notified = to.length;
     }
     if (table === 'verification_docs' && !prev) {
@@ -1046,7 +1073,7 @@ const CloudDB = {
     const send = r => (exists ? this.sb.from(TBL(table)).update(r).eq('id', r.id) : this.sb.from(TBL(table)).insert(r)).select().single();
     let { data, error } = await send(row);
     /* columns added by the admin add-on (subs, photos): if they are not installed yet, save without them */
-    for (const col of ['subs', 'photos', 'private']) {
+    for (const col of ['subs', 'photos', 'private', 'pref_times', 'job_alerts', 'notified']) {
       if (error && new RegExp("'" + col + "'|" + col + ' ').test(String(error.message)) && col in row) {
         if (col === 'private' && row.private) throw new Error('setup-needed');   /* never publish a private profile as a public one */
         row = { ...row }; delete row[col]; ({ data, error } = await send(row));
@@ -1549,13 +1576,13 @@ async function signOut() {
    40 — HOME: search, filters, cards, profile, apply, review, report
    ============================================================ */
 const KINDS = ['w', 'pt', 'ft', 'co'];
-const kindLabel = k => k === 'w' ? t('සේවකයන්', 'Workers') : optLabel(OPT.kind, k);
+const kindLabel = k => k === 'w' ? t('වෘත්තිකයන්', 'Professionals') : optLabel(OPT.kind, k);
 const myWorker = () => S.me ? S.workers.find(w => w.owner_id === S.me.id) : null;
 const myJobs = () => S.me ? S.jobs.filter(j => j.owner_id === S.me.id) : [];
 const isMine = r => !!(S.me && r && (r.owner_id === S.me.id));
 const subLabels = ids => (ids || []).map(subName).join(', ');
 const feeText = w => optLabel(OPT.fee, w.fee_type) + (w.fee ? ' · ' + w.fee : '');
-const areaText = w => w.coverage === 'island' ? distName(ISLAND) : w.coverage === 'districts' ? distName(w.district) + ' +' + (w.areas || []).length : distName(w.district);
+const areaText = w => w.coverage === 'island' ? distName(ISLAND) : w.coverage === 'districts' ? distName(w.district) + ' +' + (w.areas || []).length : w.radius === 'shop' ? '🏠 ' + (w.town ? w.town + ', ' : '') + distName(w.district) : distName(w.district);
 const statusTags = { w: [['වැඩ භාරගත හැක', 'Available for work'], ['දැන් වැඩ භාරගන්න බැහැ', 'Not taking work now']], pt: [['අද වැඩ තියෙනවා', 'Work available today'], ['අද වැඩ නැහැ', 'No work today']], ft: [['දැන් බඳවා ගන්නවා', 'Now recruiting'], ['බඳවා ගැනීම අවසන්', 'Recruitment closed']], co: [['දැන් බඳවා ගන්නවා', 'Now recruiting'], ['බඳවා ගැනීම අවසන්', 'Recruitment closed']] };
 /* green dot = can take work / open, red dot = busy / closed */
 const adot = (on, k) => { const L = statusTags[k], p = L[on ? 0 : 1]; return `<span class="adot ${on ? 'on' : 'off'}" title="${esc(t(p[0], p[1]))}"><i></i>${esc(t(p[0], p[1]))}</span>`; };
@@ -1580,8 +1607,8 @@ function wHay(w) {
   return norm([w.name, w.town, w.bio, c.si, c.en, subs, d].join(' '));
 }
 function jHay(j) {
-  const c = TX.cats[j.category] || { si: '', en: '' }, rs = jobSubs(j).map(id => TX.subs[id]).filter(Boolean);
-  return norm([j.title, j.company, j.town, j.description, c.si, c.en, rs.map(r => [r.si, r.en, ...r.aliases].join(' ')).join(' '), DISTRICTS[j.district] ? DISTRICTS[j.district].join(' ') : (j.district === ISLAND ? 'දිවයිනේ ඕනෑම තැනක anywhere island wide' : '')].join(' '));
+  const cs = jobCats(j).map(id => TX.cats[id]).filter(Boolean), rs = jobSubs(j).map(id => TX.subs[id]).filter(Boolean);
+  return norm([j.title, j.company, j.town, j.description, cs.map(c => c.si + ' ' + c.en).join(' '), rs.map(r => [r.si, r.en, ...r.aliases].join(' ')).join(' '), DISTRICTS[j.district] ? DISTRICTS[j.district].join(' ') : (j.district === ISLAND ? 'දිවයිනේ ඕනෑම තැනක anywhere island wide' : '')].join(' '));
 }
 const termsOf = q => String(q || '').trim().split(/\s+/).map(norm).filter(Boolean);
 const workerServes = (w, d) => !d || (d === ISLAND ? w.coverage === 'island' : (w.district === d || w.coverage === 'island' || (w.coverage === 'districts' && (w.areas || []).includes(d))));
@@ -1630,7 +1657,7 @@ function wf() {
 }
 function jf() {
   const tm = termsOf(UI.q);
-  const out = S.jobs.filter(j => j.status === 'active' && j.kind === UI.hs && (!UI.cat || j.category === UI.cat) && (!UI.sub || jobSubs(j).includes(UI.sub)) && jobIn(j, UI.dist) && (!tm.length || (h => tm.every(x => h.includes(x)))(jHay(j))));
+  const out = S.jobs.filter(j => j.status === 'active' && j.kind === UI.hs && (!UI.cat || jobCats(j).includes(UI.cat)) && (!UI.sub || jobSubs(j).includes(UI.sub)) && jobIn(j, UI.dist) && (!tm.length || (h => tm.every(x => h.includes(x)))(jHay(j))));
   return fairOrder(out, 'j');
 }
 
@@ -1649,6 +1676,7 @@ function card(w, own) {
   ${own ? modBox(w) : ''}
   ${own ? `<div class="sub">${t('ඔබට පමණක් සංස්කරණය කළ හැක', 'Only you can edit this')} · 👁 ${w.views || 0} · 📞 ${w.calls || 0} · 💬 ${listingChats(w.id)}</div>
   <div class="acts"><button onclick="ed('${w.id}')">${t('සංස්කරණය', 'Edit')}</button><button onclick="tgl('${w.id}')">${esc(t(...statusTags.w[w.available ? 1 : 0]))}</button></div>
+  <div class="acts"><button onclick="jat('${w.id}')" aria-pressed="${w.job_alerts !== false}">${w.job_alerts !== false ? t('🔔 ගැළපෙන රැකියා දැනුම්දීම්: ON', '🔔 Matching job notices: ON') : t('🔕 ගැළපෙන රැකියා දැනුම්දීම්: OFF', '🔕 Matching job notices: OFF')}</button></div>
   <div class="acts"><button onclick="payOpen('worker','${w.id}')">★ ${t('ප්‍රවර්ධනය', 'Boost')}</button><button onclick="del('${w.id}')">${t('මකන්න', 'Delete')}</button></div>`
     : `<div class="acts"><button onclick="prof('${w.id}')">${t('ප්‍රොෆයිල්', 'Profile')}</button><button onclick="ch('w','${w.id}')">Chat</button></div>
   <div class="acts"><button onclick="favT('w','${w.id}')" aria-pressed="${isFav('w', w.id)}">${isFav('w', w.id) ? '♥' : '♡'} ${t('සුරකින්න', 'Save')}</button><button onclick="rv('${w.id}')">${t('ඇගයීම', 'Review')}</button><button onclick="rp('w','${w.id}')">Report</button></div>`}</div></div>`;
@@ -1661,7 +1689,7 @@ function jcard(j, own) {
   <div class="sub"><b>${esc(j.salary)}</b> ${esc(optLabel(OPT.fee, j.pay_type))} ${boostTag(j)}</div><div style="margin-top:3px">${adot(on, j.kind)}</div></div>
   ${on && !own ? `<button class="call" aria-label="${t('අයදුම් කරන්න', 'Apply')}" onclick="event.stopPropagation();ap('${j.id}')">→</button>` : ''}</div>
   <div class="more"><div style="display:flex;gap:6px;flex-wrap:wrap">${tag(optLabel(OPT.kind, j.kind))}${stt(on, j.kind)}</div>
-  <div class="kv">${esc(catName(j.category))}</div><div class="wrapc">${jobSubs(j).map(x => tag(subName(x))).join('')}</div><div class="kv">${esc(j.description)}</div>
+  <div class="kv">${esc(jobCats(j).map(catName).join(' · '))}</div><div class="wrapc">${jobSubs(j).map(x => tag(subName(x))).join('')}</div><div class="kv">${esc(j.description)}</div>
   <div class="kv"><b>${t('ස්ථානය', 'Location')}:</b> ${esc((j.town ? j.town + ', ' : '') + distName(j.district))}</div>
   ${j.requirements ? `<div class="kv"><b>${t('විශේෂ අවශ්‍යතා', 'Requirements')}:</b> ${esc(j.requirements)}</div>` : ''}
   <div class="kv"><b>${t('සේවා වේලාව', 'Working hours')}:</b> ${esc(optLabel(OPT.hours, j.hours))}</div>
@@ -1672,6 +1700,7 @@ function jcard(j, own) {
   <div class="kv">${t('පුරප්පාඩු', 'Vacancies')}: <b>${j.vacancies}</b> · ${t('අවසන් දිනය', 'Deadline')}: <b>${esc(j.deadline || '—')}</b></div>
   ${(j.photos || []).length ? `<div class="gal">${j.photos.map(d => `<img alt="" ${imgSrcAttr(d, 'style="flex:none;width:100px;height:100px;object-fit:cover;border-radius:16px"')}>`).join('')}</div>` : ''}
   ${own ? modBox(j) : ''}
+  ${own && j.status === 'active' && j.notified > 0 ? `<div class="sub">🔔 ${t(`ගැළපෙන වෘත්තිකයන් ${j.notified} දෙනෙකුට දැනුම් දුන්නා`, `${j.notified} matching professionals were notified`)}</div>` : ''}
   ${own ? `<div class="sub">${t('ඔබට පමණක් සංස්කරණය කළ හැක', 'Only you can edit this')} · 👁 ${j.views || 0} · 💬 ${listingChats(j.id)}</div>
   <div class="acts"><button onclick="jed('${j.id}')">${t('සංස්කරණය', 'Edit')}</button><button onclick="tgj('${j.id}')">${esc(t(...statusTags[j.kind][j.active ? 1 : 0]))}</button></div>
   <div class="acts"><button onclick="payOpen('job','${j.id}')">★ ${t('ප්‍රවර්ධනය', 'Boost')}</button><button onclick="dj('${j.id}')">${t('මකන්න', 'Delete')}</button></div>`
@@ -1684,7 +1713,7 @@ function lh() {
   if (!list.length) {
     const filtered = UI.q || activeFilters();
     return `<div class="box empty"><div class="ic">${filtered ? '🔍' : KIND_TAB[UI.hs][0]}</div><h2 style="margin:10px 0 4px;font-size:16px">${filtered ? t('ගැළපෙන ප්‍රතිඵල නැත', 'No matching results') : UI.hs === 'w' ? t('තවම වෘත්තිකයන් ලියාපදිංචි වී නැත', 'No professionals listed yet') : t('දැනට මෙම වර්ගයේ රැකියා නැත', 'No jobs of this type right now')}</h2>
-    <p class="sub" style="margin:0 0 14px">${filtered ? t('වෙනත් වචනයක් හෝ පෙරහන් ඉවත් කර උත්සාහ කරන්න.', 'Try another word or clear the filters.') : UI.hs === 'w' ? t('ඔබ වෘත්තිකයෙක් නම්, පළමුවැන්නා වන්න — ප්‍රොෆයිලය නොමිලේ.', 'If you are a professional, be the first — your profile is free.') : t('ඔබ සේවකයන් බඳවා ගන්නේ නම්, රැකියාව නොමිලේ පළ කරන්න.', 'Hiring? Post your job for free.')}</p>
+    <p class="sub" style="margin:0 0 14px">${filtered ? t('වෙනත් වචනයක් හෝ පෙරහන් ඉවත් කර උත්සාහ කරන්න.', 'Try another word or clear the filters.') : UI.hs === 'w' ? t('ඔබ වෘත්තිකයෙක් නම්, පළමුවැන්නා වන්න — ප්‍රොෆයිලය නොමිලේ.', 'If you are a professional, be the first — your profile is free.') : t('ඔබ වෘත්තිකයන් බඳවා ගන්නේ නම්, රැකියාව නොමිලේ පළ කරන්න.', 'Hiring? Post your job for free.')}</p>
     ${filtered ? `<button class="sec" style="width:100%" onclick="clearFilters()">${t('පෙරහන් ඉවත් කරන්න', 'Clear filters')}</button>` : `<button class="pri" onclick="startReg()">+ ${UI.hs === 'w' ? t('ප්‍රොෆයිලයක් සාදන්න', 'Create a profile') : t('රැකියාවක් පළ කරන්න', 'Post a job')}</button>`}</div>`;
   }
   return html + `<p class="hint">${t(`${list.length}න් ${cut.length} පෙන්වයි`, `Showing ${cut.length} of ${list.length}`)}${UI.hs === 'w' ? t(' · විස්තර සඳහා කාඩ් එක ඔබන්න', ' · Tap a card for details') : ''}</p>` + (list.length > cut.length ? `<button class="sec" style="width:100%" onclick="UI.shown+=CFG.LIMITS.pageSize;lst()">${t('තවත් පෙන්වන්න', 'Show more')}</button>` : '');
@@ -1694,7 +1723,7 @@ let _qt = null;
 function onSearch(v) { UI.q = v; UI.shown = CFG.LIMITS.pageSize; clearTimeout(_qt); _qt = setTimeout(lst, 120); }
 function setF(k, v) { UI[k] = v; if (k === 'cat') UI.sub = ''; UI.shown = CFG.LIMITS.pageSize; UI.open = null; go(); }
 
-const KIND_TAB = { w: ['👷', 'සේවකයන්', 'Workers'], pt: ['⏱️', 'පාර්ට් ටයිම්', 'Part-time'], ft: ['💼', 'ස්ථිර රැකියා', 'Permanent'], co: ['🏢', 'ආයතනික', 'Corporate'] };
+const KIND_TAB = { w: ['👷', 'වෘත්තිකයන්', 'Professionals'], pt: ['⏱️', 'පාර්ට් ටයිම්', 'Part-time'], ft: ['💼', 'ස්ථිර රැකියා', 'Permanent'], co: ['🏢', 'ආයතනික', 'Corporate'] };
 const activeFilters = () => [UI.cat, UI.sub, UI.dist, UI.hs === 'w' && UI.avail, UI.sort !== 'best'].filter(Boolean).length;
 function clearFilters() { UI.q = ''; UI.cat = ''; UI.sub = ''; UI.dist = ''; UI.avail = false; UI.sort = 'best'; UI.shown = CFG.LIMITS.pageSize; go(); }
 function filterBox() {
@@ -1762,11 +1791,11 @@ function prof(id) {
   <div class="box"><b>${t('ගැන', 'About')}</b><p class="sub" style="margin:6px 0 8px">${esc(w.bio)}</p><div class="wrapc">${expandSubs(w.skills).map(k => tag(subName(k))).join('')}${(w.facilities || []).map(k => tag(optLabel(OPT.fac, k), 'var(--ac)')).join('')}</div></div>
   ${w.special ? `<div class="box"><b>${t('විශේෂ අවශ්‍යතා / කොන්දේසි', 'Special requirements / conditions')}</b><p class="sub" style="margin:6px 0 0">${esc(w.special)}</p></div>` : ''}
   ${trustBox(w.verif, DOCS_W, 0, '', 'worker', id)}
-  <div class="box"><div class="kv">${t('ගාස්තුව', 'Fee')}: <b>${esc(feeText(w))}</b></div><div class="kv">${t('භාෂා', 'Languages')}: <b>${esc((w.languages || []).map(l => optLabel(OPT.lang, l)).join(', '))}</b></div><div class="kv">${t('වැඩ කරන දින', 'Working days')}: <b>${esc(optLabel(OPT.days, w.avail_days))}</b></div><div class="kv">${t('සේවා ප්‍රදේශය', 'Service area')}: <b>${esc(areaText(w))}</b></div>${w.coverage === 'districts' ? `<div class="wrapc" style="margin-top:6px">${(w.areas || []).map(a => tag(distName(a))).join('')}</div>` : ''}${w.coverage === 'district' ? `<div class="kv">${t('ගමන් කරන දුර', 'Travel radius')}: <b>${esc(optLabel(OPT.radius, w.radius))}</b></div>` : ''}</div>
+  <div class="box"><div class="kv">${t('ගාස්තුව', 'Fee')}: <b>${esc(feeText(w))}</b></div><div class="kv">${t('භාෂා', 'Languages')}: <b>${esc((w.languages || []).map(l => optLabel(OPT.lang, l)).join(', '))}</b></div><div class="kv">${t('වැඩ කරන දින', 'Working days')}: <b>${esc(optLabel(OPT.days, w.avail_days))}</b></div>${(w.pref_times || []).length ? `<div class="kv">${t('කැමති වෙලාවන්', 'Preferred times')}: <b>${esc(w.pref_times.map(x => optLabel(OPT.times, x)).join(', '))}</b></div>` : ''}<div class="kv">${t('සේවා ප්‍රදේශය', 'Service area')}: <b>${esc(areaText(w))}</b></div>${w.coverage === 'districts' ? `<div class="wrapc" style="margin-top:6px">${(w.areas || []).map(a => tag(distName(a))).join('')}</div>` : ''}${w.coverage === 'district' ? `<div class="kv">${w.radius === 'shop' ? t('සේවා ස්ථානය', 'Workplace') : t('ගමන් කරන දුර', 'Travel radius')}: <b>${esc(optLabel(OPT.radius, w.radius))}</b></div>` : ''}</div>
   ${(w.gallery || []).length ? `<div class="box"><b>${t('වැඩ ගැලරිය', 'Work gallery')}</b><div class="gal" style="margin-top:10px">${w.gallery.map(d => `<img alt="${t('වැඩ ඡායාරූපය', 'Work photo')}" ${imgSrcAttr(d, 'onclick="zoomImg(this.src)" style="flex:none;width:120px;height:120px;object-fit:cover;border-radius:20px;cursor:zoom-in"')}>`).join('')}</div></div>` : ''}
   ${ratingBox(w, rvs)}
   <button class="sec" style="width:100%;margin-bottom:8px" onclick="rp('w','${w.id}')">${t('ගැටලුවක් වාර්තා කරන්න', 'Report a problem')}</button>
-  ${w.phone ? '' : `<div class="box" style="font-size:13px">🔒 ${t('මෙය රහස්‍ය ප්‍රොෆයිලයකි. දුරකථන අංකය පෞද්ගලිකයි — Chat කරන්න, නැත්නම් "📞 Call ඉල්ලන්න" ඔබා ඔබේ අංකය යවන්න; වෘත්තිකයා ඔබට call කරයි.', 'This is a private profile. The phone number is private — chat, or tap "📞 Ask for a call" to send your number; the professional will call you.')}</div>`}
+  ${w.phone ? '' : `<div class="box" style="font-size:13px">💬 ${t('දුරකථන අංකය දක්වා නැත — Chat කරන්න, නැත්නම් "📞 Call ඉල්ලන්න" ඔබා ඔබේ අංකය යවන්න; වෘත්තිකයා ඔබට call කරයි.', 'No phone number listed — chat, or tap "📞 Ask for a call" to send your number; the professional will call you.')}</div>`}
   <div class="fix">${w.phone ? `<a href="${esc(telHref(w.phone))}" class="pri" style="width:auto;flex:1.4" onclick="bump('workers','${w.id}','calls')">${t('අමතන්න', 'Call')}</a>${wa ? `<a class="sec" href="${esc(wa)}" target="_blank" rel="noopener" style="flex:1" onclick="noteContact('${w.id}')">WA</a>` : ''}<button class="sec" onclick="ch('w','${w.id}')">Chat</button>` : `<button class="pri" style="flex:1.2" onclick="ch('w','${w.id}')">💬 Chat</button><button class="sec" style="flex:1.4" onclick="callMe('${w.id}')">📞 ${t('Call ඉල්ලන්න', 'Ask for a call')}</button>`}<button class="sec" style="flex:0 0 46px" onclick="shr('${w.id}')" aria-label="${t('බෙදාගන්න', 'Share')}">↗</button><button class="sec" style="flex:0 0 46px" onclick="cl()" aria-label="${t('වසන්න', 'Close')}">✕</button></div></div>`);
 }
 function callMe(id) {
@@ -1827,7 +1856,7 @@ function rv(id) {
     RSV = 0; PHT.rv = [];
     sheet(`<h2 style="margin-top:0">${t('ඇගයීම් දෙන්න', 'Leave a review')}: ${esc(w.name)}</h2><div style="display:flex;justify-content:center">${[1, 2, 3, 4, 5].map(k => `<button class="sb" aria-label="${k}" onclick="RSV=${k};stp()">★</button>`).join('')}</div>
     <label for="rt1">${t('ඔබේ අදහස', 'Your comment')}</label><textarea class="in" id="rt1" maxlength="600"></textarea>${pk('rv', 1, t('ඡායාරූපයක් එක් කරන්න', 'Add a photo'))}
-    <label class="ck2"><input type="checkbox" id="c3"><span>${t('මම මේ සේවකයා සමඟ සැබවින්ම වැඩ කළා', 'I have genuinely worked with this person')}</span></label><button class="pri" style="margin-top:14px" onclick="rsv('${id}')">${t('ඇගයීම යවන්න', 'Submit review')}</button>`);
+    <label class="ck2"><input type="checkbox" id="c3"><span>${t('මම මේ වෘත්තිකයා සමඟ සැබවින්ම වැඩ කළා', 'I have genuinely worked with this person')}</span></label><button class="pri" style="margin-top:14px" onclick="rsv('${id}')">${t('ඇගයීම යවන්න', 'Submit review')}</button>`);
     stp();
   });
 }
@@ -1939,11 +1968,33 @@ function tileCount(cls, outId, max, ev) {
 }
 const subOptions = (cat, v) => (TX.cats[cat] ? TX.cats[cat].subs : []).map(id => `<option value="${id}" ${id === v ? 'selected' : ''}>${esc(subName(id))}</option>`).join('');
 function skr() { const keep = checked('sk'), c = $('#wc').value; $('#sks').innerHTML = skh(c, keep.filter(id => TX.subs[id] && TX.subs[id].cat === c)); tileCount('sk', 'skc', MAX_SKILLS); }
-function jsr() { $('#js').innerHTML = tilesHtml($('#jc').value, [], 'jsk'); tileCount('jsk', 'jsc', MAX_JOB_SUBS); }
+/* jobs & "I need someone": the work needed can come from more than one main field.
+   Pick a field, tick its tiles, change the field and tick more — earlier picks stay (shown as chips). */
+const XS = {};
+const XP = { jsk: { sel: 'jc', grid: 'js', cnt: 'jsc', max: () => MAX_JOB_SUBS }, rqk: { sel: 'rqc', grid: 'rqs', cnt: 'rqsc', max: () => MAX_RQ_SUBS } };
+const xpCatOf = (subs, fallback) => (subs[0] && TX.subs[subs[0]] ? TX.subs[subs[0]].cat : fallback);
+function xpHtml(cls, cat, vals) {
+  const c = XP[cls], max = c.max(); XS[cls] = expandSubs(vals).filter(id => TX.subs[id]).slice(0, max);
+  return `<div class="sgrid" id="${c.grid}" onchange="xpTick('${cls}',event)">${tilesHtml(cat, XS[cls], cls)}</div><div class="sub" id="${c.cnt}" style="margin:6px 4px 0">${xpCount(cls)}</div><div class="wrapc" id="${cls}_sel" style="margin-top:8px">${xpChips(cls)}</div>
+  <p class="sub" style="margin:8px 4px 0">💡 ${t('වෙනත් ක්ෂේත්‍රයක වැඩත් අවශ්‍යද? ඉහළ ක්ෂේත්‍රය වෙනස් කරලා ඒවත් තෝරන්න — කලින් තෝරපු ඒවා එහෙමම තියෙනවා.', 'Need work from another field too? Change the field above and tick those as well — earlier picks are kept.')}</p>`;
+}
+const xpCount = cls => { const n = (XS[cls] || []).length, m = XP[cls].max(); return t(`තෝරාගත්: ${n} / ${m}`, `Selected: ${n} / ${m}`); };
+const xpChips = cls => (XS[cls] || []).map(id => `<button type="button" class="fchip" style="height:auto;padding:6px 12px;text-align:left;line-height:1.35" onclick="xpDel('${cls}','${esc(id)}')" aria-label="${esc(t('ඉවත් කරන්න', 'Remove'))}">${esc(subName(id))} <span style="opacity:.7">· ${esc(catName(TX.subs[id].cat))}</span> ✕</button>`).join('');
+function xpRefresh(cls) { const c = XP[cls], o = $('#' + c.cnt), ch = $('#' + cls + '_sel'); if (o) o.textContent = xpCount(cls); if (ch) ch.innerHTML = xpChips(cls); }
+function xpTick(cls, ev) {
+  const tg = ev && ev.target; if (!tg || !tg.classList || !tg.classList.contains(cls)) return;
+  const l = XS[cls] = XS[cls] || [], max = XP[cls].max();
+  if (tg.checked) { if (l.length >= max) { tg.checked = false; return toast(t(`උපරිම ${max}ක් තෝරන්න`, `Choose at most ${max}`)); } if (!l.includes(tg.value)) l.push(tg.value); }
+  else XS[cls] = l.filter(x => x !== tg.value);
+  xpRefresh(cls);
+}
+function xpCat(cls) { const c = XP[cls]; $('#' + c.grid).innerHTML = tilesHtml($('#' + c.sel).value, XS[cls] || [], cls); xpRefresh(cls); }
+function xpDel(cls, id) { XS[cls] = (XS[cls] || []).filter(x => x !== id); $$('.' + cls).forEach(x => { if (x.value === id) x.checked = false; }); xpRefresh(cls); }
 const MAX_SKILLS = 10, MAX_JOB_SUBS = 5;
 function covUI() {
   const v = ($$('input[name=cov]:checked')[0] || {}).value;
   const r = $('#cov_r'), d = $('#cov_d'); if (r) r.style.display = v === 'district' ? '' : 'none'; if (d) d.style.display = v === 'districts' ? '' : 'none';
+  const wr = $('#wr'); if (wr && v === 'district' && wr.value === 'island') wr.value = '10';
 }
 function homeChanged() { const keep = checked('ar'), h = $('#wd').value; $('#cov_d').innerHTML = districtChecks('ar', keep, h); }
 const sugBtn = ctx => `<button type="button" class="sec" style="width:100%;margin-top:10px;font-size:13px" onclick="suggestSub('${ctx}')">+ ${t('ඔබේ රැකියාව ලැයිස්තුවේ නැද්ද? නව ක්ෂේත්‍රයක් යෝජනා කරන්න', 'Not in the list? Suggest a new sub-field')}</button>`;
@@ -1951,21 +2002,20 @@ const sugBtn = ctx => `<button type="button" class="sec" style="width:100%;margi
 function workerForm(w) {
   w = w || newWorker({ owner_id: '' });
   return `<label>${t(`ඔබේ ඡායාරූප (උපරිම ${MAX_PROFILE_PHOTOS})`, `Your photos (max ${MAX_PROFILE_PHOTOS})`)}</label><p class="sub" style="margin:0 4px 8px">${t('පළමු ඡායාරූපය ප්‍රොෆයිල් පින්තූරය ලෙස පෙන්වයි. ඔබේ මුහුණ පැහැදිලිව පෙනෙන ඡායාරූප විශ්වාසය වැඩි කරයි.', 'The first photo is your profile picture. Clear photos of your face build trust.')}</p>${pk('prof', MAX_PROFILE_PHOTOS, t('ඡායාරූප එක් කරන්න', 'Add photos'))}
-  <label class="ck2" style="margin-top:14px;align-items:flex-start"><input type="checkbox" id="wpv" ${w.private ? 'checked' : ''} onchange="pvUI()"><span>🔒 <b>${t('රහස්‍ය ප්‍රොෆයිලය', 'Private profile')}</b> — ${t('ඔබේ සැබෑ නම, දුරකථන අංකය සහ නගරය ප්‍රසිද්ධියේ නොපෙන්වයි', 'your real name, phone number and town are not shown publicly')}</span></label>
-  <div id="pvbox" class="box" style="font-size:13px;${w.private ? '' : 'display:none'}">${t('• ප්‍රොෆයිලයේ පෙන්වන්නේ ඔබ දෙන "පෙන්වන නම" (උදා: "C." හෝ "චමී") සහ දිස්ත්‍රික්කය පමණි.<br>• ගනුදෙනුකරුවෝ app එකේ chat එකෙන් හෝ "Call ඉල්ලන්න" මඟින් සම්බන්ධ වෙයි — ඔබේ අංකය දෙන්නේ ඔබ කැමති අයට පමණි.<br>• ඔබේ මුහුණේ ඡායාරූපයක් අනිවාර්ය නැත; වැඩවල ඡායාරූප දාන්න.<br>• ආරක්ෂාව සඳහා සැබෑ නම සහ අංකය පරිපාලකට පමණක් පෙනේ.<br>• ඔබේ ප්‍රධාන රැකියාවේ නීති පිළිපැදීම ඔබේම වගකීමකි.', '• The profile shows only the "display name" you give (e.g. "C.") and your district.<br>• Customers contact you by chat or "Ask for a call" — you decide who gets your number.<br>• A face photo is not required; add photos of your work.<br>• For safety, only the admins can see your real name and number.<br>• Following the rules of your main job is your own responsibility.')}
-  <label for="wrn">${t('සැබෑ නම (පරිපාලකට පමණි)', 'Real name (admins only)')}</label><input class="in" id="wrn" maxlength="80" autocomplete="name" value="${esc(w._realName || '')}"></div>
-  <label for="wn" id="wnl">${w.private ? t('පෙන්වන නම (අන්වර්ථ නාමය හෝ මුලකුරු)', 'Display name (nickname or initials)') : t('නම', 'Name')}</label><input class="in" id="wn" maxlength="60" autocomplete="name" value="${esc(w.name)}">
+  ${w.private ? `<div class="box" style="font-size:13px;border:1px solid #FFA24A">ℹ️ ${t('"රහස්‍ය ප්‍රොෆයිල" පහසුකම ඉවත් කර ඇත. සුරැකූ විට ඔබේ නම, දුරකථන අංකය සහ නගරය අනෙක් සියලු ප්‍රොෆයිල් වගේම පෙන්වයි.', 'The "private profile" option has been removed. When you save, your name, phone and town are shown like every other profile.')}</div>` : ''}
+  <label for="wn">${t('නම', 'Name')}</label><input class="in" id="wn" maxlength="60" autocomplete="name" value="${esc(w.name)}">
   <label for="wc">${t('ප්‍රධාන ක්ෂේත්‍රය', 'Main field')}</label><select class="in" id="wc" onchange="skr()">${catOptions(w.category)}</select>
   <label>${t('ඔබ කරන වැඩ (අනු ක්ෂේත්‍ර) — එකක් හෝ කිහිපයක් තෝරන්න', 'What you do (sub-fields) — choose one or more')}</label><div class="sgrid" id="sks" onchange="tileCount('sk','skc',MAX_SKILLS,event)">${skh(w.category, expandSubs(w.skills).filter(id => TX.subs[id] && TX.subs[id].cat === w.category))}</div><div class="sub" id="skc" style="margin:6px 4px 0">${t(`තෝරාගත්: ${expandSubs(w.skills).length} / ${MAX_SKILLS}`, `Selected: ${expandSubs(w.skills).length} / ${MAX_SKILLS}`)}</div>${sugBtn('w')}
   <label for="wx">${t('අත්දැකීම් (අවුරුදු)', 'Experience (years)')}</label><input class="in" id="wx" type="number" min="0" max="60" inputmode="numeric" value="${w.exp_years || 0}">
   <label>${t('භාෂා', 'Languages')}</label><div class="wrapc">${checksHtml(OPT.lang, 'lg', w.languages)}</div>
   <label for="wp">${t('දුරකථන', 'Phone')}</label><input class="in" id="wp" type="tel" inputmode="tel" autocomplete="tel" placeholder="07X XXX XXXX" value="${esc(w.phone ? prettyPhone(w.phone) : (S.me && S.me.phone ? prettyPhone(S.me.phone) : ''))}">
   <label for="wd">${t('ප්‍රධාන දිස්ත්‍රික්කය', 'Home district')}</label><select class="in" id="wd" onchange="homeChanged()">${districtOptions(w.district)}</select>
-  <div id="wtw" style="${w.private ? 'display:none' : ''}"><label for="wt">${t('නගරය / ප්‍රදේශය', 'Town / area')}</label><input class="in" id="wt" maxlength="60" value="${esc(w.town)}"></div>
+  <label for="wt">${t('නගරය / ප්‍රදේශය', 'Town / area')}</label><input class="in" id="wt" maxlength="60" value="${esc(w.town)}">
   <label>${t('සේවා ප්‍රදේශය', 'Where do you work?')}</label><div class="wrapc" id="covw">${OPT.cover.map(o => `<label class="ck"><input type="radio" name="cov" value="${o[0]}" ${w.coverage === o[0] ? 'checked' : ''} onchange="covUI()"><span>${esc(t(o[1], o[2]))}</span></label>`).join('')}</div>
-  <div id="cov_r" style="${w.coverage === 'district' ? '' : 'display:none'}"><label for="wr">${t('ගමන් කරන දුර', 'Travel radius')}</label><select class="in" id="wr">${optionsHtml(OPT.radius, w.radius)}</select></div>
+  <div id="cov_r" style="${w.coverage === 'district' ? '' : 'display:none'}"><label for="wr">${t('සේවා ස්ථානය / ගමන් කරන දුර', 'Where you work / travel radius')}</label><select class="in" id="wr" onchange="radUI()">${optionsHtml(OPT.radius, w.radius)}</select><p class="sub" id="wrh" style="margin:6px 4px 0;${w.radius === 'shop' ? '' : 'display:none'}">🏠 ${t('ඔබේ කඩය / වැඩපොළ තියෙන නගරය ඉහළ "නගරය / ප්‍රදේශය" කොටුවේ ලියන්න.', 'Write the town of your shop / workplace in "Town / area" above.')}</p></div>
   <div id="cov_d" style="${w.coverage === 'districts' ? '' : 'display:none'}">${districtChecks('ar', w.areas, w.district)}</div>
   <label for="wa">${t('වැඩ කරන දින', 'Working days')}</label><select class="in" id="wa">${optionsHtml(OPT.days, w.avail_days)}</select>
+  <label>${t('කැමති වෙලාවන් (විකල්ප — කිහිපයක් තෝරන්න පුළුවන්)', 'Preferred times (optional — choose any)')}</label><div class="wrapc">${checksHtml(OPT.times, 'ptm', w.pref_times)}</div>
   <label for="wf">${t('ගාස්තු වර්ගය', 'Fee type')}</label><select class="in" id="wf">${optionsHtml(OPT.fee, w.fee_type)}</select>
   <label for="wfe">${t('ගාස්තුව', 'Fee')}</label><input class="in" id="wfe" maxlength="60" value="${esc(w.fee)}">
   <label>${t('පහසුකම්', 'Facilities')}</label><div class="wrapc">${checksHtml(OPT.fac, 'fc', w.facilities)}</div>
@@ -1973,19 +2023,19 @@ function workerForm(w) {
   <label for="ws">${t('විශේෂ අවශ්‍යතා / කොන්දේසි', 'Special requirements / conditions')}</label><textarea class="in" id="ws" maxlength="300">${esc(w.special)}</textarea>
   <label>${t(`වැඩ ඡායාරූප (උපරිම ${CFG.LIMITS.galleryMax})`, `Work photos (max ${CFG.LIMITS.galleryMax})`)}</label>${pk('gal', CFG.LIMITS.galleryMax, t('ඡායාරූප එක් කරන්න', 'Add photos'))}`;
 }
-function pvUI() {
-  const on = !!($('#wpv') && $('#wpv').checked);
-  const b = $('#pvbox'), tw = $('#wtw'), l = $('#wnl');
-  if (b) b.style.display = on ? '' : 'none'; if (tw) tw.style.display = on ? 'none' : '';
-  if (l) l.textContent = on ? t('පෙන්වන නම (අන්වර්ථ නාමය හෝ මුලකුරු)', 'Display name (nickname or initials)') : t('නම', 'Name');
+/* "Anywhere in Sri Lanka" in the travel list = the island-wide option above */
+function radUI() {
+  const v = $('#wr').value, h = $('#wrh');
+  if (h) h.style.display = v === 'shop' ? '' : 'none';
+  if (v === 'island') { const r = $$('input[name=cov]').find(x => x.value === 'island'); if (r) { r.checked = true; covUI(); } }
 }
 function readW() {
-  const n = normPhone($('#wp').value), cov = ($$('input[name=cov]:checked')[0] || {}).value || 'district', home = $('#wd').value;
+  const n = normPhone($('#wp').value), cov0 = ($$('input[name=cov]:checked')[0] || {}).value || 'district', cov = cov0 === 'district' && $('#wr').value === 'island' ? 'island' : cov0, home = $('#wd').value;
   return {
     name: $('#wn').value.trim(), category: $('#wc').value, skills: checked('sk'), phone: n.ok ? n.e164 : '', _phoneOk: n.ok,
-    private: !!($('#wpv') && $('#wpv').checked), _realName: $('#wrn') ? $('#wrn').value.trim() : '',
+    private: false,
     exp_years: Math.max(0, Math.min(60, parseInt($('#wx').value, 10) || 0)), languages: checked('lg'), district: home, town: $('#wt').value.trim(),
-    coverage: cov, areas: cov === 'districts' ? checked('ar').filter(d => d !== home) : [], radius: $('#wr').value, avail_days: $('#wa').value,
+    coverage: cov, areas: cov === 'districts' ? checked('ar').filter(d => d !== home) : [], radius: $('#wr').value, avail_days: $('#wa').value, pref_times: checked('ptm'),
     fee_type: $('#wf').value, fee: $('#wfe').value.trim(), facilities: checked('fc'), bio: $('#wb').value.trim(), special: $('#ws').value.trim(),
     _photos: (PHT.prof || []).slice(0, MAX_PROFILE_PHOTOS), _gal: (PHT.gal || []).slice(0, CFG.LIMITS.galleryMax)
   };
@@ -1993,10 +2043,10 @@ function readW() {
 function validW(d, selfId) {
   if (d.name.length < 2) return t('නම ඇතුළත් කරන්න', 'Enter your name');
   if (!d._phoneOk) return t('වලංගු දුරකථන අංකයක් ඇතුළත් කරන්න', 'Enter a valid phone number');
-  if (d.private && d._realName.length < 2) return t('රහස්‍ය ප්‍රොෆයිලයට සැබෑ නම ඇතුළත් කරන්න (පරිපාලකට පමණක් පෙනේ)', 'Enter your real name (only the admins see it)');
   if (!d.skills.length) return t('අවම වශයෙන් අනු ක්ෂේත්‍රයක් (දක්ෂතාවක්) තෝරන්න', 'Select at least one sub-field (skill)');
   if (d.skills.length > MAX_SKILLS) return t(`උපරිම අනු ක්ෂේත්‍ර ${MAX_SKILLS}ක්`, `At most ${MAX_SKILLS} sub-fields`);
   if (d.skills.some(id => !TX.subs[id] || TX.subs[id].cat !== d.category)) return t('අනු ක්ෂේත්‍ර තෝරාගත් ප්‍රධාන ක්ෂේත්‍රයට අයත් විය යුතුය', 'Sub-fields must belong to the chosen main field');
+  if (d.coverage === 'district' && d.radius === 'shop' && d.town.length < 2) return t('ඔබේ සේවා ස්ථානය තියෙන නගරය / ප්‍රදේශය ලියන්න', 'Enter the town / area of your workplace');
   if (d.coverage === 'districts' && !d.areas.length) return t('සේවා කරන අමතර දිස්ත්‍රික්ක තෝරන්න', 'Select the extra districts you serve');
   if (S.workers.some(w => w.id !== selfId && w.owner_id !== (S.me && S.me.id) && normPhone(w.phone).e164 === d.phone)) return t('මෙම දුරකථන අංකය දැනටමත් වෙනත් ප්‍රොෆයිලයක ඇත', 'This phone number is already used by another profile');
   return '';
@@ -2009,12 +2059,7 @@ async function packWorkerImages(d) {
   for (const g of d._gal) out.gallery.push(await DB.upload('media', g, 'g-' + uid()));
   return out;
 }
-const cleanW = d => { const o = { ...d }; delete o._phoneOk; delete o._photos; delete o._gal; delete o._realName; if (o.private) { o.phone = ''; o.town = ''; } return o; };
-/* private profile: the real name + number go to a table only the owner and the admins can read */
-async function savePrivate(id, d) {
-  if (!d.private) return;
-  await DB.rpc('set_private', { p_worker: id, p_real_name: d._realName, p_phone: d.phone });
-}
+const cleanW = d => { const o = { ...d }; delete o._phoneOk; delete o._photos; delete o._gal; return o; };
 /* public link to the app (+ optional ?key=value) — always the real site, even from a preview or a copy */
 const appLink = q => { const base = CFG.APP_URL || location.href.split(/[?#]/)[0]; return base + (q ? '?' + new URLSearchParams(q).toString() : ''); };
 const refLink = () => appLink({ ref: refCode(S.me.id) });
@@ -2028,7 +2073,6 @@ async function saveW() {
     const imgs = await packWorkerImages(d), me = refCode(S.me.id), rf = refFromUrl();
     const row = newWorker({ ...cleanW(d), ...imgs, referred_by: rf && rf !== me ? rf : null, tc: 'w-' + CFG.TC_VERSION + '@' + nowIso() });
     await DB.upsert('workers', row);
-    await savePrivate(row.id, d);
     UI.rt = ''; UI.tab = 'my'; go(); postSuccess('worker', row.id);
   });
 }
@@ -2052,7 +2096,7 @@ function postSuccess(type, id) {
 }
 async function ed(id) {
   let w = S.workers.find(x => x.id === id); if (!w || !isMine(w)) return;
-  if (w.private) { let pv = null; try { pv = (await DB.myPrivate()).find(r => r.worker_id === id); } catch (e) { } w = { ...w, _realName: pv ? pv.real_name : '', phone: pv && pv.phone ? pv.phone : (S.me && S.me.phone) || '' }; }
+  if (w.private) { let pv = null; try { pv = (await DB.myPrivate()).find(r => r.worker_id === id); } catch (e) { } w = { ...w, phone: pv && pv.phone ? pv.phone : (S.me && S.me.phone) || '' }; }
   PHT.prof = photosOf(w); PHT.gal = (w.gallery || []).slice();
   sheet(`<h2 style="margin-top:0">${t('සංස්කරණය', 'Edit')}</h2>${w.status === 'active' ? editNote() : ''}${workerForm(w)}<div class="acts" style="margin-top:18px"><button class="sec" style="flex:1" onclick="cl()">${t('අවලංගු', 'Cancel')}</button><button class="pri" style="flex:1" onclick="upd('${id}')">${t('සුරකින්න', 'Save')}</button></div>`);
 }
@@ -2062,8 +2106,16 @@ async function upd(id) {
     const d = readW(), err = validW(d, id); if (err) return toast(err);
     const imgs = await packWorkerImages(d);
     await DB.upsert('workers', { ...w, ...cleanW(d), ...imgs, updated_at: nowIso() });
-    await savePrivate(id, d);
     cl(); go(); afterEditMsg('workers', id);
+  });
+}
+/* matching job notices on / off — does not need admin approval */
+async function jat(id) {
+  await run(async () => {
+    const w = S.workers.find(x => x.id === id); if (!w || !isMine(w)) return;
+    const on = w.job_alerts === false;
+    await DB.upsert('workers', { ...w, job_alerts: on, updated_at: nowIso() });
+    toast(on ? t('🔔 ගැළපෙන රැකියා ආවම දැනුම් දෙනවා (දිනකට උපරිම 3යි)', '🔔 You will be told about matching jobs (max 3 a day)') : t('🔕 රැකියා දැනුම්දීම් නැවැත්තුවා. "මට කෙනෙක් ඕනේ" ඉල්ලීම් තවමත් ලැබේ.', '🔕 Job notices off. You still get "I need someone" requests.'), 3600); go();
   });
 }
 async function tgl(id) { await run(async () => { const w = S.workers.find(x => x.id === id); if (!w || !isMine(w)) return; await DB.upsert('workers', { ...w, available: !w.available, updated_at: nowIso() }); toast(t('තත්ත්වය යාවත්කාලීන විය', 'Status updated')); go(); }); }
@@ -2090,7 +2142,7 @@ function useExisting(subId) {
   const r = TX.subs[subId]; if (!r) return;
   const wf = $('#wc'), jf = $('#jc');
   if (wf) { wf.value = r.cat; skr(); const b = $$('.sk').find(x => x.value === subId); if (b) b.checked = true; tileCount('sk', 'skc', MAX_SKILLS); }
-  else if (jf) { jf.value = r.cat; jsr(); const b = $$('.jsk').find(x => x.value === subId); if (b) b.checked = true; tileCount('jsk', 'jsc', MAX_JOB_SUBS); }
+  else if (jf) { jf.value = r.cat; const l = XS.jsk = XS.jsk || []; if (!l.includes(subId)) { if (l.length >= MAX_JOB_SUBS) { cl(); return toast(t(`උපරිම ${MAX_JOB_SUBS}ක් තෝරන්න`, `Choose at most ${MAX_JOB_SUBS}`)); } l.push(subId); } xpCat('jsk'); }
   cl(); toast(t('තෝරා ගත්තා: ', 'Selected: ') + subName(subId));
 }
 async function submitProposal(ctx) {
@@ -2125,8 +2177,8 @@ function jobForm(j) {
   j = j || newJob({ owner_id: '' });
   return `<label for="jt">${t('රැකියා නාමය', 'Job title')}</label><input class="in" id="jt" maxlength="80" value="${esc(j.title)}">
   <label for="jk">${t('වර්ගය', 'Type')}</label><select class="in" id="jk">${optionsHtml(OPT.kind, j.kind)}</select>
-  <label for="jc">${t('ප්‍රධාන ක්ෂේත්‍රය', 'Main field')}</label><select class="in" id="jc" onchange="jsr()">${catOptions(j.category)}</select>
-  <label>${t('අවශ්‍ය වැඩ (අනු ක්ෂේත්‍ර) — එකක් හෝ කිහිපයක් තෝරන්න', 'Work needed (sub-fields) — choose one or more')}</label><div class="sgrid" id="js" onchange="tileCount('jsk','jsc',MAX_JOB_SUBS,event)">${tilesHtml(j.category, jobSubs(j), 'jsk')}</div><div class="sub" id="jsc" style="margin:6px 4px 0">${t(`තෝරාගත්: ${jobSubs(j).length} / ${MAX_JOB_SUBS}`, `Selected: ${jobSubs(j).length} / ${MAX_JOB_SUBS}`)}</div>${sugBtn('j')}
+  <label for="jc">${t('ප්‍රධාන ක්ෂේත්‍රය', 'Main field')}</label><select class="in" id="jc" onchange="xpCat('jsk')">${catOptions(j.category)}</select>
+  <label>${t(`අවශ්‍ය වැඩ (අනු ක්ෂේත්‍ර) — උපරිම ${MAX_JOB_SUBS}ක්, ක්ෂේත්‍ර කිහිපයකින් වුණත් පුළුවන්`, `Work needed (sub-fields) — up to ${MAX_JOB_SUBS}, from one or more fields`)}</label>${xpHtml('jsk', j.category, jobSubs(j))}${sugBtn('j')}
   <label for="jco">${t('ආයතනය / නම', 'Company / name')}</label><input class="in" id="jco" maxlength="80" value="${esc(j.company)}">
   <label for="jp">${t('සම්බන්ධතා දුරකථනය', 'Contact phone')}</label><input class="in" id="jp" type="tel" inputmode="tel" placeholder="07X XXX XXXX" value="${esc(j.phone ? prettyPhone(j.phone) : (S.me && S.me.phone ? prettyPhone(S.me.phone) : ''))}">
   <label for="jd">${t('රැකියා ස්ථානය (දිස්ත්‍රික්කය)', 'Job location (district)')}</label><select class="in" id="jd">${districtOptions(j.district, { island: true, islandLabel: t('දිවයිනේ ඕනෑම තැනක (Island-wide / Remote)', 'Anywhere in Sri Lanka (island-wide / remote)') })}</select>
@@ -2148,7 +2200,7 @@ function jobForm(j) {
 function readJ() {
   const n = normPhone($('#jp').value);
   return {
-    title: $('#jt').value.trim(), kind: $('#jk').value, category: $('#jc').value, sub: checked('jsk')[0] || '', subs: checked('jsk'), company: $('#jco').value.trim(), phone: n.ok ? n.e164 : '', _phoneOk: n.ok,
+    title: $('#jt').value.trim(), kind: $('#jk').value, category: xpCatOf(XS.jsk || [], $('#jc').value), sub: (XS.jsk || [])[0] || '', subs: (XS.jsk || []).slice(0, MAX_JOB_SUBS), company: $('#jco').value.trim(), phone: n.ok ? n.e164 : '', _phoneOk: n.ok,
     district: $('#jd').value, town: $('#jtw').value.trim(), salary: $('#jsal').value.trim(), pay_type: $('#jpt').value, hours: $('#jh').value, experience: $('#jx').value, education: $('#je').value,
     benefits: checked('bn'), vacancies: Math.max(1, Math.min(9999, parseInt($('#jv').value, 10) || 1)), deadline: $('#jdl').value || null,
     description: $('#jde').value.trim(), requirements: $('#jq').value.trim(), interview: $('#ji').value.trim(), _logo: (PHT.jl || [])[0] || '', _ph: (PHT.jg || []).slice()
@@ -2158,7 +2210,7 @@ function validJ(d, selfId) {
   if (d.title.length < 3) return t('රැකියා නාමය ඇතුළත් කරන්න', 'Enter a job title');
   if (d.company.length < 2) return t('ආයතනය / නම ඇතුළත් කරන්න', 'Enter the company / name');
   if (!d._phoneOk) return t('වලංගු දුරකථන අංකයක් ඇතුළත් කරන්න', 'Enter a valid phone number');
-  if (!d.subs.length || d.subs.some(id => !TX.subs[id] || TX.subs[id].cat !== d.category)) return t('අවම වශයෙන් එක් අනු ක්ෂේත්‍රයක් තෝරන්න', 'Select at least one sub-field');
+  if (!d.subs.length || d.subs.some(id => !TX.subs[id])) return t('අවම වශයෙන් එක් අනු ක්ෂේත්‍රයක් තෝරන්න', 'Select at least one sub-field');
   if (d.subs.length > MAX_JOB_SUBS) return t(`උපරිම අනු ක්ෂේත්‍ර ${MAX_JOB_SUBS}ක්`, `At most ${MAX_JOB_SUBS} sub-fields`);
   if (d.district !== ISLAND && !DISTRICTS[d.district]) return t('දිස්ත්‍රික්කයක් තෝරන්න', 'Select a district');
   if (d.deadline && d.deadline < todayStr()) return t('අවසන් දිනය අතීතයේ ය', 'Deadline is in the past');
@@ -2212,8 +2264,8 @@ function cons(kind) {
 function reg() {
   if (!S.me) return `<div class="box" style="text-align:center"><h2 style="margin-top:0">${t('පිවිසෙන්න', 'Sign in')}</h2><p class="sub">${t('දැන්වීමක් පළ කිරීමට දුරකථන අංකයෙන් පිවිසෙන්න. පළ කිරීම නොමිලේ.', 'Sign in with your phone number to post. Posting is free.')}</p><button class="pri" onclick="startReg()">${t('පිවිසෙන්න', 'Sign in')}</button></div>`;
   if (!UI.rt) return `<h2>${t('ඔබ කවුද?', 'Who are you?')}</h2>${guideLink()}<div class="box" style="padding:12px 16px;font-size:13px;border:1px solid var(--ok)">✓ ${t('ප්‍රොෆයිල් සහ රැකියා දැන්වීම් පළ කිරීම සැමවිටම නොමිලේ', 'Posting profiles and job ads is always free')}</div>
-  <button class="ch" onclick="UI.rt='w';PHT.prof=[];PHT.gal=[];go()"><b>${t('මම වෘත්තිකයෙක්', 'I am a professional')}</b><div class="sub">${t('දක්ෂතා අනුව ප්‍රොෆයිලයක් සාදා රැකියා සහ ගනුදෙනුකරුවන් සොයා ගන්න', 'Create a skills profile and find jobs and customers')}</div></button>
-  <button class="ch" onclick="UI.rt='j';PHT.jl=[];PHT.jg=[];go()"><b>${t('මම සේවකයන් බඳවා ගන්නවා', 'I am hiring')}</b><div class="sub">${t('පාර්ට් ටයිම් / ස්ථිර / ආයතනික රැකියා පළ කරන්න', 'Post part-time / permanent / corporate jobs')}</div></button>
+  <button class="ch" onclick="UI.rt='w';PHT.prof=[];PHT.gal=[];go()"><b>🙋‍♂️ ${t('මම වැඩ හොයනවා', 'I am looking for work')}</b><div class="sub">${t('දක්ෂතා ඇති වෘත්තිකයන් සහ පාර්ට් ටයිම් / ඕනෑම වැඩක් කරන්න කැමති අය — ප්‍රොෆයිලයක් සාදා රැකියා සහ ගනුදෙනුකරුවන් සොයා ගන්න', 'Skilled professionals and anyone who wants part-time / any work — create a profile and find jobs and customers')}</div></button>
+  <button class="ch" onclick="UI.rt='j';PHT.jl=[];PHT.jg=[];go()"><b>${t('මම වෘත්තිකයන් බඳවා ගන්නවා', 'I am hiring')}</b><div class="sub">${t('පාර්ට් ටයිම් / ස්ථිර / ආයතනික රැකියා පළ කරන්න', 'Post part-time / permanent / corporate jobs')}</div></button>
   <button class="ch" style="border:1.5px solid var(--ac)" onclick="UI.rt='rq';UI.rqEdit=null;PHT.rq=[];go()"><b>🙋 ${t('මට කෙනෙක් ඕනේ', 'I need someone')}</b><div class="sub">${t('ගෙදර / ව්‍යාපාරයේ වැඩක් කරගන්න කෙනෙක් ඕනෙද? වැඩේ ලියන්න — ගැළපෙන වෘත්තිකයෝ ඔබව හොයාගෙන එයි. ඔබේ අංකය කාටවත් පෙන්වන්නේ නැහැ.', 'Need someone for a job at home or work? Describe it — matching professionals come to you. Your number is never shown.')}</div></button>`;
   if (UI.rt === 'rq') return rqPage();
   if (UI.rt === 'w') {
@@ -2250,8 +2302,8 @@ const ago = iso => { const m = Math.max(0, (Date.now() - new Date(iso)) / 6e4); 
 /* ---------- home banner ---------- */
 function rqBanner() {
   const n = rqNewForMe().length, all = (S.requests || []).filter(rqLive).length;
-  if (n) return `<button class="ch rqb" onclick="openRqBoard(1)"><b>🙋 ${t(`ඔබට ගැළපෙන නව වැඩ ඉල්ලීම් ${n}ක්`, `${n} new job request${n > 1 ? 's' : ''} for you`)}</b><div class="sub">${t('ඔබේ ප්‍රදේශයේ ගනුදෙනුකරුවන් ඔබ වගේ කෙනෙක් හොයනවා — "මම කරන්නම්" ඔබන්න', 'Customers near you need someone like you — tap "I can do it"')}</div></button>`;
-  return `<div class="rqrow"><button class="ch rqb" onclick="startRq()"><b>🙋 ${t('මට කෙනෙක් ඕනේ', 'I need someone')}</b><div class="sub">${t('වැඩේ ලියන්න — ගැළපෙන වෘත්තිකයෝ ඔබව හොයාගෙන එයි', 'Describe the job — matching professionals come to you')}</div></button>${all ? `<button class="ch rqb2" onclick="openRqBoard(0)"><b>${all}</b><div class="sub">${t('වැඩ ඉල්ලීම්', 'job requests')}</div></button>` : ''}</div>`;
+  if (n) return `<button class="ch rqb hot" onclick="openRqBoard(1)"><b>🔥 ${t(`ඔබට ගැළපෙන නව වැඩ ඉල්ලීම් ${n}ක් — ඉක්මනින් බලන්න!`, `${n} new job request${n > 1 ? 's' : ''} for you — be quick!`)}</b><div class="sub">${t('ඔබේ ප්‍රදේශයේ කෙනෙකුට ඔබ වගේ වෘත්තිකයෙක් දැන්ම ඕනේ — මුලින්ම "✋ මම කරන්නම්" ඔබන අයට වැඩේ ලැබෙන්න වැඩි ඉඩක් තියෙනවා', 'Someone near you needs a professional like you now — the first to tap "✋ I can do it" have the best chance')}</div></button>`;
+  return `<div class="rqrow"><button class="ch rqb hot" onclick="startRq()"><b>🙋 ${t('මට කෙනෙක් ඕනේ', 'I need someone')}</b><div class="sub">${t('වැඩේ ලියන්න — ගැළපෙන වෘත්තිකයන්ට වහාම 🔔 දැනුම් යනවා, ඔවුන් ඔබව හොයාගෙන එයි', 'Describe the job — matching professionals are alerted at once 🔔 and come to you')}</div></button>${all ? `<button class="ch rqb2" onclick="openRqBoard(0)"><b>${all}</b><div class="sub">${t('වැඩ ඉල්ලීම්', 'job requests')}</div></button>` : ''}</div>`;
 }
 
 /* ---------- post / edit ---------- */
@@ -2260,8 +2312,8 @@ function rqForm(r) {
   r = r || newRequest({});
   const myName = (myWorker() || {}).name || '';
   return `<div class="box" style="padding:12px 16px;font-size:13px;border:1px solid var(--ok)">🔒 ${t('ඔබේ දුරකථන අංකය කිසිවෙකුට පෙන්වන්නේ නැහැ. ගැළපෙන වෘත්තිකයන් "මම කරන්නම්" කී විට ඔවුන්ගේ විස්තර ඔබට ලැබේ — ඔබ කැමති කෙනෙකුට ඔබම කතා කරන්න.', 'Your phone number is never shown. When matching professionals answer "I can do it", you get their details — you call the one you like.')}</div>
-  <label for="rqc">${t('මොන වගේ වැඩක්ද? (ක්ෂේත්‍රය)', 'What kind of work? (field)')}</label><select class="in" id="rqc" onchange="rqsr()">${catOptions(r.category)}</select>
-  <label>${t(`අවශ්‍ය වැඩ — උපරිම ${MAX_RQ_SUBS}ක් තෝරන්න`, `Work needed — choose up to ${MAX_RQ_SUBS}`)}</label><div class="sgrid" id="rqs" onchange="tileCount('rqk','rqsc',MAX_RQ_SUBS,event)">${tilesHtml(r.category, rqSubs(r), 'rqk')}</div><div class="sub" id="rqsc" style="margin:6px 4px 0">${t(`තෝරාගත්: ${rqSubs(r).length} / ${MAX_RQ_SUBS}`, `Selected: ${rqSubs(r).length} / ${MAX_RQ_SUBS}`)}</div>
+  <label for="rqc">${t('මොන වගේ වැඩක්ද? (ක්ෂේත්‍රය)', 'What kind of work? (field)')}</label><select class="in" id="rqc" onchange="xpCat('rqk')">${catOptions(r.category)}</select>
+  <label>${t(`අවශ්‍ය වැඩ — උපරිම ${MAX_RQ_SUBS}ක්, ක්ෂේත්‍ර කිහිපයකින් වුණත් පුළුවන්`, `Work needed — up to ${MAX_RQ_SUBS}, from one or more fields`)}</label>${xpHtml('rqk', r.category, rqSubs(r))}
   <label for="rqb">${t('වැඩේ ගැන කෙටියෙන් ලියන්න', 'Describe the job briefly')}</label><textarea class="in" id="rqb" maxlength="1000" placeholder="${t('උදා: සාලයේ වර්ග අඩි 400ක ටයිල් අල්ලන්න ඕනේ. ටයිල් අපි ගන්නවා.', 'e.g. Need 400 sq ft of floor tiles laid in the living room. We buy the tiles.')}">${esc(r.body)}</textarea>
   <label for="rqd">${t('දිස්ත්‍රික්කය', 'District')}</label><select class="in" id="rqd">${districtOptions(r.district)}</select>
   <label for="rqt">${t('නගරය / ප්‍රදේශය', 'Town / area')}</label><input class="in" id="rqt" maxlength="60" value="${esc(r.town)}" placeholder="${t('උදා: මහරගම', 'e.g. Maharagama')}">
@@ -2272,15 +2324,15 @@ function rqForm(r) {
   <label>${t(`ඡායාරූප (විකල්ප, උපරිම ${MAX_RQ_PHOTOS})`, `Photos (optional, max ${MAX_RQ_PHOTOS})`)}</label>${pk('rq', MAX_RQ_PHOTOS, t('ඡායාරූප එක් කරන්න', 'Add photos'))}
   <p class="sub" style="margin:6px 4px 0">${t('ඡායාරූපවල හෝ විස්තරයේ දුරකථන අංක, ලිපින දාන්න එපා.', 'Do not put phone numbers or addresses in the photos or description.')}</p>`;
 }
-function rqsr() { $('#rqs').innerHTML = tilesHtml($('#rqc').value, [], 'rqk'); tileCount('rqk', 'rqsc', MAX_RQ_SUBS); }
 function readRq() {
   const w = ($$('input[name="rqw"]:checked')[0] || {}).value || 'week';
-  return { category: $('#rqc').value, subs: checked('rqk').slice(0, MAX_RQ_SUBS), body: $('#rqb').value.trim(), district: $('#rqd').value, town: $('#rqt').value.trim(), need_when: w, need_date: w === 'date' ? ($('#rqdt').value || null) : null, budget: $('#rqm').value.trim(), name: $('#rqn').value.trim(), _ph: (PHT.rq || []).slice(0, MAX_RQ_PHOTOS) };
+  const subs = (XS.rqk || []).slice(0, MAX_RQ_SUBS);
+  return { category: xpCatOf(subs, $('#rqc').value), subs, body: $('#rqb').value.trim(), district: $('#rqd').value, town: $('#rqt').value.trim(), need_when: w, need_date: w === 'date' ? ($('#rqdt').value || null) : null, budget: $('#rqm').value.trim(), name: $('#rqn').value.trim(), _ph: (PHT.rq || []).slice(0, MAX_RQ_PHOTOS) };
 }
 const PHONE_IN_TEXT = /(?:\+?94|\b0)[\s-]*[1-9](?:[\s-]*\d){8}\b/;
 function validRq(d) {
   if (!TX.cats[d.category]) return t('ක්ෂේත්‍රයක් තෝරන්න', 'Choose a field');
-  if (!d.subs.length || d.subs.some(id => !TX.subs[id] || TX.subs[id].cat !== d.category)) return t('අවශ්‍ය වැඩ අවම වශයෙන් එකක් තෝරන්න', 'Choose at least one type of work');
+  if (!d.subs.length || d.subs.some(id => !TX.subs[id])) return t('අවශ්‍ය වැඩ අවම වශයෙන් එකක් තෝරන්න', 'Choose at least one type of work');
   if (d.body.length < 10) return t('වැඩේ ගැන ටිකක් වැඩිපුර ලියන්න (අකුරු 10+)', 'Describe the job a little more (10+ letters)');
   if (PHONE_IN_TEXT.test(d.body) || PHONE_IN_TEXT.test(d.name) || PHONE_IN_TEXT.test(d.budget)) return t('ඔබේ ආරක්ෂාවට, දුරකථන අංක ලියන්න එපා — වෘත්තිකයන්ගේ අංක ඔබට ලැබේ.', 'For your safety, do not write phone numbers — you will get the professionals\' numbers.');
   if (!DISTRICTS[d.district]) return t('දිස්ත්‍රික්කයක් තෝරන්න', 'Choose a district');
@@ -2373,7 +2425,7 @@ function rqMyHtml() {
 function openRqBoard(mine) { UI.tab = 'rq'; UI.rqMine = !!mine && !!myWorker(); go(); scrollTo(0, 0); if (S.mode === 'cloud') DB.reload(['requests']).then(() => { if (UI.tab === 'rq' && !$('#ov').children.length) go(); }).catch(() => { }); }
 function rqCard(r) {
   const own = isMine(r), mine = myAnswer(r.id), m = myWorker(), fit = m && rqMatches(r, m);
-  return `<div class="box rqc" id="rq_${esc(r.id)}"><div style="display:flex;justify-content:space-between;gap:8px"><div class="nm">🙋 ${esc(rqTitle(r))}</div>${fit ? `<span class="tag" style="flex:none">✓ ${t('ඔබට ගැළපේ', 'Fits you')}</span>` : ''}</div>
+  return `<div class="box rqc" id="rq_${esc(r.id)}"><div style="display:flex;justify-content:space-between;gap:8px"><div class="nm">🙋 ${esc(rqTitle(r))}${['today', 'tomorrow'].includes(r.need_when) && rqLive(r) ? ` <span class="hotb" style="display:inline-block;padding:2px 9px;border-radius:12px;background:linear-gradient(90deg,#FF3D6E,#FF8A00);color:#fff;font-size:11.5px;font-weight:800;vertical-align:middle">🔥 ${r.need_when === 'today' ? t('අදම', 'Today') : t('හෙට', 'Tomorrow')}</span>` : ''}</div>${fit ? `<span class="tag" style="flex:none">✓ ${t('ඔබට ගැළපේ', 'Fits you')}</span>` : ''}</div>
   <div class="sub">📍 ${esc(r.town ? r.town + ', ' : '')}${esc(distName(r.district))} · 🗓 ${esc(rqWhenText(r))}${r.budget ? ` · 💰 ${esc(r.budget)}` : ''}</div>
   <p style="margin:8px 0;font-size:14.5px;white-space:pre-line">${esc(r.body)}</p>
   ${(r.photos || []).length ? `<div class="gal">${r.photos.map(u => `<img alt="" ${imgSrcAttr(u, 'onclick="zoomImg(this.src)" style="flex:none;width:96px;height:96px;object-fit:cover;border-radius:16px;cursor:zoom-in"')}>`).join('')}</div>` : ''}
@@ -2481,7 +2533,7 @@ const BC_THEME = {
   sales: ['🛍️', '#EC4899', '#F97316'], office: ['💼', '#475569', '#2563EB'], it: ['💻', '#06B6D4', '#7C3AED'],
   textile: ['🧵', '#FF7A00', '#E1306C'], agri: ['🌱', '#22C55E', '#0EA5E9'], beauty: ['💄', '#EC4899', '#8B5CF6'],
   security: ['🛡️', '#334155', '#2563EB'], industry: ['🏭', '#64748B', '#F59E0B'], tourism: ['🌴', '#06B6D4', '#22C55E'],
-  professional: ['📊', '#2563EB', '#7C3AED'], other: ['⭐', '#FF7A00', '#7C3AED']
+  professional: ['📊', '#2563EB', '#7C3AED'], support: ['🤝', '#14B8A6', '#F59E0B'], other: ['⭐', '#FF7A00', '#7C3AED']
 };
 const BC_SUB_EMO = { sewing_mach: '🧵' };
 const BC_EMOJI_FONT = "'Noto Color Emoji','Apple Color Emoji','Segoe UI Emoji',sans-serif";
@@ -2943,7 +2995,7 @@ const TCS = {
     ['සමූහ බඳවා ගැනීම', 'Group recruitment', 'සම්මුඛ පරීක්ෂණ දිනය, ස්ථානය, අවශ්‍ය ලේඛන පැහැදිලිව සඳහන් කරන්න. පුරප්පාඩු අවසන් වූ විට වහාම වසන්න.', 'State the interview date, venue and required documents clearly. Close the ad immediately when vacancies are filled.'],
     ['ගාස්තු', 'Fees', 'සම්මුඛ පරීක්ෂණ, පුහුණු හෝ පත්වීම් සඳහා අයදුම්කරුවන්ගෙන් මුදල් ඉල්ලීම තහනම්ය.', 'Asking applicants for money for interviews, training or appointments is prohibited.']]],
   u: ['ගනුදෙනුකරුවන් / අයදුම්කරුවන් සඳහා', 'For customers / applicants', [
-    ['තීරණ ඔබේම', 'Your own decisions', 'සේවකයෙකු/රැකියාවක් තෝරාගැනීමට පෙර ඇගයීම්, ලේඛන සහ යොමු බලන්න. පැමිණෙන්නා ප්‍රොෆයිලයට ගැළපේදැයි බලන්න.', 'Check reviews, documents and references before choosing a worker or job. Make sure the person who arrives matches the profile.'],
+    ['තීරණ ඔබේම', 'Your own decisions', 'වෘත්තිකයෙකු/රැකියාවක් තෝරාගැනීමට පෙර ඇගයීම්, ලේඛන සහ යොමු බලන්න. පැමිණෙන්නා ප්‍රොෆයිලයට ගැළපේදැයි බලන්න.', 'Check reviews, documents and references before choosing a worker or job. Make sure the person who arrives matches the profile.'],
     ['මුදල් ආරක්ෂාව', 'Money safety', 'වැඩ අවසන් වන තුරු ඉදිරිපත් මුදල් ගෙවන්න එපා. OTP, බැංකු තොරතුරු කිසිවෙකුට නොදෙන්න.', 'Do not pay advance money before the work is done. Never share OTPs or bank details.'],
     ['ඇගයීම්', 'Reviews', 'ඇගයීම් දිය හැක්කේ සැබවින්ම වැඩ කළ අයට පමණි. ව්‍යාජ ඇගයීම් තහනම්ය.', 'Reviews may be given only by people who really worked with the person. Fake reviews are prohibited.']]]
 };
@@ -3038,10 +3090,11 @@ function notifText(n) {
     app_new: [t('ඔබේ රැකියාවට නව අයදුම්පතක්', 'New application to your job'), jt],
     app_status: [t('අයදුම්පතේ තත්ත්වය වෙනස් විය', 'Application status changed'), jt + ' — ' + [t('නව', 'New'), t('තෝරාගත්', 'Shortlisted'), t('ප්‍රතික්ෂේපිත', 'Rejected')][d.status | 0]],
     msg: [t('නව පණිවිඩයක්', 'New message'), t('ඔබට Chat පණිවිඩයක් ලැබී ඇත. විවෘත කිරීමට ඔබන්න.', 'You have a new chat message. Tap to open.')],
-    listing_active: [t('ඔබේ දැන්වීම අනුමත විය ✓', 'Your listing was approved ✓'), (d.name || '') + t(' — දැන් සැමට පෙනේ.', ' — it is now visible to everyone.')],
+    listing_active: [t('ඔබේ දැන්වීම අනුමත විය ✓', 'Your listing was approved ✓'), (d.name || '') + t(' — දැන් සැමට පෙනේ.', ' — it is now visible to everyone.') + (d.type === 'jobs' && d.sent > 0 ? t(` 🔔 ගැළපෙන වෘත්තිකයන් ${d.sent} දෙනෙකුට දැනුම් දුන්නා.`, ` 🔔 ${d.sent} matching professionals were notified.`) : '')],
+    job_new: [{ pt: t('⏱️ ඔබට ගැළපෙන පාර්ට් ටයිම් වැඩක්', '⏱️ A part-time job for you'), ft: t('💼 ඔබට ගැළපෙන ස්ථිර රැකියාවක්', '💼 A full-time job for you'), co: t('🏢 ඔබට ගැළපෙන ආයතනික රැකියාවක්', '🏢 A company job for you') }[d.kind] || t('💼 ඔබට ගැළපෙන නව රැකියාවක්', '💼 A new job for you'), (d.title || (d.sub ? subName(d.sub) : '')) + ' — ' + (d.town ? d.town + ', ' : '') + distName(d.district) + t(' · බලන්න ඔබන්න', ' · tap to see it')],
     listing_rejected: [t('ඔබේ දැන්වීම ප්‍රතික්ෂේප විය', 'Your listing was rejected'), (d.name || '') + (d.note ? ' — ' + d.note : '') + t(' · නිවැරදි කර නැවත සුරකින්න.', ' · Fix it and save again.')],
     listing_hidden: [t('ඔබේ දැන්වීම සඟවා ඇත', 'Your listing was hidden'), (d.name || '') + (d.note ? ' — ' + d.note : '')],
-    request_new: [t('🙋 ඔබට ගැළපෙන නව වැඩ ඉල්ලීමක්', '🙋 A new job request for you'), (d.sub ? subName(d.sub) : catName(d.category)) + ' — ' + (d.town ? d.town + ', ' : '') + distName(d.district) + t(' · "මම කරන්නම්" ඔබන්න', ' · tap "I can do it"')],
+    request_new: [t('🔥 හදිසි — ඔබට ගැළපෙන වැඩ ඉල්ලීමක්', '🔥 Urgent — a job request for you'), (d.sub ? subName(d.sub) : catName(d.category)) + ' — ' + (d.town ? d.town + ', ' : '') + distName(d.district) + t(' · "මම කරන්නම්" ඔබන්න', ' · tap "I can do it"')],
     request_response: [t('✋ ඔබේ ඉල්ලීමට ප්‍රතිචාරයක්', '✋ Someone answered your request'), (d.name || '') + t(' කරන්න කැමතියි — ' , ' can do it — ') + (d.sub ? subName(d.sub) : catName(d.category)) + t('. අමතන්න ඔබන්න.', '. Tap to call.')],
     request_active: [t('ඔබේ ඉල්ලීම අනුමත විය ✓', 'Your request was approved ✓'), d.sent ? t(`ගැළපෙන වෘත්තිකයන් ${d.sent} දෙනෙකුට දැනුම් දුන්නා.`, `${d.sent} matching professionals were notified.`) : t('දැන් සියලු වෘත්තිකයන්ට පෙනේ. ප්‍රතිචාරයක් ආ විට දැනුම් දෙනවා.', 'It is now visible to all professionals. You will be notified when someone answers.')],
     request_rejected: [t('ඔබේ ඉල්ලීම ප්‍රතික්ෂේප විය', 'Your request was rejected'), (d.note || '') + t(' · නිවැරදි කර නැවත සුරකින්න.', ' · Fix it and save again.')],
@@ -3057,15 +3110,15 @@ function notifText(n) {
 }
 const NT = [
   ['ආරක්ෂාව', 'Safety', '#FF4F7B', 'කිසිවිටෙක ඉදිරිපත් මුදල් ගෙවන්න එපා', 'Never pay advance money', 'රැකියාවක් සඳහා ලියාපදිංචි ගාස්තුවක් ඉල්ලන දැන්වීම් වංචාවක් විය හැක. එවැන්නක් දුටුවොත් Report කරන්න.', 'Ads that ask for a registration fee for a job may be fraud. Report them.'],
-  ['තහවුරුව', 'Verification', '#2FD48C', '✓ සත්‍යාපිත බැජ් එක බලන්න', 'Look for the ✓ verified badge', 'ලේඛන ඡායාරූප උඩුගත කර සමාලෝචනයෙන් අනුමත වූ සේවකයන්ට සහ ආයතනවලට පමණක් බැජ් එක ලැබේ.', 'Only workers and companies whose uploaded documents pass review get the badge.'],
-  ['නව', 'New', '#5B5BFF', 'සේවකයන්ට අලුත් Referral තෑගි', 'New referral rewards for workers', 'යහළුවන් 5 දෙනෙකු ගෙන ආවොත් දැන්වීම දින 7ක් ඉහළින් පෙන්වයි.', 'Bring 5 friends and your listing is featured for 7 days.'],
+  ['තහවුරුව', 'Verification', '#2FD48C', '✓ සත්‍යාපිත බැජ් එක බලන්න', 'Look for the ✓ verified badge', 'ලේඛන ඡායාරූප උඩුගත කර සමාලෝචනයෙන් අනුමත වූ වෘත්තිකයන්ට සහ ආයතනවලට පමණක් බැජ් එක ලැබේ.', 'Only workers and companies whose uploaded documents pass review get the badge.'],
+  ['නව', 'New', '#5B5BFF', 'වෘත්තිකයන්ට අලුත් Referral තෑගි', 'New referral rewards for workers', 'යහළුවන් 5 දෙනෙකු ගෙන ආවොත් දැන්වීම දින 7ක් ඉහළින් පෙන්වයි.', 'Bring 5 friends and your listing is featured for 7 days.'],
   ['උපදෙස්', 'Tips', '#FFA24A', 'ගනුදෙනුකරුවන් සඳහා', 'For customers', 'වැඩට පෙර ගාස්තුව සහ කොන්දේසි ලිඛිතව එකඟ වන්න. ඇගයීම් කියවන්න.', 'Agree the fee and conditions in writing before work. Read the reviews.']
 ];
 function nt() {
   const mine = S.me ? S.notifications.filter(n => n.user_id === S.me.id).sort((a, b) => ts(b) - ts(a)).slice(0, 50) : [];
   if (S.me && mine.some(n => !n.read)) setTimeout(markRead, 900);
   return `<h2>${t('දැනුම්දීම්', 'Notices')}</h2>${S.me ? '' : loginPrompt(t('ඔබේ ගෙවීම්, ලේඛන සහ අයදුම්පත් පිළිබඳ දැනුම්දීම් බැලීමට පිවිසෙන්න.', 'Sign in to see notices about your payments, documents and applications.'))}
-  ${mine.map(n => { const x = notifText(n); return `<div class="box" role="button" tabindex="0" style="cursor:pointer;${n.read ? '' : 'border:1px solid var(--ac)'}" onclick="notifGo('${esc(n.id)}')" onkeydown="if(event.key==='Enter')notifGo('${esc(n.id)}')"><span class="tag" style="color:var(--ac)">${fmtDate(n.created_at)}</span><div class="nm" style="margin-top:8px">${esc(x[0])}</div><p class="sub" style="margin:4px 0 0">${esc(x[1])}</p></div>`; }).join('')}
+  ${mine.map(n => { const x = notifText(n), hot = n.kind === 'request_new'; return `<div class="box${hot ? ' nhot' : ''}" role="button" tabindex="0" style="cursor:pointer;${n.read ? '' : 'border:1px solid var(--ac)'}" onclick="notifGo('${esc(n.id)}')" onkeydown="if(event.key==='Enter')notifGo('${esc(n.id)}')"><span class="tag" style="color:var(--ac)">${fmtDate(n.created_at)}</span>${hot ? `<span class="hotb">✋ ${t('මම කරන්නම් — ඔබන්න', 'I can do it — tap')}</span>` : ''}<div class="nm" style="margin-top:8px">${esc(x[0])}</div><p class="sub" style="margin:4px 0 0">${esc(x[1])}</p></div>`; }).join('')}
   ${NT.map(n => `<div class="box"><span class="tag" style="color:${n[2]}">${esc(t(n[0], n[1]))}</span><div class="nm" style="margin-top:8px">${esc(t(n[3], n[4]))}</div><p class="sub" style="margin:4px 0 0">${esc(t(n[5], n[6]))}</p></div>`).join('')}`;
 }
 function notifGo(id) {
@@ -3075,6 +3128,7 @@ function notifGo(id) {
   if (n.kind === 'broadcast') return;
   if (n.kind === 'admin_flag' || n.kind === 'admin_report') return toast(t('Admin panel එකේ "වාර්තා" පිටුව බලන්න', 'Open the Reports page in the admin panel'), 3600);
   if (n.kind === 'admin_pending') return toast(t('Admin panel එක විවෘත කර අනුමත කරන්න', 'Open the admin panel to review it'), 3600);
+  if (n.kind === 'job_new') { const open = () => openJob(n.ref); if (S.mode === 'cloud') DB.reload(['jobs']).catch(() => { }).then(open); else open(); return; }
   if (n.kind === 'request_new') { const open = () => { if ((S.requests || []).some(r => r.id === n.ref && rqLive(r))) rqView(n.ref); else openRqBoard(1); }; if (S.mode === 'cloud') DB.reload(['requests', 'request_responses']).catch(() => { }).then(open); else open(); return; }
   if (/^request_/.test(n.kind)) { const done = () => { UI.tab = 'my'; go(); const e = $('#rqo_' + n.ref); if (e) e.scrollIntoView({ block: 'start', behavior: 'smooth' }); else scrollTo(0, 0); }; if (S.mode === 'cloud') DB.reload(['requests', 'request_responses', 'workers']).catch(() => { }).then(done); else done(); return; }
   if (/^listing_/.test(n.kind) && S.mode === 'cloud') { DB.reload(['workers', 'jobs']).catch(() => { }).then(() => { UI.tab = 'my'; go(); scrollTo(0, 0); }); return; }
@@ -3086,7 +3140,7 @@ async function markRead() { if (!S.me || !unreadCount()) return; try { await DB.
 /* ---------- step-by-step guide: how to register and post ---------- */
 const GUIDE = () => [
   ['🔑', t('ගිණුමක් සාදන්න', 'Create an account'), t('ඉහළ දකුණේ "පිවිසෙන්න" → "ලියාපදිංචි වන්න" තෝරා ජංගම අංකය සහ ඔබ කැමති මුරපදයක් (දෙවරක්) දී "ගිණුම සාදන්න" ඔබන්න. SMS අවශ්‍ය නැහැ.', 'Tap "Sign in" (top right) → "Register", enter your mobile number and a password of your choice (twice), then "Create account". No SMS needed.')],
-  ['➕', t('පහළ මැද "+" ඔබන්න', 'Tap "+" at the bottom'), t('වෘත්තිකයෙක් නම් "මම වෘත්තිකයෙක්". සේවකයන් බඳවා ගන්නේ නම් "මම සේවකයන් බඳවා ගන්නවා".', 'Professionals choose "I am a professional". Employers choose "I am hiring".')],
+  ['➕', t('පහළ මැද "+" ඔබන්න', 'Tap "+" at the bottom'), t('වැඩ හොයනවා නම් "මම වැඩ හොයනවා". වෘත්තිකයන් බඳවා ගන්නේ නම් "මම වෘත්තිකයන් බඳවා ගන්නවා".', 'Job seekers choose "I am looking for work". Employers choose "I am hiring".')],
   ['📸', t('ඡායාරූප සහ වැඩ තෝරන්න', 'Add photos and choose your work'), t('ඔබේ ඡායාරූප 3ක් දක්වා, නම, ප්‍රධාන ක්ෂේත්‍රය දී, ඔබ කරන වැඩ ටයිල් ඔබා තෝරන්න — එකක් හෝ කිහිපයක්.', 'Add up to 3 photos, your name and main field, then tap the tiles for the work you do — one or several.')],
   ['📝', t('විස්තර පුරවා සාදන්න', 'Fill in details and create'), t('ප්‍රදේශය, ගාස්තුව සහ කෙටි විස්තරයක් දී, නියමයන්ට එකඟ වී "ප්‍රොෆයිල් එක සාදන්න" ඔබන්න.', 'Add your area, fee and a short description, agree to the terms and tap "Create profile".')],
   ['✅', t('අනුමැතිය', 'Approval'), t('පරිපාලක පැය 24ක් ඇතුළත පරීක්ෂා කර අනුමත කරයි. අනුමත වූ විට දැනුම්දීමක් ලැබේ — එවිට සැමට ඔබව පෙනේ.', 'An admin checks it within 24 hours. You get a notice when approved — then everyone can see you.')],
@@ -5172,13 +5226,18 @@ async function init() {
   registerSW().then(() => pushCheck());
   syncInbox();
   const w = q.get('w'); if (w && S.workers.some(x => x.id === w && (workerLive(x) || isMine(x)))) prof(w);
-  const jq = q.get('j'), jj = jq && S.jobs.find(x => x.id === jq && x.status === 'active');
-  if (jj) { UI.hs = jj.kind; UI.open = 'j' + jj.id; const i = jf().findIndex(x => x.id === jj.id); if (i >= UI.shown) UI.shown = i + 1; go(); setTimeout(() => { const e = $('#c_j' + jj.id); if (e) e.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 80); }
-  else if (jq) toast(t('රැකියාව සොයාගත නොහැක', 'Job not found'));
+  const jq = q.get('j'); if (jq) openJob(jq);
   const rqq = q.get('rq'); if (rqq) rqView(rqq);
   if (q.get('nt') && S.me && !$('#ov').children.length) { UI.tab = 'nt'; go(); }
   /* tidy the address bar so a refresh does not reopen the same thing */
-  if (['nt', 'source', 'rq'].some(k => q.has(k))) { ['nt', 'source', 'rq'].forEach(k => q.delete(k)); try { history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash); } catch (e) { } }
+  if (['nt', 'source', 'rq', 'j'].some(k => q.has(k))) { ['nt', 'source', 'rq', 'j'].forEach(k => q.delete(k)); try { history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash); } catch (e) { } }
+}
+/* show one job in its list (from a link or a notice) */
+function openJob(id) {
+  const jj = S.jobs.find(x => x.id === id && x.status === 'active');
+  clAll(); UI.tab = 'home'; UI.cat = ''; UI.sub = ''; UI.dist = ''; UI.q = '';
+  if (jj) { UI.hs = jj.kind; UI.open = 'j' + jj.id; const i = jf().findIndex(x => x.id === jj.id); if (i >= UI.shown) UI.shown = i + 1; go(); setTimeout(() => { const e = $('#c_j' + jj.id); if (e) e.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 80); }
+  else toast(t('රැකියාව සොයාගත නොහැක (වසා දමා හෝ ඉවත් කර ඇත)', 'Job not found (closed or removed)'));
 }
 window.WL = { S, UI, TX, CFG, init };   // handy for debugging / tests
 init();
