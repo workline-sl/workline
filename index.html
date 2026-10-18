@@ -159,7 +159,7 @@ a.sec,a.pri{display:inline-flex;align-items:center;justify-content:center;text-d
 .stile input:checked+span{background:var(--ac);color:#fff;border-color:var(--ac)}
 .stile input:checked+span::after{content:'✓';position:absolute;top:5px;right:9px;font-size:12px;font-weight:800}
 .stile input:focus-visible+span{outline:3px solid var(--ac);outline-offset:2px}
-.bct{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}.bct button{display:block;padding:5px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--tx);min-height:44px;cursor:pointer}.bct button.on{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac)}.bct .bcth{display:block;aspect-ratio:1080/1350;border-radius:9px;overflow:hidden}.bct img{display:block;width:100%;height:100%}.bct b{display:block;font-size:12px;margin-top:4px;text-align:center}.bcv{aspect-ratio:1080/1350;width:100%;border-radius:22px;overflow:hidden;background:#12152F;box-shadow:0 14px 40px rgba(20,24,60,.35)}.bcv img{display:block;width:100%;height:100%}
+.bct{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}.bct button{display:block;padding:5px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--tx);min-height:44px;cursor:pointer}.bct button.on{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac)}.bct .bcth{display:block;aspect-ratio:1080/1350;border-radius:9px;overflow:hidden}.bct img{display:block;width:100%;height:100%;object-fit:contain}.bct b{display:block;font-size:12px;margin-top:4px;text-align:center}.bcv{aspect-ratio:1080/1350;width:100%;border-radius:22px;overflow:hidden;background:#12152F;box-shadow:0 14px 40px rgba(20,24,60,.35)}.bcv img{display:block;width:100%;height:100%}
 .rqrow{display:flex;gap:10px;align-items:stretch}
 .ann{display:flex;gap:10px;align-items:flex-start;margin:10px 0 0;padding:12px 14px;border-radius:18px;font-size:13.5px;line-height:1.45;border:1.5px solid;background:var(--card)}
 .ann.info{border-color:#5B5BFF}.ann.warn{border-color:#F59E0B;background:color-mix(in srgb,#F59E0B 12%,var(--card))}.ann.maint{border-color:#E0486B;background:color-mix(in srgb,#E0486B 10%,var(--card))}
@@ -701,7 +701,7 @@ const OPT = {
   edu: [['none', 'අවශ්‍ය නැත', 'Not required'], ['ol', 'සා.පෙළ', 'O/L'], ['al', 'උසස් පෙළ', 'A/L'], ['nvq', 'NVQ / ඩිප්ලෝමා', 'NVQ / Diploma'], ['degree', 'උපාධිය', 'Degree']],
   kind: [['pt', 'පාර්ට් ටයිම්', 'Part-time'], ['ft', 'ස්ථිර', 'Permanent'], ['co', 'ආයතනික බඳවා ගැනීම', 'Corporate recruitment']],
   cover: [['district', 'මගේ දිස්ත්‍රික්කය', 'My district'], ['districts', 'තෝරාගත් දිස්ත්‍රික්ක', 'Selected districts'], ['island', 'දිවයිනේ ඕනෑම තැනක', 'Anywhere in Sri Lanka']],
-  method: [['bank_deposit', 'බැංකු තැන්පතුව (ශාඛාවෙන්)', 'Bank deposit (at branch)'], ['bank_transfer', 'ඔන්ලයින් බැංකු මාරුව', 'Online bank transfer'], ['wallet', 'ජංගම මුදල් සේවාව (eZ Cash / mCash ආදිය)', 'Mobile wallet (eZ Cash / mCash etc.)']],
+  method: [['card', 'කාඩ්පතෙන් (PayHere)', 'Card (PayHere)'], ['bank_deposit', 'බැංකු තැන්පතුව (ශාඛාවෙන්)', 'Bank deposit (at branch)'], ['bank_transfer', 'ඔන්ලයින් බැංකු මාරුව', 'Online bank transfer'], ['wallet', 'ජංගම මුදල් සේවාව (eZ Cash / mCash ආදිය)', 'Mobile wallet (eZ Cash / mCash etc.)']],
   report: [['fraud', 'වංචාව / ව්‍යාජ දැන්වීම', 'Fraud / fake ad'], ['drugs', 'මත්ද්‍රව්‍ය / නීතිවිරෝධී දේ', 'Drugs / illegal activity'], ['harass', 'කරදර කිරීම / හිරිහැර / අසභ්‍ය', 'Harassment / abuse'], ['payment', 'ගෙවීම් ගැටලුව', 'Payment issue'], ['behaviour', 'නුසුදුසු හැසිරීම', 'Inappropriate behaviour'], ['tech', 'තාක්ෂණික දෝෂයක්', 'Technical error'], ['other', 'වෙනත්', 'Other']]
 };
 /* verification documents */
@@ -2609,56 +2609,92 @@ function bcWM(x, A, X, Y, col, lineCol, tagCol, circle) {
 }
 function bcCanvas() { const c = document.createElement('canvas'); c.width = 1080; c.height = 1350; return c; }
 
-/* ---------- 1. STORY: full photo like a status story + a bottom sheet ---------- */
+/* ---------- 1. CARD: a premium bank-style card (Workline's own design — no bank or card-network marks) ---------- */
+function bcHex(h, k) {   /* darken (k<0) or lighten (k>0) a #rrggbb colour */
+  const n = parseInt(String(h).slice(1), 16), f = v => Math.max(0, Math.min(255, Math.round(k < 0 ? v * (1 + k) : v + (255 - v) * k)));
+  return '#' + [n >> 16 & 255, n >> 8 & 255, n & 255].map(f).map(v => v.toString(16).padStart(2, '0')).join('');
+}
+function bcEmboss(x, txt, X, Y) {   /* raised lettering like a printed card */
+  x.save(); x.fillStyle = 'rgba(0,0,0,.45)'; x.fillText(txt, X + 2, Y + 3);
+  x.fillStyle = 'rgba(255,255,255,.35)'; x.fillText(txt, X - 1, Y - 1);
+  const g = x.createLinearGradient(0, Y - 40, 0, Y + 4); g.addColorStop(0, '#FFFFFF'); g.addColorStop(1, '#DADDE6'); x.fillStyle = g; x.fillText(txt, X, Y); x.restore();
+}
 function bcStory(w, A) {
-  const d = bcData(w), c = bcCanvas(), x = c.getContext('2d'), W = 1080, PH = 860;
-  x.fillStyle = '#000'; x.fillRect(0, 0, W, 1350);
-  bcPhoto(x, A, d, 0, 0, W, PH + 40, 0, 300);
-  let g = x.createLinearGradient(0, 0, 0, PH); g.addColorStop(0, 'rgba(0,0,0,.55)'); g.addColorStop(.22, 'rgba(0,0,0,0)'); g.addColorStop(.45, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.85)');
-  x.fillStyle = g; x.fillRect(0, 0, W, PH + 40);
-  const bw = (W - 72 - 20) / 3; for (let i = 0; i < 3; i++) { bcRound(x, 36 + i * (bw + 10), 26, bw, 7, 3.5); x.fillStyle = i ? 'rgba(255,255,255,.4)' : '#fff'; x.fill(); }
-  bcWM(x, A, 36, 56, '#fff', '#FF8A00', 'rgba(255,255,255,.85)', d.a1);
-  bcPill(x, d.availTx, W - 36, 60, 50, `700 23px ${BC_FONT_SI}`, 'rgba(0,0,0,.45)', '#fff', { right: 1, dot: d.avail ? '#22C55E' : '#EF4444', stroke: 'rgba(255,255,255,.4)' });
-  /* trade, name and hashtag, bottom-up */
-  x.fillStyle = '#fff'; x.textAlign = 'left';
-  bcFit(x, d.trade, W - 88, 44, 700, BC_FONT_SI, 26); x.fillText(d.trade, 44, 812);
-  let ns = bcFit(x, d.name, W - 88, 118, 800, BC_FONT_SI, 60), lines = [d.name];
-  if (x.measureText(d.name).width > W - 88) { ns = 70; x.font = `800 ${ns}px ${BC_FONT_SI}`; lines = bcWrap(x, d.name, W - 88); }
-  x.shadowColor = 'rgba(0,0,0,.5)'; x.shadowBlur = 30;
-  lines.forEach((l, i) => { bcFit(x, l, W - 88, ns, 800, BC_FONT_SI, 40); x.fillText(l, 44, 742 - (lines.length - 1 - i) * (ns + 6)); });
-  x.shadowColor = 'transparent'; x.shadowBlur = 0;
-  const tagTop = 742 - ns * .95 - (lines.length - 1) * (ns + 6) - 70;
-  x.font = `800 30px ${BC_FONT_SI}`; const tagTx = d.tag.length > 34 ? d.tag.slice(0, 33) + '…' : d.tag, tw = x.measureText(tagTx).width + 44;
-  bcRound(x, 44, tagTop, tw, 52, 26); x.fillStyle = bcLG(x, 44, 0, 44 + tw, 0, d.a1, d.a2); x.fill();
-  x.fillStyle = '#fff'; x.textBaseline = 'middle'; x.fillText(tagTx, 66, tagTop + 27); x.textBaseline = 'alphabetic';
-  /* bottom sheet */
-  const SY = 850; bcRound(x, 0, SY, W, 560, 48); x.fillStyle = '#fff'; x.fill();
-  bcRound(x, W / 2 - 45, SY + 18, 90, 8, 4); x.fillStyle = '#D4D4DC'; x.fill();
-  const LW = W - 44 - 300 - 44;
-  bcIcon(x, 'pin', 44, SY + 54, 30, '#4B5563');
-  x.fillStyle = '#4B5563'; bcFit(x, d.place, LW - 40, 28, 600, BC_FONT_SI, 18); x.textAlign = 'left'; x.fillText(d.place, 84, SY + 80);
-  const chips = ['✓ ' + d.regTx, d.rated ? `★ ${d.rating} (${d.rc})` : '⚡ ' + t('ඉක්මන් ප්‍රතිචාර', 'Quick reply'), '🛡 ' + t('විශ්වාසවන්ත සේවාව', 'Trusted service')];
-  let cx0 = 44, cy0 = SY + 110;
-  for (const s of chips) {
-    x.font = `700 23px ${BC_FONT_SI}`; const wd = x.measureText(s).width + 36;
-    if (cx0 + wd > 44 + LW && cx0 > 44) { cx0 = 44; cy0 += 56; }
-    bcPill(x, s, cx0, cy0, 46, `700 23px ${BC_FONT_SI}`, '#F1F1F6', '#111', { pad: 18 }); cx0 += wd + 10;
+  /* a single-sided card at bank-card proportions (85.6 × 54 mm) — prints as one sticker; corners are transparent */
+  const d = bcData(w), c = document.createElement('canvas'), W = 1712, H = 1080, R = 72; c.width = W; c.height = H;
+  const x = c.getContext('2d');
+  x.save(); bcRound(x, 0, 0, W, H, R); x.clip();
+  /* body: deep trade colours, metallic light, fine security lines */
+  x.fillStyle = bcLG(x, 0, 0, W, H, bcHex(d.a2, -.58), bcHex(d.a1, -.32)); x.fillRect(0, 0, W, H);
+  let g = x.createRadialGradient(W * .82, H * .08, 20, W * .82, H * .08, W * .85); g.addColorStop(0, bcHex(d.a1, .12) + 'B0'); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
+  x.lineWidth = 2;
+  for (let k = 0; k < 30; k++) {
+    x.strokeStyle = `rgba(255,255,255,${.03 + (k % 3) * .014})`; x.beginPath();
+    for (let px = 0; px <= W; px += 10) { const yy = H * .3 + k * 20 + Math.sin(px / 120 + k * .45) * 44 + Math.sin(px / 40 + k) * 6; px ? x.lineTo(px, yy) : x.moveTo(px, yy); }
+    x.stroke();
   }
-  /* call button */
-  const BY = SY + 250; x.shadowColor = d.a2 + '66'; x.shadowBlur = 30; x.shadowOffsetY = 14;
-  bcRound(x, 44, BY, 680, 120, 60); x.fillStyle = bcLG(x, 44, 0, 724, 0, d.a1, d.a2); x.fill();
-  x.shadowColor = 'transparent'; x.shadowBlur = 0; x.shadowOffsetY = 0;
-  bcIcon(x, 'phone', 80, BY + 34, 52, '#fff');
-  x.fillStyle = 'rgba(255,255,255,.92)'; x.font = `700 22px ${BC_FONT_SI}`; x.fillText(d.chatOnly ? t('සම්බන්ධ වන්න', 'Contact me') : t('අමතන්න / Call', 'Call me'), 154, BY + 42);
-  const ph1 = d.chatOnly ? 'Workline Chat' : d.phone; x.fillStyle = '#fff'; bcFit(x, ph1, 540, 58, 800, BC_FONT_EN, 30); x.fillText(ph1, 154, BY + 98);
-  if (!d.chatOnly) bcIcon(x, 'wa', 44, SY + 414, 30, '#16A34A');
-  x.fillStyle = '#16A34A'; x.font = `800 28px ${BC_FONT_SI}`; x.fillText(d.chatOnly ? '💬 ' + t('QR එක scan කර chat කරන්න', 'Scan the QR to chat') : t('WhatsApp ද කරන්න පුළුවන්', 'WhatsApp me too'), d.chatOnly ? 44 : 84, SY + 440);
-  /* QR */
-  const QX = W - 44 - 240, QY = SY + 46; bcRound(x, QX, QY, 240, 240, 24); x.fillStyle = '#fff'; x.fill(); x.lineWidth = 3; x.strokeStyle = '#ECECF2'; x.stroke();
-  bcQR(x, A, QX + 12, QY + 12, 216);
-  x.textAlign = 'center'; x.fillStyle = '#6B7280'; x.font = `600 20px ${BC_FONT_SI}`;
-  x.fillText(t('Scan කර මගේ', 'Scan to see'), QX + 120, QY + 274); x.fillText(t('ප්‍රොෆයිලය බලන්න', 'my profile'), QX + 120, QY + 300);
-  x.fillStyle = d.a2; x.font = `800 22px ${BC_FONT_EN}`; x.fillText('▲ Workline', QX + 120, SY + 432);
+  g = x.createLinearGradient(0, 0, W * .7, H); g.addColorStop(0, 'rgba(255,255,255,.2)'); g.addColorStop(.36, 'rgba(255,255,255,.05)'); g.addColorStop(.37, 'rgba(255,255,255,0)'); g.addColorStop(1, 'rgba(255,255,255,.07)');
+  x.fillStyle = g; x.fillRect(0, 0, W, H);
+  const L = 104;   /* left margin */
+  /* brand, top-left */
+  let bx = L; if (A.logo) { const h = 92, wd = A.logo.width * h / A.logo.height; x.drawImage(A.logo, L, 70, wd, h); bx = L + wd + 18; }
+  x.textAlign = 'left'; x.font = `800 60px ${BC_FONT_EN}`; try { x.letterSpacing = '5px'; } catch (e) { }
+  x.fillStyle = '#fff'; x.fillText('WORK', bx, 140); const ww = x.measureText('WORK').width; x.fillStyle = '#FFB547'; x.fillText('LINE', bx + ww, 140);
+  /* card type, top-right */
+  x.textAlign = 'right'; x.font = `800 36px ${BC_FONT_EN}`; x.fillStyle = 'rgba(255,255,255,.9)'; x.fillText('PROFESSIONAL', W - L, 112);
+  x.font = `600 27px ${BC_FONT_EN}`; x.fillStyle = 'rgba(255,255,255,.62)'; x.fillText(d.trusted ? 'VERIFIED MEMBER' : 'MEMBER CARD', W - L, 154);
+  try { x.letterSpacing = '0px'; } catch (e) { }
+  /* chip + contactless */
+  const KX = L + 8, KY = 262, KW = 196, KH = 150;
+  bcRound(x, KX, KY, KW, KH, 24); x.fillStyle = bcLG(x, KX, KY, KX + KW, KY + KH, '#F7DE8C', '#B88A2E'); x.fill();
+  x.strokeStyle = 'rgba(90,60,10,.55)'; x.lineWidth = 3.5; x.beginPath();
+  x.moveTo(KX + KW * .34, KY); x.lineTo(KX + KW * .34, KY + KH); x.moveTo(KX + KW * .66, KY); x.lineTo(KX + KW * .66, KY + KH);
+  x.moveTo(KX, KY + KH * .5); x.lineTo(KX + KW * .34, KY + KH * .5); x.moveTo(KX + KW * .66, KY + KH * .5); x.lineTo(KX + KW, KY + KH * .5);
+  x.moveTo(KX + KW * .34, KY + KH * .3); x.lineTo(KX + KW * .66, KY + KH * .3); x.moveTo(KX + KW * .34, KY + KH * .7); x.lineTo(KX + KW * .66, KY + KH * .7); x.stroke();
+  bcRound(x, KX, KY, KW, KH, 24); x.strokeStyle = 'rgba(255,255,255,.5)'; x.lineWidth = 2; x.stroke();
+  x.strokeStyle = 'rgba(255,255,255,.85)'; x.lineWidth = 9; x.lineCap = 'round';
+  for (let k = 0; k < 4; k++) { x.beginPath(); x.arc(KX + KW + 70, KY + KH / 2, 22 + k * 23, -0.75, 0.75); x.stroke(); }
+  x.lineCap = 'butt';
+  /* photo in a gold ring, right */
+  const PR = 150, PXc = W - L - PR - 10, PYc = 382;
+  x.beginPath(); x.arc(PXc, PYc, PR + 12, 0, Math.PI * 2); x.fillStyle = bcLG(x, PXc - PR, PYc - PR, PXc + PR, PYc + PR, '#FFE9A8', '#C8962E'); x.fill();
+  x.save(); x.beginPath(); x.arc(PXc, PYc, PR, 0, Math.PI * 2); x.clip(); bcPhoto(x, A, d, PXc - PR, PYc - PR, PR * 2, PR * 2, 0, 150); x.restore();
+  if (d.avail) { x.beginPath(); x.arc(PXc + PR * .72, PYc + PR * .72, 26, 0, Math.PI * 2); x.fillStyle = '#22C55E'; x.fill(); x.lineWidth = 7; x.strokeStyle = bcHex(d.a2, -.5); x.stroke(); }
+  /* the "card number" = the phone number with 94 (TP = telephone); without a public phone: the Workline member number */
+  let num;
+  if (!d.chatOnly) {
+    const dg = String(w.phone || '').replace(/\D/g, ''), n9 = dg.replace(/^(94|0)/, '');
+    num = 'TP  +94  ' + n9.slice(0, 2) + '  ' + n9.slice(2, 5) + '  ' + n9.slice(5);
+  } else {
+    const id = (String(w.id || '').replace(/[^a-z0-9]/gi, '').toUpperCase() + '000000000000').slice(0, 12);
+    num = 'WL  ' + id.slice(0, 4) + '  ' + id.slice(4, 8) + '  ' + id.slice(8, 12);
+  }
+  x.textAlign = 'left'; try { x.letterSpacing = '5px'; } catch (e) { }
+  bcFit(x, num, W - 2 * L, 92, 600, BC_FONT_EN, 56); bcEmboss(x, num, L, 640);
+  try { x.letterSpacing = '0px'; } catch (e) { }
+  /* small labelled fields: rating (instead of "valid thru") and skill */
+  const QS = 300, QX = W - L - QS, QY = H - 84 - QS;
+  const lab = (s0, X, Y) => { x.font = `700 24px ${BC_FONT_EN}`; x.fillStyle = 'rgba(255,255,255,.62)'; try { x.letterSpacing = '3px'; } catch (e) { } x.fillText(s0, X, Y); try { x.letterSpacing = '0px'; } catch (e) { } };
+  lab('RATING', L, 712);
+  x.font = `700 50px ${BC_FONT_EN}`;
+  if (d.rated) {
+    bcStar(x, L + 22, 750, 24, '#FFD34D');
+    bcEmboss(x, d.rating, L + 56, 770); const rw = x.measureText(d.rating).width;
+    x.font = `600 28px ${BC_FONT_EN}`; x.fillStyle = 'rgba(255,255,255,.75)'; x.fillText(`(${d.rc})`, L + 66 + rw, 768);
+  } else { x.font = `700 44px ${BC_FONT_EN}`; bcEmboss(x, 'NEW', L, 768); bcStar(x, L + x.measureText('NEW').width + 36, 750, 20, '#FFD34D'); }
+  const SX = L + 330; lab(d.chatOnly ? 'SKILL · CHAT VIA QR' : 'SKILL', SX, 712);
+  x.fillStyle = '#fff'; bcFit(x, d.trade, QX - SX - 40, 40, 700, BC_FONT_SI, 24); x.fillText(d.trade, SX, 766);
+  /* place, quietly */
+  bcIcon(x, 'pin', L - 4, 806, 34, 'rgba(255,255,255,.7)'); x.fillStyle = 'rgba(255,255,255,.75)'; bcFit(x, d.place, QX - L - 80, 30, 600, BC_FONT_SI, 20); x.fillText(d.place, L + 40, 834);
+  /* holder name */
+  x.textAlign = 'left'; bcFit(x, d.name, QX - L - 50, 76, 800, BC_FONT_SI, 40); bcEmboss(x, d.name, L, H - 96);
+  /* QR in place of the hologram badge */
+  x.shadowColor = 'rgba(0,0,0,.35)'; x.shadowBlur = 24; bcRound(x, QX, QY, QS, QS, 30); x.fillStyle = '#fff'; x.fill(); x.shadowColor = 'transparent'; x.shadowBlur = 0;
+  bcQR(x, A, QX + 14, QY + 14, QS - 28, '#14121F');
+  if (A.logo) { const h = 46, wd = A.logo.width * h / A.logo.height; x.fillStyle = '#fff'; bcRound(x, QX + QS / 2 - wd / 2 - 8, QY + QS / 2 - h / 2 - 8, wd + 16, h + 16, 10); x.fill(); x.drawImage(A.logo, QX + QS / 2 - wd / 2, QY + QS / 2 - h / 2, wd, h); }
+  x.restore();
+  /* edge */
+  bcRound(x, 1, 1, W - 2, H - 2, R); x.strokeStyle = 'rgba(255,255,255,.25)'; x.lineWidth = 3; x.stroke();
   return c;
 }
 
@@ -2755,7 +2791,7 @@ function bcPass(w, A) {
   const ft = t('Scan කර ප්‍රොෆයිලය බලන්න', 'Scan to see my profile') + ' · workline-sl.github.io/workline'; bcFit(x, ft, 960, 22, 700, BC_FONT_SI, 14); x.fillText(ft, W / 2, 1333);
   return c;
 }
-const BC_STYLES = [['story', 'Story', bcStory], ['bento', 'Bento', bcBento], ['pass', 'Pro Pass', bcPass]];
+const BC_STYLES = [['story', 'Pro Card', bcStory], ['bento', 'Bento', bcBento], ['pass', 'Pro Pass', bcPass]];
 
 let BC = { url: '', blob: null, cards: {}, style: 'story', name: '' };
 async function bizCard() {
@@ -2787,7 +2823,7 @@ async function bcPick(k, first) {
   BC.style = k; BC.url = card.url; BC.blob = null;
   try { localStorage.setItem('wl_bcstyle', k); } catch (e) { }
   const tb = $('#bct'); if (tb) tb.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === k));
-  const v = $('#bcv'); if (v) v.innerHTML = `<img alt="${t('ඩිජිටල් කාඩ්පත', 'Digital business card')}" src="${card.url}">`;
+  const v = $('#bcv'); if (v) { v.style.aspectRatio = card.c.width + '/' + card.c.height; v.style.background = card.c.width > card.c.height ? 'transparent' : ''; v.style.boxShadow = card.c.width > card.c.height ? 'none' : ''; v.innerHTML = `<img alt="${t('ඩිජිටල් කාඩ්පත', 'Digital business card')}" src="${card.url}">`; }
   BC.blob = await new Promise(r => { try { card.c.toBlob(r, 'image/png'); } catch (e) { r(null); } });
 }
 function bcSave() {
@@ -2853,7 +2889,7 @@ async function refreshSettings() { if (S.mode !== 'cloud' || !CloudDB.sb) return
 setInterval(() => { if (document.visibilityState === 'visible') refreshSettings(); }, 120000);
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') refreshSettings(); });
 
-/* ---------- notification sound: a soft, bright two-note chime (made in the browser — no sound file) ---------- */
+/* ---------- notification sound: a soft, bright two-note chime played twice, about 2 seconds (made in the browser — no sound file) ---------- */
 const SND = { ctx: null, last: null, chatHeard: {} };
 const soundOn = () => { try { return localStorage.getItem('wl_sound') !== 'off'; } catch (e) { return true; } };
 function audioUnlock() {   /* phones only allow sound after the first tap on the page */
@@ -2865,15 +2901,15 @@ function chime(force) {
   try {
     audioUnlock(); const c = SND.ctx; if (!c || c.state !== 'running') return;
     const t0 = c.currentTime + .02, out = c.createGain(); out.gain.value = .32; out.connect(c.destination);
-    [[1046.5, 0], [1567.98, .13]].forEach(([f, d]) => {
+    [[1046.5, 0], [1567.98, .13], [1046.5, .62], [1567.98, .75]].forEach(([f, d]) => {
       [[1, 1], [2, .18], [3, .06]].forEach(([h, amp]) => {   /* a bell-like tone: the note plus soft overtones */
         const o = c.createOscillator(), g = c.createGain();
         o.type = 'sine'; o.frequency.value = f * h;
-        g.gain.setValueAtTime(0, t0 + d); g.gain.linearRampToValueAtTime(amp, t0 + d + .008); g.gain.exponentialRampToValueAtTime(.0008, t0 + d + (h === 1 ? .9 : .35));
-        o.connect(g); g.connect(out); o.start(t0 + d); o.stop(t0 + d + 1);
+        g.gain.setValueAtTime(0, t0 + d); g.gain.linearRampToValueAtTime(amp, t0 + d + .008); g.gain.exponentialRampToValueAtTime(.0008, t0 + d + (h === 1 ? 1.25 : .45));
+        o.connect(g); g.connect(out); o.start(t0 + d); o.stop(t0 + d + 1.3);
       });
     });
-    if (navigator.vibrate) try { navigator.vibrate([90, 60, 90]); } catch (e) { }
+    if (navigator.vibrate) try { navigator.vibrate([90, 60, 90, 300, 90, 60, 90]); } catch (e) { }
   } catch (e) { }
 }
 /* called whenever the bottom bar is redrawn: a NEW unread notice / chat → chime */
@@ -3241,6 +3277,23 @@ const PAY = { type: '', id: '', plan: 2 };
 const payOn = () => (S.settings.general || {}).payments_enabled !== false;
 const bankOf = () => S.settings.bank || {};
 const bankReady = () => { const b = bankOf(); return !!(b.bank && b.acc_no && b.acc_name); };
+/* PayHere payment links (one per plan) — set by the admin; only real payhere.lk links are ever shown */
+const phLink = amt => { const b = bankOf(), u = String(((b.ph || {})[String(amt)]) || '').trim(); return b.ph_on !== false && /^https:\/\/(www\.)?payhere\.lk\/[^\s"'<>]+$/.test(u) ? u : ''; };
+const phReady = () => CFG.PLANS.some(p => phLink(p.amount));
+function phBox() {
+  const p = planOf(PAY.plan), u = phLink(p.amount);
+  if (!phReady()) return '';
+  return `<div class="box" style="border:1.5px solid var(--ac)"><b>💳 ${t('කාඩ්පතෙන් ගෙවන්න (Visa / Mastercard ආදිය)', 'Pay by card (Visa / Mastercard etc.)')}</b>
+  <p class="sub" style="margin:4px 0 10px">${t('ආරක්ෂිත PayHere පිටුවෙන් ගෙවන්න. කාඩ්පත් විස්තර Workline එකට එන්නේ නැහැ. ගෙවූ පසු PayHere ලබා දෙන ගෙවීම් අංකය පහළ ඇතුළත් කර පරීක්ෂාවට යවන්න.', 'Pay on the secure PayHere page. Your card details never reach Workline. After paying, enter the PayHere payment number below and submit it for review.')}</p>
+  ${u ? `<a class="pri" style="display:flex;align-items:center;justify-content:center;text-decoration:none" href="${esc(u)}" target="_blank" rel="noopener noreferrer" onclick="payCardPick()">${esc(LKRt(p.amount))} — ${t('PayHere එකෙන් ගෙවන්න', 'Pay with PayHere')} ↗</a>`
+      : `<p class="sub" style="margin:0">${t('මෙම මුදලට කාඩ් ගෙවීම තවම නැත. වෙනත් සැලසුමක් තෝරන්න, නැත්නම් බැංකු මාරුවෙන් ගෙවන්න.', 'Card payment is not set up for this amount yet. Choose another plan or pay by bank transfer.')}</p>`}</div>`;
+}
+function payCardPick() { const m = $('#pm'); if (m) { m.value = 'card'; payMethodUI(); } }
+function payMethodUI() {
+  const card = ($('#pm') || {}).value === 'card', l = $('#prl'), sl = $('#psl');
+  if (l) l.textContent = card ? t('PayHere ගෙවීම් අංකය (Payment ID / Order ID)', 'PayHere payment number (Payment ID / Order ID)') : t('බැංකු යොමු / රිසිට්පත් අංකය', 'Bank reference / slip number');
+  if (sl) sl.textContent = card ? t('ගෙවීම් තහවුරු කිරීමේ screenshot එක (විකල්ප)', 'Screenshot of the payment confirmation (optional)') : t('රිසිට්පත / තැන්පතු පත්‍රිකාවේ ඡායාරූපය', 'Photo of the deposit slip / receipt');
+}
 const planOf = i => CFG.PLANS[i] || CFG.PLANS[0];
 const targetOf = (type, id) => (type === 'job' ? S.jobs : S.workers).find(x => x.id === id);
 const targetLabel = p => { const x = targetOf(p.target_type, p.target_id); return x ? (x.name || x.title) : (p.target_label || '—'); };
@@ -3252,6 +3305,7 @@ function plansHtml() {
 function selPlan(i) {
   PAY.plan = i; const e = $('#plans'); if (e) e.innerHTML = plansHtml();
   const s = $('#psum'); if (s) s.innerHTML = planSummary();
+  const ph = $('#phbox'); if (ph) ph.innerHTML = phBox();
 }
 const planSummary = () => { const p = planOf(PAY.plan); return t(`${LKRt(p.amount)} → ඔබේ දැන්වීම දින ${p.days}ක් ලැයිස්තුවේ ඉහළින් පෙන්වයි.`, `${LKRt(p.amount)} → your listing is featured at the top for ${p.days} days.`); };
 
@@ -3265,17 +3319,19 @@ function payOpen(type, id) {
     <div class="box" style="border:1px solid var(--ok);font-size:13px"><b style="color:var(--ok)">${t('පළ කිරීම සැමවිටම නොමිලේ.', 'Posting is always free.')}</b><br>${t('මෙය වේදිකාවේ නඩත්තුවට ලබා දෙන ස්වේච්ඡා සහාය දායකත්වයකි. ඒ වෙනුවෙන් ඔබේ දැන්වීම ලැයිස්තුවේ ඉහළින් පෙන්වයි. සත්‍යාපිත බැජ් එක සහ ඇගයීම් මුදලට ලබාගත නොහැක.', 'This is a voluntary contribution to keep the platform running; in return your listing is shown at the top. The verified badge and reviews cannot be bought.')}</div>
     <div class="sub" style="margin:4px 4px 8px">${t('දැන්වීම', 'Listing')}: <b>${esc(x.name || x.title)}</b></div>
     <div id="plans">${plansHtml()}</div><p class="sub" id="psum" style="margin:8px 4px">${planSummary()}</p>
-    <div class="box"><b>${t('ගෙවිය යුත්තේ කොහාටද', 'Where to pay')}</b>
+    <div id="phbox">${phBox()}</div>
+    <div class="box"><b>${phReady() ? t('නැත්නම් බැංකුවට ගෙවන්න', 'Or pay to the bank') : t('ගෙවිය යුත්තේ කොහාටද', 'Where to pay')}</b>
     ${bankReady() ? `<div class="kv" style="margin-top:6px">${t('බැංකුව', 'Bank')}: <b>${esc(b.bank)}</b>${b.branch ? ' · ' + esc(b.branch) : ''}</div><div class="kv">${t('ගිණුම් නාමය', 'Account name')}: <b>${esc(b.acc_name)}</b></div><div class="kv">${t('ගිණුම් අංකය', 'Account number')}: <b style="letter-spacing:.06em">${esc(b.acc_no)}</b></div>${b.note ? `<div class="sub">${esc(b.note)}</div>` : ''}<div class="kv" style="margin-top:6px">${t('ගෙවීමේ සටහනට/යොමුවට ඇතුළත් කරන්න', 'Put this in the payment reference')}: <b>${esc(refCode(S.me.id))}</b></div>${S.mode === 'local' ? `<div class="sub" style="color:#E0486B">${t('ආදර්ශන මාදිලිය — සැබෑ ගෙවීමක් නොවේ.', 'Demo mode — not a real payment.')}</div>` : ''}`
       : `<p class="sub" style="margin:6px 0 0">${t('බැංකු විස්තර තවම එක් කර නැත. පරිපාලකයා admin සැකසුම්වල එක් කළ පසු මෙහි පෙන්වයි.', 'Bank details have not been added yet. They appear here once the administrator adds them in Admin settings.')}</p>`}</div>
-    ${bankReady() ? `<label for="pm">${t('ගෙවූ ක්‍රමය', 'Payment method')}</label><select class="in" id="pm">${optionsHtml(OPT.method, 'bank_transfer')}</select>
-    <label for="pr">${t('බැංකු යොමු / රිසිට්පත් අංකය', 'Bank reference / slip number')}</label><input class="in" id="pr" maxlength="40" autocomplete="off">
+    ${bankReady() || phReady() ? `<label for="pm">${t('ගෙවූ ක්‍රමය', 'Payment method')}</label><select class="in" id="pm" onchange="payMethodUI()">${optionsHtml(OPT.method.filter(o => o[0] !== 'card' || phReady()).filter(o => o[0] === 'card' || bankReady()), bankReady() ? 'bank_transfer' : 'card')}</select>
+    <label for="pr" id="prl">${t('බැංකු යොමු / රිසිට්පත් අංකය', 'Bank reference / slip number')}</label><input class="in" id="pr" maxlength="40" autocomplete="off">
     <label for="pd">${t('ගෙවූ දිනය', 'Date paid')}</label><input class="in" id="pd" type="date" max="${todayStr()}" value="${todayStr()}">
-    <label>${t('රිසිට්පත / තැන්පතු පත්‍රිකාවේ ඡායාරූපය', 'Photo of the deposit slip / receipt')}</label>${pk('slip', 1, t('ඡායාරූපයක් තෝරන්න', 'Choose a photo'))}
+    <label id="psl">${t('රිසිට්පත / තැන්පතු පත්‍රිකාවේ ඡායාරූපය', 'Photo of the deposit slip / receipt')}</label>${pk('slip', 1, t('ඡායාරූපයක් තෝරන්න', 'Choose a photo'))}
     <label for="pn2">${t('සටහනක් (විකල්ප)', 'Note (optional)')}</label><textarea class="in" id="pn2" maxlength="300" style="min-height:64px"></textarea>
     <label class="ck2"><input type="checkbox" id="pc1"><span>${t('මෙය ස්වේච්ඡා සහාය දායකත්වයක් බවත්, අනුමත වී ප්‍රවර්ධනය ආරම්භ වූ පසු සාමාන්‍යයෙන් ආපසු ගෙවනු නොලබන බවත් මම පිළිගනිමි.', 'I understand this is a voluntary contribution and is normally non-refundable once approved and the boost has started.')}</span></label>
     <button class="pri" style="margin-top:14px" onclick="submitPay()" ${pendings >= CFG.LIMITS.pendingPayments ? 'disabled' : ''}>${t('පරිපාලක පරීක්ෂාවට යවන්න', 'Submit for admin review')}</button>
     ${pendings >= CFG.LIMITS.pendingPayments ? `<p class="sub" style="color:#E0486B">${t('සමාලෝචනයේ ඇති ගෙවීම් සීමාවට ළඟා වී ඇත.', 'You have reached the limit of payments in review.')}</p>` : ''}` : ''}`);
+    payMethodUI();
   });
 }
 async function submitPay() {
@@ -3284,12 +3340,19 @@ async function submitPay() {
     if (!x || !isMine(x)) return;
     if (!/^[A-Za-z0-9\-_/ ]{4,40}$/.test(ref)) return toast(t('වලංගු යොමු අංකයක් ඇතුළත් කරන්න (අකුරු/ඉලක්කම් 4+)', 'Enter a valid reference (4+ letters/digits)'));
     if (!pd || pd > todayStr() || pd < fmtDate(addDaysIso(nowIso(), -45))) return toast(t('ගෙවූ දිනය වලංගු නැත', 'Invalid payment date'));
-    const slip = (PHT.slip || [])[0]; if (!slip) return toast(t('රිසිට්පතේ ඡායාරූපය අවශ්‍යයි', 'The slip photo is required'));
+    const method = $('#pm').value, card = method === 'card';
+    const slip = (PHT.slip || [])[0]; if (!slip && !card) return toast(t('රිසිට්පතේ ඡායාරූපය අවශ්‍යයි', 'The slip photo is required'));
     if (!$('#pc1').checked) return toast(t('කරුණාකර එකඟ වන්න', 'Please agree to continue'));
     if (S.payments.filter(q => q.owner_id === S.me.id && q.status === 'pending').length >= CFG.LIMITS.pendingPayments) return toast(t('සමාලෝචනයේ ඇති ගෙවීම් සීමාවට ළඟා වී ඇත', 'Pending payment limit reached'));
     if (S.payments.some(q => norm(q.reference) === norm(ref) && q.status !== 'rejected')) return toast(t('මෙම යොමු අංකය දැනටමත් ඉදිරිපත් කර ඇත', 'This reference was already submitted'));
-    const path = await DB.upload('private', slip, 'slip-' + uid());
-    await DB.upsert('payments', { id: uid(), owner_id: S.me.id, target_type: PAY.type, target_id: PAY.id, target_label: x.name || x.title, payer_phone: S.me.phone || '', amount: p.amount, plan_days: p.days, method: $('#pm').value, reference: ref, paid_on: pd, slip: path, note: ($('#pn2').value || '').trim(), status: 'pending', admin_note: '', receipt_no: null, decided_at: null, decided_by: null, created_at: nowIso() });
+    const path = slip ? await DB.upload('private', slip, 'slip-' + uid()) : '';
+    const note = ($('#pn2').value || '').trim();
+    const row = { id: uid(), owner_id: S.me.id, target_type: PAY.type, target_id: PAY.id, target_label: x.name || x.title, payer_phone: S.me.phone || '', amount: p.amount, plan_days: p.days, method, reference: ref, paid_on: pd, slip: path, note, status: 'pending', admin_note: '', receipt_no: null, decided_at: null, decided_by: null, created_at: nowIso() };
+    try { await DB.upsert('payments', row); }
+    catch (e) {   /* an older database that only knows the bank methods: keep the payment, marked as PayHere in the note */
+      if (!card || !/method|check|violates/i.test(String(e && e.message))) throw e;
+      await DB.upsert('payments', { ...row, method: 'wallet', note: ('[PayHere කාඩ් ගෙවීම] ' + note).slice(0, 300) });
+    }
     PHT.slip = []; cl(); toast(t('ගෙවීම ඉදිරිපත් විය. පරිපාලක පරීක්ෂා කර අනුමත කළ පසු ප්‍රවර්ධනය ආරම්භ වේ.', 'Payment submitted. The boost starts once an administrator approves it.'), 4200); go();
   });
 }
@@ -5142,7 +5205,16 @@ function renderNav() {
   n.innerHTML = TABS().map(([k, l]) => k === 'reg'
     ? `<button class="plus" aria-label="${t('නොමිලේ පළ කරන්න', 'Post for free')}" onclick="startReg()">+</button>`
     : `<button class="${UI.tab === k ? 'on' : ''}${(k === 'nt' && unreadCount()) || (k === 'msgs' && unreadChats()) ? ' dn' : ''}" ${UI.tab === k ? 'aria-current="page"' : ''} onclick="navGo('${k}')">${ICONS[k] || ''}<span>${l}</span></button>`).join('');
-  soundCheck();
+  soundCheck(); iconBadge();
+}
+/* the red number on the home-screen icon (installed app): unread notices (other than chat notices) + unread chats */
+let _badgeN = -1;
+function iconBadge() {
+  try {
+    const n = S.me ? S.notifications.filter(x => x.user_id === S.me.id && !x.read && x.kind !== 'msg').length + unreadChats() : 0;
+    if (n === _badgeN || !('setAppBadge' in navigator)) return; _badgeN = n;
+    (n ? navigator.setAppBadge(Math.min(n, 99)) : navigator.clearAppBadge()).catch(() => { });
+  } catch (e) { }
 }
 function renderTop() {
   renderAnn();
