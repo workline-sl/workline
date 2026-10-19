@@ -159,7 +159,9 @@ a.sec,a.pri{display:inline-flex;align-items:center;justify-content:center;text-d
 .stile input:checked+span{background:var(--ac);color:#fff;border-color:var(--ac)}
 .stile input:checked+span::after{content:'✓';position:absolute;top:5px;right:9px;font-size:12px;font-weight:800}
 .stile input:focus-visible+span{outline:3px solid var(--ac);outline-offset:2px}
-.bct{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}.bct button{display:block;padding:5px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--tx);min-height:44px;cursor:pointer}.bct button.on{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac)}.bct .bcth{display:block;aspect-ratio:1080/1350;border-radius:9px;overflow:hidden}.bct img{display:block;width:100%;height:100%;object-fit:contain}.bct b{display:block;font-size:12px;margin-top:4px;text-align:center}.bcv{aspect-ratio:1080/1350;width:100%;border-radius:22px;overflow:hidden;background:#12152F;box-shadow:0 14px 40px rgba(20,24,60,.35)}.bcv img{display:block;width:100%;height:100%}
+.bct{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}.bct button{display:block;padding:5px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--tx);min-height:44px;cursor:pointer}.bct button.on{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac)}.bct .bcth{display:block;aspect-ratio:1080/1350;border-radius:9px;overflow:hidden}.acc{background:var(--card);border-radius:24px;margin-bottom:12px;box-shadow:0 12px 34px rgba(60,60,160,.12);overflow:hidden}.acc>summary{list-style:none;display:flex;align-items:center;gap:12px;padding:16px 18px;min-height:60px;cursor:pointer;-webkit-tap-highlight-color:transparent}.acc>summary::-webkit-details-marker{display:none}.acc .ai{font-size:22px;width:28px;text-align:center;flex:none}.acc>summary b{flex:1;min-width:0;font-size:16px}.acc .ab{flex:none;font-size:12px;font-weight:700;padding:3px 10px;border-radius:12px;background:var(--bg);color:var(--ac)}.acc .chev{flex:none;font-size:24px;line-height:1;color:var(--mut);transition:transform .2s}.acc[open] .chev{transform:rotate(90deg)}.acc .accb{padding:0 12px 12px}.acc .accb>.box{box-shadow:none;border:1px solid var(--line)}
+.sealprev{flex:1;height:110px;border-radius:14px;display:grid;place-items:center;overflow:hidden;background-color:#fff;background-image:linear-gradient(45deg,#eef0f4 25%,transparent 25%,transparent 75%,#eef0f4 75%),linear-gradient(45deg,#eef0f4 25%,transparent 25%,transparent 75%,#eef0f4 75%);background-size:16px 16px;background-position:0 0,8px 8px;border:1px solid var(--line)}.sealprev.big{height:170px;margin-bottom:6px}.sealprev img{max-width:96%;max-height:96%;object-fit:contain}
+.bct img{display:block;width:100%;height:100%;object-fit:contain}.bct b{display:block;font-size:12px;margin-top:4px;text-align:center}.bcv{aspect-ratio:1080/1350;width:100%;border-radius:22px;overflow:hidden;background:#12152F;box-shadow:0 14px 40px rgba(20,24,60,.35)}.bcv img{display:block;width:100%;height:100%}
 .rqrow{display:flex;gap:10px;align-items:stretch}
 .ann{display:flex;gap:10px;align-items:flex-start;margin:10px 0 0;padding:12px 14px;border-radius:18px;font-size:13.5px;line-height:1.45;border:1.5px solid;background:var(--card)}
 .ann.info{border-color:#5B5BFF}.ann.warn{border-color:#F59E0B;background:color-mix(in srgb,#F59E0B 12%,var(--card))}.ann.maint{border-color:#E0486B;background:color-mix(in srgb,#E0486B 10%,var(--card))}
@@ -319,12 +321,15 @@ const CATS = [
     ['heavy_op', 'බැකෝ ඔපරේටර්', 'JCB Backhoe Operator', 'JCB|බැකෝ|backhoe|excavator|ජේසීබී|bulldozer'],
     ['crane_op', 'ක්‍රේන් ඔපරේටර්', 'Crane Operator', 'ක්‍රේන්|crane'],
     ['interior', 'අභ්‍යන්තර සැරසිලි', 'Interior Decoration', 'interior|ෆිට්අවුට්|අභ්‍යන්තර නිර්මාණ|fit-out'],
-    ['cupboard', 'පැන්ට්‍රි කබඩ්', 'Pantry Cupboards', 'කබඩ්|pantry cupboard|wardrobe|ලාච්චු|cupboard']
+    ['cupboard', 'පැන්ට්‍රි කබඩ්', 'Pantry Cupboards', 'කබඩ්|pantry cupboard|wardrobe|ලාච්චු|cupboard'],
+    ['scaffolding', 'පලංචි (ස්කැෆෝල්ඩින්) සේවා', 'Scaffolding Services', 'scaffolding|ස්කැෆෝල්ඩින්|පලංචි|පලංචිය|scaffold'],
+    ['waterproofing', 'ජල කාන්දු වැළැක්වීම (වෝටර්ප්‍රූෆින්)', 'Waterproofing', 'waterproofing|waterproof|වෝටර්ප්‍රූෆ්|තෙතමනය|වහලේ කාන්දු|damp proof|leak proofing'],
+    ['core_cutting', 'කොන්ක්‍රීට් කැපීම සහ සිදුරු කිරීම', 'Concrete Core Cutting & Breaking', 'core cutting|core drilling|concrete cutting|breaker|කඩා දැමීම|demolition|ස්ලැබ් සිදුරු|කොන්ක්‍රීට් කැඩීම']
   ]},
   { id: 'electrical', si: 'විදුලි සහ ඉලෙක්ට්‍රොනික', en: 'Electrical & Electronics', subs: [
     ['wiring', 'නිවාස විදුලි රැහැන්', 'House Wiring', 'ගෘහ විදුලි|විදුලි කාර්මික|electrician|wiring|විදුලි වැඩ'],
     ['solar', 'සූර්ය බලශක්ති සවිකිරීම', 'Solar Installation', 'සෝලාර්|solar|solar panel|සූර්ය'],
-    ['cctv', 'CCTV කැමරා', 'CCTV Cameras', 'cctv|කැමරා|security camera'],
+    ['cctv', 'CCTV කැමරා සහ ජාලකරණය', 'CCTV Cameras & Networking', 'cctv|කැමරා|security camera|ip camera|nvr|dvr|ජාලකරණ|cctv network'],
     ['alarm', 'ආරක්ෂක ඇලාම් පද්ධති', 'Alarm & Security Systems', 'alarm|ආරක්ෂක පද්ධති|intercom|access control'],
     ['ac_fridge', 'AC අලුත්වැඩියා', 'Air Conditioning (AC)', 'ඒසී|ac|air conditioner|වායු සමීකරණ'],
     ['fridge', 'ශීතකරණ අලුත්වැඩියා', 'Refrigerator Repair', 'ශීතකරණ|fridge|refrigerator|කූලර්|freezer|ෆ්‍රිජ්'],
@@ -333,7 +338,7 @@ const CATS = [
     ['audio', 'ඕඩියෝ උපකරණ අලුත්වැඩියා', 'Audio Equipment Repair', 'ඕඩියෝ|speaker|amplifier|ස්පීකර්'],
     ['electronics', 'ඉලෙක්ට්‍රොනික අලුත්වැඩියා', 'Electronics Repair', 'electronics repair|circuit board'],
     ['generator', 'ජනක යන්ත්‍ර', 'Generators', 'ජෙනරේටර්|generator'],
-    ['ups', 'UPS සවිකිරීම', 'UPS Installation', 'ups'],
+    ['ups', 'UPS සවිකිරීම සහ අලුත්වැඩියා', 'UPS Installation & Repair', 'ups|ups repair|ups battery|යූපීඑස්'],
     ['inverter', 'ඉන්වර්ටර් සවිකිරීම', 'Inverter Installation', 'inverter|ඉන්වර්ටර්'],
     ['motor_rewind', 'මෝටර් වයින්ඩින්', 'Motor Rewinding', 'motor rewinding|winding|මෝටර් අලුත්වැඩියා'],
     ['fan_repair', 'ෆෑන් අලුත්වැඩියා', 'Fan Repair', 'ෆෑන්|fan repair|ceiling fan'],
@@ -364,7 +369,11 @@ const CATS = [
     ['detailing', 'වාහන ඩීටේලිං', 'Vehicle Detailing', 'detailing|polish|ඔප දැමීම'],
     ['sewing_mach', 'ජුකි මැෂින් අලුත්වැඩියා', 'Sewing Machine Repair', 'ජුකි|juki|මැහුම් යන්ත්‍ර|sewing machine|මහන මැෂින්'],
     ['agri_mach', 'කෘෂි යන්ත්‍ර අලුත්වැඩියා', 'Agri Machinery Repair', 'කෘෂි යන්ත්‍ර|harvester|power tiller|ෆෝර් වීල්'],
-    ['tractor', 'ට්‍රැක්ටර් සේවා', 'Tractor Services', 'ට්‍රැක්ටර්|tractor|tractor driver|ploughing|සී සෑම']
+    ['tractor', 'ට්‍රැක්ටර් සේවා', 'Tractor Services', 'ට්‍රැක්ටර්|tractor|tractor driver|ploughing|සී සෑම'],
+    ['hybrid_ev', 'හයිබ්‍රිඩ් සහ විදුලි වාහන සේවා', 'Hybrid & EV Service', 'hybrid|ev|electric vehicle|හයිබ්‍රිඩ්|විදුලි වාහන|hybrid battery|prius|aqua|leaf'],
+    ['radiator', 'රේඩියේටර් සහ ඉන්ධන ටැංකි අලුත්වැඩියා', 'Radiator & Fuel Tank Repair', 'radiator|රේඩියේටර්|fuel tank|ඉන්ධන ටැංකි|overheat'],
+    ['suspension', 'ස්ටියරිං සහ සස්පෙන්ෂන් අලුත්වැඩියා', 'Steering & Suspension Repair', 'steering|suspension|ස්ටියරිං|සස්පෙන්ෂන්|shock absorber|ෂොක්|ball joint|බෝල ජොයින්ට්|rack end'],
+    ['windscreen', 'වාහන වින්ඩ්ස්ක්‍රීන් අලුත්වැඩියා සහ මාරු කිරීම', 'Windscreen Repair & Replacement', 'windscreen|windshield|වින්ඩ්ස්ක්‍රීන්|ඉදිරි වීදුරුව|car glass|වාහන වීදුරු']
   ]},
   { id: 'transport', si: 'රියදුරු සහ ප්‍රවාහන', en: 'Drivers & Transport', subs: [
     ['car_driver', 'කාර් රියදුරු', 'Car Driver', 'රියදුරු|driver|කාර්|chauffeur'],
@@ -388,13 +397,16 @@ const CATS = [
     ['garden', 'ගෙවතු වැඩ', 'Gardening', 'garden|gardener|ගෙවතු|උයන්|landscaping'],
     ['lawn', 'තණකොළ කැපීම', 'Lawn Mowing', 'තණකොළ|lawn|grass cutting|lawn mowing'],
     ['pest', 'කෘමි පාලනය', 'Pest Control', 'pest|කෘමි|termite|වේයන්|රාඩුවන්|fumigation'],
-    ['tank_clean', 'ජල ටැංකි පිරිසිදු කිරීම', 'Water Tank Cleaning', 'tank cleaning|ටැංකි පිරිසිදු'],
+    ['tank_clean', 'ජල ටැංකි පිරිසිදු කිරීම සහ විෂබීජහරණය', 'Water Tank Cleaning & Disinfection', 'tank cleaning|ටැංකි පිරිසිදු|disinfection|විෂබීජහරණ|tank wash'],
     ['locksmith', 'යතුරු සාදන්නා', 'Locksmith', 'locksmith|අගුල්|යතුරු|key maker|lock'],
     ['laundry', 'ලොන්ඩරි', 'Laundry', 'laundry|dry wash|ඩ්‍රයිවොෂ්|රෙදි සේදීම'],
     ['ironing', 'රෙදි අයන් කිරීම', 'Ironing', 'iron|අයන්|ironing'],
     ['handyman', 'සාමාන්‍ය නඩත්තු (හැන්ඩිමෑන්)', 'Handyman', 'handyman|නඩත්තු|home maintenance|odd jobs|ගෘහ නඩත්තු'],
     ['pet_care', 'සුරතල් සතුන් රැකවරණය', 'Pet Care', 'pet|dog|cat|සුරතල්|බල්ලන්|පූසන්|dog walker'],
-    ['pet_grooming', 'සුරතල් සතුන් ග්‍රූමින්', 'Pet Grooming', 'ග්‍රූමින්|grooming|pet grooming']
+    ['pet_grooming', 'සුරතල් සතුන් ග්‍රූමින්', 'Pet Grooming', 'ග්‍රූමින්|grooming|pet grooming'],
+    ['deep_clean', 'සෝෆා, කාපට් සහ මෙට්ට පිරිසිදු කිරීම', 'Sofa, Carpet & Mattress Cleaning', 'sofa cleaning|carpet cleaning|mattress cleaning|කාපට්|සෝෆා සේදීම|shampoo|upholstery cleaning'],
+    ['highrise_glass', 'උස් ගොඩනැගිලි වීදුරු පිරිසිදු කිරීම', 'High-rise Window Cleaning', 'high rise|window cleaning|glass cleaning|facade cleaning|rope access|වීදුරු පිරිසිදු'],
+    ['solar_clean', 'සූර්ය පැනල පිරිසිදු කිරීම සහ නඩත්තුව', 'Solar Panel Cleaning & Maintenance', 'solar cleaning|solar panel cleaning|solar maintenance|සෝලාර් පිරිසිදු|සෝලාර් නඩත්තු']
   ]},
   { id: 'care', si: 'රැකවරණ සහ සෞඛ්‍ය', en: 'Care & Health', subs: [
     ['childcare', 'ළමා රැකවරණය', 'Childcare', 'nanny|ළමා සත්කාර|baby sitter|babysitter|දරුවන් බලා ගැනීම|daycare'],
@@ -425,14 +437,15 @@ const CATS = [
     ['cook', 'සූපවේදියා', 'Cook', 'chef|cook|සූපවේදී|කුක්|කෝක්|කුස්සි ප්‍රධානී'],
     ['kitchen_help', 'කුස්සි සහායක', 'Kitchen Helper', 'kitchen helper|කුස්සි|dishwasher|පිඟන් සේදීම'],
     ['bakery', 'බේකරි', 'Bakery', 'bakery|baker|පාන්|pastry'],
-    ['cake', 'කේක් සෑදීම', 'Cake Making', 'කේක්|cake|birthday cake'],
+    ['cake', 'කේක් සෑදීම සහ සැරසීම', 'Cake Making & Decorating', 'කේක්|cake|birthday cake|cake decorating|fondant|wedding cake|කේක් සැරසිලි|icing'],
     ['sweets', 'රසකැවිලි', 'Sweets', 'රසකැවිලි|කැවිලි|confectionery|sweets'],
     ['catering', 'කේටරින්', 'Catering', 'catering|caterer|buffet|ආහාර සැපයීම|උත්සව ආහාර'],
     ['waiter', 'වේටර්', 'Waiter', 'waiter|steward|රූම් බෝයි|server'],
     ['hotel_staff', 'හෝටල් කාර්ය මණ්ඩලය', 'Hotel Staff', 'හෝටල් සේවක|hotel|resort|හෝටල්|ආපනශාලා|restaurant staff|hotel housekeeping|රිසෝට්'],
     ['home_food', 'ගෘහස්ථ ආහාර නිෂ්පාදන', 'Home-made Food Products', 'home food|ගෘහස්ථ|කෑම පැකට්|lunch packet|ලන්ච් පැකට්|කෑම සැපයීම|short eats'],
     ['barista', 'බාරිස්ටා', 'Barista', 'barista|coffee|කෝපි'],
-    ['beverages', 'පාන වර්ග සකසන්නා', 'Beverage Maker', 'juice|ජූස්|tea shop|තේ සාප්පුව|පාන වර්ග']
+    ['beverages', 'පාන වර්ග සකසන්නා', 'Beverage Maker', 'juice|ජූස්|tea shop|තේ සාප්පුව|පාන වර්ග'],
+    ['private_chef', 'උත්සව සඳහා පෞද්ගලික සූපවේදී', 'Private Chef', 'private chef|home chef|party chef|bbq|බාබකියු|ගෙදර සාද|පෞද්ගලික සූපවේදී']
   ]},
   { id: 'sales', si: 'විකුණුම් සහ වෙළඳාම', en: 'Sales & Retail', subs: [
     ['shop_assist', 'වෙළඳසැල් සහායක', 'Shop Assistant', 'shop|සාප්පු සහායක|retail|salesgirl|salesman|වෙළඳසැල්'],
@@ -465,7 +478,9 @@ const CATS = [
     ['social_media', 'සමාජ මාධ්‍ය කළමනාකරණය', 'Social Media Management', 'social media|facebook|instagram|digital marketing|සමාජ මාධ්‍ය|seo|ads'],
     ['network', 'WiFi ජාල සවිකිරීම', 'Network & WiFi Installation', 'network|wifi|router|ජාල|lan|ඉන්ටර්නෙට් සවිකිරීම'],
     ['video_edit', 'වීඩියෝ සංස්කරණය', 'Video Editing', 'video edit|editing|වීඩියෝ සංස්කරණය|premiere|reels'],
-    ['it_support', 'IT සහාය', 'IT Support', 'it support|helpdesk|system admin|පද්ධති පරිපාලන']
+    ['it_support', 'IT සහාය', 'IT Support', 'it support|helpdesk|system admin|පද්ධති පරිපාලන'],
+    ['data_recovery', 'දත්ත ප්‍රතිසාධනය (නැතිවූ දත්ත ලබාගැනීම)', 'Data Recovery', 'data recovery|hard disk|hdd|ssd|memory card|pen drive|deleted files|දත්ත ආපසු|දත්ත ප්‍රතිසාධන'],
+    ['printer', 'ප්‍රින්ටර් සහ ෆොටෝකොපි අලුත්වැඩියා', 'Printer & Photocopier Repair', 'printer|ප්‍රින්ටර්|photocopy|photocopier|ෆොටෝකොපි|toner|cartridge|ink refill']
   ]},
   { id: 'textile', si: 'රෙදිපිළි සහ ඇඟලුම්', en: 'Textile & Garments', subs: [
     ['tailor', 'ටේලර්', 'Tailor', 'tailor|මැහුම්කරු|මැහුම්කරණය|ඇඳුම් මැසීම|ඇඳුම් අලුත්වැඩියා|alterations|කාන්තා ඇඳුම්'],
@@ -508,12 +523,14 @@ const CATS = [
     ['event_decor', 'උත්සව සැරසිලි', 'Event Decoration', 'decor|උත්සව|සැරසිලි|mangala|balloon|බැලුන්|stage'],
     ['event_planner', 'උත්සව සැලසුම්කරු', 'Event Planner', 'event planner|wedding planner'],
     ['dj_sound', 'DJ සේවා', 'DJ Services', 'dj|ඩීජේ'],
-    ['sound_system', 'ශබ්ද පද්ධති', 'Sound Systems', 'sound system|pa system|lighting'],
+    ['sound_system', 'ශබ්ද සහ ආලෝක පද්ධති', 'Sound & Lighting Systems', 'sound system|pa system|lighting|ආලෝක|light show|stage lighting|ශබ්ද පද්ධති'],
     ['band', 'සංගීත කණ්ඩායම්', 'Music Bands', 'band|live music|musician'],
     ['singer', 'ගායක ගායිකාවන්', 'Singers', 'singer|ගායක'],
     ['printing', 'මුද්‍රණ සේවා', 'Printing', 'print|මුද්‍රණ|sticker|screen print|ඩිජිටල් ප්‍රින්ට්'],
     ['banner', 'බැනර් මුද්‍රණය', 'Banner Printing', 'banner|flex|බැනර්|ෆ්ලෙක්ස්'],
-    ['mc_host', 'උත්සව මෙහෙයවන්නා (MC)', 'Event Host (MC)', 'mc|host|anchor|presenter|මෙහෙයවන්නා']
+    ['mc_host', 'උත්සව මෙහෙයවන්නා (MC)', 'Event Host (MC)', 'mc|host|anchor|presenter|මෙහෙයවන්නා'],
+    ['troupe', 'නර්තන, ගායන සහ බෙර කණ්ඩායම්', 'Dance, Music & Drumming Troupes', 'troupe|dancing troupe|kandyan|උඩරට නැටුම්|ජයමංගල|මගුල් බෙර|බෙර|hewisi|හේවිසි|perahera|පෙරහැර|ගායන කණ්ඩායම'],
+    ['content_creator', 'කෙටි වීඩියෝ සහ සමාජ මාධ්‍ය අන්තර්ගත නිර්මාණය', 'Short Video & Social Media Content', 'content creator|tiktok|shorts|youtube|influencer|ugc|ටික්ටොක්|අන්තර්ගත නිර්මාණ']
   ]},
   { id: 'security', si: 'ආරක්ෂක සහ කම්කරු සේවා', en: 'Security & General Labour', subs: [
     ['guard', 'ආරක්ෂක නිලධාරී', 'Security Guard', 'security guard|ආරක්ෂක|gatekeeper'],
@@ -548,7 +565,7 @@ const CATS = [
   { id: 'professional', si: 'වෘත්තීය සහ ව්‍යාපාරික සේවා', en: 'Professional & Business Services', subs: [
     ['legal_assist', 'නීති සහායක', 'Legal Assistant', 'legal|නීති|attorney assistant'],
     ['deeds', 'ඔප්පු ලිවීම', 'Deed Writing', 'notary|deeds|ඔප්පු|ලේඛන ලිවීම'],
-    ['tax_audit', 'බදු සහාය', 'Tax Support', 'tax|බදු|vat|epf etf filing'],
+    ['tax_audit', 'බදු උපදේශන සහ ලිපිගොනු සැකසීම', 'Tax Advice & Filing', 'tax|බදු|vat|epf etf filing|income tax|ird|ramis|tax return|ආදායම් බදු'],
     ['audit', 'විගණන සහාය', 'Audit Support', 'audit|විගණන|ගිණුම් විගණන'],
     ['insurance', 'රක්ෂණ නියෝජිත', 'Insurance Agent', 'insurance|රක්ෂණ|policy agent|life insurance'],
     ['real_estate', 'දේපළ නියෝජිත', 'Real Estate Agent', 'real estate|property|broker|ඉඩම්|දේපළ|land agent|බ්‍රෝකර්'],
@@ -556,7 +573,8 @@ const CATS = [
     ['surveyor', 'මිනින්දෝරු', 'Land Surveyor', 'surveyor|මැනුම්|මිනින්දෝරු'],
     ['qs', 'ප්‍රමාණ සමීක්ෂක (QS)', 'Quantity Surveyor', 'quantity surveyor|qs'],
     ['recruiter', 'බඳවා ගැනීම් නිලධාරී', 'Recruiter', 'recruiter|recruitment|බඳවා ගැනීම්'],
-    ['hr_assist', 'HR සහායක', 'HR Assistant', 'hr|human resource']
+    ['hr_assist', 'HR සහායක', 'HR Assistant', 'hr|human resource'],
+    ['biz_reg', 'ව්‍යාපාර ලියාපදිංචිය සහ සමාගම් ලේකම් සේවා', 'Business Registration & Company Secretarial', 'business registration|br|company registration|secretarial|company secretary|ව්‍යාපාර ලියාපදිංචි|සමාගම් ලේකම්|pvt ltd']
   ]},
   { id: 'support', si: 'සහාය සේවා වෘත්තිකයන්', en: 'Support Service Professionals', subs: [
     ['any_work', 'ඕනෑම වැඩක් කිරීමට සූදානම්', 'Ready for Any Work', 'ඕනෑම වැඩක්|ඕන වැඩක්|any work|any job|anything'],
@@ -800,7 +818,7 @@ function seedData() {
 function persistLocal() {
   try {
     const snap = { v: 2, settings: S.settings, me: S.me && !S.me.isAdmin ? S.me : (S.me ? { ...S.me, isAdmin: false } : null) };
-    TABLES.forEach(t => snap[t] = S[t]); snap.messages = S.messages;
+    TABLES.forEach(t => snap[t] = S[t]); snap.messages = S.messages; snap.seals_local = S.seals_local || {}; snap.bills_local = S.bills_local || [];
     localStorage.setItem(LS_KEY, JSON.stringify(snap));
   } catch (e) {
     if (!persistLocal.warned) { persistLocal.warned = 1; setTimeout(() => toast(t('ගබඩා ඉඩ පිරී ඇත. ඡායාරූප අඩු කරන්න.', 'Storage is full. Use fewer photos.')), 0); }
@@ -816,7 +834,7 @@ const LocalDB = {
       TABLES.forEach(t => S[t] = sd[t] || []); S.messages = []; S.settings = sd.settings; S.me = null;
       persistLocal();
     } else {
-      TABLES.forEach(t => S[t] = snap[t] || []); S.messages = snap.messages || []; S.settings = snap.settings || S.settings; S.me = snap.me || null;
+      TABLES.forEach(t => S[t] = snap[t] || []); S.seals_local = snap.seals_local || {}; S.bills_local = snap.bills_local || []; S.messages = snap.messages || []; S.settings = snap.settings || S.settings; S.me = snap.me || null;
     }
     try { if (S.me && sessionStorage.getItem('wl_admin') === '1') S.me.isAdmin = true; } catch (e) { }
   },
@@ -871,6 +889,7 @@ const LocalDB = {
   async markAllRead() { S.notifications.forEach(n => { if (S.me && n.user_id === S.me.id) n.read = true; }); persistLocal(); },
   async saveSetting(key, value) { S.settings[key] = value; persistLocal(); },
   async upload(bucket, dataUrl) { return dataUrl; },
+  async mySeal() { return S.me && S.seals_local ? S.seals_local[S.me.id] || null : null; },
   async signedUrl(p) { return p; },
   auth: {
     _acc() { try { return JSON.parse(localStorage.getItem('workline.accounts') || '{}'); } catch (e) { return {}; } },
@@ -982,6 +1001,25 @@ const LocalDB = {
       acc[ph] = await pwHash(ph, a.p_password); try { localStorage.setItem('workline.accounts', JSON.stringify(acc)); } catch (e) { }
       audit('password_reset', ph); return true;
     }
+    /* digital bills (demo copy — the real checks are in the database) */
+    if (name === 'seal_submit') {
+      const w = S.workers.find(x => x.owner_id === S.me.id && x.status === 'active');
+      if (!w || !(w.verif || []).slice(0, 3).every(x => x === 2)) throw new Error('nic-not-verified');
+      const all = S.seals_local = S.seals_local || {}, o = all[S.me.id];
+      if (o && o.status !== 'rejected') throw new Error('seal-locked');
+      all[S.me.id] = { owner_id: S.me.id, sig_path: a.p_sig, stamp_path: a.p_stamp || '', status: 'pending', note: '', created_at: nowIso() }; persistLocal(); return 'pending';
+    }
+    if (name === 'bill_issue') {
+      const w = S.workers.find(x => x.owner_id === S.me.id && x.status === 'active'); if (!w) throw new Error('no-active-profile');
+      const code = uid().replace(/[^a-f0-9]/gi, '').slice(0, 12).toUpperCase().padEnd(12, '0'), sl = (S.seals_local || {})[S.me.id];
+      (S.bills_local = S.bills_local || []).push({ code, owner_id: S.me.id, worker_id: w.id, kind: a.p_kind, no: a.p_no, issued_on: a.p_date, total: a.p_total, sealed: !!(sl && sl.status === 'approved'), void: false, data: a.p_data || {} }); persistLocal(); return code;
+    }
+    if (name === 'bill_void') { const b = (S.bills_local || []).find(x => x.code === a.p_code && x.owner_id === S.me.id); if (!b) throw new Error('not-found'); b.void = true; persistLocal(); return null; }
+    if (name === 'bill_check') {
+      const b = (S.bills_local || []).find(x => x.code === String(a.p_code || '').toUpperCase()); if (!b) return [];
+      const w = S.workers.find(x => x.id === b.worker_id) || {};
+      return [{ ...b, data: b.void ? {} : b.data || {}, name: w.name || '', trade: w.category || '', district: w.district || '', town: w.town || '', nic_ok: (w.verif || []).slice(0, 3).every(x => x === 2), active: w.status === 'active' }];
+    }
     if (name === 'delete_my_account') {
       const me = S.me.id, myW = S.workers.filter(x => x.owner_id === me).map(x => x.id), myJ = S.jobs.filter(x => x.owner_id === me).map(x => x.id);
       S.workers = S.workers.filter(x => x.owner_id !== me); S.jobs = S.jobs.filter(x => x.owner_id !== me);
@@ -1073,7 +1111,7 @@ const CloudDB = {
     const send = r => (exists ? this.sb.from(TBL(table)).update(r).eq('id', r.id) : this.sb.from(TBL(table)).insert(r)).select().single();
     let { data, error } = await send(row);
     /* columns added by the admin add-on (subs, photos): if they are not installed yet, save without them */
-    for (const col of ['subs', 'photos', 'private', 'pref_times', 'job_alerts', 'notified']) {
+    for (const col of ['subs', 'photos', 'private', 'pref_times', 'job_alerts', 'notified', 'links']) {
       if (error && new RegExp("'" + col + "'|" + col + ' ').test(String(error.message)) && col in row) {
         if (col === 'private' && row.private) throw new Error('setup-needed');   /* never publish a private profile as a public one */
         row = { ...row }; delete row[col]; ({ data, error } = await send(row));
@@ -1089,11 +1127,18 @@ const CloudDB = {
   async saveSetting(key, value) { const { error } = await this.sb.from(TBL('settings')).upsert({ key, value }); if (error) throw error; S.settings[key] = value; },
   async upload(bucket, dataUrl, name) {
     if (!dataUrl || !dataUrl.startsWith('data:')) return dataUrl;
-    const path = S.me.id + '/' + (name || uid()) + '.jpg';
-    const { error } = await this.sb.storage.from(BK[bucket]).upload(path, dataUrlToBlob(dataUrl), { contentType: 'image/jpeg', upsert: true });
+    const png = dataUrl.startsWith('data:image/png'), seal = /^seal-/.test(name || '');
+    const path = S.me.id + '/' + (name || uid()) + (png ? '.png' : '.jpg');
+    const { error } = await this.sb.storage.from(BK[bucket]).upload(path, dataUrlToBlob(dataUrl), { contentType: png ? 'image/png' : 'image/jpeg', upsert: !seal });
     if (error) throw error;
     if (bucket === 'media') return this.sb.storage.from(BK.media).getPublicUrl(path).data.publicUrl;
     return 'private:' + path;
+  },
+  async mySeal() {
+    if (!S.me) return null;
+    const { data, error } = await this.sb.from(TBL('seals')).select('*').eq('owner_id', S.me.id).maybeSingle();
+    if (error) { if (/wl_seals|does not exist|schema cache/i.test(error.message)) return { missing: true }; throw error; }
+    return data || null;
   },
   async signedUrl(p) {
     if (!p || !String(p).startsWith('private:')) return p;
@@ -1198,6 +1243,12 @@ function showErr(e) {
   let msg = t('යම් දෝෂයක් සිදු විය. නැවත උත්සාහ කරන්න.', 'Something went wrong. Please try again.');
   const RQE = { 'too-many-open': t('එකවර විවෘත ඉල්ලීම් 5ක් පමණි. පැරණි එකක් වසන්න.', 'Only 5 open requests at a time. Close an old one first.'), 'too-many-today': t('අද දින සීමාව ඉක්මවා ඇත. හෙට නැවත උත්සාහ කරන්න.', 'Daily limit reached. Try again tomorrow.'), 'request-not-open': t('මෙම ඉල්ලීම දැන් විවෘත නැත.', 'This request is no longer open.'), 'already-responded': t('ඔබ දැනටමත් ප්‍රතිචාර දැක්වූවා.', 'You have already answered.'), 'no-active-profile': t('ප්‍රතිචාර දැක්වීමට අනුමත වූ වෘත්තීය ප්‍රොෆයිලයක් අවශ්‍යයි.', 'You need an approved professional profile to answer.'), 'own-request': t('මෙය ඔබේම ඉල්ලීමයි.', 'This is your own request.'), 'request-closed': t('වසා දැමූ ඉල්ලීමක් සංස්කරණය කළ නොහැක.', 'A closed request cannot be edited.'), 'review-no-contact': t('ඇගයීම දිය හැක්කේ මෙම වෘත්තිකයා සමඟ Workline හරහා සම්බන්ධ වූ අයට පමණි.', 'Only people who contacted this professional through Workline can rate them.'), 'review-exists': t('ඔබ දැනටමත් ඇගයීමක් දී ඇත.', 'You have already rated this professional.'), 'bad-stars': t('තරු 1–5ක් තෝරන්න.', 'Choose 1–5 stars.') };
   Object.assign(RQE, {
+    'nic-not-verified': t('මුලින්ම NIC ඉදිරිපස, පසුපස සහ සෙල්ෆි සත්‍යාපනය අවසන් කරන්න (මගේ ගිණුම → විශ්වාස පත්‍රිකාව).', 'First finish NIC front, back and selfie verification (My account → Trust sheet).'),
+    'seal-locked': t('ඔබ දැනටමත් අත්සන / මුද්‍රාව එවා ඇත. ඒවා වෙනස් කළ හැක්කේ පරිපාලක ප්‍රතික්ෂේප කළොත් පමණි.', 'You already sent your signature / stamp. They can only be changed if an admin rejects them.'),
+    'file-missing': t('ඡායාරූපය උඩුගත වුණේ නැහැ. අන්තර්ජාලය බලා නැවත උත්සාහ කරන්න.', 'The picture did not upload. Check the internet and try again.'),
+    'no-active-profile': t('ඔබේ ප්‍රොෆයිලය අනුමත වූ පසු බිල්පත් සාදන්න පුළුවන්.', 'You can make bills after your profile is approved.'),
+    'too-many': t('අද දින බිල්පත් සීමාව (60) ඉක්මවා ඇත. හෙට නැවත උත්සාහ කරන්න.', 'Daily bill limit (60) reached. Try again tomorrow.'),
+    'bad-link': t('සබැඳියක් වැරදියි — නිවැරදි https ලින්ක් එකක් දාන්න.', 'A link is not valid — paste a correct https link.'),
     'msg-stopped': t('⚠️ මෙම පණිවිඩය Workline නීතිවලට පටහැනි නිසා යැවුණේ නැහැ. පරිපාලකට දැනුම් දුන්නා.', '⚠️ This message breaks the Workline rules, so it was not sent. The admins were told.'),
     'chat-blocked': t('🚫 මෙම පුද්ගලයා සමඟ chat කළ නොහැක (block කර ඇත).', '🚫 You cannot chat with this person (blocked).'),
     'too-fast': t('ටිකක් හෙමින් — විනාඩියකට පසු නැවත යවන්න.', 'Slow down — try again in a minute.'),
@@ -1792,6 +1843,7 @@ function prof(id) {
   ${w.special ? `<div class="box"><b>${t('විශේෂ අවශ්‍යතා / කොන්දේසි', 'Special requirements / conditions')}</b><p class="sub" style="margin:6px 0 0">${esc(w.special)}</p></div>` : ''}
   ${trustBox(w.verif, DOCS_W, 0, '', 'worker', id)}
   <div class="box"><div class="kv">${t('ගාස්තුව', 'Fee')}: <b>${esc(feeText(w))}</b></div><div class="kv">${t('භාෂා', 'Languages')}: <b>${esc((w.languages || []).map(l => optLabel(OPT.lang, l)).join(', '))}</b></div><div class="kv">${t('වැඩ කරන දින', 'Working days')}: <b>${esc(optLabel(OPT.days, w.avail_days))}</b></div>${(w.pref_times || []).length ? `<div class="kv">${t('කැමති වෙලාවන්', 'Preferred times')}: <b>${esc(w.pref_times.map(x => optLabel(OPT.times, x)).join(', '))}</b></div>` : ''}<div class="kv">${t('සේවා ප්‍රදේශය', 'Service area')}: <b>${esc(areaText(w))}</b></div>${w.coverage === 'districts' ? `<div class="wrapc" style="margin-top:6px">${(w.areas || []).map(a => tag(distName(a))).join('')}</div>` : ''}${w.coverage === 'district' ? `<div class="kv">${w.radius === 'shop' ? t('සේවා ස්ථානය', 'Workplace') : t('ගමන් කරන දුර', 'Travel radius')}: <b>${esc(optLabel(OPT.radius, w.radius))}</b></div>` : ''}</div>
+  ${linksRow(w)}
   ${(w.gallery || []).length ? `<div class="box"><b>${t('වැඩ ගැලරිය', 'Work gallery')}</b><div class="gal" style="margin-top:10px">${w.gallery.map(d => `<img alt="${t('වැඩ ඡායාරූපය', 'Work photo')}" ${imgSrcAttr(d, 'onclick="zoomImg(this.src)" style="flex:none;width:120px;height:120px;object-fit:cover;border-radius:20px;cursor:zoom-in"')}>`).join('')}</div></div>` : ''}
   ${ratingBox(w, rvs)}
   <button class="sec" style="width:100%;margin-bottom:8px" onclick="rp('w','${w.id}')">${t('ගැටලුවක් වාර්තා කරන්න', 'Report a problem')}</button>
@@ -2021,7 +2073,70 @@ function workerForm(w) {
   <label>${t('පහසුකම්', 'Facilities')}</label><div class="wrapc">${checksHtml(OPT.fac, 'fc', w.facilities)}</div>
   <label for="wb">${t('විස්තරය', 'Description')}</label><textarea class="in" id="wb" maxlength="600">${esc(w.bio)}</textarea>
   <label for="ws">${t('විශේෂ අවශ්‍යතා / කොන්දේසි', 'Special requirements / conditions')}</label><textarea class="in" id="ws" maxlength="300">${esc(w.special)}</textarea>
-  <label>${t(`වැඩ ඡායාරූප (උපරිම ${CFG.LIMITS.galleryMax})`, `Work photos (max ${CFG.LIMITS.galleryMax})`)}</label>${pk('gal', CFG.LIMITS.galleryMax, t('ඡායාරූප එක් කරන්න', 'Add photos'))}`;
+  <label>${t(`වැඩ ඡායාරූප (උපරිම ${CFG.LIMITS.galleryMax})`, `Work photos (max ${CFG.LIMITS.galleryMax})`)}</label>${pk('gal', CFG.LIMITS.galleryMax, t('ඡායාරූප එක් කරන්න', 'Add photos'))}
+  ${linksForm(w.links)}`;
+}
+/* ---------- social media + location links (optional) ----------
+   Only https links to these well-known sites are accepted — checked here AND again by the
+   database, so nobody can slip a harmful web address into a profile. Opening a link loads
+   the other site (Facebook, Google Maps…), never our server, so it adds no load to Workline. */
+const LINKS = [
+  ['fb', 'Facebook', '#1877F2', ['facebook.com', 'fb.com', 'fb.me'], 'facebook.com/ඔබේ-පිටුව'],
+  ['tt', 'TikTok', '#111111', ['tiktok.com'], 'tiktok.com/@ඔබේ-නම'],
+  ['yt', 'YouTube', '#FF0000', ['youtube.com', 'youtu.be'], 'youtube.com/@ඔබේ-චැනලය'],
+  ['ig', 'Instagram', '#E1306C', ['instagram.com'], 'instagram.com/ඔබේ-නම'],
+  ['li', 'LinkedIn', '#0A66C2', ['linkedin.com'], 'linkedin.com/in/ඔබේ-නම'],
+  ['map', 'Google Maps', '#34A853', ['google.com', 'google.lk', 'goo.gl', 'maps.app.goo.gl', 'g.page'], 'maps.app.goo.gl/...']
+];
+const LINK_IC = {
+  fb: 'M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z',
+  tt: 'M16.6 3c.4 2.2 1.9 3.6 4.2 3.8v3.4c-1.5.1-2.9-.4-4.2-1.2v6.3c0 3.5-2.5 5.7-5.6 5.7A5.6 5.6 0 0 1 5.4 15c0-3.4 2.9-5.9 6.4-5.4v3.5c-1.5-.4-3 .6-3 2 0 1.2 1 2.1 2.2 2.1 1.4 0 2.3-.9 2.3-2.6V3z',
+  yt: 'M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12c0 1.3.1 2.6.4 3.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1c.3-1.2.4-2.5.4-3.8s-.1-2.6-.4-3.8zM10 15.2V8.8l5.2 3.2z',
+  ig: 'M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 3.6c2.7 0 3 0 4.1.1 2.8.1 4.1 1.4 4.2 4.2.1 1.1.1 1.4.1 4.1s0 3-.1 4.1c-.1 2.8-1.4 4.1-4.2 4.2-1.1.1-1.4.1-4.1.1s-3 0-4.1-.1c-2.8-.1-4.1-1.4-4.2-4.2C3.6 15 3.6 14.7 3.6 12s0-3 .1-4.1c.1-2.8 1.4-4.1 4.2-4.2 1.1-.1 1.4-.1 4.1-.1z',
+  li: 'M5 3.5A2 2 0 1 1 5 7.5a2 2 0 0 1 0-4zM3.3 9h3.4v11H3.3zm5.6 0h3.3v1.5c.5-.9 1.6-1.8 3.4-1.8 3.5 0 4.1 2.3 4.1 5.3v6h-3.4v-5.3c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8V20H8.9z',
+  map: 'M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'
+};
+function linkClean(k, v) {
+  v = String(v || '').trim(); if (!v) return '';
+  if (!/^https?:\/\//i.test(v)) v = 'https://' + v.replace(/^\/+/, '');
+  let u; try { u = new URL(v); } catch (e) { return null; }
+  if (u.protocol !== 'https:' && u.protocol !== 'http:') return null;
+  if (u.username || u.password || u.port) return null;
+  u.protocol = 'https:'; u.hash = '';
+  const host = u.hostname.toLowerCase(), L = LINKS.find(x => x[0] === k); if (!L) return null;
+  if (!L[3].some(d => host === d || host.endsWith('.' + d))) return null;
+  /* no "jump to another website" addresses (l.facebook.com, /redirect …) */
+  if (/^(l|lm)\./.test(host) || /^\/(l\.php|redirect|url|link|out)\b/i.test(u.pathname)) return null;
+  if (k === 'map' && !(/^(www\.)?google\.(com|lk)$/.test(host) && /^\/maps(\/|$)/.test(u.pathname) || /^maps\.google\.(com|lk)$/.test(host) || host === 'maps.app.goo.gl' || host === 'goo.gl' && /^\/maps\//.test(u.pathname) || host === 'g.page')) return null;
+  const out = u.toString(); return out.length > 300 || /[\s<>"'`\\]/.test(out) ? null : out;
+}
+const linksOf = w => { const l = w && w.links && typeof w.links === 'object' ? w.links : {}; const o = {}; LINKS.forEach(([k]) => { const c = linkClean(k, l[k]); if (c) o[k] = c; }); return o; };
+const linkSvg = (k, s, col) => `<svg aria-hidden="true" width="${s}" height="${s}" viewBox="0 0 24 24"><path fill="${col}" d="${LINK_IC[k]}"/></svg>`;
+function linksForm(l) {
+  l = l && typeof l === 'object' ? l : {};
+  return `<label>${t('සමාජ මාධ්‍ය සහ ස්ථාන සබැඳි (විකල්ප)', 'Social media & location links (optional)')}</label>
+  <p class="sub" style="margin:0 4px 8px">${t('ඔබේ Facebook පිටුව, TikTok, YouTube වගේ ගිණුම් වල ලින්ක් එක copy කරලා මෙතන දාන්න. මෙම වෙබ් අඩවි වල ලින්ක් පමණක් පිළිගනී.', 'Paste the link of your Facebook page, TikTok, YouTube etc. Only links to these sites are accepted.')}</p>
+  ${LINKS.map(([k, n, c, , ph]) => `<div style="display:flex;gap:8px;align-items:center;margin-top:8px"><span style="flex:none;width:40px;height:40px;border-radius:12px;background:${c}1A;display:grid;place-items:center">${linkSvg(k, 22, c)}</span><input class="in" style="margin:0" id="lk_${k}" type="url" inputmode="url" maxlength="300" autocomplete="off" aria-label="${n}" placeholder="${esc(ph)}" value="${esc(l[k] || '')}"></div>`).join('')}
+  <button type="button" class="sec" style="width:100%;margin-top:8px;font-size:13px" onclick="linkGps()">📍 ${t('මම දැන් ඉන්න තැන ලොකේෂන් ලින්ක් එක ලෙස දාන්න', 'Use where I am now as the location link')}</button>
+  <p class="sub" style="margin:6px 4px 0">⚠️ ${t('ලොකේෂන් එක දාන්න ඔබේ කඩේ / වැඩපොළේ ඉඳන් විතරයි. ආරක්ෂාවට ඔබේ නිවසේ ලොකේෂන් එක දාන්න එපා.', 'Only add your shop / workplace location. For your safety, do not share your home location.')}</p>`;
+}
+function linkGps() {
+  if (!navigator.geolocation) return toast(t('මෙම දුරකථනයේ ලොකේෂන් පහසුකම නැත', 'Location is not available on this phone'));
+  toast(t('ලොකේෂන් එක සොයමින්…', 'Finding your location…'));
+  navigator.geolocation.getCurrentPosition(p => {
+    const i = $('#lk_map'); if (!i) return;
+    i.value = 'https://www.google.com/maps?q=' + p.coords.latitude.toFixed(5) + ',' + p.coords.longitude.toFixed(5);
+    toast(t('ලොකේෂන් ලින්ක් එක එක් කළා ✓', 'Location link added ✓'));
+  }, () => toast(t('ලොකේෂන් අවසරය ලැබුණේ නැත', 'Location permission was not given'), 3200), { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
+}
+function readLinks() {
+  const o = {}; let bad = '';
+  LINKS.forEach(([k, n]) => { const el = $('#lk_' + k); if (!el) return; const c = linkClean(k, el.value); if (c === null) bad = bad || n; else if (c) o[k] = c; });
+  return { links: o, _linkBad: bad };
+}
+function linksRow(w) {
+  const l = linksOf(w), ks = LINKS.filter(([k]) => l[k]); if (!ks.length) return '';
+  return `<div class="box"><b>${t('සබැඳි', 'Links')}</b><div class="wrapc" style="margin-top:8px">${ks.map(([k, n, c]) => `<a class="sec" style="width:auto;min-height:42px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;text-decoration:none" href="${esc(l[k])}" target="_blank" rel="noopener noreferrer nofollow">${linkSvg(k, 20, c)}<span>${k === 'map' ? t('ස්ථානය', 'Location') : n}</span></a>`).join('')}</div></div>`;
 }
 /* "Anywhere in Sri Lanka" in the travel list = the island-wide option above */
 function radUI() {
@@ -2037,7 +2152,8 @@ function readW() {
     exp_years: Math.max(0, Math.min(60, parseInt($('#wx').value, 10) || 0)), languages: checked('lg'), district: home, town: $('#wt').value.trim(),
     coverage: cov, areas: cov === 'districts' ? checked('ar').filter(d => d !== home) : [], radius: $('#wr').value, avail_days: $('#wa').value, pref_times: checked('ptm'),
     fee_type: $('#wf').value, fee: $('#wfe').value.trim(), facilities: checked('fc'), bio: $('#wb').value.trim(), special: $('#ws').value.trim(),
-    _photos: (PHT.prof || []).slice(0, MAX_PROFILE_PHOTOS), _gal: (PHT.gal || []).slice(0, CFG.LIMITS.galleryMax)
+    _photos: (PHT.prof || []).slice(0, MAX_PROFILE_PHOTOS), _gal: (PHT.gal || []).slice(0, CFG.LIMITS.galleryMax),
+    ...readLinks()
   };
 }
 function validW(d, selfId) {
@@ -2048,6 +2164,7 @@ function validW(d, selfId) {
   if (d.skills.some(id => !TX.subs[id] || TX.subs[id].cat !== d.category)) return t('අනු ක්ෂේත්‍ර තෝරාගත් ප්‍රධාන ක්ෂේත්‍රයට අයත් විය යුතුය', 'Sub-fields must belong to the chosen main field');
   if (d.coverage === 'district' && d.radius === 'shop' && d.town.length < 2) return t('ඔබේ සේවා ස්ථානය තියෙන නගරය / ප්‍රදේශය ලියන්න', 'Enter the town / area of your workplace');
   if (d.coverage === 'districts' && !d.areas.length) return t('සේවා කරන අමතර දිස්ත්‍රික්ක තෝරන්න', 'Select the extra districts you serve');
+  if (d._linkBad) return t(`${d._linkBad} ලින්ක් එක වැරදියි — එම වෙබ් අඩවියේ නිවැරදි https ලින්ක් එකක් දාන්න, නැත්නම් හිස්ව තබන්න`, `The ${d._linkBad} link is not valid — paste a correct https link from that site, or leave it empty`);
   if (S.workers.some(w => w.id !== selfId && w.owner_id !== (S.me && S.me.id) && normPhone(w.phone).e164 === d.phone)) return t('මෙම දුරකථන අංකය දැනටමත් වෙනත් ප්‍රොෆයිලයක ඇත', 'This phone number is already used by another profile');
   return '';
 }
@@ -2059,7 +2176,7 @@ async function packWorkerImages(d) {
   for (const g of d._gal) out.gallery.push(await DB.upload('media', g, 'g-' + uid()));
   return out;
 }
-const cleanW = d => { const o = { ...d }; delete o._phoneOk; delete o._photos; delete o._gal; return o; };
+const cleanW = d => { const o = { ...d }; delete o._phoneOk; delete o._photos; delete o._gal; delete o._linkBad; return o; };
 /* public link to the app (+ optional ?key=value) — always the real site, even from a preview or a copy */
 const appLink = q => { const base = CFG.APP_URL || location.href.split(/[?#]/)[0]; return base + (q ? '?' + new URLSearchParams(q).toString() : ''); };
 const refLink = () => appLink({ ref: refCode(S.me.id) });
@@ -2840,6 +2957,507 @@ async function bcShare() {
 }
 
 /* ============================================================
+   54 — DIGITAL BILLS & ESTIMATES (for professionals)
+   • The bill picture is drawn on the professional's own phone and kept there
+     (history in this browser). Workline stores only a tiny fingerprint
+     (number, date, total) so the QR code on the bill can prove it is genuine.
+   • Signature + official stamp: sent ONCE, only after NIC verification, checked
+     by an admin, kept in the private store. The background is removed on the
+     phone so the ink looks like a real pen / stamp on the paper.
+   ============================================================ */
+const BILL_MAX_ITEMS = 15;
+const billLS = {
+  get(k, d) { try { const v = JSON.parse(localStorage.getItem('wl_bill_' + k) || 'null'); return v == null ? d : v; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('wl_bill_' + k, JSON.stringify(v)); return true; } catch (e) { return false; } }
+};
+const billKey = () => S.me ? S.me.id.slice(0, 12) : 'x';
+const billHist = () => billLS.get('hist_' + billKey(), []);
+const billToday = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+const billAddDays = (iso, n) => { const d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + n); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+const billNum = v => { const n = parseFloat(String(v == null ? '' : v).replace(/[^\d.]/g, '')); return isFinite(n) && n >= 0 ? Math.round(n * 100) / 100 : 0; };
+const billMoney = n => (Number(n) || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const nicOk = w => !!w && w.status === 'active' && (w.verif || []).slice(0, 3).length === 3 && (w.verif || []).slice(0, 3).every(x => x === 2);
+const BILL_KIND = { inv: ['බිල්පත', 'Invoice', 'INVOICE', 'INV'], est: ['ඇස්තමේන්තුව', 'Estimate', 'QUOTATION', 'EST'] };
+
+/* ---------- home: new bill, signature / stamp status, history ---------- */
+async function billHome() {
+  const w = myWorker(); if (!w) return toast(t('පළමුව වෘත්තීය ප්‍රොෆයිලයක් සාදන්න', 'Create a professional profile first'));
+  clAll();
+  sheet(`<h2 style="margin-top:0">🧾 ${t('ඩිජිටල් බිල්පත් සහ ඇස්තමේන්තු', 'Digital bills & estimates')}</h2>
+  ${billQuickHtml(w)}
+  <div id="billhist">${billHistHtml()}</div>
+  <button class="sec" style="width:100%;margin-top:10px" onclick="cl()">${t('වසන්න', 'Close')}</button>`);
+}
+/* the part shown in "My account" and at the top of the bills sheet */
+function billQuickHtml(w) {
+  const biz = billLS.get('biz_' + billKey(), {}), ready = !!(biz.name || biz.addr || biz.bank);
+  return `<p class="sub" style="margin:0 4px 10px">${t('ඔබේ නම, දුරකථනය, අත්සන, නිල මුද්‍රාව සහ QR කේතය සහිත පිරිසිදු බිල්පතක් තත්පර කිහිපයකින් — WhatsApp කරන්න, නැත්නම් print කරන්න.', 'A clean bill with your name, phone, signature, stamp and QR code in seconds — send it on WhatsApp or print it.')}</p>
+  <div style="display:flex;gap:8px"><button class="pri" style="flex:1;padding:0 8px" onclick="billForm('inv')">🧾 ${t('බිල්පත', 'Bill')}</button><button class="pri" style="flex:1;padding:0 8px;background:linear-gradient(90deg,#0F766E,#2563EB)" onclick="billForm('est')">📋 ${t('ඇස්තමේන්තු', 'Estimate')}</button></div>
+  <button class="sec" style="width:100%;margin-top:8px" onclick="billSettings()">🖨 ${t('මුද්‍රණය සහ සැකසීම', 'Printing & setup')}${ready ? '' : ` <span class="tag" style="margin:0 0 0 6px">${t('එක් වරක් සකසන්න', 'set up once')}</span>`}</button>
+  <button class="sec" style="width:100%;margin-top:8px" onclick="billSettings(1)">✍️ ${t('අත්සන සහ නිල මුද්‍රාව', 'Signature & official stamp')}</button>
+  ${w.status !== 'active' ? `<p class="sub" style="margin:8px 4px 0">⏳ ${t('ඔබේ ප්‍රොෆයිලය අනුමත වූ පසු බිල්පතේ QR කේතයෙන් එය සැබෑදැයි පරීක්ෂා කර බාගත කළ හැකි වේ.', 'After your profile is approved, the QR code on your bill lets anyone check it and download a copy.')}</p>` : ''}`;
+}
+/* one-time setup: business details printed on every bill + signature / stamp */
+function billSettings(toSeal) {
+  const w = myWorker(); if (!w) return;
+  const b = billLS.get('biz_' + billKey(), {});
+  clAll();
+  sheet(`<h2 style="margin-top:0">🖨 ${t('මුද්‍රණය සහ සැකසීම', 'Printing & setup')}</h2>
+  <p class="sub" style="margin:0 4px 8px">${t('ඔබේ නම, දුරකථනය, වෘත්තිය සහ ප්‍රදේශය ප්‍රොෆයිලයෙන් ස්වයංක්‍රීයව ගනී. පහත ඒවා විකල්පයි — එක් වරක් දැම්මම සෑම බිල්පතකටම යයි (මෙම දුරකථනයේ සුරැකේ).', 'Your name, phone, trade and area come from your profile automatically. The fields below are optional — fill them once and they go on every bill (saved on this phone).')}</p>
+  <label for="b_bn">${t('ව්‍යාපාරයේ නම', 'Business name')}</label><input class="in" id="b_bn" maxlength="60" placeholder="${esc(w.name)}" value="${esc(b.name || '')}">
+  <label for="b_ba">${t('ව්‍යාපාරයේ ලිපිනය', 'Business address')}</label><input class="in" id="b_ba" maxlength="90" value="${esc(b.addr || '')}">
+  <label for="b_br">${t('BR අංකය', 'BR number')}</label><input class="in" id="b_br" maxlength="30" value="${esc(b.br || '')}">
+  <label for="b_bk">${t('ගෙවීම් සඳහා බැංකු ගිණුම (බිල්පතේ පෙන්වයි)', 'Bank account for payments (shown on bills)')}</label><input class="in" id="b_bk" maxlength="90" placeholder="${esc(t('උදා: BOC · 0001234567 · W.M.P. Kumara · පාදුක්ක', 'e.g. BOC · 0001234567 · W.M.P. Kumara · Padukka'))}" value="${esc(b.bank || '')}">
+  <label for="b_dn">${t('සාමාන්‍ය සටහන / කොන්දේසි (සෑම බිල්පතකටම)', 'Default notes / terms (every bill)')}</label><textarea class="in" id="b_dn" maxlength="300" placeholder="${esc(t('උදා: වගකීම මාස 6යි. ස්තූතියි!', 'e.g. 6 months warranty. Thank you!'))}">${esc(b.notes || '')}</textarea>
+  <label for="b_dv">${t('ඇස්තමේන්තු වලංගු කාලය (දින)', 'Estimates valid for (days)')}</label><input class="in" id="b_dv" type="number" min="1" max="365" inputmode="numeric" value="${esc(b.valid || '14')}">
+  <button class="pri" style="margin-top:12px" onclick="billSettingsSave()">✓ ${t('සුරකින්න', 'Save')}</button>
+  <div id="sealbox"><div class="skel" style="height:90px;margin-top:10px"></div></div>
+  <button class="sec" style="width:100%;margin-top:10px" onclick="billHome()">${t('ආපසු', 'Back')}</button>`);
+  await_(sealBoxFill(), () => { if (toSeal) { const e = $('#sealbox'); if (e) e.scrollIntoView({ block: 'start', behavior: 'smooth' }); } });
+}
+const await_ = (p, f) => Promise.resolve(p).then(f, f);
+function billSettingsSave() {
+  const g = id => (($('#' + id) || {}).value || '').trim();
+  const v = Math.max(1, Math.min(365, parseInt(g('b_dv'), 10) || 14));
+  billLS.set('biz_' + billKey(), { name: g('b_bn'), addr: g('b_ba'), br: g('b_br'), bank: g('b_bk'), notes: g('b_dn'), valid: String(v) });
+  toast(t('සුරැකුවා ✓', 'Saved ✓')); billHome();
+}
+async function sealBoxFill() {
+  const box = $('#sealbox'); if (!box) return;
+  const w = myWorker(); let s = null;
+  try { s = await DB.mySeal(); } catch (e) { s = null; }
+  const el = $('#sealbox'); if (!el) return;
+  BILL_SEAL = s && !s.missing ? s : null;
+  let inner;
+  if (s && s.missing) inner = `<div class="sub">${t('අත්සන / මුද්‍රා පහසුකම ඉක්මනින් සක්‍රීය වේ.', 'Signature / stamp will be available soon.')}</div>`;
+  else if (!s || s.status === 'rejected') {
+    inner = nicOk(w)
+      ? `${s ? `<div class="sub" style="color:#E0486B;margin-bottom:6px">${t('ප්‍රතික්ෂේප විය', 'Rejected')}: ${esc(s.note || '')}</div>` : ''}<p class="sub" style="margin:0 0 8px">${t('ඔබේ අත්සන සහ නිල මුද්‍රාව ඡායාරූපයකින් එක් වරක් පමණක් එවන්න. පරිපාලක අනුමත කළ පසු සෑම බිල්පතකටම සැබෑ තීන්තෙන් කළා වගේ ස්වයංක්‍රීයව එකතු වේ.', 'Send a photo of your signature and official stamp once. After admin approval they are added to every bill, looking like real ink.')}</p><button class="pri" onclick="sealStart()">✍️ ${t('අත්සන සහ නිල මුද්‍රාව එක් කරන්න', 'Add signature & stamp')}</button>`
+      : sealLockedHtml(w);
+  } else if (s.status === 'pending') inner = `<p class="sub" style="margin:0">⏳ ${t('ඔබේ අත්සන / නිල මුද්‍රාව පරිපාලක පරීක්ෂාවේ ඇත (සාමාන්‍යයෙන් පැය 24ක් ඇතුළත). අනුමත වූ විට දැනුම්දීමක් ලැබේ.', 'Your signature / stamp is being checked by an admin (usually within 24 hours). You will be notified.')}</p>`;
+  else inner = `<p class="sub" style="margin:0 0 6px">✓ ${t('අනුමතයි — ඔබේ බිල්පත් වලට ස්වයංක්‍රීයව එකතු වේ. (වෙනස් කිරීමට අවශ්‍ය නම් සහාය අංශය අමතන්න.)', 'Approved — added to your bills automatically. (To change them, contact support.)')}</p><div style="display:flex;gap:8px"><div class="sealprev" id="sp_sig"></div>${s.stamp_path ? '<div class="sealprev" id="sp_stamp"></div>' : ''}</div>`;
+  el.innerHTML = `<div class="box" style="margin-top:10px"><b>✍️ ${t('අත්සන සහ නිල මුද්‍රාව', 'Signature & official stamp')}</b><div style="margin-top:8px">${inner}</div></div>`;
+  if (s && s.status === 'approved') {
+    const [a, b] = await Promise.all([sealImg(s.sig_path), sealImg(s.stamp_path)]);
+    const pa = $('#sp_sig'), pb = $('#sp_stamp');
+    if (pa && a) pa.innerHTML = `<img alt="${t('අත්සන', 'Signature')}" src="${a.src}">`;
+    if (pb && b) pb.innerHTML = `<img alt="${t('නිල මුද්‍රාව', 'Stamp')}" src="${b.src}">`;
+  }
+}
+let BILL_SEAL = null;
+/* what is still missing before a signature / stamp can be added */
+function sealLockedHtml(w) {
+  const v = (w && w.verif) || [], row = (ok, s) => `<div style="padding:4px 0">${ok ? '<b style="color:var(--ok)">✓</b>' : '○'} ${s}</div>`;
+  return `<p class="sub" style="margin:0 0 6px">🔒 ${t('ආරක්ෂාව සඳහා අත්සන / නිල මුද්‍රාව එක් කළ හැක්කේ මේ පියවර 4 අවසන් වූ පසුයි:', 'For safety you can add a signature / stamp after these 4 steps:')}</p>
+  ${row(w && w.status === 'active', t('ප්‍රොෆයිලය අනුමතයි', 'Profile approved'))}${row(v[0] === 2, t('NIC ඉදිරිපස අනුමතයි', 'NIC front approved'))}${row(v[1] === 2, t('NIC පසුපස අනුමතයි', 'NIC back approved'))}${row(v[2] === 2, t('සෙල්ෆි (NIC අතැතිව) අනුමතයි', 'Selfie with NIC approved'))}
+  <button class="sec" style="width:100%;margin-top:8px" onclick="cl();UI.acc=Object.assign(UI.acc||{},{trust:true});UI.tab='my';go();setTimeout(()=>{const e=document.querySelector('details[data-k=trust]');if(e)e.scrollIntoView({block:'start',behavior:'smooth'})},120)">🪪 ${t('ලේඛන උඩුගත කරන්න (විශ්වාස පත්‍රිකාව)', 'Upload documents (Trust sheet)')}</button>`;
+}
+/* approved signature / stamp, cached on this phone so it is downloaded only once */
+async function sealImg(path) {
+  if (!path) return null;
+  const ck = 'seal_' + billKey(), cache = billLS.get(ck, {});
+  if (cache[path]) return bcLoadImg(cache[path]);
+  let url = ''; try { url = await DB.signedUrl(path); } catch (e) { }
+  if (!url) return null;
+  const im = await bcLoadImg(url); if (!im) return null;
+  try {
+    const c = document.createElement('canvas'); c.width = im.naturalWidth || im.width; c.height = im.naturalHeight || im.height;
+    c.getContext('2d').drawImage(im, 0, 0); const d = c.toDataURL('image/png');
+    if (d.length < 900000) { const n = {}; n[path] = d; billLS.set(ck, Object.assign({}, cache, n)); }
+  } catch (e) { }
+  return im;
+}
+
+/* ---------- capture: photo → transparent ink picture ---------- */
+const SEAL = { sig: null, stamp: null };
+function sealStart() {
+  const w = myWorker(); if (!nicOk(w)) return toast(t('මුලින්ම NIC සත්‍යාපනය අවසන් කරන්න', 'First finish NIC verification'));
+  clAll();
+  SEAL.sig = null; SEAL.stamp = null;
+  const step = (k, n, tip) => `<div class="box"><b>${n}</b><p class="sub" style="margin:6px 0 8px">${tip}</p>
+    <div id="sv_${k}" class="sealprev big" style="display:none"></div>
+    <div id="sc_${k}" style="display:none"><label class="sub" for="st_${k}" style="display:block;margin:8px 4px 2px">${t('පසුබිම ඉවත් කිරීම (ඉරි / අළු පාට ඉතිරි නම් වැඩි කරන්න)', 'Background removal (increase if grey marks remain)')}</label><input id="st_${k}" type="range" min="4" max="40" value="13" style="width:100%" oninput="sealRedo('${k}')">
+    <div style="display:flex;gap:8px;margin-top:6px"><button type="button" class="sec" style="flex:1" onclick="sealRot('${k}')">⟳ ${t('කරකවන්න', 'Rotate')}</button><button type="button" class="sec" style="flex:1" onclick="sealClear('${k}')">✕ ${t('ඉවත් කරන්න', 'Remove')}</button></div></div>
+    <label class="sec bt" id="sb_${k}" style="margin-top:8px">📷 ${t('ඡායාරූපය ගන්න / තෝරන්න', 'Take / choose photo')}<input class="vh" type="file" accept="image/*" capture="environment" onchange="sealPick('${k}',this)"></label></div>`;
+  sheet(`<h2 style="margin-top:0">✍️ ${t('අත්සන සහ නිල මුද්‍රාව', 'Signature & official stamp')}</h2>
+  <div class="box" style="font-size:13px;border:1px solid #FFA24A">⚠️ ${t('මෙය එක් වරක් පමණි. පරිපාලක අනුමත කළ පසු ඔබට වෙනස් කළ හෝ මැකිය නොහැක. ඡායාරූප පොදුවේ පෙන්වන්නේ නැත — ඔබ සාදන බිල්පත් වල පමණක් ඇතුළත් වේ.', 'This is one time only. After admin approval you cannot change or delete them. The pictures are never shown publicly — only inside the bills you make.')}</div>
+  ${step('sig', t('1. ඔබේ අත්සන (අනිවාර්යයි)', '1. Your signature (required)'), t('සුදු කඩදාසියක තද නිල් / කළු පෑනකින් අත්සන් කරන්න. හොඳ එළියක, සෙවණැල්ල වැටෙන්නේ නැතිව, කඩදාසියට කෙළින්ම ඉහළින් ඡායාරූපය ගන්න.', 'Sign on white paper with a dark blue / black pen. Take the photo straight from above in good light, with no shadow.'))}
+  ${step('stamp', t('2. ඔබේ නිල මුද්‍රාව (තිබේ නම්)', '2. Your official stamp (if you have one)'), t('සුදු කඩදාසියක මුද්‍රාව පැහැදිලිව තබා, එය පමණක් පෙනෙන සේ ළඟින් ඡායාරූපය ගන්න. ඔබේ / ඔබේ ව්‍යාපාරයේ මුද්‍රාවක් පමණක් — වෙනත් ආයතනයක හෝ රජයේ මුද්‍රාවක් භාවිතය නීතිවිරෝධීයි.', 'Stamp clearly on white paper and photograph it close up. Only your own / your business stamp — using another organisation\'s or a government stamp is illegal.'))}
+  <label class="ck" style="margin:10px 0"><input type="checkbox" id="seal_ok"><span>${t('මෙය මගේම අත්සන සහ මට අයිති නිල මුද්‍රාව බවත්, එය වෙනත් කෙනෙකු රැවටීමට භාවිතා නොකරන බවත් මම සහතික කරමි. බිල්පත් වල අන්තර්ගතයට වගකීම මගේයි.', 'I confirm this is my own signature and a stamp that belongs to me, and that I will not use it to deceive anyone. I am responsible for what my bills say.')}</span></label>
+  <div class="acts"><button class="sec" style="flex:1" onclick="billSettings()">${t('ආපසු', 'Back')}</button><button class="pri" style="flex:1" onclick="sealSend()">${t('පරීක්ෂාවට යවන්න', 'Send for checking')}</button></div>`);
+}
+async function sealPick(k, inp) {
+  const f = inp.files && inp.files[0]; inp.value = ''; if (!f) return;
+  try {
+    const src = await readImage(f, 1600), im = await bcLoadImg(src); if (!im) throw new Error('not-image');
+    SEAL[k] = { im, rot: 0, c: null }; sealRedo(k);
+  } catch (e) { imgErr(e); }
+}
+function sealRot(k) { if (!SEAL[k]) return; SEAL[k].rot = (SEAL[k].rot + 90) % 360; sealRedo(k); }
+function sealClear(k) { SEAL[k] = null; const v = $('#sv_' + k), c = $('#sc_' + k); if (v) { v.style.display = 'none'; v.innerHTML = ''; } if (c) c.style.display = 'none'; }
+function sealRedo(k) {
+  const o = SEAL[k]; if (!o) return;
+  const thr = (+(($('#st_' + k) || {}).value || 13)) / 100;
+  o.c = sealProcess(o.im, thr, o.rot, k === 'sig' ? 900 : 700);
+  const v = $('#sv_' + k), c = $('#sc_' + k);
+  if (v) { v.style.display = ''; v.innerHTML = o.c ? `<img alt="" src="${o.c.toDataURL('image/png')}">` : `<span class="sub">${t('ඉංක් එක හඳුනාගත නොහැක — වෙනත් ඡායාරූපයක් ගන්න', 'Could not find the ink — take another photo')}</span>`; }
+  if (c) c.style.display = '';
+}
+/* removes the paper: estimates the paper colour in small blocks (so shadows / uneven light
+   do not matter), turns paper into transparency and keeps the real ink colour */
+function sealProcess(im, thr, rot, outMax) {
+  const iw = im.naturalWidth || im.width, ih = im.naturalHeight || im.height, k0 = Math.min(1, 1400 / Math.max(iw, ih));
+  const sw = Math.round(iw * k0), sh = Math.round(ih * k0), rt = rot === 90 || rot === 270;
+  const W = rt ? sh : sw, H = rt ? sw : sh, c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d'); x.translate(W / 2, H / 2); x.rotate(rot * Math.PI / 180); x.drawImage(im, -sw / 2, -sh / 2, sw, sh);
+  const D = x.getImageData(0, 0, W, H), p = D.data, B = 48, bw = Math.ceil(W / B), bh = Math.ceil(H / B);
+  const bg = new Float32Array(bw * bh * 4);
+  for (let by = 0; by < bh; by++) for (let bx = 0; bx < bw; bx++) {
+    const hist = new Uint32Array(256); let n = 0;
+    for (let y = by * B; y < Math.min(H, by * B + B); y += 2) for (let xx = bx * B; xx < Math.min(W, bx * B + B); xx += 2) { const i = (y * W + xx) * 4; hist[(p[i] * .3 + p[i + 1] * .59 + p[i + 2] * .11) | 0]++; n++; }
+    let acc = 0, cut = 255; for (let v = 255; v >= 0; v--) { acc += hist[v]; if (acc >= n * .3) { cut = v; break; } }
+    let r = 0, g = 0, b = 0, m = 0;
+    for (let y = by * B; y < Math.min(H, by * B + B); y += 2) for (let xx = bx * B; xx < Math.min(W, bx * B + B); xx += 2) { const i = (y * W + xx) * 4; if ((p[i] * .3 + p[i + 1] * .59 + p[i + 2] * .11) >= cut) { r += p[i]; g += p[i + 1]; b += p[i + 2]; m++; } }
+    const j = (by * bw + bx) * 4; bg[j] = r / m || 255; bg[j + 1] = g / m || 255; bg[j + 2] = b / m || 255; bg[j + 3] = (bg[j] * .3 + bg[j + 1] * .59 + bg[j + 2] * .11);
+  }
+  const bgAt = (xx, y, ch) => {   /* smooth (bilinear) paper colour */
+    const fx = Math.min(bw - 1, Math.max(0, xx / B - .5)), fy = Math.min(bh - 1, Math.max(0, y / B - .5)), x0 = fx | 0, y0 = fy | 0, x1 = Math.min(bw - 1, x0 + 1), y1 = Math.min(bh - 1, y0 + 1), ax = fx - x0, ay = fy - y0;
+    const v = (X, Y) => bg[(Y * bw + X) * 4 + ch];
+    return (v(x0, y0) * (1 - ax) + v(x1, y0) * ax) * (1 - ay) + (v(x0, y1) * (1 - ax) + v(x1, y1) * ax) * ay;
+  };
+  let minX = W, minY = H, maxX = -1, maxY = -1;
+  for (let y = 0; y < H; y++) for (let xx = 0; xx < W; xx++) {
+    const i = (y * W + xx) * 4, L = p[i] * .3 + p[i + 1] * .59 + p[i + 2] * .11, bL = Math.max(40, bgAt(xx, y, 3));
+    const d = (bL - L) / bL, a = Math.max(0, Math.min(1, (d - thr) / .2));
+    if (a <= 0) { p[i + 3] = 0; continue; }
+    const kk = Math.max(.35, Math.min(1, d * 1.7));
+    for (let ch = 0; ch < 3; ch++) { const nv = Math.min(255, p[i + ch] * 255 / Math.max(40, bgAt(xx, y, ch))); p[i + ch] = Math.max(0, Math.min(255, (nv - 255 * (1 - kk)) / kk)); }
+    p[i + 3] = Math.round(a * 255);
+    if (a > .35) { if (xx < minX) minX = xx; if (xx > maxX) maxX = xx; if (y < minY) minY = y; if (y > maxY) maxY = y; }
+  }
+  if (maxX < 0 || (maxX - minX) < 12 || (maxY - minY) < 8) return null;
+  x.setTransform(1, 0, 0, 1, 0, 0); x.putImageData(D, 0, 0);
+  const m = 10; minX = Math.max(0, minX - m); minY = Math.max(0, minY - m); maxX = Math.min(W - 1, maxX + m); maxY = Math.min(H - 1, maxY + m);
+  const cw = maxX - minX + 1, ch = maxY - minY + 1, s = Math.min(1, outMax / Math.max(cw, ch)), o = document.createElement('canvas');
+  o.width = Math.max(1, Math.round(cw * s)); o.height = Math.max(1, Math.round(ch * s));
+  o.getContext('2d').drawImage(c, minX, minY, cw, ch, 0, 0, o.width, o.height);
+  return o;
+}
+async function sealSend() {
+  if (!SEAL.sig || !SEAL.sig.c) return toast(t('අත්සනේ ඡායාරූපය එක් කරන්න', 'Add the photo of your signature'));
+  if (!$('#seal_ok').checked) return toast(t('සහතික කිරීමේ කොටුව සලකුණු කරන්න', 'Tick the confirmation box'));
+  confirmBox(t('එවන්නද?', 'Send now?'), t('එවූ පසු ඔබට මේවා වෙනස් කළ නොහැක. අත්සන / මුද්‍රාව පැහැදිලිව, නිවැරදිව පෙනේද?', 'You cannot change them after sending. Do the signature / stamp look clear and correct?'), t('එවන්න', 'Send'), async () => {
+    await run(async () => {
+      const id = uid().replace(/[^a-z0-9]/gi, '').slice(0, 16);
+      const sig = await DB.upload('private', SEAL.sig.c.toDataURL('image/png'), 'seal-sig-' + id);
+      const stamp = SEAL.stamp && SEAL.stamp.c ? await DB.upload('private', SEAL.stamp.c.toDataURL('image/png'), 'seal-stamp-' + id) : '';
+      await DB.rpc('seal_submit', { p_sig: sig, p_stamp: stamp });
+      toast(t('✓ එව්වා — පරිපාලක අනුමත කළ විට දැනුම් දෙනවා', '✓ Sent — you will be notified when approved'), 3600);
+      billSettings();
+    });
+  });
+}
+
+/* ---------- the bill form ---------- */
+let BILL = null;
+function billNextNo(kind) { const seq = billLS.get('seq_' + billKey(), {}); return BILL_KIND[kind][3] + '-' + String((seq[kind] || 0) + 1).padStart(4, '0'); }
+function billForm(kind, from) {
+  const biz = billLS.get('biz_' + billKey(), {});
+  BILL = from ? JSON.parse(JSON.stringify(from)) : { kind, items: [{ d: '', q: '1', p: '' }], cust: '', cphone: '', caddr: '', notes: biz.notes || '', disc: '', adv: '', valid: biz.valid || '14' };
+  if (from) BILL.adv = '';
+  BILL.kind = kind; BILL.no = billNextNo(kind); BILL.date = billToday(); delete BILL.code; delete BILL.png;
+  if (!BILL.items || !BILL.items.length) BILL.items = [{ d: '', q: '1', p: '' }];
+  const K = BILL_KIND[kind]; clAll();
+  sheet(`<h2 style="margin-top:0">${kind === 'inv' ? '🧾' : '📋'} ${t('නව ' + K[0], 'New ' + K[1].toLowerCase())}</h2>
+  <div style="display:flex;gap:8px"><div style="flex:1"><label for="b_no">${t('අංකය', 'Number')}</label><input class="in" id="b_no" maxlength="30" value="${esc(BILL.no)}"></div><div style="flex:1"><label for="b_dt">${t('දිනය', 'Date')}</label><input class="in" id="b_dt" type="date" value="${esc(BILL.date)}"></div></div>
+  ${kind === 'est' ? `<label for="b_val">${t('වලංගු කාලය (දින)', 'Valid for (days)')}</label><input class="in" id="b_val" type="number" min="1" max="365" inputmode="numeric" value="${esc(BILL.valid || '14')}">` : ''}
+  <label for="b_cu">${t('පාරිභෝගිකයාගේ නම', 'Customer name')}</label><input class="in" id="b_cu" maxlength="60" value="${esc(BILL.cust)}">
+  <div style="display:flex;gap:8px"><div style="flex:1"><label for="b_cp">${t('දුරකථනය (විකල්ප)', 'Phone (optional)')}</label><input class="in" id="b_cp" type="tel" inputmode="tel" maxlength="20" value="${esc(BILL.cphone)}"></div><div style="flex:1.3"><label for="b_ca">${t('ලිපිනය (විකල්ප)', 'Address (optional)')}</label><input class="in" id="b_ca" maxlength="80" value="${esc(BILL.caddr)}"></div></div>
+  <label>${t('වැඩ / භාණ්ඩ', 'Work / items')}</label><div id="b_items"></div>
+  <button type="button" class="sec" style="width:100%;margin-top:6px" onclick="billAddRow()">+ ${t('තවත් පේළියක්', 'Add a line')}</button>
+  <div style="display:flex;gap:8px"><div style="flex:1"><label for="b_ds">${t('වට්ටම (රු.)', 'Discount (Rs.)')}</label><input class="in" id="b_ds" inputmode="decimal" maxlength="12" value="${esc(BILL.disc)}" oninput="billTot()"></div>${kind === 'inv' ? `<div style="flex:1"><label for="b_ad">${t('ලැබුණු මුදල (රු.)', 'Amount received (Rs.)')}</label><input class="in" id="b_ad" inputmode="decimal" maxlength="12" value="${esc(BILL.adv)}" oninput="billTot()"></div>` : ''}</div>
+  <div class="box" id="b_tot" style="margin-top:10px"></div>
+  <label for="b_nt">${t('සටහන් / කොන්දේසි (විකල්ප)', 'Notes / terms (optional)')}</label><textarea class="in" id="b_nt" maxlength="300" placeholder="${esc(kind === 'est' ? t('උදා: ද්‍රව්‍ය මිල වෙනස් විය හැක. 50% අත්තිකාරම.', 'e.g. Material prices may change. 50% advance.') : t('උදා: වගකීම මාස 6යි. ස්තූතියි!', 'e.g. 6 months warranty. Thank you!'))}">${esc(BILL.notes)}</textarea>
+  <div class="acts" style="margin-top:16px"><button class="sec" style="flex:1" onclick="billHome()">${t('ආපසු', 'Back')}</button><button class="pri" style="flex:1.4" onclick="billMake()">✓ ${t(K[0] + ' සාදන්න', 'Create ' + K[1].toLowerCase())}</button></div>`);
+  billRows();
+}
+function billReadRows() { if (!$('#b_items')) return; BILL.items = $$('#b_items .brow').map(r => ({ d: r.querySelector('.bd').value, q: r.querySelector('.bq').value, p: r.querySelector('.bp').value })); }
+function billRows() {
+  const e = $('#b_items'); if (!e) return;
+  e.innerHTML = BILL.items.map((it, i) => `<div class="brow box" style="padding:10px;margin:6px 0">
+    <div style="display:flex;gap:6px;align-items:center"><b class="sub" style="flex:none;width:18px">${i + 1}</b><input class="in bd" style="margin:0" maxlength="90" aria-label="${t('විස්තරය', 'Description')}" placeholder="${t('වැඩේ / භාණ්ඩය', 'Work / item')}" value="${esc(it.d)}">${BILL.items.length > 1 ? `<button type="button" class="sec" style="flex:none;width:42px;min-height:42px;padding:0" aria-label="${t('ඉවත් කරන්න', 'Remove')}" onclick="billDelRow(${i})">✕</button>` : ''}</div>
+    <div style="display:flex;gap:6px;margin-top:6px;padding-left:24px"><input class="in bq" style="margin:0;flex:.7" inputmode="decimal" maxlength="8" aria-label="${t('ප්‍රමාණය', 'Qty')}" placeholder="${t('ප්‍රමාණය', 'Qty')}" value="${esc(it.q)}" oninput="billTot()"><input class="in bp" style="margin:0;flex:1.3" inputmode="decimal" maxlength="12" aria-label="${t('ඒකක මිල', 'Unit price')}" placeholder="${t('ඒකක මිල (රු.)', 'Unit price (Rs.)')}" value="${esc(it.p)}" oninput="billTot()"></div></div>`).join('');
+  billTot();
+}
+function billAddRow() { billReadRows(); if (BILL.items.length >= BILL_MAX_ITEMS) return toast(t(`උපරිම පේළි ${BILL_MAX_ITEMS}යි`, `At most ${BILL_MAX_ITEMS} lines`)); BILL.items.push({ d: '', q: '1', p: '' }); billRows(); const l = $$('#b_items .bd'); if (l.length) l[l.length - 1].focus(); }
+function billDelRow(i) { billReadRows(); BILL.items.splice(i, 1); billRows(); }
+function billCalc(b) {
+  const items = (b.items || []).filter(x => String(x.d || '').trim() || billNum(x.p)).map(x => ({ d: String(x.d || '').trim(), q: billNum(x.q) || 1, p: billNum(x.p) }));
+  items.forEach(x => x.a = Math.round(x.q * x.p * 100) / 100);
+  const sub = Math.round(items.reduce((s, x) => s + x.a, 0) * 100) / 100, disc = Math.min(sub, billNum(b.disc)), total = Math.round((sub - disc) * 100) / 100;
+  const got = b.kind === 'inv' ? billNum(b.adv) : 0, adv = Math.min(total, got);
+  /* "change" = what the customer gave over the total: shown to the professional only, never printed */
+  return { items, sub, disc, total, adv, bal: Math.round((total - adv) * 100) / 100, change: Math.round(Math.max(0, got - total) * 100) / 100 };
+}
+function billTot() {
+  billReadRows(); const e = $('#b_tot'); if (!e) return;
+  BILL.disc = ($('#b_ds') || {}).value || ''; BILL.adv = ($('#b_ad') || {}).value || '';
+  const c = billCalc(BILL);
+  e.innerHTML = `<div class="kv">${t('එකතුව', 'Subtotal')}: <b>රු. ${billMoney(c.sub)}</b></div>${c.disc ? `<div class="kv">${t('වට්ටම', 'Discount')}: <b>- රු. ${billMoney(c.disc)}</b></div>` : ''}<div class="kv" style="font-size:17px">${t('මුළු මුදල', 'Total')}: <b>රු. ${billMoney(c.total)}</b></div>${c.adv && c.bal > 0 ? `<div class="kv">${t('ගෙවිය යුතු ශේෂය', 'Balance due')}: <b>රු. ${billMoney(c.bal)}</b></div>` : ''}${c.adv && c.bal <= 0 ? `<div class="kv" style="color:var(--ok)">✓ <b>${t('සම්පූර්ණයෙන් ගෙවා ඇත', 'Paid in full')}</b></div>` : ''}${billChangeHtml(c)}`;
+}
+const billChangeHtml = c => c.change > 0 ? `<div style="margin-top:8px;padding:10px 12px;border-radius:14px;background:#FFF4E5;border:1px solid #FFB64D;font-size:15px">💵 ${t('පාරිභෝගිකයාට ආපසු දිය යුතු ඉතිරි මුදල', 'Change to give back')}: <b style="font-size:18px">රු. ${billMoney(c.change)}</b><div class="sub" style="margin-top:2px">${t('මෙය බිල්පතේ මුද්‍රණය නොවේ.', 'This is not printed on the bill.')}</div></div>` : '';
+async function billMake() {
+  billReadRows();
+  const g = id => (($('#' + id) || {}).value || '').trim();
+  Object.assign(BILL, { no: g('b_no'), date: g('b_dt') || billToday(), valid: g('b_val') || '14', cust: g('b_cu'), cphone: g('b_cp'), caddr: g('b_ca'), notes: g('b_nt'), disc: g('b_ds'), adv: g('b_ad') });
+  const biz = billLS.get('biz_' + billKey(), {}), c = billCalc(BILL);
+  if (!BILL.no) return toast(t('අංකය ඇතුළත් කරන්න', 'Enter a number'));
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(BILL.date)) return toast(t('දිනය වැරදියි', 'The date is not valid'));
+  if (BILL.cust.length < 2) return toast(t('පාරිභෝගිකයාගේ නම ඇතුළත් කරන්න', 'Enter the customer name'));
+  if (!c.items.length || c.items.some(x => !x.d)) return toast(t('සෑම පේළියකම වැඩේ / භාණ්ඩය ලියන්න', 'Describe the work / item on every line'));
+  if (!(c.total > 0)) return toast(t('මිල ගණන් ඇතුළත් කරන්න', 'Enter the prices'));
+  await run(async () => {
+    const w = myWorker();
+    /* the tiny fingerprint for the QR check — if it fails (offline), the QR opens the profile instead */
+    BILL.code = '';
+    /* a small text copy (no customer phone / address) so the QR code can show and download the bill */
+    const data = { v: 1, cust: BILL.cust, items: c.items.map(x => ({ d: x.d, q: x.q, p: x.p })), disc: c.disc, paid: c.adv, notes: BILL.notes, valid: BILL.valid,
+      biz: { name: biz.name || '', addr: biz.addr || '', br: biz.br || '', bank: biz.bank || '' } };
+    if (w.status === 'active') {
+      const args = { p_kind: BILL.kind, p_no: BILL.no, p_date: BILL.date, p_total: c.total };
+      try { BILL.code = await DB.rpc('bill_issue', { ...args, p_data: data }); }
+      catch (e) {
+        if (/too-many|banned/.test(String(e && e.message))) throw e;
+        try { if (/p_data|function|schema cache/i.test(String(e && e.message))) BILL.code = await DB.rpc('bill_issue', args); } catch (e2) { console.warn(e2); }
+        console.warn(e);
+      }
+    }
+    const seq = billLS.get('seq_' + billKey(), {}), m = BILL.no.match(/(\d+)$/); if (m) { seq[BILL.kind] = Math.max(seq[BILL.kind] || 0, parseInt(m[1], 10)); billLS.set('seq_' + billKey(), seq); }
+    const rec = { id: uid(), kind: BILL.kind, no: BILL.no, date: BILL.date, valid: BILL.valid, cust: BILL.cust, cphone: BILL.cphone, caddr: BILL.caddr, notes: BILL.notes, disc: BILL.disc, adv: BILL.adv, items: BILL.items, code: BILL.code || '', total: c.total, change: c.change, biz: data.biz, at: nowIso() };
+    const hist = billHist(); hist.unshift(rec); billLS.set('hist_' + billKey(), hist.slice(0, 40));
+    await billShow(rec);
+  });
+}
+
+/* ---------- drawing the bill (A4, 150 dpi) ---------- */
+async function billAssets(w, rec) {
+  const A = await bcAssets(w);   /* fonts, photo, logo, profile QR */
+  if (rec.code) { try { const q = new WLQR.QRCode(-1, WLQR.ECL.M); q.addData(appLink({ bill: rec.code })); q.make(); A.qr = q; } catch (e) { } }
+  let s = BILL_SEAL; if (!s) { try { s = await DB.mySeal(); } catch (e) { s = null; } }
+  if (s && s.status === 'approved') { const [a, b] = await Promise.all([sealImg(s.sig_path), sealImg(s.stamp_path)]); A.sig = a; A.stamp = b; }
+  return A;
+}
+function billDraw(w, rec, A) {
+  const W = 1240, H = 1754, M = 70, c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d'), d = bcData(w), K = BILL_KIND[rec.kind], cal = billCalc(rec), biz = rec.biz || billLS.get('biz_' + billKey(), {});
+  const ink = '#14213D', mut = '#5B6478', a1 = d.a1, a2 = d.a2, SI = BC_FONT_SI, EN = BC_FONT_EN;
+  const txt = (s, X, Y, font, col, al) => { x.font = font; x.fillStyle = col || ink; x.textAlign = al || 'left'; x.fillText(s, X, Y); };
+  x.fillStyle = '#fff'; x.fillRect(0, 0, W, H);
+  /* faint security pattern + watermark */
+  x.save(); x.globalAlpha = .045; x.strokeStyle = a2; x.lineWidth = 1.2;
+  for (let k = 0; k < 26; k++) { x.beginPath(); for (let X = 0; X <= W; X += 8) { const Y = 520 + k * 34 + Math.sin(X / 47 + k * .7) * 14 + Math.sin(X / 13 + k) * 3; X ? x.lineTo(X, Y) : x.moveTo(X, Y); } x.stroke(); }
+  x.restore();
+  if (A.logo) { x.save(); x.globalAlpha = .05; x.drawImage(A.logo, W / 2 - 260, 760, 520, 520); x.restore(); }
+  x.fillStyle = bcLG(x, 0, 0, W, 0, a1, a2); x.fillRect(0, 0, W, 16);
+  /* header: professional */
+  let hx = M;
+  if (A.img) { x.save(); x.beginPath(); x.arc(M + 62, 112, 62, 0, Math.PI * 2); x.clip(); const s = Math.max(124 / A.img.width, 124 / A.img.height); x.drawImage(A.img, M + 62 - A.img.width * s / 2, 112 - A.img.height * s / 2, A.img.width * s, A.img.height * s); x.restore(); x.lineWidth = 4; x.strokeStyle = a1; x.beginPath(); x.arc(M + 62, 112, 62, 0, Math.PI * 2); x.stroke(); hx = M + 148; }
+  const bn = biz.name || d.name;
+  bcFit(x, bn, 600 - (hx - M), 44, 800, SI, 26); x.fillStyle = ink; x.textAlign = 'left'; x.fillText(bn, hx, 92);
+  const l2 = biz.name ? d.name + ' · ' + d.trade : d.trade; bcFit(x, l2, 600 - (hx - M), 24, 600, SI, 15); x.fillStyle = a2; x.textAlign = 'left'; x.fillText(l2, hx, 130);
+  bcFit(x, (d.phone ? '☎ ' + d.phone + '   ' : '') + d.place, 600 - (hx - M), 22, 500, SI, 16); x.fillStyle = mut; x.fillText((d.phone ? '☎ ' + d.phone + '   ' : '') + d.place, hx, 164);
+  const ln2 = [biz.addr, biz.br ? 'BR: ' + biz.br : ''].filter(Boolean).join('  ·  ');
+  if (ln2) { bcFit(x, ln2, 600 - (hx - M), 20, 500, SI, 14); x.fillStyle = mut; x.fillText(ln2, hx, 194); }
+  if (A.nic != null ? A.nic : nicOk(w)) { x.font = `700 18px ${SI}`; const tt = '✓ ' + t('WORKLINE සත්‍යාපිත වෘත්තිකයා', 'WORKLINE verified professional'), tw = x.measureText(tt).width + 28; x.fillStyle = '#E7F7EF'; bcRound(x, hx, ln2 ? 210 : 182, tw, 34, 17); x.fill(); x.fillStyle = '#0F7A4A'; x.fillText(tt, hx + 14, (ln2 ? 210 : 182) + 24); }
+  /* header: document */
+  txt(t(K[0], K[1]), W - M, 96, `800 60px ${SI}`, a2, 'right');
+  try { x.letterSpacing = '6px'; } catch (e) { } txt(K[2], W - M + 6, 130, `800 22px ${EN}`, mut, 'right'); try { x.letterSpacing = '0px'; } catch (e) { }
+  const meta = [[t('අංකය', 'No.'), rec.no], [t('දිනය', 'Date'), rec.date]];
+  if (rec.kind === 'est') meta.push([t('වලංගු දිනය දක්වා', 'Valid until'), billAddDays(rec.date, Math.max(1, Math.min(365, parseInt(rec.valid, 10) || 14)))]);
+  meta.forEach((m, i) => { txt(m[0] + ':', W - M - 230, 172 + i * 32, `500 20px ${SI}`, mut, 'right'); txt(m[1], W - M, 172 + i * 32, `700 22px ${EN}`, ink, 'right'); });
+  x.fillStyle = '#E3E7EF'; x.fillRect(M, 268, W - 2 * M, 2);
+  /* customer */
+  txt(rec.kind === 'inv' ? t('බිල්පත ලබන්නා', 'Bill to') : t('ඇස්තමේන්තුව ලබන්නා', 'Prepared for'), M, 312, `600 20px ${SI}`, mut);
+  bcFit(x, rec.cust, 640, 32, 800, SI, 20); x.fillStyle = ink; x.textAlign = 'left'; x.fillText(rec.cust, M, 352);
+  const cl2 = [rec.cphone, rec.caddr].filter(Boolean).join('  ·  ');
+  if (cl2) { bcFit(x, cl2, 640, 22, 500, SI, 14); x.fillStyle = mut; x.fillText(cl2, M, 386); }
+  if (rec.kind === 'inv' && cal.bal <= 0) { x.save(); x.translate(W - M - 150, 340); x.rotate(-.12); x.strokeStyle = '#0F9D58'; x.lineWidth = 5; bcRound(x, -120, -38, 240, 76, 14); x.stroke(); x.font = `800 34px ${EN}`; x.fillStyle = '#0F9D58'; x.textAlign = 'center'; x.fillText('PAID', 0, 2); x.font = `700 17px ${SI}`; x.fillText(t('සම්පූර්ණයෙන් ගෙවා ඇත', 'Paid in full'), 0, 26); x.restore(); }
+  /* layout budget: table, then totals (right) + notes and signature (left or under the totals) */
+  const FOOT = H - 196 - 24, SIGH = 250;
+  x.font = `500 20px ${SI}`;
+  const nLines = [];
+  [biz.bank ? '🏦 ' + t('ගෙවීම් සඳහා', 'Pay to') + ': ' + biz.bank : '', rec.notes || ''].filter(Boolean).forEach(part => { let line = ''; for (const wd of String(part).replace(/\s+/g, ' ').split(' ')) { const tl = line ? line + ' ' + wd : wd; if (x.measureText(tl).width > 580 && line) { nLines.push(line); line = wd; } else line = tl; } if (line) nLines.push(line); });
+  nLines.splice(7);
+  const notesH = nLines.length ? 62 + nLines.length * 28 : 0, totH = 34 + (cal.disc ? 80 : 40) + 84 + (cal.adv ? 84 : 0);
+  const sigRight = Math.max(totH + SIGH, notesH), sigLeft = Math.max(totH, notesH + (notesH ? 10 : 0) + SIGH);
+  x.font = `500 22px ${SI}`;
+  let rowsL = cal.items.map(it => bcWrap(x, it.d, 540)), T = rowsL.reduce((s, l) => s + (l.length > 1 ? 82 : 52), 0);
+  /* the signature sits bottom-right under the totals whenever it fits, otherwise under the notes */
+  const mode = FOOT - 474 - T - 26 >= sigRight || sigRight <= sigLeft ? 'right' : 'left', budget = FOOT - 474 - 26 - (mode === 'right' ? sigRight : sigLeft);
+  if (T > budget) { rowsL = rowsL.map(l => [l.join(' ')]); T = rowsL.length * 52; }
+  const f = Math.max(.62, Math.min(1, budget / T)), FS = Math.round(22 * f), RH1 = Math.round(52 * f), LH = Math.round(30 * f);
+  /* items table */
+  let y = 420; const cols = [M + 18, M + 70, 820, 1000, W - M - 18];
+  x.fillStyle = bcLG(x, M, 0, W - M, 0, a1, a2); bcRound(x, M, y, W - 2 * M, 54, 12); x.fill();
+  [['#', cols[0], 'left'], [t('විස්තරය', 'Description'), cols[1], 'left'], [t('ප්‍රමාණය', 'Qty'), cols[2], 'right'], [t('ඒකක මිල', 'Unit price'), cols[3], 'right'], [t('මුදල (රු.)', 'Amount (Rs.)'), cols[4], 'right']].forEach(([s, X, al]) => txt(s, X, y + 35, `700 20px ${SI}`, '#fff', al));
+  y += 54;
+  cal.items.forEach((it, i) => {
+    const lines = rowsL[i], rh = RH1 + (lines.length - 1) * LH, by = y + Math.round(RH1 * .64);
+    if (i % 2) { x.fillStyle = '#F5F7FB'; x.fillRect(M, y, W - 2 * M, rh); }
+    txt(String(i + 1), cols[0], by, `600 ${FS - 2}px ${EN}`, mut);
+    lines.forEach((l, j) => { x.font = `500 ${FS}px ${SI}`; let s = l; while (x.measureText(s).width > 560 && s.length > 3) s = s.slice(0, -2) + '…'; txt(s, cols[1], by + j * LH, `500 ${FS}px ${SI}`, ink); });
+    txt(String(it.q), cols[2], by, `500 ${FS - 1}px ${EN}`, ink, 'right');
+    txt(billMoney(it.p), cols[3], by, `500 ${FS - 1}px ${EN}`, ink, 'right');
+    txt(billMoney(it.a), cols[4], by, `700 ${FS - 1}px ${EN}`, ink, 'right');
+    y += rh;
+  });
+  x.fillStyle = '#E3E7EF'; x.fillRect(M, y, W - 2 * M, 2); y += 26;
+  /* totals */
+  const tx = 700, rows = [[t('එකතුව', 'Subtotal'), cal.sub]];
+  if (cal.disc) rows.push([t('වට්ටම', 'Discount'), -cal.disc]);
+  let ty = y + 8;
+  rows.forEach(r => { txt(r[0], tx + 20, ty + 22, `500 21px ${SI}`, mut); txt((r[1] < 0 ? '- ' : '') + billMoney(Math.abs(r[1])), cols[4], ty + 22, `600 22px ${EN}`, ink, 'right'); ty += 40; });
+  x.fillStyle = bcLG(x, tx, 0, W - M, 0, a1, a2); bcRound(x, tx, ty, W - M - tx, 66, 14); x.fill();
+  txt(t('මුළු මුදල', 'Total'), tx + 20, ty + 43, `800 24px ${SI}`, '#fff'); txt('Rs. ' + billMoney(cal.total), cols[4], ty + 44, `800 30px ${EN}`, '#fff', 'right'); ty += 84;
+  if (cal.adv) {
+    txt(t('ලැබුණු මුදල', 'Amount received'), tx + 20, ty + 20, `500 21px ${SI}`, mut); txt('- ' + billMoney(cal.adv), cols[4], ty + 20, `600 22px ${EN}`, ink, 'right'); ty += 40;
+    if (cal.bal > 0) { txt(t('ගෙවිය යුතු ශේෂය', 'Balance due'), tx + 20, ty + 22, `800 23px ${SI}`, a2); txt('Rs. ' + billMoney(cal.bal), cols[4], ty + 22, `800 26px ${EN}`, a2, 'right'); }
+    else txt('✓ ' + t('සම්පූර්ණයෙන් ගෙවා ඇත', 'Paid in full'), cols[4], ty + 22, `800 23px ${SI}`, '#0F9D58', 'right');
+    ty += 44;
+  }
+  /* notes */
+  let ny = y;
+  if (nLines.length) { txt(t('සටහන් / කොන්දේසි', 'Notes / terms'), M, y + 30, `700 20px ${SI}`, mut); nLines.forEach((l, i) => txt(l, M, y + 62 + i * 28, `500 20px ${SI}`, ink)); ny = y + notesH + 10; }
+  /* signature + stamp — pushed to the bottom of the page */
+  const sx = mode === 'right' ? 760 : M, sw = mode === 'right' ? W - M - sx : 540, sy = Math.max(mode === 'right' ? ty + 10 : ny, FOOT - SIGH);
+  x.save(); x.globalAlpha = .55; x.strokeStyle = a2; x.lineWidth = 1;   /* micro-line under the signature: hard to copy cleanly */
+  for (let k = 0; k < 3; k++) { x.beginPath(); for (let X = sx; X <= sx + sw; X += 4) { const Y = sy + 150 + k * 5 + Math.sin((X + k * 9) / 6) * 2; X === sx ? x.moveTo(X, Y) : x.lineTo(X, Y); } x.stroke(); }
+  x.restore();
+  x.font = `500 9px ${EN}`; x.fillStyle = 'rgba(20,33,61,.45)'; x.textAlign = 'left';
+  let ms = ('WORKLINE·' + rec.no + '·' + billMoney(cal.total) + '·' + (rec.code || '') + '·').repeat(12); while (x.measureText(ms).width > sw && ms.length > 4) ms = ms.slice(0, -1); x.fillText(ms, sx, sy + 176);
+  if (A.copy) {   /* downloaded from the QR code: a "verified" mark instead of the real signature (that is never shared) */
+    x.save(); x.translate(sx + sw / 2, sy + 72); x.rotate(-.08); x.strokeStyle = '#0F9D58'; x.fillStyle = '#0F9D58'; x.globalAlpha = .9;
+    x.lineWidth = 6; x.beginPath(); x.arc(0, 0, 66, 0, Math.PI * 2); x.stroke(); x.lineWidth = 2; x.beginPath(); x.arc(0, 0, 56, 0, Math.PI * 2); x.stroke();
+    x.textAlign = 'center'; x.font = `800 17px ${EN}`; x.fillText('WORKLINE', 0, -18); x.font = `800 30px ${EN}`; x.fillText('✓', 0, 14); x.font = `800 14px ${EN}`; x.fillText('VERIFIED', 0, 38); x.restore();
+  }
+  if (A.stamp) { const s = Math.min(230 / A.stamp.width, 170 / A.stamp.height); x.save(); x.translate(sx + sw * .3, sy + 92); x.rotate((((rec.no || '').length * 37 + Math.round(cal.total)) % 14 - 7) * Math.PI / 180); x.globalAlpha = .9; x.globalCompositeOperation = 'multiply'; x.drawImage(A.stamp, -A.stamp.width * s / 2, -A.stamp.height * s / 2, A.stamp.width * s, A.stamp.height * s); x.restore(); }
+  if (A.sig) { const s = Math.min(300 / A.sig.width, 120 / A.sig.height); x.save(); x.globalCompositeOperation = 'multiply'; x.drawImage(A.sig, sx + sw * .58 - A.sig.width * s / 2, sy + 150 - A.sig.height * s * .82, A.sig.width * s, A.sig.height * s); x.restore(); }
+  x.fillStyle = ink; x.fillRect(sx, sy + 142, sw, 2);
+  bcFit(x, d.name, sw, 21, 700, SI, 14); x.fillStyle = ink; x.textAlign = 'center'; x.fillText(d.name, sx + sw / 2, sy + 206);
+  if (A.copy) { const cap = A.sealed ? t('අත්සන් කළ මුල් පිටපතේ ඩිජිටල් පිටපත — WORKLINE තහවුරු කළා', 'Digital copy of the signed original — confirmed by WORKLINE') : t('WORKLINE තහවුරු කළ ඩිජිටල් පිටපත', 'Digital copy confirmed by WORKLINE'); bcFit(x, cap, sw, 16, 500, SI, 11); x.fillStyle = mut; x.textAlign = 'center'; x.fillText(cap, sx + sw / 2, sy + 232); }
+  else txt(A.copy ? (A.sealed ? t('අත්සන් කළ මුල් පිටපතේ ඩිජිටල් පිටපත — WORKLINE තහවුරු කළා', 'Digital copy of the signed original — confirmed by WORKLINE') : t('WORKLINE තහවුරු කළ ඩිජිටල් පිටපත', 'Digital copy confirmed by WORKLINE')) : A.sig ? t('අත්සන සහ නිල මුද්‍රාව', 'Signature & official stamp') : t('අත්සන', 'Signature'), sx + sw / 2, sy + 232, `500 ${A.copy ? 15 : 18}px ${SI}`, mut, 'center');
+  /* footer: QR check + Workline */
+  const fy = H - 196; x.fillStyle = '#F4F6FB'; x.fillRect(0, fy, W, 196); x.fillStyle = bcLG(x, 0, 0, W, 0, a1, a2); x.fillRect(0, fy, W, 4);
+  bcRound(x, M - 14, fy + 14, 180, 180, 14); x.fillStyle = '#fff'; x.fill(); bcQR(x, A, M, fy + 28, 152, '#14213D');
+  const qx = M + 190;
+  if (rec.code) {
+    txt('✓ ' + t('මෙම ' + K[0] + ' සැබෑදැයි QR එක scan කර පරීක්ෂා කරන්න', 'Scan the QR code to check this ' + K[1].toLowerCase() + ' is genuine'), qx, fy + 58, `700 22px ${SI}`, '#0F7A4A');
+    txt(t('තහවුරු කිරීමේ කේතය', 'Check code') + ':  ' + rec.code.replace(/(.{4})(?=.)/g, '$1-'), qx, fy + 92, `700 21px ${EN}`, ink);
+  } else txt(t('QR එක scan කර මෙම වෘත්තිකයාගේ ප්‍රොෆයිලය සහ ඇගයීම් බලන්න', 'Scan the QR code to see this professional\'s profile and reviews'), qx, fy + 66, `700 22px ${SI}`, ink);
+  if (A.logo) x.drawImage(A.logo, qx, fy + 112, 44, 44);
+  txt('WORKLINE', qx + 54, fy + 143, `800 24px ${EN}`, ink);
+  const promo = t('වැඩ හොයනවද? කෙනෙක් හොයනවද? 100% නොමිලේ · workline-sl.github.io/workline', 'Looking for work or a professional? 100% free · workline-sl.github.io/workline');
+  bcFit(x, promo, W - M - qx - 200, 19, 600, SI, 13); x.fillStyle = mut; x.textAlign = 'left'; x.fillText(promo, qx + 200, fy + 142);
+  txt(t('මෙම ලේඛනය වෘත්තිකයා විසින් WORKLINE යෙදුමෙන් සකසන ලදී; අන්තර්ගතයේ වගකීම වෘත්තිකයාගේය.', 'Prepared by the professional with the WORKLINE app; the professional is responsible for its contents.'), qx, fy + 178, `500 15px ${SI}`, '#8A93A6');
+  return c;
+}
+let BILL_OUT = { blob: null, url: '', name: '' };
+async function billShow(rec) {
+  const w = myWorker(); if (!w) return; clAll();
+  sheet(`<div id="bill_v" class="bcv" style="aspect-ratio:1240/1754"><div class="skel" style="height:100%;margin:0"></div></div><div id="bill_a"></div>`);
+  const A = await billAssets(w, rec); let c;
+  try { c = billDraw(w, rec, A); } catch (e) { console.warn(e); c = billDraw(w, rec, Object.assign({}, A, { img: null })); }
+  const blob = await new Promise(r => { try { c.toBlob(r, 'image/png'); } catch (e) { r(null); } });
+  const K = BILL_KIND[rec.kind];
+  BILL_OUT = { blob, url: c.toDataURL('image/png'), name: ('workline-' + rec.no).replace(/[^\w-]+/g, '-') };
+  const v = $('#bill_v'); if (v) v.innerHTML = `<img alt="${esc(t(K[0], K[1]))}" src="${BILL_OUT.url}" style="width:100%;height:100%;object-fit:contain;display:block;border-radius:12px;background:#fff" onclick="zoomImg(this.src)">`;
+  const a = $('#bill_a'); if (!a) return;
+  const canFile = !!(blob && navigator.canShare && (() => { try { return navigator.canShare({ files: [new File([blob], 'b.png', { type: 'image/png' })] }); } catch (e) { return false; } })());
+  const cal = billCalc(rec), link = rec.code ? appLink({ bill: rec.code }) : '';
+  const wa = rec.cphone && link ? waHref(rec.cphone, t(`ආයුබෝවන්! ඔබේ ${K[0]} (${rec.no}, රු. ${billMoney(cal.total)}) — මෙතනින් බලන්න / බාගන්න: `, `Hello! Your ${K[1].toLowerCase()} (${rec.no}, Rs. ${billMoney(cal.total)}) — view / download here: `) + link) : '';
+  a.innerHTML = `${billChangeHtml(cal)}${rec.code ? `<p class="sub" style="margin:10px 4px">✓ ${t('පාරිභෝගිකයාට QR එක scan කර මෙය සැබෑදැයි බලා, පිටපතක් බාගත කරගත හැක.', 'The customer can scan the QR code to check it is genuine and download a copy.')}</p>` : `<p class="sub" style="margin:10px 4px">ℹ️ ${t('QR එක ඔබේ ප්‍රොෆයිලයට යයි. (අන්තර්ජාලය ඇති විට සාදන බිල්පත් QR එකෙන් තහවුරු කළ හැක.)', 'The QR code opens your profile. (Bills made while online can be checked with the QR code.)')}</p>`}
+  ${wa ? `<a class="pri" style="display:flex;text-decoration:none;margin-bottom:8px;background:#25D366" href="${esc(wa)}" target="_blank" rel="noopener">💬 ${t('පාරිභෝගිකයාට WhatsApp ලින්ක් එක යවන්න', 'Send the link to the customer on WhatsApp')}</a>` : ''}
+  ${canFile ? `<button class="${wa ? 'sec' : 'pri'}" style="width:100%" onclick="billShare()">↗ ${t('පින්තූරය Share කරන්න', 'Share the picture')}</button>` : ''}
+  <div style="display:flex;gap:8px;margin-top:8px"><button class="${canFile || wa ? 'sec' : 'pri'}" style="flex:1" onclick="billSave()">⬇ ${t('බාගන්න', 'Download')}</button><button class="sec" style="flex:1" onclick="billPrint()">🖨 ${t('Print / PDF', 'Print / PDF')}</button></div>
+  ${rec.kind === 'est' ? `<button class="sec" style="width:100%;margin-top:8px" onclick="billToInv('${esc(rec.id)}')">🧾 ${t('මෙය බිල්පතක් බවට හරවන්න', 'Turn this into a bill')}</button>` : ''}
+  <button class="sec" style="width:100%;margin-top:8px" onclick="billHome()">${t('ආපසු', 'Back')}</button>`;
+}
+function billSave() {
+  if (!BILL_OUT.url) return;
+  const a = document.createElement('a'); a.href = BILL_OUT.blob ? URL.createObjectURL(BILL_OUT.blob) : BILL_OUT.url; a.download = BILL_OUT.name + '.png';
+  document.body.appendChild(a); a.click(); a.remove(); if (BILL_OUT.blob) setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  toast(t('බාගත විය — Gallery / Downloads බලන්න', 'Saved — check your Gallery / Downloads'));
+}
+async function billShare() {
+  if (!BILL_OUT.blob) return billSave();
+  try { await navigator.share({ files: [new File([BILL_OUT.blob], BILL_OUT.name + '.png', { type: 'image/png' })] }); }
+  catch (e) { if (e && e.name !== 'AbortError') billSave(); }
+}
+/* print on A4 (or "Save as PDF" in the print window) */
+function billPrint() {
+  if (!BILL_OUT.url) return;
+  const f = document.createElement('iframe'); f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0'; document.body.appendChild(f);
+  const dd = f.contentDocument; dd.open(); dd.write('<!doctype html><html><head><meta charset="utf-8"><title>' + esc(BILL_OUT.name) + '</title><style>@page{size:A4;margin:0}html,body{margin:0}img{width:210mm;height:297mm;display:block}</style></head><body><img alt="" src="' + BILL_OUT.url + '"></body></html>'); dd.close();
+  const go2 = () => { try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) { billSave(); } setTimeout(() => f.remove(), 60000); };
+  const im = dd.querySelector('img'); if (im && !im.complete) im.onload = go2; else setTimeout(go2, 50);
+}
+function billHistHtml() {
+  const l = billHist(); if (!l.length) return '';
+  return `<div class="box" style="margin-top:10px"><b>🗂 ${t('මෑත බිල්පත් / ඇස්තමේන්තු', 'Recent bills / estimates')}</b><p class="sub" style="margin:4px 0 6px">${t('මෙම දුරකථනයේ පමණක් සුරැකේ.', 'Saved on this phone only.')}</p>${l.slice(0, 15).map(r => `<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--line);padding:8px 0"><div style="min-width:0"><b>${r.kind === 'inv' ? '🧾' : '📋'} ${esc(r.no)}</b> <span class="sub">${esc(r.date)}</span>${r.void ? ` <span class="tag" style="color:#E0486B">${t('අවලංගුයි', 'Cancelled')}</span>` : ''}<div class="sub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(r.cust)} · රු. ${billMoney(r.total)}</div></div><div style="display:flex;gap:6px;flex:none"><button class="sec" style="min-height:40px;padding:0 12px" onclick="billOpen('${esc(r.id)}')">${t('බලන්න', 'Open')}</button><button class="sec" style="min-height:40px;padding:0 10px" aria-label="${t('පිටපතක් ලෙස අලුත් එකක්', 'Copy as new')}" title="${t('පිටපතක් ලෙස අලුත් එකක්', 'Copy as new')}" onclick="billDup('${esc(r.id)}')">⧉</button>${r.code && !r.void ? `<button class="sec" style="min-height:40px;padding:0 10px" aria-label="${t('අවලංගු කරන්න', 'Cancel')}" onclick="billVoid('${esc(r.id)}')">⊘</button>` : ''}</div></div>`).join('')}</div>`;
+}
+async function billOpen(id) { const r = billHist().find(x => x.id === id); if (r) await billShow(r); }
+function billDup(id) { const r = billHist().find(x => x.id === id); if (r) billForm(r.kind, { ...r }); }
+function billToInv(id) { const r = billHist().find(x => x.id === id); if (r) billForm('inv', { ...r, notes: r.notes, adv: '' }); }
+function billVoid(id) {
+  const l = billHist(), r = l.find(x => x.id === id); if (!r || !r.code) return;
+  confirmBox(t('අවලංගු කරන්නද?', 'Cancel this?'), t(`${r.no} අවලංගු කළ පසු QR එකෙන් පරීක්ෂා කරන අයට "අවලංගු කළ" ලෙස පෙන්වයි. මෙය ආපසු හැරවිය නොහැක.`, `After cancelling ${r.no}, anyone who checks the QR code will see "cancelled". This cannot be undone.`), t('අවලංගු කරන්න', 'Cancel it'), async () => {
+    await run(async () => { await DB.rpc('bill_void', { p_code: r.code }); r.void = true; billLS.set('hist_' + billKey(), l); toast(t('අවලංගු කළා', 'Cancelled')); billHome(); });
+  }, true);
+}
+/* the copy anyone can download from the QR code (drawn on their own phone from the small text copy) */
+let BILL_CHECK = {};
+async function billCopy(code) {
+  const r = BILL_CHECK[code]; if (!r || !r.data) return;
+  const D = r.data, wl = S.workers.find(x => x.id === r.worker_id);
+  const w = wl || { id: r.worker_id, name: r.name || '', category: r.trade || 'other', skills: [], district: r.district || '', town: r.town || '', phone: '', verif: [] };
+  const rec = { kind: r.kind, no: r.no, date: r.issued_on, valid: D.valid || '14', cust: D.cust || '', cphone: '', caddr: '', notes: D.notes || '', disc: String(D.disc || ''), adv: String(D.paid || ''),
+    items: (D.items || []).slice(0, BILL_MAX_ITEMS).map(x => ({ d: String(x.d || '').slice(0, 90), q: String(x.q), p: String(x.p) })), code, biz: D.biz || {} };
+  clAll();
+  sheet(`<div id="bill_v" class="bcv" style="aspect-ratio:1240/1754"><div class="skel" style="height:100%;margin:0"></div></div><div id="bill_a"></div>`);
+  const A = await bcAssets(w);
+  try { const q = new WLQR.QRCode(-1, WLQR.ECL.M); q.addData(appLink({ bill: code })); q.make(); A.qr = q; } catch (e) { }
+  Object.assign(A, { copy: true, sealed: !!r.sealed, nic: !!r.nic_ok, sig: null, stamp: null });
+  let c; try { c = billDraw(w, rec, A); } catch (e) { console.warn(e); c = billDraw(w, rec, Object.assign({}, A, { img: null })); }
+  const blob = await new Promise(res => { try { c.toBlob(res, 'image/png'); } catch (e) { res(null); } });
+  const K = BILL_KIND[rec.kind];
+  BILL_OUT = { blob, url: c.toDataURL('image/png'), name: ('workline-' + rec.no).replace(/[^\w-]+/g, '-') };
+  const v = $('#bill_v'); if (v) v.innerHTML = `<img alt="${esc(t(K[0], K[1]))}" src="${BILL_OUT.url}" style="width:100%;height:100%;object-fit:contain;display:block;border-radius:12px;background:#fff" onclick="zoomImg(this.src)">`;
+  const a = $('#bill_a'); if (!a) return;
+  a.innerHTML = `<p class="sub" style="margin:10px 4px">✓ ${t('WORKLINE හි සුරැකි තොරතුරු වලින් සැකසූ පිටපතකි. ආරක්ෂාව සඳහා අත්සන / මුද්‍රාව වෙනුවට "VERIFIED" ලකුණ ඇත; පාරිභෝගිකයාගේ දුරකථන අංකය / ලිපිනය අපි ගබඩා නොකරමු.', 'A copy made from the details saved on WORKLINE. For safety it shows a "VERIFIED" mark instead of the signature / stamp; we do not store the customer\'s phone / address.')}</p>
+  <div style="display:flex;gap:8px"><button class="pri" style="flex:1" onclick="billSave()">⬇ ${t('බාගන්න', 'Download')}</button><button class="sec" style="flex:1" onclick="billPrint()">🖨 ${t('Print / PDF', 'Print / PDF')}</button></div>
+  <button class="sec" style="width:100%;margin-top:8px" onclick="billVerify('${esc(code)}')">${t('ආපසු', 'Back')}</button>`;
+}
+/* someone scanned the QR code on a bill */
+async function billVerify(code) {
+  code = String(code || '').toUpperCase().replace(/[^A-F0-9]/g, '');
+  let r = null; try { const l = await DB.rpc('bill_check', { p_code: code }); r = (Array.isArray(l) ? l : [])[0] || null; } catch (e) { r = BILL_CHECK[code] || null; }
+  if (r) BILL_CHECK[code] = r;
+  const ok = r && !r.void, K = r ? BILL_KIND[r.kind] || BILL_KIND.inv : null;
+  clAll();
+  sheet(`<div style="text-align:center"><div style="font-size:46px">${!r ? '⚠️' : r.void ? '⊘' : '✅'}</div>
+  <h2 style="margin:4px 0">${!r ? t('මෙම කේතය WORKLINE හි නැත', 'This code is not on WORKLINE') : r.void ? t('මෙම ' + K[0] + ' අවලංගු කර ඇත', 'This ' + K[1].toLowerCase() + ' was cancelled') : t('සැබෑ WORKLINE ' + K[0] + 'කි', 'A genuine WORKLINE ' + K[1].toLowerCase())}</h2></div>
+  ${r ? `<div class="box"><div class="kv">${t('නිකුත් කළේ', 'Issued by')}: <b>${esc(r.name || '—')}</b>${r.nic_ok ? ` <b style="color:var(--ok)">✓ ${t('NIC සත්‍යාපිත', 'NIC verified')}</b>` : ''}</div>
+  <div class="kv">${t('අංකය', 'Number')}: <b>${esc(r.no)}</b></div><div class="kv">${t('දිනය', 'Date')}: <b>${esc(r.issued_on)}</b></div>
+  <div class="kv">${t('මුළු මුදල', 'Total')}: <b>රු. ${billMoney(r.total)}</b></div>
+  <div class="kv">${t('අත්සන / නිල මුද්‍රාව', 'Signature / stamp')}: <b>${r.sealed ? t('පරිපාලක අනුමත කළ ✓', 'admin-approved ✓') : t('නැත', 'none')}</b></div></div>
+  <div class="box" style="font-size:13px">${ok ? '🔎 ' + t('ඔබ අතේ ඇති පිටපතේ අංකය, දිනය සහ මුළු මුදල මෙයට සමාන දැයි බලන්න. වෙනස් නම් එය වෙනස් කළ පිටපතකි.', 'Check that the number, date and total on your copy match these. If they differ, the copy was changed.') : t('මෙම ලේඛනය දැන් වලංගු නැත. වෘත්තිකයා අමතන්න.', 'This document is no longer valid. Contact the professional.')}</div>
+  ${ok && r.data && Array.isArray(r.data.items) && r.data.items.length ? `<button class="pri" style="margin-bottom:8px" onclick="billCopy('${esc(code)}')">⬇ ${t(K[0] + 'ේ පිටපත බලන්න / බාගන්න', 'View / download the ' + K[1].toLowerCase())}</button>` : ''}
+  ${r.active && S.workers.some(x => x.id === r.worker_id) ? `<button class="sec" style="width:100%" onclick="cl();prof('${esc(r.worker_id)}')">${t('වෘත්තිකයාගේ ප්‍රොෆයිලය බලන්න', 'See the professional\'s profile')}</button>` : ''}`
+  : `<div class="box" style="font-size:13px">${t('QR එක හරියට scan වුණේ නැත්නම් නැවත උත්සාහ කරන්න. තවමත් මෙසේ නම්, මෙම බිල්පත ව්‍යාජ විය හැක — ගෙවීමට පෙර වෘත්තිකයාගෙන් විමසන්න.', 'If the QR code did not scan properly, try again. If you still see this, the bill may be fake — ask the professional before paying.')}</div>`}
+  <button class="sec" style="width:100%;margin-top:8px" onclick="cl()">${t('වසන්න', 'Close')}</button>`);
+}
+
+/* ============================================================
    54 — INSTALL AS AN APP (home-screen icon, no Play Store / APK)
    ============================================================ */
 const ICON192 = 'data:image/png;base64,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';
@@ -3069,25 +3687,33 @@ function my() {
   <button class="sec" style="min-height:44px;flex:none" onclick="signOut()">${t('පිටවන්න', 'Sign out')}</button></div>
   <button class="sec" style="width:100%;margin-top:10px;min-height:44px" onclick="pwSheet()">🔑 ${t('මුරපදය වෙනස් කරන්න', 'Change password')}</button>
   ${S.mode === 'cloud' && !S.me.google && googleOn() ? `<div style="margin-top:8px">${googleBtn(1)}</div><p class="sub" style="margin:4px 4px 0">${t('සම්බන්ධ කළ විට මුරපදය අමතක වුවත් Google මගින් පිවිසිය හැක.', 'Once connected, you can sign in with Google even if you forget your password.')}</p>` : ''}</div>
-  ${m ? `<div class="box"><b>${t('ප්‍රොෆයිල් සම්පූර්ණතාව', 'Profile completeness')}</b> ${cp}%<div class="bar" style="margin-top:8px"><i style="width:${cp}%"></i></div>
-  <div class="st"><div><b>${m.views || 0}</b>${t('නැරඹීම්', 'Views')}</div><div><b>${m.calls || 0}</b>${t('ඇමතුම්', 'Calls')}</div><div><b>${Number(m.rating || 0).toFixed(1)}</b>${t('ඇගයීම', 'Rating')}</div></div>${boostLine(m)}</div>
-  ${trustBox(m.verif, DOCS_W, 1, `docUp('worker','${m.id}',`, 'worker', m.id)}` : `<div class="box" style="text-align:center"><p class="sub" style="margin:0 0 12px">${t('ඔබට තවම දැන්වීමක් නැත. වෘත්තීය ප්‍රොෆයිලයක් හෝ රැකියා දැන්වීමක් නොමිලේ පළ කරන්න.', 'You have no listing yet. Post a professional profile or a job ad for free.')}</p><button class="pri" onclick="startReg()">+ ${t('නොමිලේ පළ කරන්න', 'Post for free')}</button></div>`}
-  ${pushBox(false)}
-  <div class="box" style="padding:12px 16px;display:flex;gap:10px;align-items:center;justify-content:space-between"><span>${soundOn() ? '🔔' : '🔕'} <b>${t('නව පණිවිඩ / දැනුම්දීම් නාදය', 'Sound for new messages / notices')}</b></span><span style="display:flex;gap:6px;flex:none"><button class="sec" style="min-height:40px;padding:0 12px;font-size:13px" onclick="chime(true)" aria-label="${t('අහලා බලන්න', 'Play')}">▶</button><button class="sec" style="min-height:40px;font-size:13px" onclick="soundToggle()">${soundOn() ? t('නිහඬ කරන්න', 'Mute') : t('සක්‍රීය කරන්න', 'Turn on')}</button></span></div>
-  ${rqMyHtml()}
-  ${m ? `<h2>${t('මගේ ප්‍රොෆයිලය', 'My profile')}</h2>${card(m, 1)}` : ''}
-  ${m ? `<button class="pri" style="margin-bottom:8px;background:linear-gradient(90deg,#5B5BFF,#C2399E)" onclick="bizCard()">🪪 ${t('මගේ ඩිජිටල් කාඩ්පත — Status එකට දාන්න', 'My digital card — post it on Status')}</button>` : ''}
-  ${m && workerLive(m) ? `<button class="sec" style="width:100%;margin-bottom:8px" onclick="openRqBoard(1)">🙋 ${t('මට ගැළපෙන වැඩ ඉල්ලීම්', 'Job requests for me')}${rqNewForMe().length ? ` (${rqNewForMe().length})` : ''}</button>` : ''}
-  ${apps.length ? `<h2>${t('මගේ අයදුම්පත්', 'My applications')}</h2><div class="box">${apps.map(a => { const j = S.jobs.find(x => x.id === a.job_id); return `<div class="ap"><b>${esc(j ? j.title : '—')}</b> <span class="tag">${[t('යවා ඇත', 'Sent'), t('තෝරාගත්', 'Shortlisted'), t('ප්‍රතික්ෂේපිත', 'Rejected')][a.status]}</span></div>`; }).join('')}</div>` : ''}
-  ${jobs.length ? `<h2>${t('මගේ රැකියා', 'My jobs')}</h2>${jobs.map(j => jcard(j, 1) + boostLine(j) + apl(j) + trustBox(j.verif, DOCS_J, 1, `docUp('job','${j.id}',`, 'job', j.id)).join('')}` : ''}
-  ${savedHtml()}
-  <h2>${t('සහාය ගෙවීම් (විකල්ප)', 'Support payments (optional)')}</h2>${payList()}
+  ${m || jobs.length ? '' : `<div class="box" style="text-align:center"><p class="sub" style="margin:0 0 12px">${t('ඔබට තවම දැන්වීමක් නැත. වෘත්තීය ප්‍රොෆයිලයක් හෝ රැකියා දැන්වීමක් නොමිලේ පළ කරන්න.', 'You have no listing yet. Post a professional profile or a job ad for free.')}</p><button class="pri" onclick="startReg()">+ ${t('නොමිලේ පළ කරන්න', 'Post for free')}</button></div>`}
+  ${pushOn() ? '' : pushBox(false)}
+  ${m ? accSec('bills', '🧾', t('ඩිජිටල් බිල්පත් සහ ඇස්තමේන්තු', 'Digital bills & estimates'), billHist().length ? String(billHist().length) : t('නව', 'New'), billQuickHtml(m) + `<div style="margin-top:8px"><button class="sec" style="width:100%" onclick="billHome()">🗂 ${t('මගේ බිල්පත් / ඇස්තමේන්තු', 'My bills / estimates')}</button></div>`) : ''}
+  ${m ? accSec('prof', '👤', t('මගේ ප්‍රොෆයිලය', 'My profile'), m.status === 'pending' ? '⏳' : m.status === 'rejected' ? '⚠' : '', card(m, 1) + `<div class="box"><b>${t('ප්‍රොෆයිල් සම්පූර්ණතාව', 'Profile completeness')}</b> ${cp}%<div class="bar" style="margin-top:8px"><i style="width:${cp}%"></i></div>
+  <div class="st"><div><b>${m.views || 0}</b>${t('නැරඹීම්', 'Views')}</div><div><b>${m.calls || 0}</b>${t('ඇමතුම්', 'Calls')}</div><div><b>${Number(m.rating || 0).toFixed(1)}</b>${t('ඇගයීම', 'Rating')}</div></div>${boostLine(m)}</div>` + `<button class="pri" style="margin-bottom:8px;background:linear-gradient(90deg,#5B5BFF,#C2399E)" onclick="bizCard()">🪪 ${t('මගේ ඩිජිටල් කාඩ්පත — Status එකට දාන්න', 'My digital card — post it on Status')}</button>` + (m && workerLive(m) ? `<button class="sec" style="width:100%;margin-bottom:8px" onclick="openRqBoard(1)">🙋 ${t('මට ගැළපෙන වැඩ ඉල්ලීම්', 'Job requests for me')}${rqNewForMe().length ? ` (${rqNewForMe().length})` : ''}</button>` : '')) : ''}
+  ${m ? accSec('trust', '🛡️', t('විශ්වාස පත්‍රිකාව (NIC සත්‍යාපනය)', 'Trust sheet (NIC verification)'), trustPct(m.verif) + '%', `${trustBox(m.verif, DOCS_W, 1, `docUp('worker','${m.id}',`, 'worker', m.id)}`) : ''}
+  ${myRequests().length ? accSec('myrq', '🙋', t('මගේ වැඩ ඉල්ලීම්', 'My job requests'), String(myRequests().length), myRequests().map(rqOwnCard).join('')) : ''}
+  ${apps.length ? accSec('apps', '📨', t('මගේ අයදුම්පත්', 'My applications'), String(apps.length), `<div class="box">${apps.map(a => { const j = S.jobs.find(x => x.id === a.job_id); return `<div class="ap"><b>${esc(j ? j.title : '—')}</b> <span class="tag">${[t('යවා ඇත', 'Sent'), t('තෝරාගත්', 'Shortlisted'), t('ප්‍රතික්ෂේපිත', 'Rejected')][a.status]}</span></div>`; }).join('')}</div>`) : ''}
+  ${jobs.length ? accSec('jobs', '💼', t('මගේ රැකියා', 'My jobs'), String(jobs.length), jobs.map(j => jcard(j, 1) + boostLine(j) + apl(j) + trustBox(j.verif, DOCS_J, 1, `docUp('job','${j.id}',`, 'job', j.id)).join('')) : ''}
+  ${savedHtml() ? accSec('saved', '♥', t('සුරැකි', 'Saved'), '', savedHtml().replace(/^<h2>[^<]*<\/h2>/, '')) : ''}
+  ${accSec('alerts', '🔔', t('දැනුම්දීම් සහ නාදය', 'Notices & sound'), '', (pushOn() ? pushBox(false) : '') + `<div class="box" style="padding:12px 16px;display:flex;gap:10px;align-items:center;justify-content:space-between"><span>${soundOn() ? '🔔' : '🔕'} <b>${t('නව පණිවිඩ / දැනුම්දීම් නාදය', 'Sound for new messages / notices')}</b></span><span style="display:flex;gap:6px;flex:none"><button class="sec" style="min-height:40px;padding:0 12px;font-size:13px" onclick="chime(true)" aria-label="${t('අහලා බලන්න', 'Play')}">▶</button><button class="sec" style="min-height:40px;font-size:13px" onclick="soundToggle()">${soundOn() ? t('නිහඬ කරන්න', 'Mute') : t('සක්‍රීය කරන්න', 'Turn on')}</button></span></div>`)}
+  ${accSec('pay', '💳', t('සහාය ගෙවීම් (විකල්ප)', 'Support payments (optional)'), '', payList())}
   <button class="sec" style="width:100%;margin-top:8px" onclick="UI.tab='refv';go();scrollTo(0,0)">🎁 ${t('යහළුවන්ට ආරාධනා කරන්න (Referral)', 'Invite friends (Referral)')}</button>
   ${IS_STANDALONE() ? '' : `<button class="sec" style="width:100%;margin-top:8px" onclick="installApp()">📲 ${t('Workline ඇප් එක ලෙස ෆෝන් එකට දාගන්න', 'Add Workline to your phone as an app')}</button>`}
   <button class="sec" style="width:100%;margin-top:8px" onclick="dataSheet()">${t('මගේ දත්ත', 'My data')}</button>
   <button class="sec" style="width:100%;margin-top:8px" onclick="UI.tab='sup';go();scrollTo(0,0)">❓ ${t('සහාය, නියමයන් සහ ගැටලු වාර්තා කිරීම', 'Help, terms & report a problem')}</button>
   ${S.mode === 'local' ? `<button class="sec" style="width:100%;margin-top:8px" onclick="adminEntry()">${t('Admin කොන්සෝලය', 'Admin console')}${S.mode === 'local' ? ' (demo)' : ''}</button>` : ''}`;
 }
+/* "My account" in parts: tap a title to open / close it (remembered while the app is open) */
+function accSec(key, icon, title, badge, body, open) {
+  if (!body) return '';
+  if (!UI.acc) { try { UI.acc = JSON.parse(sessionStorage.getItem('wl_acc') || '{}') || {}; } catch (e) { UI.acc = {}; } }
+  const o = key in UI.acc ? UI.acc[key] : !!open;
+  return `<details class="acc" data-k="${key}" ${o ? 'open' : ''} ontoggle="accT(this)"><summary><span class="ai" aria-hidden="true">${icon}</span><b>${title}</b>${badge ? `<span class="ab">${esc(badge)}</span>` : ''}<span class="chev" aria-hidden="true">›</span></summary><div class="accb">${body}</div></details>`;
+}
+function accT(el) { UI.acc = UI.acc || {}; UI.acc[el.dataset.k] = el.open; try { sessionStorage.setItem('wl_acc', JSON.stringify(UI.acc)); } catch (e) { } }
+function accOpenFor(el) { const d = el && el.closest && el.closest('details.acc'); if (d && !d.open) { d.open = true; accT(d); } }
 function apl(j) {
   const l = S.applications.filter(a => a.job_id === j.id);
   return `<div class="box"><b>${t('ලැබුණු අයදුම්පත්', 'Applications received')}</b> (${l.length})${l.map(a => {
@@ -3120,6 +3746,8 @@ function notifText(n) {
     payment_no: [t('ගෙවීම ප්‍රතික්ෂේප විය', 'Payment rejected'), d.note || ''],
     doc_ok: [t('ලේඛනය අනුමත විය', 'Document approved'), dl],
     doc_no: [t('ලේඛනය ප්‍රතික්ෂේප විය', 'Document rejected'), (dl ? dl + '. ' : '') + (d.note || '')],
+    seal_ok: [t('✍️ අත්සන / නිල මුද්‍රාව අනුමත විය ✓', '✍️ Signature / stamp approved ✓'), t('දැන් ඔබේ බිල්පත් සහ ඇස්තමේන්තු වලට ඒවා ස්වයංක්‍රීයව එකතු වේ.', 'They are now added to your bills and estimates automatically.')],
+    seal_no: [t('✍️ අත්සන / නිල මුද්‍රාව ප්‍රතික්ෂේප විය', '✍️ Signature / stamp rejected'), (d.note || '') + t(' · අලුතින් ඡායාරූප ගෙන නැවත එවන්න.', ' · Take new photos and send again.')],
     proposal_approved: [t('ක්ෂේත්‍ර යෝජනාව අනුමත විය', 'Field suggestion approved'), d.name || ''],
     proposal_merged: [t('ක්ෂේත්‍ර යෝජනාව දැනට ඇති ක්ෂේත්‍රයකට ගැළපුවා', 'Suggestion matched to an existing field'), d.name || ''],
     proposal_rejected: [t('ක්ෂේත්‍ර යෝජනාව ප්‍රතික්ෂේප විය', 'Field suggestion rejected'), (d.name || '') + (d.note ? ' — ' + d.note : '')],
@@ -3136,7 +3764,7 @@ function notifText(n) {
     request_rejected: [t('ඔබේ ඉල්ලීම ප්‍රතික්ෂේප විය', 'Your request was rejected'), (d.note || '') + t(' · නිවැරදි කර නැවත සුරකින්න.', ' · Fix it and save again.')],
     request_hidden: [t('ඔබේ ඉල්ලීම සඟවා ඇත', 'Your request was hidden'), d.note || ''],
     broadcast: ['📢 ' + (d.title || t('නිවේදනයක්', 'Announcement')), d.body || ''],
-    admin_pending: [t('🛡️ අනුමැතියට නව ', '🛡️ Waiting for approval: ') + ({ worker: t('ප්‍රොෆයිලයක්', 'profile'), job: t('රැකියා දැන්වීමක්', 'job ad'), request: t('වැඩ ඉල්ලීමක්', 'job request') }[d.type] || t('දැන්වීමක්', 'listing')) + (d.edited ? t(' (වෙනස් කළ)', ' (edited)') : ''), (d.name ? d.name + ' — ' : '') + t('Admin panel එකෙන් පරීක්ෂා කර අනුමත කරන්න.', 'Review it in the admin panel.')],
+    admin_pending: [t('🛡️ අනුමැතියට නව ', '🛡️ Waiting for approval: ') + ({ worker: t('ප්‍රොෆයිලයක්', 'profile'), job: t('රැකියා දැන්වීමක්', 'job ad'), request: t('වැඩ ඉල්ලීමක්', 'job request'), seal: t('අත්සනක් / නිල මුද්‍රාවක්', 'signature / stamp') }[d.type] || t('දැන්වීමක්', 'listing')) + (d.edited ? t(' (වෙනස් කළ)', ' (edited)') : ''), (d.name ? d.name + ' — ' : '') + t('Admin panel එකෙන් පරීක්ෂා කර අනුමත කරන්න.', 'Review it in the admin panel.')],
     admin_flag: [t('🚩 නීතිවිරෝධී විය හැකි chat පණිවිඩයක් නැවැත්වුවා', '🚩 A possibly illegal chat message was stopped'), (d.reason === 'drugs' ? t('මත්ද්‍රව්‍ය වචන', 'drug words') : d.reason === 'scam' ? t('වංචා (OTP/PIN)', 'scam (OTP/PIN)') : t('තහනම් වචන', 'blocked words')) + t(' — Admin panel → වාර්තා බලන්න.', ' — check Admin panel → Reports.')],
     admin_report: [t('🚩 නව පැමිණිල්ලක්', '🚩 New report'), (d.chat ? t('Chat එකක් ගැන · ', 'About a chat · ') : '') + t('Admin panel → වාර්තා බලන්න.', 'Check Admin panel → Reports.')],
     push_test: [t('🔔 පරීක්ෂණ දැනුම්දීමක්', '🔔 Test notice'), t('දුරකථන දැනුම්දීම් හරියට වැඩ කරනවා ✓', 'Phone notifications work ✓')],
@@ -3164,9 +3792,11 @@ function notifGo(id) {
   if (n.kind === 'broadcast') return;
   if (n.kind === 'admin_flag' || n.kind === 'admin_report') return toast(t('Admin panel එකේ "වාර්තා" පිටුව බලන්න', 'Open the Reports page in the admin panel'), 3600);
   if (n.kind === 'admin_pending') return toast(t('Admin panel එක විවෘත කර අනුමත කරන්න', 'Open the admin panel to review it'), 3600);
+  if (n.kind === 'seal_ok' || n.kind === 'seal_no') return billSettings();
   if (n.kind === 'job_new') { const open = () => openJob(n.ref); if (S.mode === 'cloud') DB.reload(['jobs']).catch(() => { }).then(open); else open(); return; }
   if (n.kind === 'request_new') { const open = () => { if ((S.requests || []).some(r => r.id === n.ref && rqLive(r))) rqView(n.ref); else openRqBoard(1); }; if (S.mode === 'cloud') DB.reload(['requests', 'request_responses']).catch(() => { }).then(open); else open(); return; }
-  if (/^request_/.test(n.kind)) { const done = () => { UI.tab = 'my'; go(); const e = $('#rqo_' + n.ref); if (e) e.scrollIntoView({ block: 'start', behavior: 'smooth' }); else scrollTo(0, 0); }; if (S.mode === 'cloud') DB.reload(['requests', 'request_responses', 'workers']).catch(() => { }).then(done); else done(); return; }
+  if (/^request_/.test(n.kind)) { const done = () => { UI.tab = 'my'; go(); const e = $('#rqo_' + n.ref); accOpenFor(e); if (e) e.scrollIntoView({ block: 'start', behavior: 'smooth' }); else scrollTo(0, 0); }; if (S.mode === 'cloud') DB.reload(['requests', 'request_responses', 'workers']).catch(() => { }).then(done); else done(); return; }
+  if (/^listing_/.test(n.kind)) UI.acc = Object.assign(UI.acc || {}, { prof: true, jobs: true });
   if (/^listing_/.test(n.kind) && S.mode === 'cloud') { DB.reload(['workers', 'jobs']).catch(() => { }).then(() => { UI.tab = 'my'; go(); scrollTo(0, 0); }); return; }
   UI.tab = 'my'; go(); scrollTo(0, 0);
 }
@@ -5300,9 +5930,10 @@ async function init() {
   const w = q.get('w'); if (w && S.workers.some(x => x.id === w && (workerLive(x) || isMine(x)))) prof(w);
   const jq = q.get('j'); if (jq) openJob(jq);
   const rqq = q.get('rq'); if (rqq) rqView(rqq);
+  const bq = q.get('bill'); if (bq) billVerify(bq);
   if (q.get('nt') && S.me && !$('#ov').children.length) { UI.tab = 'nt'; go(); }
   /* tidy the address bar so a refresh does not reopen the same thing */
-  if (['nt', 'source', 'rq', 'j'].some(k => q.has(k))) { ['nt', 'source', 'rq', 'j'].forEach(k => q.delete(k)); try { history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash); } catch (e) { } }
+  if (['nt', 'source', 'rq', 'j', 'bill'].some(k => q.has(k))) { ['nt', 'source', 'rq', 'j', 'bill'].forEach(k => q.delete(k)); try { history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash); } catch (e) { } }
 }
 /* show one job in its list (from a link or a notice) */
 function openJob(id) {
